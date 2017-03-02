@@ -1,5 +1,3 @@
-# leshare-mina 
-
 ## Description
 The leshare web project base on WeiXin MINA.
 
