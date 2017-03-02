@@ -1,0 +1,14 @@
+<!--店铺项目模板-->
+<template name="shopItemTemplate">
+    <view class="shop-item-container">
+        <!--店铺图片-->
+        <image class="shop-item-image" src="/images/shop.png"/>
+        <view class="shop-synopsis-container">
+            <text class="shop-item-title">小王的便利店</text>
+            <text class="shop-item-describe">便利店，提供外卖服务</text>
+            <text class="shop-item-describe">地址：天泉小区 12座 102号，工商银行旁</text>
+        </view>
+        <image class="shop-more-image" src="/images/more.png"/>
+    </view>
+    <view class="hr"/>
+</template>

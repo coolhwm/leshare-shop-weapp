@@ -1,0 +1,8 @@
+<import src="/templates/shop/item/shop-item-template.wxml" />
+<!--店铺列表模板-->
+<template name="shopListTemplate">
+    <!--店铺列表-->
+    <template is="shopItemTemplate"/>
+    <template is="shopItemTemplate"/>
+    <template is="shopItemTemplate"/>
+</template>
