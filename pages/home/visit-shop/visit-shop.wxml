@@ -1,3 +1,5 @@
+<!--店铺历史访问页面-->
+<!--依赖：店铺列表、店铺项目-->
 <import src="/templates/shop/list/shop-list-template.wxml" />
 
 <!--店铺列表-->

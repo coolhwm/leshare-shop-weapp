@@ -1,0 +1,25 @@
+.goods-item-container{
+    float: left;
+    margin-left: 10rpx;
+    margin-top: 10rpx;
+    height: 440rpx;
+    width: 360rpx;
+}
+.goods-item-image{
+    height: 340rpx;
+    width: 360rpx;
+}
+.goods-item-title{
+    color: #333;
+}
+
+.goods-item-price-cost{
+    font-size: 28rpx;
+    color:#ff6200;
+}
+
+.goods-item-price-original{
+    margin-left: 15rpx;
+    text-decoration: line-through;
+    color:#999;
+}

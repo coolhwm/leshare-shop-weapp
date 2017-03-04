@@ -1,0 +1,15 @@
+/* pages/shop/index/index.wxss */
+@import "/templates/shop/item/shop-item-template.wxss";
+@import "/templates/goods/item/goods-item-template.wxss";
+@import "/templates/goods/grid/goods-grid-template.wxss";
+@import "/templates/notice/bar/notice-bar-template.wxss";
+
+.shop-head-image{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 750rpx;
+    height: 230rpx;
+    -webkit-filter: blur(40px) opacity(.2);
+}

@@ -1,0 +1,15 @@
+.notice-bar-container{
+    padding: 10rpx;
+    display: flex;
+    flex-direction: row;
+}
+
+.notice-bar-image{
+    height: 32rpx;
+    width: 32rpx;
+}
+
+
+.notice-bar-content{
+    margin-left: 10rpx;
+}

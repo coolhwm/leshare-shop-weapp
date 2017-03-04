@@ -1,8 +1,11 @@
-<import src="/templates/shop/item/shop-item-template.wxml" />
 <!--店铺列表模板-->
+<!--依赖：店铺项目模板-->
+<import src="/templates/shop/item/shop-item-template.wxml" />
 <template name="shopListTemplate">
     <!--店铺列表-->
     <template is="shopItemTemplate"/>
+    <view class="hr"/>
     <template is="shopItemTemplate"/>
+    <view class="hr"/>
     <template is="shopItemTemplate"/>
 </template>

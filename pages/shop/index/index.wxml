@@ -1,0 +1,18 @@
+<!--店铺首页面-->
+<!--依赖：店铺项目、店铺公告、商品项目（间接）、商品网格-->
+<import src="/templates/shop/item/shop-item-template.wxml" />
+<import src="/templates/goods/grid/goods-grid-template.wxml" />
+<import src="/templates/notice/bar/notice-bar-template.wxml" />
+
+<view class="shop-index-container">
+    <!--店铺基本信息-->
+    <template is="shopItemTemplate" />
+    <!--店铺公告-->
+    <template is="noitceBarTemplate" />
+    <!--头图背景-->
+    <image class="shop-head-image" mode="aspectFill" src="/images/shop/shop.png"/>
+    <view class="hr-light"/>
+
+    <!--商品区域-->
+    <template is="goodsGridTemplate"/>
+</view>

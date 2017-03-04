@@ -1,0 +1,12 @@
+<!--商品网格模板-->
+<!--依赖：商品项目模板-->
+<import src="/templates/goods/item/goods-item-template.wxml" />
+<template name="goodsGridTemplate">
+    <!--商品列表-->
+    <template is="goodsItemTemplate"/>
+    <template is="goodsItemTemplate"/>
+    <template is="goodsItemTemplate"/>
+    <template is="goodsItemTemplate"/>
+    <template is="goodsItemTemplate"/>
+    <template is="goodsItemTemplate"/>
+</template>

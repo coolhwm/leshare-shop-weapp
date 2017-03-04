@@ -11,3 +11,9 @@ text {
     background-color: #d9d9d9;
     width: 100%;
 }
+/*水平线线*/
+.hr-light{
+    height: 1px;
+    background-color: #e6e6e6;
+    width: 100%;
+}

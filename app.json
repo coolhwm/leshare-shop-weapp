@@ -1,6 +1,7 @@
 {
   "pages":[
-    "pages/home/visit-shop"
+    "pages/shop/index/index",
+    "pages/home/visit-shop/visit-shop"
   ],
   "window": {
     "navigationBarBackgroundColor": "#1296db"

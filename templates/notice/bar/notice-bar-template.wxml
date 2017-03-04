@@ -1,0 +1,8 @@
+<!--通知条模板（最新公告）-->
+<!--依赖:无-->
+<template name="noitceBarTemplate">
+    <view class="notice-bar-container">
+        <image class="notice-bar-image" src="/images/icons/notice.png"/>
+        <text class="notice-bar-content">小店开张，满50元提供免费送货服务，欢迎惠顾！</text>
+    </view>
+</template>
