@@ -1,0 +1,15 @@
+<!--订单状态TAB -->
+<!--依赖：无-->
+<template name="orderTabTemplate">
+    <view class="order-tab-container">
+        <view class="order-tab-item active">
+            <text>全部</text>
+        </view>
+        <view class="order-tab-item">
+            <text>进行中</text>
+        </view>
+        <view class="order-tab-item">
+            <text>已完成</text>
+        </view>
+    </view>
+</template>

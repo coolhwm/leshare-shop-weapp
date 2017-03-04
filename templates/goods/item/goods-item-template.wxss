@@ -4,6 +4,7 @@
     margin-top: 10rpx;
     height: 440rpx;
     width: 360rpx;
+    background-color: #FFF;
 }
 .goods-item-image{
     height: 340rpx;

@@ -2,6 +2,10 @@
 @import "/templates/shop/item/shop-item-template.wxss";
 @import "/templates/goods/grid/goods-grid-template.wxss";
 @import "/templates/notice/bar/notice-bar-template.wxss";
+/*page{
+    height: 100%;
+    background-color: #f2f2f2;
+}*/
 
 .shop-head-image{
     position: absolute;

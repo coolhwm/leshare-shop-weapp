@@ -1,0 +1,31 @@
+.order-tab-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    height: 70rpx;
+    background-color: #FFF;
+    margin-bottom: 10rpx;
+}
+
+.order-tab-item{
+    flex-grow: 1;
+    height: 100%;
+    text-align: center;
+    border-bottom: solid 3px #e6e6e6;
+}
+
+
+.order-tab-item text{
+    font-size: 27rpx;
+    line-height: 70rpx;
+}
+
+
+.order-tab-item.active{
+    border-bottom-color: #1296db;
+}
+
+.order-tab-item.active text{
+    color: #1296db;
+}
