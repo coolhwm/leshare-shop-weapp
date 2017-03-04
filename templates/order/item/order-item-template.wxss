@@ -1,0 +1,32 @@
+@import "/templates/order/goods/order-goods-template.wxss";
+page{
+    height: 100%;
+    background-color: #f2f2f2;
+}
+
+.order-item-container{
+    display: flex;
+    flex-direction: column;
+    padding-left: 20rpx;
+    padding-right:20rpx;
+    background-color: #FFF;
+    margin-bottom: 20rpx;
+    
+}
+
+.order-status-complete{
+    color: limegreen;
+}
+
+.order-info-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 10rpx;
+    padding-bottom: 10rpx;
+}
+
+.order-price{
+    font-size: 28rpx;
+    color:#ff6200;
+}

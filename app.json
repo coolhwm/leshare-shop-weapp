@@ -1,5 +1,7 @@
 {
   "pages":[
+    "pages/order/index/index",
+    "pages/customer/index/index",
     "pages/shop/index/index",
     "pages/home/visit-shop/visit-shop"
   ],

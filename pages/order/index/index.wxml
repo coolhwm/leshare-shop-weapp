@@ -1,0 +1,21 @@
+<!--订单页面 -->
+<!--依赖：订单列表，订单商品（间接），订单项目（间接）-->
+<import src="/templates/order/list/order-list-template.wxml" />
+
+<view class="order-index-container">
+    <!--状态操作栏-->
+    <view class="order-tab">
+        <view class="order-tab-item active">
+            <text>全部</text>
+        </view>
+        <view class="order-tab-item">
+            <text>进行中</text>
+        </view>
+        <view class="order-tab-item">
+            <text>已完成</text>
+        </view>
+    </view>
+    
+    <!--订单列表页面-->
+    <template is="orderListTemplate"/>
+</view>

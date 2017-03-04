@@ -1,0 +1,29 @@
+<!--订单项目模板 -->
+<!--依赖：订单商品-->
+<import src="/templates/order/goods/order-goods-template.wxml" />
+<template name="orderItemTemplate">
+    <view class="order-item-container">
+        <!--基本信息-->
+        <view class="order-info-container">
+            <text>2017/10/12 15:22:43</text>
+            <text class="order-status-complete">已完成</text>
+        </view>
+        <view class="hr-light"/>
+
+        <!--商品列表-->
+        <view class="order-goods-list-container">
+            <template is="orderGoodsTemplate"/>
+        </view>
+
+        <view class="hr-light"/>
+        <!--汇总信息-->
+        <view class="order-info-container">
+            <text>共 2 件商品</text>
+            <view>
+                 <text>总价：</text>
+                 <text class="order-price">￥216</text>
+            </view>
+           
+        </view>
+    </view>
+</template>

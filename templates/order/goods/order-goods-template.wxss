@@ -1,0 +1,27 @@
+.order-goods-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10rpx;
+    margin-bottom: 10rpx;
+}
+
+.order-goods-image{
+    width: 100rpx;
+    height: 100rpx;
+}
+
+.order-goods-buy-container{
+    display: flex;
+    text-align: right;
+    flex-direction: column;
+}
+.order-goods-price{
+    color:#333;
+}
+
+.order-goods-title{
+    color:#333;
+    width: 450rpx;
+}

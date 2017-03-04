@@ -1,0 +1,7 @@
+/* pages/order/index/index.wxss */
+
+@import "/templates/order/list/order-list-template.wxss";
+
+.order-index-container{
+    background-color: #f2f2f2;
+}

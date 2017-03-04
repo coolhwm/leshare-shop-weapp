@@ -1,0 +1,17 @@
+<!--订单商品模板 -->
+<!--依赖：无-->
+<template name="orderGoodsTemplate">
+    <view class="order-goods-container">
+        <!--商品图片-->
+        <image class="order-goods-image" src="/images/goods/goods.jpeg"/>
+        
+        <!--商品说明-->
+        <text class="order-goods-title">【Friso 美素佳儿金装】荷兰原装进口幼儿配方奶粉3段.....</text>
+
+        <!--商品购买信息-->
+        <view class="order-goods-buy-container">
+            <text class="order-goods-price">￥216</text>
+            <text class="order-goods-count">x1</text>
+        </view>
+    </view>
+</template>
