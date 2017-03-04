@@ -9,7 +9,7 @@
             <text class="shop-item-describe">便利店，提供外卖服务</text>
             <text class="shop-item-describe">地址：天泉小区 12座 102号，工商银行旁</text>
         </view>
-        <image class="shop-more-image" src="/images/icons/more.png"/>
+        <image class="icon-big" src="/images/icons/more.png"/>
     </view>
     <!--<view class="hr"/>-->
 </template>

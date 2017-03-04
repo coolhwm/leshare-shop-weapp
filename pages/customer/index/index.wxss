@@ -1,1 +1,43 @@
-/* pages/customer/index/index.wxss */
+page{
+    height: 100%;
+    background-color: #f2f2f2;
+}
+
+.user-info-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 300rpx;
+    background-color: #1296db;
+}
+.user-avatar{
+    height:160rpx;
+    width: 160rpx;
+}
+
+.user-nickname{
+    color: white;
+    font-size: 40rpx;
+}
+
+.user-func-container{
+    display: flex;
+    flex-direction: column;
+    background-color: #FFF;
+    margin-top: 20rpx;
+    padding: 10rpx;
+}
+
+.user-func-item{
+    display: flex;
+    font-size: 30rpx;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 20rpx;
+}
+.func-text{
+    font-size: 30rpx;
+    line-height: 60rpx;
+}

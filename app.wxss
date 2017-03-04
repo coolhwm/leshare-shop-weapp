@@ -17,3 +17,20 @@ text {
     background-color: #e6e6e6;
     width: 100%;
 }
+/*间隙*/
+.gap{
+    margin-top: 10rpx;
+    margin-bottom: 10rpx;
+}
+
+/*更多*/
+.icon-big{
+    width: 60rpx;
+    height: 60rpx;
+}
+
+/*更多*/
+.icon-middle{
+    width: 45rpx;
+    height: 45rpx;
+}

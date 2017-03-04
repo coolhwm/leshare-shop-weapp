@@ -1,2 +1,31 @@
-<!--pages/customer/index/index.wxml-->
-<text>pages/customer/index/index.wxml</text>
+<!--用户信息页面-->
+<!--依赖：无-->
+<view class="user-conatiner">
+
+    <!-- 头图区域 -->
+    <view class="user-info-container">
+        <image class="user-avatar" src="/images/avatar/avatar.png" />
+        <text class="user-nickname">董小姐</text>
+    </view>
+
+    <!-- 个人功能区域 -->
+    <view class="user-func-container">
+        <view class="user-func-item">
+            <text class="func-text">收货地址</text>
+            <image class="icon-middle" src="/images/icons/more.png" />
+        </view>
+    </view>
+        
+    <!-- 系统功能区域 -->
+    <view class="user-func-container">
+        <view class="user-func-item">
+            <text class="func-text">我要开店</text>
+            <image class="icon-middle" src="/images/icons/more.png" />
+        </view>
+        <view class="hr-light gap"/>
+        <view class="user-func-item">
+            <text class="func-text">关于我们</text>
+            <image class="icon-middle" src="/images/icons/more.png" />
+        </view>
+    </view>
+</view>
