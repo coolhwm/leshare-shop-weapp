@@ -20,11 +20,11 @@ Page({
   // 点击项目
   onShopItemTap: function (event) {
     var shopId = event.currentTarget.dataset.shopId;
+    //利用全局变量暂存
+    app.globalData.lastShopId = shopId;
     wx.switchTab({
-      url: `/pages/shop/index/index?shopId=${shopId}`,
+      url: `/pages/shop/index/index`,
       success : (res) => {
-          //利用全局变量暂存
-          app.globalData.lastShopId = shopId;
           //写入访问记录
           wx.request({
             url: `${app.globalData.baseUrl}/customers/${app.globalData.userId}/visit_shops?shop_id=${shopId}`,

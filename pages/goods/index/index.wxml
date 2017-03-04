@@ -1,0 +1,12 @@
+<!--商品详情页面-->
+<!--依赖模板：商品信息、商品详情、购买条-->
+<import src="/templates/goods/info/goods-info-template.wxml" />
+<import src="/templates/goods/detail/goods-detail-template.wxml" />
+
+<view class="goods-index-container">
+    <!--基本信息-->
+    <template is="goodsInfoTemplate" />
+
+    <!--详情信息-->
+    <template is="goodsDetailTemplate" />
+</view>

@@ -1,14 +1,14 @@
 var app = getApp();
 
 Page({
-  data:{
-    shop : {},
-    goods : []
+  data: {
+    shop: {},
+    goods: [],
+    notice: []
   },
-  onLoad:function(options){
+  onLoad: function (options) {
     var shopId = app.globalData.lastShopId;
     var baseUrl = app.globalData.baseUrl;
-
     //请求店铺基本信息
     wx.request({
       url: `${baseUrl}/shops/${shopId}`,
@@ -16,7 +16,14 @@ Page({
         this.setData({ shop: res.data });
       }
     });
-
+    //请求公告信息
+    wx.request({
+      url: `${baseUrl}/shops/${shopId}/notices/shows`,
+      success: (res) => {
+        this.setData({ notice: res.data[0] });
+      }
+    });
+    
     //请求店铺商品信息
     wx.request({
       url: `${baseUrl}/shops/${shopId}/goods`,

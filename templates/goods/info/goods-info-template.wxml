@@ -1,0 +1,29 @@
+<!--商品信息模板-->
+<!--依赖：无-->
+<template name="goodsInfoTemplate">
+    <view class="goods-info-conatiner">
+        <!-- 轮播图 -->
+        <swiper indicator-dots="true" autoplay="true" interval="5000">
+            <swiper-item>
+                <image src="/images/goods/swiper-1.jpg"></image>
+            </swiper-item>
+            <swiper-item>
+                <image src="/images/goods/swiper-2.jpg"></image>
+            </swiper-item>
+            <swiper-item>
+                <image src="/images/goods/swiper-3.jpg"></image>
+            </swiper-item>
+        </swiper>
+
+        <!-- 销量窗口 -->
+        <view class="goods-sales-container">
+            <text>销量 10</text>
+        </view>
+
+        <!--信息栏-->
+        <view class="goods-title-container">
+            <text class="goods-info-title">爱宝美Aptamil 婴儿配方奶粉1段(0-6个月适用)800g</text>
+            <text class="goods-info-price">￥ 216 ~ ￥418</text>
+        </view>
+    </view>
+</template>

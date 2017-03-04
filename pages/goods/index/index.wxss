@@ -1,0 +1,2 @@
+@import "/templates/goods/info/goods-info-template.wxss";
+@import "/templates/goods/detail/goods-detail-template.wxss";

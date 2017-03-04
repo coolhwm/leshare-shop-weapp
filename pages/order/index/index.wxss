@@ -1,5 +1,3 @@
-/* pages/order/index/index.wxss */
-
 @import "/templates/order/list/order-list-template.wxss";
 @import "/templates/order/tab/order-tab-template.wxss";
 

@@ -1,31 +1,36 @@
 {
   "pages": [
     "pages/home/visit-shop/visit-shop",
+    "pages/goods/index/index",
     "pages/customer/index/index",
     "pages/order/index/index",
-    "pages/shop/index/index"
+    "pages/shop/index/index",
+    "pages/shop/info/info"
   ],
   "window": {
     "navigationBarBackgroundColor": "#1296db"
   },
   "tabBar": {
+    "color": "#bfbfbf",
+    "selectedColor": "#1296db",
     "borderStyle": "white",
+    "backgroundColor": "#fbfbfb",
     "list": [
       {
-        "iconPath": "/images/tab/home.png",
-        "selectedIconPath": "/images/tab/home-active.png",
+        "iconPath": "images/tab/home.png",
+        "selectedIconPath": "images/tab/home-active.png",
         "pagePath": "pages/shop/index/index",
         "text": "店铺"
       },
       {
-        "iconPath": "/images/tab/order.png",
-        "selectedIconPath": "/images/tab/order-active.png",
+        "iconPath": "images/tab/order.png",
+        "selectedIconPath": "images/tab/order-active.png",
         "pagePath": "pages/order/index/index",
         "text": "订单"
       },
       {
-        "iconPath": "/images/tab/user.png",
-        "selectedIconPath": "/images/tab/user-active.png",
+        "iconPath": "images/tab/user.png",
+        "selectedIconPath": "images/tab/user-active.png",
         "pagePath": "pages/customer/index/index",
         "text": "我的"
       }
