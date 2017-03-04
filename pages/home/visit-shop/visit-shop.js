@@ -1,19 +1,41 @@
-// pages/home/visit-shop.js
+var app = getApp();
+
 Page({
-  data:{},
-  onLoad:function(options){
-    // 页面初始化 options为页面跳转所带来的参数
+  data: {
+    shops: []
   },
-  onReady:function(){
-    // 页面渲染完成
+
+  onLoad: function (options) {
+    var userId = app.globalData.userId;
+    var baseUrl = app.globalData.baseUrl;
+
+    //请求历史店铺
+    wx.request({
+      url: `${baseUrl}/customers/${userId}/visit_shops`,
+      success: (res) => {
+        this.setData({ shops: res.data });
+      }
+    });
   },
-  onShow:function(){
-    // 页面显示
-  },
-  onHide:function(){
-    // 页面隐藏
-  },
-  onUnload:function(){
-    // 页面关闭
+  // 点击项目
+  onShopItemTap: function (event) {
+    var shopId = event.currentTarget.dataset.shopId;
+    wx.switchTab({
+      url: `/pages/shop/index/index?shopId=${shopId}`,
+      success : (res) => {
+          //利用全局变量暂存
+          app.globalData.lastShopId = shopId;
+          //写入访问记录
+          wx.request({
+            url: `${app.globalData.baseUrl}/customers/${app.globalData.userId}/visit_shops?shop_id=${shopId}`,
+            method : "POST",
+            success: (res) => {
+              console.info(`[shop] visit shop ${shopId} success!`);
+            }
+          });
+
+      }
+    });
   }
-})
+
+});

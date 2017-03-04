@@ -8,5 +8,5 @@
     <template is="orderTabTemplate"/>
     
     <!--订单列表页面-->
-    <template is="orderListTemplate"/>
+    <template is="orderListTemplate" data="{{orders}}"/>
 </view>

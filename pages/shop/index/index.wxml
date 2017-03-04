@@ -6,7 +6,7 @@
 
 <view class="shop-index-container">
     <!--店铺基本信息-->
-    <template is="shopItemTemplate" />
+    <template is="shopItemTemplate" data="{{...shop}}" />
     <!--店铺公告-->
     <template is="noitceBarTemplate" />
     <!--头图背景-->
@@ -14,5 +14,5 @@
     <view class="hr-light"/>
 
     <!--商品区域-->
-    <template is="goodsGridTemplate"/>
+    <template is="goodsGridTemplate" data="{{goods}}"/>
 </view>

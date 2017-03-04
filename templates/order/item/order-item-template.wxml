@@ -1,11 +1,12 @@
 <!--订单项目模板 -->
 <!--依赖：订单商品-->
+<!--输入：...order-->
 <import src="/templates/order/goods/order-goods-template.wxml" />
 <template name="orderItemTemplate">
     <view class="order-item-container">
         <!--基本信息-->
         <view class="order-info-container">
-            <text>2017/10/12 15:22:43</text>
+            <text>{{create_time}}</text>
             <text class="order-status-complete">已完成</text>
         </view>
         <view class="hr-light"/>
@@ -21,7 +22,7 @@
             <text>共 2 件商品</text>
             <view>
                  <text>总价：</text>
-                 <text class="order-price">￥216</text>
+                 <text class="order-price">￥{{final_price}}</text>
             </view>
            
         </view>

@@ -1,11 +1,12 @@
 <!--店铺列表模板-->
 <!--依赖：店铺项目模板-->
+<!--输入参数：shops -->
 <import src="/templates/shop/item/shop-item-template.wxml" />
 <template name="shopListTemplate">
     <!--店铺列表-->
-    <template is="shopItemTemplate"/>
-    <view class="hr"/>
-    <template is="shopItemTemplate"/>
-    <view class="hr"/>
-    <template is="shopItemTemplate"/>
+    <block wx:for="{{shops}}" wx:key="id">
+        <template is="shopItemTemplate" data="{{...item}}"/>
+        <view class="hr"/>
+    </block>
+
 </template>

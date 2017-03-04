@@ -1,5 +1,6 @@
 <!--商品项目模板-->
 <!--依赖：无-->
+<!--输入：...goods -->
 <template name="goodsItemTemplate">
     <view class="goods-item-container">
         <!--商品图片-->
@@ -7,11 +8,11 @@
         <!--商品描述-->
         <view class="goods-item-describe">
             <!--标题-->
-            <text class="goods-item-title">荷兰原装进口幼儿配方奶粉3段.....</text>
+            <text class="goods-item-title">{{name}}</text>
             <!--价格区域-->
             <view class="goods-item-price">
-                <text class="goods-item-price-cost">￥186</text>
-                <text class="goods-item-price-original">￥186</text>
+                <text class="goods-item-price-cost">￥{{sell_price}}</text>
+                <text class="goods-item-price-original">￥{{original_price}}</text>
             </view>
         </view>
     </view>

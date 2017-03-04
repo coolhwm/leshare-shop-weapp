@@ -4,5 +4,5 @@
 
 <!--店铺列表-->
 <view class="vists-shop-container">
-    <template is="shopListTemplate"  />
+    <template is="shopListTemplate" data="{{shops}}" />
 </view>

@@ -1,13 +1,10 @@
 <!--订单列表模板 -->
 <!--依赖：订单商品（间接），订单项目-->
+<!--输入：orers-->
 <import src="/templates/order/item/order-item-template.wxml" />
 <template name="orderListTemplate">
     <!--订单-->
-    <template is="orderItemTemplate"/>
-    <template is="orderItemTemplate"/>
-    <template is="orderItemTemplate"/>
-    <template is="orderItemTemplate"/>
-    <template is="orderItemTemplate"/>
-    <template is="orderItemTemplate"/>
-    <template is="orderItemTemplate"/>
+    <block wx:for="{{orders}}" wx:key="id">
+        <template is="orderItemTemplate" data="{{...item}}"/>
+    </block>
 </template>
