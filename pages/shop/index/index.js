@@ -31,5 +31,10 @@ Page({
         this.setData({ goods: res.data });
       }
     });
+  }, 
+  onGoodsItemTap : function(e){
+    wx.navigateTo({
+      url : "/pages/goods/index/index"
+    });
   }
 })

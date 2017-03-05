@@ -1,11 +1,14 @@
 {
   "pages": [
     "pages/home/visit-shop/visit-shop",
+    "pages/shop/index/index",
+    
+    "pages/shop/info/info",
     "pages/goods/index/index",
     "pages/customer/index/index",
     "pages/order/index/index",
-    "pages/shop/index/index",
-    "pages/shop/info/info"
+    "pages/order/detail/detail",
+    "pages/order/trade/trade"
   ],
   "window": {
     "navigationBarBackgroundColor": "#1296db"

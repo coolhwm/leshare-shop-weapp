@@ -1,0 +1,30 @@
+.goods-detail-container{
+    background-color: #FFF;
+}
+
+.goods-detail-title{
+    text-align: center;
+    height: 75rpx;
+}
+
+.goods-detail-title text{
+    line-height: 75rpx;
+    font-size: 30rpx;
+    color:#1296db;
+} 
+
+.goods-detail-list{
+    display: flex;
+    flex-direction: column;
+    padding: 20rpx;
+}
+
+.goods-detail-list text{
+    font-size: 30rpx;
+    margin-bottom: 20rpx;
+}
+
+.goods-detail-list image{
+    width: 100%;
+    margin-bottom: 20rpx;
+}

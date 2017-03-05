@@ -3,6 +3,7 @@
     flex-direction: row;
     height: 180rpx;
     align-items: center;
+    background-color: #fff;
 }
 
 .shop-item-image{

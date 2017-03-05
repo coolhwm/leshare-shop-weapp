@@ -1,17 +1,26 @@
 .goods-item-container{
-    float: left;
-    margin-left: 10rpx;
-    margin-top: 10rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-top: 6rpx;
     height: 440rpx;
-    width: 360rpx;
+    width: 373rpx;
     background-color: #FFF;
 }
 .goods-item-image{
-    height: 340rpx;
-    width: 360rpx;
+    padding: 2rpx;
+    height: 336rpx;
+    width: 369rpx;
 }
+
+.goods-item-describe{
+    height: 100rpx;
+    padding: 0 20rpx 0 20rpx;
+}
+
 .goods-item-title{
-    color: #333;
+    font-size: 26rpx;
+    color: #222;
 }
 
 .goods-item-price-cost{

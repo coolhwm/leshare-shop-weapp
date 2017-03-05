@@ -1,1 +1,8 @@
 @import "/templates/goods/item/goods-item-template.wxss";
+.goods-grid-container{
+    background-color: #F2F2F2;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}

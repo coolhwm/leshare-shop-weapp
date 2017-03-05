@@ -1,0 +1,42 @@
+.bay-bar-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    height: 90rpx;
+    width: 100%;
+    background-color: #F2F2F2;
+}
+
+.bar-buy-container{
+    background-color: #1296db;
+    text-align: center;
+    height: 100%;
+    width: 50%;
+}
+
+.bar-action-container{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    align-items: center;
+    padding-left: 10rpx;
+}
+.bar-action-container text{
+    margin-left: 15rpx;
+}
+
+
+.bar-buy-container text{
+    font-size: 32rpx;
+    line-height: 90rpx;
+    color: #FFF;
+}
+
+.gap-v{
+    height: 70%;
+    width: 1px;
+    background-color: #e5e5e5;
+}

@@ -1,12 +1,30 @@
 <!--商品详情页面-->
-<!--依赖模板：商品信息、商品详情、购买条-->
+<!--依赖模板：商品信息、商品详情、商店详情、购买条-->
 <import src="/templates/goods/info/goods-info-template.wxml" />
 <import src="/templates/goods/detail/goods-detail-template.wxml" />
+<import src="/templates/goods/buy-bar/goods-buy-bar-template.wxml" />
+<import src="/templates/shop/item/shop-item-template.wxml" />
 
 <view class="goods-index-container">
     <!--基本信息-->
     <template is="goodsInfoTemplate" />
+    
+    <!--间隔-->
+    <view class="gap"></view>
+
+    <!--店铺信息-->
+    <template is="shopItemTemplate" data="{{name:'测试店铺', address:'天河小区', describe:'测试小卖部，提供外卖服务'}}" />
+
+     <!--间隔-->
+    <view class="gap"></view>
 
     <!--详情信息-->
     <template is="goodsDetailTemplate" />
+
+    <!--购买栏-->
+    <template is="goodsBuyBarTemplate" />
+
+    <!--底栏占位-->
+    <view class="goods-index-footer"></view>
+
 </view>

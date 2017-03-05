@@ -4,14 +4,17 @@
     <view class="goods-detail-container">
         <!--详情标题-->
         <view class="goods-detail-title">
-            <text>商品详情</text>
+            <text>── 商品详情 ──</text>
         </view>
-        <!--详情类列表区域-->
+
+        <view class="hr-light"></view>
+
+        <!--详情类列表区域/遍历详情-->
         <view class="goods-detail-list">
             <text>这是一些商品文字说明1</text>
-            <image src="/images/goods/swiper-1.jpg"/>
+            <image src="/images/goods/swiper-1.jpg" mode="widthFix"/>
             <text>这是一些商品文字说明2</text>
-            <image src="/images/goods/swiper-2.jpg"/>
+            <image src="/images/goods/swiper-2.jpg"  mode="widthFix"/>
         </view>
     </view>
 </template>

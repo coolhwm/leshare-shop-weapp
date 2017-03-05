@@ -3,7 +3,7 @@
 <template name="goodsInfoTemplate">
     <view class="goods-info-conatiner">
         <!-- 轮播图 -->
-        <swiper indicator-dots="true" autoplay="true" interval="5000">
+        <swiper class="goods-swiper" indicator-dots="true" autoplay="true" interval="5000">
             <swiper-item>
                 <image src="/images/goods/swiper-1.jpg"></image>
             </swiper-item>
@@ -15,10 +15,12 @@
             </swiper-item>
         </swiper>
 
-        <!-- 销量窗口 -->
+        <!-- 销量窗口(浮动) -->
         <view class="goods-sales-container">
-            <text>销量 10</text>
+            <text>销量: 10</text>
         </view>
+        
+        <view class="hr-light"></view>
 
         <!--信息栏-->
         <view class="goods-title-container">

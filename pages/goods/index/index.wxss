@@ -1,2 +1,13 @@
 @import "/templates/goods/info/goods-info-template.wxss";
 @import "/templates/goods/detail/goods-detail-template.wxss";
+@import "/templates/shop/item/shop-item-template.wxss";
+@import "/templates/goods/buy-bar/goods-buy-bar-template.wxss";
+
+.goods-index-container{
+    background-color: #F2F2F2;
+}
+
+.goods-index-footer{
+    height: 100rpx;
+    width: 100%;
+}
