@@ -1,2 +1,56 @@
-<!--pages/order/detail/detail.wxml-->
-<text>pages/order/detail/detail.wxml</text>
+<!--订单详情页-->
+<!--依赖：地址项目页面、订单项目页面-->
+<import src="/templates/address/item/address-item-template.wxml" />
+<import src="/templates/order/item/order-item-template.wxml" />
+
+<view class="container">
+    <!--订单状态-->
+    <view class="order-status-container">
+        <image class="icon-middle" src="/images/icons/cart.png"/>
+        <text>已完成</text>
+    </view>
+
+
+    <!--收货地址-->
+    <template is="addressItemTemplate"/>
+
+    <!--订单项目-->
+    <template is="orderItemTemplate" data="{{create_time:'2016/01/01', final_price:'100.00'}}"/>
+
+    <!--买家留言-->
+    <view class="trade-note-container">
+        <text>买家留言</text>
+        <text>选填：对本次交易的说明（建议填写已和卖家沟通的内容）</text>
+    </view>
+
+    <!--订单明细-->
+    <view class="order-detail-container">
+        
+        <!--字段名-->
+        <view class="order-detail-key-container">
+            <text>订单号：</text>
+            <text>交易方式：</text>
+            <text>下单时间：</text>
+            <text>付款时间：</text>
+            <text>发货时间：</text>
+            <text>完成时间</text>
+
+        </view>
+        
+        <!--字段值-->
+         <view class="order-detail-value-container">
+            <text>订单号：20170202000001</text>
+            <text>当面交易</text>
+            <text>2017-02-24 10:23:23</text>
+            <text>2017-02-24 10:23:23</text>
+            <text>2017-02-24 10:23:23</text>
+            <text>2017-02-24 10:23:23</text>
+        </view>
+    </view>
+
+    <!--操作按钮-->
+    <view class="order-action-container">
+        <view class="btn-primary">完成支付</view>
+        <view class="btn-warn">关闭订单</view>
+    </view>
+</view>

@@ -1,1 +1,2 @@
-/* pages/order/trade/trade.wxss */
+@import "/templates/address/item/address-item-template.wxss";
+@import "/templates/order/item/order-item-template.wxss";

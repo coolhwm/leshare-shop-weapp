@@ -1,4 +1,4 @@
-// pages/shop/info/info.js
+// pages/shop/detail/detail.js
 Page({
   data:{},
   onLoad:function(options){

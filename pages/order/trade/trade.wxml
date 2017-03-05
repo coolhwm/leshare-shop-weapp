@@ -1,2 +1,19 @@
-<!--pages/order/trade/trade.wxml-->
-<text>pages/order/trade/trade.wxml</text>
+<!--订单交易页面-->
+<!--依赖：地址项目页面、订单项目页面-->
+<import src="/templates/address/item/address-item-template.wxml" />
+<import src="/templates/order/item/order-item-template.wxml" />
+
+<view class="container">
+
+    <!--收货地址-->
+    <template is="addressItemTemplate"/>
+
+    <!--订单项目-->
+    <template is="orderItemTemplate" data="{{create_time:'2016/01/01', final_price:'100.00'}}"/>
+
+    <!--买家留言-->
+    <view class="trade-note-container">
+        <text>买家留言</text>
+        <textarea type="text" placeholder="选填：对本次交易的说明（建议填写已和卖家沟通的内容）"/>
+    </view>
+</view>

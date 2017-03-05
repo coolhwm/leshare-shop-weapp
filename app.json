@@ -1,13 +1,13 @@
 {
   "pages": [
+    "pages/order/detail/detail",
+    "pages/order/trade/trade",
     "pages/home/visit-shop/visit-shop",
     "pages/shop/index/index",
-    
-    "pages/shop/info/info",
+    "pages/shop/detail/detail",
     "pages/goods/index/index",
     "pages/customer/index/index",
     "pages/order/index/index",
-    "pages/order/detail/detail",
     "pages/order/trade/trade"
   ],
   "window": {
