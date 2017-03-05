@@ -1,6 +1,7 @@
-## Description
-The leshare project base on WeiXin MINA.
+## 项目描述
+基于微信小程序的电商平台
 
-## Work Log
-- 2017/03/03: complete home page;
-- 2017/03/04: complete shop and order main page;
+## 更新日志
+- 2017/03/03: 完成首页；
+- 2017/03/04: 完成店铺和订单页面；
+- 2017/03/05: 完成商品详情、订单交易、订单详情页面；
