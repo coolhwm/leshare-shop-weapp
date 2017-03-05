@@ -1,0 +1,7 @@
+<!--店铺信息模板-->
+<!--依赖模板：无-->
+<template name="shopInfoTemplate">
+    <view class="shop-info-container">
+        <text>店铺列表模板</text>
+    </view>
+</template>

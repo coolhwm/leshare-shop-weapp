@@ -1,2 +1,34 @@
-<!--pages/shop/detail/detail.wxml-->
-<text>pages/shop/detail/detail.wxml</text>
+<!--店铺详情页面-->
+<!--依赖模板：店铺信息模板-->
+<import src="/templates/shop/info/shop-info-template.wxml" />
+<view class="container">
+
+    <!--轮播图-->
+    <swiper class="shop-swiper" indicator-dots="true" autoplay="true" interval="5000">
+        <swiper-item>
+            <image src="/images/shop/swiper-1.jpg"></image>
+        </swiper-item>
+        <swiper-item>
+            <image src="/images/shop/swiper-2.jpg"></image>
+        </swiper-item>
+        <swiper-item>
+            <image src="/images/shop/swiper-3.jpg"></image>
+        </swiper-item>
+    </swiper>
+
+    <!--店铺名称-->
+    <view class="shop-name-container">
+        <image class="icon-big" src="/images/shop/shop.png"/>
+        <text>小王的便利店</text>
+    </view>
+
+    <!--店铺信息模板-->
+    <template is="shopInfoTemplate" />
+
+    <!--举报商家-->
+    <view class="shop-report-container">
+        <image class="icon-middle" src="/images/icons/alert.png"/>
+        <text>举报商家</text>
+        <image class="icon-middle" src="/images/icons/more.png"/>
+    </view>
+</view>
