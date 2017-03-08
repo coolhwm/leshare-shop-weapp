@@ -6,26 +6,32 @@
 <view class="container">
     <!--订单状态-->
     <view class="order-status-container">
-        <image class="icon-middle" src="/images/icons/cart.png"/>
-        <text>已完成</text>
+        <image class="icon-middle" src="/images/icons/order.png"/>
+        <text class="order-status-text">订单状态：已完成</text>
     </view>
 
+    <view class="gap"></view>
 
     <!--收货地址-->
     <template is="addressItemTemplate"/>
+
+    <view class="gap"></view>
 
     <!--订单项目-->
     <template is="orderItemTemplate" data="{{create_time:'2016/01/01', final_price:'100.00'}}"/>
 
     <!--买家留言-->
     <view class="trade-note-container">
-        <text>买家留言</text>
-        <text>选填：对本次交易的说明（建议填写已和卖家沟通的内容）</text>
+        <view class="text-bar">
+            <text class="text-major">买家留言:</text>
+        </view>
+        <text class="textarea">选填：对本次交易的说明（建议填写已和卖家沟通的内容）</text>
     </view>
+
+    <view class="gap"></view>
 
     <!--订单明细-->
     <view class="order-detail-container">
-        
         <!--字段名-->
         <view class="order-detail-key-container">
             <text>订单号：</text>
@@ -33,8 +39,7 @@
             <text>下单时间：</text>
             <text>付款时间：</text>
             <text>发货时间：</text>
-            <text>完成时间</text>
-
+            <text>完成时间：</text>
         </view>
         
         <!--字段值-->
@@ -48,9 +53,15 @@
         </view>
     </view>
 
+    <view class="gap"></view>
+
     <!--操作按钮-->
-    <view class="order-action-container">
-        <view class="btn-primary">完成支付</view>
-        <view class="btn-warn">关闭订单</view>
+    <view class="btn-box">
+        <view class="btn btn-warn">
+            关闭订单
+        </view>
+        <view class="btn btn-primary">
+            完成支付
+        </view>
     </view>
 </view>

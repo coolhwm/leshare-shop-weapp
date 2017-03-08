@@ -2,18 +2,21 @@
 <!--依赖：无-->
 <template name="addressItemTemplate">
     <view class="address-item-container">
+        <!--左侧图标-->
         <image class="icon-middle" src="/images/icons/address.png"/>
         
+        <!-- 地址内容 -->
         <view class="address-info-container">
             <view class="address-name-phone-container">
-                <text class="address-info-name">张三</text>
+                <text class="address-info-name">收货人：张三</text>
                 <text class="address-info-phone">13700000000</text>
             </view>
             <view>
-                <text class="address-info-detail">福建省福州市马尾区马尾镇新大陆科技园</text>
+                <text class="address-info-detail">收货地址：福建省福州市马尾区马尾镇新大陆科技园</text>
             </view>
         </view>
-
+        
+        <!--右侧图标-->
         <image class="icon-middle" src="/images/icons/more.png"/>
     </view>
 </template>

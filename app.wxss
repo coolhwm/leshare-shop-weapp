@@ -1,10 +1,13 @@
+
 /*全局字体*/
 text {
   font-family: MicroSoft Yahei;
   font-size: 24rpx;
   color: #666;
 }
-
+.text-major{
+    color: #333;
+}
 /*水平线线*/
 .hr{
     height: 1px;
@@ -33,4 +36,45 @@ text {
 .icon-middle{
     width: 45rpx;
     height: 45rpx;
+}
+
+/*文本区域*/
+.textarea{
+    height: 150rpx;
+    width: 700rpx;
+    border: #e6e6e6 solid 1px;
+    border-radius: 5px;
+    padding: 10rpx;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: MicroSoft Yahei;
+    font-size: 24rpx;
+    color: #666;
+}
+
+/*操作按钮*/
+.btn-box{
+    padding: 10rpx;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #FFF;
+}
+.btn-box .btn{
+    margin-left: 10rpx;
+}
+.btn{
+    border: #e6e6e6 solid 1px;
+    border-radius: 5px;
+    font-size: 24rpx;
+    padding: 15rpx 20rpx;
+    height: auto;
+}
+.btn.btn-primary{
+    background-color: #1296db;
+    color: #FFF;
+}
+.btn.btn-warn{
+    background-color: #ffbe00;
+    color: #FFF;
 }

@@ -1,0 +1,22 @@
+.address-item-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20rpx 0;
+    background-color: #FFF;
+}
+
+
+.address-info-container{
+    display: flex;
+    flex-direction: column;
+    width: 600rpx;
+}
+
+.address-name-phone-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 10rpx;
+}

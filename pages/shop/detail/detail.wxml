@@ -16,10 +16,13 @@
         </swiper-item>
     </swiper>
 
+    <view class="gap"></view>
+
     <!--店铺名称-->
     <view class="shop-name-container">
         <image class="icon-big" src="/images/shop/shop.png"/>
-        <text>小王的便利店</text>
+        <text class="shop-name-font">小王的便利店</text>
+        <image class="icon-big" src="/images/icons/more.png"/>
     </view>
 
     <!--店铺信息模板-->

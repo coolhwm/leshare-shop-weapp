@@ -10,7 +10,7 @@ page{
     padding-left: 20rpx;
     padding-right:20rpx;
     background-color: #FFF;
-    margin-bottom: 20rpx;
+    margin-bottom: 10rpx;
     
 }
 

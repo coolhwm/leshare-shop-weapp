@@ -1,2 +1,50 @@
 @import "/templates/address/item/address-item-template.wxss";
 @import "/templates/order/item/order-item-template.wxss";
+
+
+/*买家留言*/
+.trade-note-container{
+    background-color: #FFF;
+    display: flex;
+    padding:0 10rpx 20rpx 10rpx;
+    flex-direction: column;
+}
+.text-bar{
+    height: 60rpx;
+}
+
+.text-major{
+    line-height: 60rpx;
+}
+
+/*购买栏*/
+.tarde-action-bar{
+    position: fixed;
+    bottom: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    height: 80rpx;
+    width: 100%;
+    background-color: #FFF;
+    
+}
+.trade-confirm-button{
+    height: 100%;
+    width: 300rpx;
+    line-height: 80rpx;
+    text-align: center;
+    background-color: #1296db;
+    color: #FFF;
+}
+.trade-confirm-button text{
+    color: #FFF;
+    font-size: 30rpx;
+}
+.tarde-total-price{
+      color:#ff6200;
+      font-size: 30rpx;
+      font-weight: bold;
+      margin-right: 20rpx;
+}

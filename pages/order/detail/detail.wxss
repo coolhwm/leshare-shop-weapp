@@ -1,2 +1,58 @@
 @import "/templates/address/item/address-item-template.wxss";
 @import "/templates/order/item/order-item-template.wxss";
+
+/*状态栏*/
+.order-status-container{
+    background-color: #FFF;
+    height: 70rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 10rpx;
+}
+
+.order-status-text{
+    margin-left: 10rpx;
+}
+
+/*买家留言*/
+.trade-note-container{
+    background-color: #FFF;
+    display: flex;
+    padding:0 10rpx 20rpx 10rpx;
+    flex-direction: column;
+}
+.text-bar{
+    height: 60rpx;
+}
+
+.text-major{
+    line-height: 60rpx;
+}
+
+/*订单明细*/
+.order-detail-container{
+    background-color: #FFF;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 20rpx;
+}
+
+.order-detail-key-container{
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    margin-right: 20rpx;
+}
+.order-detail-container text{
+    height: 40rpx;
+    line-height: 40rpx;
+}
+
+.order-detail-value-container{
+    display: flex;
+    text-align: left;
+    flex-direction: column;
+    flex-grow: 1;
+}
