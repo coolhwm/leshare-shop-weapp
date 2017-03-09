@@ -31,3 +31,8 @@ page{
     letter-spacing: 2px;
     flex-grow: 1;
 }
+
+/*举报栏*/
+.shop-report-container{
+    background-color: #FFF;
+}

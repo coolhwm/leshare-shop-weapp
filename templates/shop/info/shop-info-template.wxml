@@ -2,6 +2,31 @@
 <!--依赖模板：无-->
 <template name="shopInfoTemplate">
     <view class="shop-info-container">
-        <text>店铺列表模板</text>
+        <view class="list-item">
+            <text class="list-item-title">联系方式</text>
+            <text class="list-item-value">13700000000</text>
+            <image class="list-item-icon" src="/images/icons/phone.png"/>    
+        </view>
+        <view class="hr-light"></view>
+        <view class="list-item">
+            <text class="list-item-title">详细地址</text>
+            <text class="list-item-value">福州市马尾区江滨锦城</text>
+            <image class="list-item-icon" src="/images/icons/address.png"/>    
+        </view>
+        <view class="hr-light"></view>
+        <view class="list-item">
+            <text class="list-item-title">品类</text>
+            <text class="list-item-value">小卖部</text>   
+        </view>
+        <view class="hr-light"></view>
+        <view class="list-item">
+            <text class="list-item-title">营业时间</text>
+            <text class="list-item-value">10:00/21:00</text>   
+        </view>
+        <view class="hr-light"></view>
+        <view class="list-item">
+            <text class="list-item-title">店铺说明</text>
+            <text class="list-item-value">小卖部，提供周边外卖服务</text>   
+        </view>
     </view>
 </template>

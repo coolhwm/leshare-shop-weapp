@@ -24,14 +24,16 @@
         <text class="shop-name-font">小王的便利店</text>
         <image class="icon-big" src="/images/icons/more.png"/>
     </view>
+    <view class="gap"></view>
 
     <!--店铺信息模板-->
     <template is="shopInfoTemplate" />
+    <view class="gap"></view>
 
     <!--举报商家-->
-    <view class="shop-report-container">
-        <image class="icon-middle" src="/images/icons/alert.png"/>
-        <text>举报商家</text>
-        <image class="icon-middle" src="/images/icons/more.png"/>
+    <view class="shop-report-container list-item">
+        <text class="list-item-title">举报商家</text>
+        <text class="list-item-value"></text>
+        <image class="list-item-icon" src="/images/icons/more.png"/>
     </view>
 </view>
