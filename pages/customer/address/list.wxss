@@ -1,1 +1,8 @@
-/* pages/customer/address/list.wxss */
+@import "/templates/address/list/address-list-template.wxss";
+page{
+    height: 100%;
+    background-color: #f2f2f2;
+}
+.address-action-container{
+    background: #FFF;
+}

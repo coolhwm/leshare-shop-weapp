@@ -1,0 +1,17 @@
+<!-- 地址列表模板-->
+<!--依赖：地址项目模板-->
+<import src="/templates/address/item/address-item-template.wxml" />
+<template name="addressListTemplate">
+    <view class="address-list-container">
+        <template is="addressItemTemplate"/>
+        <view class="gap"></view>
+
+        <template is="addressItemTemplate"/>
+        <view class="gap"></view>
+
+        <template is="addressItemTemplate"/>
+        <view class="gap"></view>
+
+        <template is="addressItemTemplate"/>
+    </view>
+</template>
