@@ -13,7 +13,9 @@
 
         <!--商品列表-->
         <view class="order-goods-list-container">
-            <template is="orderGoodsTemplate"/>
+            <block wx:for="{{goodsList}}">
+                <template is="orderGoodsTemplate" data="{{...item}}"/>
+            </block>
         </view>
 
         <view class="hr-light"/>
