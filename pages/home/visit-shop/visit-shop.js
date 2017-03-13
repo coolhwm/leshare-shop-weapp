@@ -1,3 +1,4 @@
+import {Http} from "../../../class/utils/Http.js";
 var app = getApp();
 
 Page({
@@ -6,6 +7,7 @@ Page({
   },
 
   onLoad: function (options) {
+    
     var userId = app.globalData.userId;
     var baseUrl = app.globalData.baseUrl;
 
@@ -20,20 +22,16 @@ Page({
   // 点击项目
   onShopItemTap: function (event) {
     var shopId = event.currentTarget.dataset.shopId;
-    //利用全局变量暂存
-    app.globalData.lastShopId = shopId;
     wx.switchTab({
       url: `/pages/shop/index/index`,
+      //写入访问
       success : (res) => {
-          //写入访问记录
-          wx.request({
-            url: `${app.globalData.baseUrl}/customers/${app.globalData.userId}/visit_shops?shop_id=${shopId}`,
-            method : "POST",
-            success: (res) => {
-              console.info(`[shop] visit shop ${shopId} success!`);
-            }
+          var visitUrl = `${app.globalData.baseUrl}/customers/${app.globalData.userId}/visit_shops`;
+          Http.post(visitUrl, {shop_id : shopId}, (data)=>{
+            console.info(`[shop] visit shop ${shopId} success!`);
           });
-
+          //利用全局变量暂存
+          app.globalData.lastShopId = shopId;
       }
     });
   }
