@@ -1,3 +1,4 @@
+import {Http} from "../../../class/utils/Http.js";
 var app = getApp();
 
 Page({
@@ -10,12 +11,18 @@ Page({
     var shopId = app.globalData.lastShopId;
     var baseUrl = app.globalData.baseUrl;
     //请求店铺基本信息
-    wx.request({
-      url: `${baseUrl}/shops/${shopId}`,
-      success: (res) => {
-        this.setData({ shop: res.data });
-      }
+
+    Http.get(`${baseUrl}/shops/${shopId}`, (data) =>{
+      this.setData({ shop: data });
     });
+
+    // wx.request({
+    //   url: `${baseUrl}/shops/${shopId}`,
+    //   success: (res) => {
+    //     this.setData({ shop: res.data });
+    //   }
+    // });
+
     //请求公告信息
     wx.request({
       url: `${baseUrl}/shops/${shopId}/notices/shows`,
