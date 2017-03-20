@@ -18,7 +18,7 @@
     <view class="gap"></view>
 
     <!--订单项目-->
-    <template is="orderItemTemplate" data="{{create_time:'2016/01/01', final_price:'100.00'}}"/>
+    <template is="orderItemTemplate" data="{{...order}}"/>
 
     <!--买家留言-->
     <view class="trade-note-container">
@@ -39,17 +39,19 @@
             <text>下单时间：</text>
             <text>付款时间：</text>
             <text>发货时间：</text>
+            <text>更新时间：</text>
             <text>完成时间：</text>
         </view>
         
         <!--字段值-->
          <view class="order-detail-value-container">
-            <text>订单号：20170202000001</text>
+            <text>{{order.uuid}}</text>
             <text>当面交易</text>
-            <text>2017-02-24 10:23:23</text>
-            <text>2017-02-24 10:23:23</text>
-            <text>2017-02-24 10:23:23</text>
-            <text>2017-02-24 10:23:23</text>
+            <text>{{order.create_time}}</text>
+            <text>{{order.payment_time == null ? '-' : order.payment_time}}</text>
+            <text>{{order.send_time == null ? '-' : order.send_time}}</text>
+            <text>{{order.update_time == null ? '-' : order.update_time}}</text>
+            <text>{{order.close_time == null ? '-' : order.close_time}}</text>
         </view>
     </view>
 

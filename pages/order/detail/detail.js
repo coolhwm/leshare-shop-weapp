@@ -1,19 +1,20 @@
-// pages/order/detail/detail.js
+import { Http } from "../../../class/utils/Http.js";
+var app = getApp();
+
 Page({
-  data:{},
+  data:{
+    order : {}
+  },
   onLoad:function(options){
-    // 页面初始化 options为页面跳转所带来的参数
-  },
-  onReady:function(){
-    // 页面渲染完成
-  },
-  onShow:function(){
-    // 页面显示
-  },
-  onHide:function(){
-    // 页面隐藏
-  },
-  onUnload:function(){
-    // 页面关闭
+    var orderId = options.orderId;
+    var shopId = app.globalData.lastShopId;
+    var userId = app.globalData.userId;
+    var baseUrl = app.globalData.baseUrl;
+    var baseImgUrl = app.globalData.imgUrl;
+
+    //获取订单详情信息
+    Http.get(`${baseUrl}/customers/${userId}/shops/${shopId}/orders/${orderId}`, data =>{
+        this.setData({order : data});
+    });
   }
-})
+});

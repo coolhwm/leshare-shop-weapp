@@ -1,19 +1,30 @@
-// pages/goods/index/index.js
+import { Http } from "../../../class/utils/Http.js";
+var app = getApp();
+
 Page({
-  data:{},
+  data:{
+    goods : {},
+    shop : {}
+  },
   onLoad:function(options){
-    // 页面初始化 options为页面跳转所带来的参数
-  },
-  onReady:function(){
-    // 页面渲染完成
-  },
-  onShow:function(){
-    // 页面显示
-  },
-  onHide:function(){
-    // 页面隐藏
-  },
-  onUnload:function(){
-    // 页面关闭
+    let shopId = app.globalData.lastShopId;
+    let userId = app.globalData.userId;
+    let baseUrl = app.globalData.baseUrl;
+    let baseImgUrl = app.globalData.imgUrl;
+    let goodsId = options.goodsId;
+    
+    //请求店铺基本信息
+    Http.get(`${baseUrl}/shops/${shopId}`, (data) =>{
+      this.setData({ shop: data });
+    });
+
+
+    //获取商品详情
+    Http.get(`${baseUrl}/shops/${shopId}/goods/${goodsId}`, data =>{
+      for (let image of data.images) {
+        image.url = baseImgUrl + image.url;
+      }
+      this.setData({goods:data});
+    });
   }
 })

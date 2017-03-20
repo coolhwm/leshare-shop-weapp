@@ -3,17 +3,17 @@
 <!--输入：...order-->
 <import src="/templates/order/goods/order-goods-template.wxml" />
 <template name="orderItemTemplate">
-    <view class="order-item-container">
+    <view class="order-item-container" catchtap="onOrderTap" data-order-id="{{order_id}}">
         <!--基本信息-->
         <view class="order-info-container">
-            <text>{{create_time}}</text>
+            <text>{{order_time}}</text>
             <text class="order-status-complete">已完成</text>
         </view>
         <view class="hr-light"/>
 
         <!--商品列表-->
         <view class="order-goods-list-container">
-            <block wx:for="{{goodsList}}">
+            <block wx:for="{{orderGoodsInfos}}">
                 <template is="orderGoodsTemplate" data="{{...item}}"/>
             </block>
         </view>
@@ -21,10 +21,10 @@
         <view class="hr-light"/>
         <!--汇总信息-->
         <view class="order-info-container">
-            <text>共 2 件商品</text>
+            <text>共 {{orderGoodsInfos.length}} 件商品</text>
             <view>
                  <text>总价：</text>
-                 <text class="order-price">￥{{final_price}}</text>
+                 <text class="order-price">￥{{total_price}}</text>
             </view>
            
         </view>

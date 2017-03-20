@@ -4,15 +4,15 @@
 <template name="orderGoodsTemplate">
     <view class="order-goods-container">
         <!--商品图片-->
-        <image class="order-goods-image" src="/images/goods/goods.jpeg"/>
+        <image class="order-goods-image" src="{{image_url}}"/>
         
         <!--商品说明-->
-        <text class="order-goods-title">{{name}}</text>
+        <text class="order-goods-title">{{goods_name}}</text>
 
         <!--商品购买信息-->
         <view class="order-goods-buy-container">
-            <text class="order-goods-price">￥{{sell_price}}</text>
-            <text class="order-goods-count">x1</text>
+            <text class="order-goods-price">￥{{goods_price}}</text>
+            <text class="order-goods-count">x{{count}}</text>
         </view>
     </view>
 </template>

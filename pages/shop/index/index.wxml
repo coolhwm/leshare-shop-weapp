@@ -9,8 +9,7 @@
     <template is="shopItemTemplate" data="{{...shop}}" />
     <!--店铺公告-->
     <template is="noitceBarTemplate" data="{{...notice}}"/>
-    <!--头图背景-->
-    <!--<image class="shop-head-image" mode="aspectFill" src="/images/shop/shop.png"/>-->
+
     <view class="hr-light"/>
 
     <!--商品区域-->

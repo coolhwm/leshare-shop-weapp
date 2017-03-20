@@ -2,9 +2,9 @@
 <!--依赖：无-->
 <!--输入：...goods -->
 <template name="goodsItemTemplate">
-    <view class="goods-item-container" catchtap="onGoodsItemTap">
+    <view class="goods-item-container" catchtap="onGoodsItemTap" data-goods-id="{{id}}">
         <!--商品图片-->
-        <image class="goods-item-image" src="/images/goods/goods.jpeg" />
+        <image class="goods-item-image" src="{{imageUrl}}" />
         <!--商品描述-->
         <view class="goods-item-describe">
             <!--标题-->

@@ -7,13 +7,13 @@
 
 <view class="goods-index-container">
     <!--基本信息-->
-    <template is="goodsInfoTemplate" />
+    <template is="goodsInfoTemplate" data="{{...goods}}"/>
     
     <!--间隔-->
     <view class="gap"></view>
 
     <!--店铺信息-->
-    <template is="shopItemTemplate" data="{{name:'测试店铺', address:'天河小区', describe:'测试小卖部，提供外卖服务'}}" />
+    <template is="shopItemTemplate" data="{{...shop}}" />
 
      <!--间隔-->
     <view class="gap"></view>
