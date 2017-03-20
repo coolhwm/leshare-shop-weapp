@@ -18,13 +18,21 @@ Page({
       this.setData({ shop: data });
     });
 
-
+    
     //获取商品详情
     Http.get(`${baseUrl}/shops/${shopId}/goods/${goodsId}`, data =>{
       for (let image of data.images) {
         image.url = baseImgUrl + image.url;
       }
       this.setData({goods:data});
+    });
+  },
+
+  //点击店铺 TODO
+  onShopItemTap: function (event) {
+    let shopId = event.currentTarget.dataset.shopId;
+    wx.navigateTo({
+      url : `/pages/shop/detail/detail?shopId=${shopId}`
     });
   }
 })

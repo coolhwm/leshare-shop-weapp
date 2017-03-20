@@ -21,13 +21,13 @@
     <!--店铺名称-->
     <view class="shop-name-container">
         <image class="icon-big" src="/images/shop/shop.png"/>
-        <text class="shop-name-font">小王的便利店</text>
+        <text class="shop-name-font">{{shop.name}}</text>
         <image class="icon-big" src="/images/icons/more.png"/>
     </view>
     <view class="gap"></view>
 
     <!--店铺信息模板-->
-    <template is="shopInfoTemplate" />
+    <template is="shopInfoTemplate" data="{{...shop}}"/>
     <view class="gap"></view>
 
     <!--举报商家-->

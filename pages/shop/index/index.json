@@ -1,3 +1,4 @@
 {
-        "navigationBarTitleText" : "乐享连江"
+        "navigationBarTitleText": "乐享连江",
+        "enablePullDownRefresh": "true"
 }
