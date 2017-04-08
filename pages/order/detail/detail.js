@@ -1,4 +1,4 @@
-import { Http } from "../../../class/utils/Http.js";
+import {Http} from "../../../class/utils/Http.js";
 var app = getApp();
 
 Page({
@@ -7,14 +7,35 @@ Page({
   },
   onLoad:function(options){
     var orderId = options.orderId;
-    var shopId = app.globalData.lastShopId;
-    var userId = app.globalData.userId;
-    var baseUrl = app.globalData.baseUrl;
-    var baseImgUrl = app.globalData.imgUrl;
 
     //获取订单详情信息
-    Http.get(`${baseUrl}/customers/${userId}/shops/${shopId}/orders/${orderId}`, data =>{
+    let url = `${app.globalData.baseUrl}/customers/${app.globalData.userId}/shops/${app.globalData.lastShopId}/orders/${orderId}`;
+    Http.get(url, data =>{
+        this.processOrderDetail(data);
         this.setData({order : data});
     });
+  },
+
+  processOrderDetail : function(detail){
+    let paymentDict = {
+      "0":"现金支付",
+      "1":"微信支付",
+      "2":"支付宝支付",
+      "3":"银联支付"
+    };
+
+     let statusDict = {
+      "0":"全部",
+      "1":"待发货",
+      "2":"待付款",
+      "3":"已发货",
+      "4":"退款中",
+      "5":"已完成",
+      "6":"已关闭"
+    };
+    
+    //处理字典数据
+    detail.payment_text = paymentDict[detail.payment_type];
+    detail.status_text = statusDict[detail.status];
   }
 });

@@ -7,7 +7,7 @@
     <!--订单状态-->
     <view class="order-status-container">
         <image class="icon-middle" src="/images/icons/order.png"/>
-        <text class="order-status-text">订单状态：已完成</text>
+        <text class="order-status-text">订单状态：{{order.status_text}}</text>
     </view>
 
     <view class="gap"></view>
@@ -21,11 +21,11 @@
     <template is="orderItemTemplate" data="{{...order}}"/>
 
     <!--买家留言-->
-    <view class="trade-note-container">
+    <view class="trade-note-container" wx:if="{{order.message}}">
         <view class="text-bar">
             <text class="text-major">买家留言:</text>
         </view>
-        <text class="textarea">选填：对本次交易的说明（建议填写已和卖家沟通的内容）</text>
+        <text class="textarea">{{order.message}}</text>
     </view>
 
     <view class="gap"></view>
@@ -46,7 +46,7 @@
         <!--字段值-->
          <view class="order-detail-value-container">
             <text>{{order.uuid}}</text>
-            <text>当面交易</text>
+            <text>{{order.payment_text}}</text>
             <text>{{order.create_time}}</text>
             <text>{{order.payment_time == null ? '-' : order.payment_time}}</text>
             <text>{{order.send_time == null ? '-' : order.send_time}}</text>

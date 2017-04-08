@@ -6,8 +6,8 @@
     <view class="order-item-container" catchtap="onOrderTap" data-order-id="{{order_id}}">
         <!--基本信息-->
         <view class="order-info-container">
-            <text>{{order_time}}</text>
-            <text class="order-status-complete">已完成</text>
+            <text>{{create_time}}</text>
+            <text class="order-status-complete">{{status_text}}</text>
         </view>
         <view class="hr-light"/>
 
@@ -24,7 +24,7 @@
             <text>共 {{orderGoodsInfos.length}} 件商品</text>
             <view>
                  <text>总价：</text>
-                 <text class="order-price">￥{{total_price}}</text>
+                 <text class="order-price">￥{{final_price}}</text>
             </view>
            
         </view>

@@ -6,7 +6,7 @@
 <view class="order-index-container">
     <!--状态操作栏-->
     <view class="order-tab-wrap">
-        <template is="orderTabTemplate"/>
+        <template is="orderTabTemplate" data="{{...tabbar}}"/>
     </view>
     
     <!--订单列表页面-->
