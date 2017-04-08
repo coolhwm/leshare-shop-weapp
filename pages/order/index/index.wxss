@@ -2,5 +2,17 @@
 @import "/templates/order/tab/order-tab-template.wxss";
 
 .order-index-container{
-    background-color: #f2f2f2;
+
+}
+
+.order-tab-wrap{
+    position: fixed;
+    top: 0;
+}
+.order-tab-container{
+    width: 750rpx;
+}
+
+.order-list-wrap{
+    margin-top: 70rpx;
 }

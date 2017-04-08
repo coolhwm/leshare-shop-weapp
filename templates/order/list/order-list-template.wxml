@@ -3,8 +3,10 @@
 <!--输入：orers-->
 <import src="/templates/order/item/order-item-template.wxml" />
 <template name="orderListTemplate">
-    <!--订单-->
-    <block wx:for="{{orders}}" wx:key="id">
-        <template is="orderItemTemplate" data="{{...item}}"/>
-    </block>
+    <view class="order-list-container">
+        <!--订单-->
+        <block wx:for="{{orders}}" wx:key="id">
+            <template is="orderItemTemplate" data="{{...item}}"/>
+        </block>
+    </view>
 </template>

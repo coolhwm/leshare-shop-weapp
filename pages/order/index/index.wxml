@@ -5,8 +5,12 @@
 
 <view class="order-index-container">
     <!--状态操作栏-->
-    <template is="orderTabTemplate"/>
+    <view class="order-tab-wrap">
+        <template is="orderTabTemplate"/>
+    </view>
     
     <!--订单列表页面-->
-    <template is="orderListTemplate" data="{{orders}}"/>
+    <view class="order-list-wrap">
+        <template is="orderListTemplate" data="{{orders}}"/>
+    </view>
 </view>
