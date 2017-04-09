@@ -6,7 +6,7 @@
     <view class="order-item-container" catchtap="onOrderTap" data-order-id="{{order_id}}">
         <!--基本信息-->
         <view class="order-info-container">
-            <text>{{create_time}}</text>
+            <text>{{order_time}}</text>
             <text class="order-status-complete">{{status_text}}</text>
         </view>
         <view class="hr-light"/>

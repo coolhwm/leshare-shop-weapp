@@ -37,5 +37,12 @@ Page({
     //处理字典数据
     detail.payment_text = paymentDict[detail.payment_type];
     detail.status_text = statusDict[detail.status];
+
+    //时间默认值
+    detail.payment_time = !detail.payment_time ? '-' : detail.payment_time;
+    detail.send_time = !detail.send_time ? '-' : detail.send_time;
+    detail.update_time = !detail.update_time ? '-' : detail.update_time;
+    detail.close_time = !detail.close_time ? '-' : detail.close_time;
+
   }
 });

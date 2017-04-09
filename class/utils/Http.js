@@ -32,9 +32,19 @@ class Http{
         });
     }
 
-    //GET
-    static get(url, onSuccess, onFail=this.defaultOnFail){
-        this.request(url, {}, "GET", onSuccess, onFail);
+    //GET（重载）
+    static get(){
+        //传递data的情况
+        if(this.isFunction(arguments[1])){
+            var onFail = arguments[2] ? arguments[2] : this.defaultOnFail;
+            this.request(arguments[0], {}, "GET", arguments[1], onFail);
+        }
+        //不传递data的情况
+        else if(arguments[1] instanceof Object){
+            var onFail = arguments[3] ? arguments[3] : this.defaultOnFail;
+            this.request(arguments[0], arguments[1], "GET", arguments[2], onFail);
+        }
+        
     }
 
     //POST
@@ -55,6 +65,10 @@ class Http{
     //DELETE
     static patch(url, onSuccess, onFail=defaultOnFail){
         this.request(url, {}, "DELETE", onSuccess, onFail);
+    }
+    
+    static isFunction(fn) {
+        return Object.prototype.toString.call(fn)=== '[object Function]';
     }
 }
 

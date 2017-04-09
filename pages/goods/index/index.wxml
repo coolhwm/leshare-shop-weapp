@@ -19,7 +19,7 @@
     <view class="gap"></view>
 
     <!--详情信息-->
-    <template is="goodsDetailTemplate" />
+    <template is="goodsDetailTemplate" data="{{details}}"/>
 
     <!--购买栏-->
     <template is="goodsBuyBarTemplate" />

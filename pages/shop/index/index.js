@@ -51,7 +51,9 @@ Page({
   loadNextPage: function () {
     wx.showNavigationBarLoading();
     //请求店铺商品信息
-    Http.get(`${app.globalData.baseUrl}/shops/${app.globalData.lastShopId}/goods?from=${this.data.start}&limit=${this.data.count}&by=id&sort=asc`, (data) => {
+    let url = `${app.globalData.baseUrl}/shops/${app.globalData.lastShopId}/goods`;
+    let param = `?from=${this.data.start}&limit=${this.data.count}&by=id&sort=asc`;
+    Http.get(url + param, (data) => {
       for (let item of data) {
         //对数据做一些处理
         this.processGoodsData(item);
