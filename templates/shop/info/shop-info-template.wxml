@@ -21,11 +21,6 @@
         </view>
         <view class="hr-light"></view>
         <view class="list-item">
-            <text class="list-item-title">营业时间</text>
-            <text class="list-item-value">10:00/21:00</text>   
-        </view>
-        <view class="hr-light"></view>
-        <view class="list-item">
             <text class="list-item-title">店铺说明</text>
             <text class="list-item-value">{{describe}}</text>   
         </view>

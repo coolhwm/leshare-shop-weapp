@@ -8,8 +8,7 @@ Page({
   onLoad:function(options){
     let shopId = options.shopId;
     let baseUrl = app.globalData.baseUrl;
-    let baseImgUrl = app.globalData.imgUrl;
-
+    
     //加载店铺详情信息
     Http.get(`${baseUrl}/shops/${shopId}`, data => {
       this.setData({shop : data});

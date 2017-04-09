@@ -1,7 +1,7 @@
 <!-- 购买动作栏模板-->
 <!--依赖：无-->
 <template name="goodsBuyBarTemplate">
-    <view class="bay-bar-container">
+    <view class="buy-bar-container">
         <view class="bar-action-container">
             <image class="icon-middle" src="/images/icons/phone.png" />
             <text>联系卖家</text>
@@ -16,5 +16,14 @@
         <view class="bar-buy-container">
             <text>立即购买</text>
         </view>
+    </view>
+
+    <view class="check-panel-shade">
+        
+    </view>
+
+    <view class="check-panel-container">
+        <view></view>
+
     </view>
 </template>

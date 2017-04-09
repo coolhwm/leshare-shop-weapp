@@ -22,9 +22,6 @@ Page({
 
     //获取商品信息
     Http.get(`${baseUrl}/shops/${shopId}/goods/${goodsId}`, data => {
-      for (let image of data.images) {
-        image.url = baseImgUrl + image.url;
-      }
       this.setData({ goods: data });
     });
 

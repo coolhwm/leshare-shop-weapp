@@ -13,7 +13,9 @@ Page({
     this.loadNextPage();
   },
 
-  /* 点击单个订单 */
+  /**
+   * 点击单个订单 
+   */
   onOrderTap: function (event) {
     let orderId = event.currentTarget.dataset.orderId;
     wx.navigateTo({
@@ -21,12 +23,16 @@ Page({
     });
   },
 
-  /* 下拉刷新 */
+  /**
+   * 点击单个订单 
+   */
   onReachBottom: function (event) {
     this.loadNextPage();
   },
 
-  /* 加载下一页 */
+  /**
+   * 加载下一页
+   */
   loadNextPage: function () {
     wx.showNavigationBarLoading();
     //请求订单信息
@@ -54,7 +60,9 @@ Page({
     });
   },
 
-  /* 处理订单数据 */
+  /**
+   * 处理订单数据
+   */
   processOrderData: function (order) {
     let statusDict = {
       "0": "全部",
@@ -67,13 +75,11 @@ Page({
     };
 
     order.status_text = statusDict[order.status];
-
-    for (let goods of order.orderGoodsInfos) {
-      goods.image_url = app.globalData.imgUrl + goods.image_url;
-    }
   },
 
-  /* 初始化TAB数据 */
+  /**
+   * 初始化TAB数据
+   */
   iniOrderTabBar: function () {
     let tabbar = {
       tabs: [
@@ -95,12 +101,16 @@ Page({
     var tabbar = this.data.tabbar;
     tabbar.selected = status;
 
-    //更新TAB数据
-    this.setData({ status: status });
-    this.setData({ tabbar: tabbar });
+    //更新/初始化页面数据
+    this.setData({
+      status: status,
+      tabbar: tabbar,
+      start: 0,
+      count: 10,
+      orders: []
+    });
 
     //刷新页面
-    this.setData({ orders: [] });
     this.loadNextPage();
   }
 })

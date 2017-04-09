@@ -26,7 +26,10 @@ Page({
     //请求加载商品
     this.loadNextPage();
   },
-  //点击商品
+  
+  /**
+   * 点击商品
+   */
   onGoodsItemTap: function (event) {
     let goodsId = event.currentTarget.dataset.goodsId;
     wx.navigateTo({
@@ -34,7 +37,9 @@ Page({
     });
   },
 
-  //点击店铺
+  /**
+   * 点击店铺
+   */
   onShopItemTap: function (event) {
     let shopId = event.currentTarget.dataset.shopId;
     wx.navigateTo({
@@ -42,18 +47,26 @@ Page({
     });
   },
 
-  //下拉刷新
+  /**
+   * 下拉刷新
+   */
   onReachBottom: function (event) {
     this.loadNextPage();
   },
 
-  //加载下一页
+  /**
+   * 加载下一页
+   */
   loadNextPage: function () {
     wx.showNavigationBarLoading();
     //请求店铺商品信息
     let url = `${app.globalData.baseUrl}/shops/${app.globalData.lastShopId}/goods`;
-    let param = `?from=${this.data.start}&limit=${this.data.count}&by=id&sort=asc`;
-    Http.get(url + param, (data) => {
+    let param = {
+      from: this.data.start,
+      limit: this.data.count
+    };
+
+    Http.get(url, param, (data) => {
       for (let item of data) {
         //对数据做一些处理
         this.processGoodsData(item);
@@ -67,8 +80,8 @@ Page({
       wx.hideNavigationBarLoading();
     });
   },
-  
-  //处理商品信息
+
+  /* 处理商品信息 */
   processGoodsData: function (item) {
     //结构赋值
     var {name, sell_price, original_price, images} = item;
@@ -91,7 +104,7 @@ Page({
       item.imageUrl = "/images/goods/mock.png";
     }
     else {
-      item.imageUrl = app.globalData.imgUrl + images[0].url;
+      item.imageUrl = images[0].url;
     }
   }
 });
