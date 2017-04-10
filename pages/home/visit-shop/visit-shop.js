@@ -22,6 +22,8 @@ Page({
   // 点击项目
   onShopItemTap: function (event) {
     var shopId = event.currentTarget.dataset.shopId;
+    //利用全局变量暂存
+    app.globalData.lastShopId = shopId;
     wx.switchTab({
       url: `/pages/shop/index/index`,
       //写入访问
@@ -30,8 +32,6 @@ Page({
           Http.post(visitUrl, {shop_id : shopId}, (data)=>{
             console.info(`[shop] visit shop ${shopId} success!`);
           });
-          //利用全局变量暂存
-          app.globalData.lastShopId = shopId;
       }
     });
   }

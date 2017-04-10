@@ -14,6 +14,7 @@ page{
 .user-avatar{
     height:160rpx;
     width: 160rpx;
+    border-radius: 50%;
 }
 
 .user-nickname{

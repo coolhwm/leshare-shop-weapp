@@ -1,19 +1,24 @@
-// pages/customer/index/index.js
+import { Http } from "../../../class/utils/Http.js";
+var app = getApp();
+
 Page({
-  data:{},
-  onLoad:function(options){
-    // 页面初始化 options为页面跳转所带来的参数
+  data: {
+    userInfo: {}
   },
-  onReady:function(){
-    // 页面渲染完成
+
+  onLoad: function (options) {
+    this.setData({ userInfo: app.globalData.userInfo });
   },
-  onShow:function(){
-    // 页面显示
-  },
-  onHide:function(){
-    // 页面隐藏
-  },
-  onUnload:function(){
-    // 页面关闭
+  /**
+   * 选择收货地址
+   */
+  onAddressTap: function (event) {
+    console.info(event);
+    wx.chooseAddress({
+      success: function (res) {
+        console.info(res);
+      }
+    });
   }
-})
+
+});

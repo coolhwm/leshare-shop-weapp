@@ -65,9 +65,14 @@ Page({
       from: this.data.start,
       limit: this.data.count
     };
-
+    console.info("开始请求--->");
+    console.info(url);
+    console.info(param);
     Http.get(url, param, (data) => {
-      for (let item of data) {
+      console.info("请求成功--->");
+      console.info(data);
+      for (let i in data) {
+        var item = data[i];
         //对数据做一些处理
         this.processGoodsData(item);
       }
@@ -83,6 +88,8 @@ Page({
 
   /* 处理商品信息 */
   processGoodsData: function (item) {
+    console.info("处理商品信息--->");
+    console.info(item);
     //结构赋值
     var {name, sell_price, original_price, images} = item;
 

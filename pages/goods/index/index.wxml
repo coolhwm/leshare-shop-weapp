@@ -19,10 +19,10 @@
     <view class="gap"></view>
 
     <!--详情信息-->
-    <template is="goodsDetailTemplate" data="{{details}}"/>
+    <template is="goodsDetailTemplate" data="{{details:goods.goodsDetails}}"/>
 
     <!--购买栏-->
-    <template is="goodsBuyBarTemplate" />
+    <template is="goodsBuyBarTemplate" data="{{...goods}}" />
 
     <!--底栏占位-->
     <view class="goods-index-footer"></view>

@@ -12,6 +12,14 @@ Page({
     this.iniOrderTabBar();
     this.loadNextPage();
   },
+  onShow: function () {
+    //订单有更新的时候，要进行刷新操作
+    if (app.globalData.isReloadOrderList) {
+      app.globalData.isReloadOrderList = false;
+      this.clearData();
+      this.loadNextPage();
+    }
+  },
 
   /**
    * 点击单个订单 
@@ -75,6 +83,19 @@ Page({
     };
 
     order.status_text = statusDict[order.status];
+  },
+
+
+  /**
+   * 清除数据
+   */
+  clearData: function () {
+    this.setData({
+      status: 0,
+      start: 0,
+      count: 10,
+      orders: []
+    });
   },
 
   /**

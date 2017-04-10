@@ -1,4 +1,5 @@
 <!-- 购买动作栏模板-->
+<!--输入：...goods-->
 <!--依赖：无-->
 <template name="goodsBuyBarTemplate">
     <view class="buy-bar-container">
@@ -13,17 +14,18 @@
             <image class="icon-middle" src="/images/icons/shop.png" />
             <text>进入店铺</text>
         </view>
-        <view class="bar-buy-container">
+        <view class="bar-buy-container" catchtap="onBuyTap">
             <text>立即购买</text>
         </view>
     </view>
 
-    <view class="check-panel-shade">
+    <!-- 购买面板 -->
+    <!--<view class="check-panel-shade">
         
     </view>
 
     <view class="check-panel-container">
         <view></view>
 
-    </view>
+    </view>-->
 </template>

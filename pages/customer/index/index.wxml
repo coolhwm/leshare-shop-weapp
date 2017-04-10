@@ -4,13 +4,13 @@
 
     <!-- 头图区域 -->
     <view class="user-info-container">
-        <image class="user-avatar" src="/images/avatar/avatar.png" />
-        <text class="user-nickname">董小姐</text>
+        <image class="user-avatar" src="{{userInfo.avatarUrl}}" />
+        <text class="user-nickname">{{userInfo.nickName}}</text>
     </view>
 
     <!-- 个人功能区域 -->
-    <view class="user-func-container">
-        <view class="user-func-item">
+    <view class="user-func-container" >
+        <view class="user-func-item" catchtap="onAddressTap">
             <text class="func-text">收货地址</text>
             <image class="icon-middle" src="/images/icons/more.png" />
         </view>

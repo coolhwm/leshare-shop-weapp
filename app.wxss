@@ -38,9 +38,14 @@ text {
     height: 45rpx;
 }
 
+.icon-tiny{
+    width: 30rpx;
+    height: 30rpx;
+}
+
 /*文本区域*/
 .textarea{
-    height: 150rpx;
+    height: 100rpx;
     width: 700rpx;
     border: #e6e6e6 solid 1px;
     border-radius: 5px;

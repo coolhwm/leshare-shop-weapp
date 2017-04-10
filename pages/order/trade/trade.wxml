@@ -13,22 +13,22 @@
     <view class="gap"></view>
 
     <!--订单项目-->
-    <template is="orderItemTemplate" data="{{create_time:'2016/01/01', final_price:'100.00'}}"/>
+    <template is="orderItemTemplate" data="{{...trade}}"/>
 
     <!--买家留言-->
     <view class="trade-note-container">
         <view class="text-bar">
-            <text class="text-major">买家留言：</text>
+            <text class="text-major"  >买家留言：</text>
         </view>
-        <textarea class="textarea" type="text" placeholder="选填：对本次交易的说明（建议填写已和卖家沟通的内容）"/>
+        <textarea class="textarea" type="text" placeholder="选填：对本次交易的说明（建议填写已和卖家沟通的内容）" bindinput="onMessageInput"/>
     </view>
 
     <!--购买栏-->
     <view class="tarde-action-bar">
         <view>
-           <text class="tarde-total-price">总价：￥216.00</text> 
+           <text class="tarde-total-price">总价：￥{{trade.final_price}}</text> 
         </view>
-        <view class="trade-confirm-button">
+        <view class="trade-confirm-button" catchtap="onConfirmTap">
             <text>提交订单</text>
         </view>
     </view>

@@ -6,7 +6,10 @@
     <view class="order-item-container" catchtap="onOrderTap" data-order-id="{{order_id}}">
         <!--基本信息-->
         <view class="order-info-container">
-            <text>{{order_time}}</text>
+            <view class="order-shop-info-container">
+                <image class="icon-tiny" src="/images/icons/shop-gray.png"/>
+                <text class="shop-info-name">{{shop_name}} ></text>
+            </view>
             <text class="order-status-complete">{{status_text}}</text>
         </view>
         <view class="hr-light"/>
