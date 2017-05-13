@@ -9,7 +9,7 @@ Page({
     var orderId = options.orderId;
 
     //获取订单详情信息
-    let url = `${app.globalData.baseUrl}/customers/${app.globalData.userId}/shops/${app.globalData.lastShopId}/orders/${orderId}`;
+    let url = `${app.globalData.baseUrl}/customers/${app.globalData.userId}/shops/${app.globalData.shopId}/orders/${orderId}`;
     Http.get(url, data =>{
         this.processOrderDetail(data);
         this.setData({order : data});

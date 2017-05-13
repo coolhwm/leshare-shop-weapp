@@ -1,11 +1,11 @@
 {
   "pages": [
+    "pages/shop/index/index",
     "pages/home/visit-shop/visit-shop",
     "pages/order/detail/detail",
     "pages/customer/address/list",
     "pages/shop/detail/detail",
     "pages/order/trade/trade",
-    "pages/shop/index/index",
     "pages/customer/index/index",
     "pages/customer/address/edit",
     "pages/goods/index/index",

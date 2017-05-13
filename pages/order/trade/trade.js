@@ -28,7 +28,7 @@ Page({
     var trade = this.data.trade;
     trade.message = this.data.message;
 
-    let url = `${app.globalData.baseUrl}/customers/${app.globalData.userId}/shops/${app.globalData.lastShopId}/orders`;
+    let url = `${app.globalData.baseUrl}/customers/${app.globalData.userId}/shops/${app.globalData.shopId}/orders`;
     Http.post(url, trade, data => {
       //展示提示窗口
       wx.showToast({

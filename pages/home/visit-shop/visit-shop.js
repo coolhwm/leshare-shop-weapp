@@ -23,7 +23,7 @@ Page({
   onShopItemTap: function (event) {
     var shopId = event.currentTarget.dataset.shopId;
     //利用全局变量暂存
-    app.globalData.lastShopId = shopId;
+    app.globalData.shopId = shopId;
     wx.switchTab({
       url: `/pages/shop/index/index`,
       //写入访问

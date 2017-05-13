@@ -44,7 +44,7 @@ Page({
   loadNextPage: function () {
     wx.showNavigationBarLoading();
     //请求订单信息
-    let url = `${app.globalData.baseUrl}/customers/${app.globalData.userId}/shops/${app.globalData.lastShopId}/orders`;
+    let url = `${app.globalData.baseUrl}/customers/${app.globalData.userId}/shops/${app.globalData.shopId}/orders`;
 
     let params = {
       from: this.data.start,

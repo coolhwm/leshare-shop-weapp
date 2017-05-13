@@ -7,7 +7,7 @@ Page({
     shop: {}
   },
   onLoad: function (options) {
-    let shopId = app.globalData.lastShopId;
+    let shopId = app.globalData.shopId;
     let userId = app.globalData.userId;
     let baseUrl = app.globalData.baseUrl;
     let baseImgUrl = app.globalData.imgUrl;

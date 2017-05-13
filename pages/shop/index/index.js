@@ -10,7 +10,7 @@ Page({
     count: 10
   },
   onLoad: function (options) {
-    let shopId = app.globalData.lastShopId;
+    let shopId = app.globalData.shopId;
     let baseUrl = app.globalData.baseUrl;
 
     //请求店铺基本信息
@@ -60,7 +60,7 @@ Page({
   loadNextPage: function () {
     wx.showNavigationBarLoading();
     //请求店铺商品信息
-    let url = `${app.globalData.baseUrl}/shops/${app.globalData.lastShopId}/goods`;
+    let url = `${app.globalData.baseUrl}/shops/${app.globalData.shopId}/goods`;
     let param = {
       from: this.data.start,
       limit: this.data.count
