@@ -13,7 +13,7 @@ App({
       wx.checkSession({
         success: () => {
           this.globalData.userInfo = user;
-          this.globalData.userId = 1;
+          this.globalData.userId = user.id;
           return false;
         },
         fail: function () {
@@ -48,9 +48,9 @@ App({
       console.info(`3rd_sessionId=${thirdSessionId}`);
       //缓存3rd_sessionId
       wx.setStorageSync('thirdSessionId', thirdSessionId);
-      var wxOpenSetting = wxApi.wxOpenSetting();
-      //打开权限
-      return wxOpenSetting();
+      var wxGetUserInfo = wxApi.wxGetUserInfo();
+      //获取用户信息
+      return wxGetUserInfo();
     }).then(res => {
       console.info(res);
       userInfo = res;
@@ -75,14 +75,14 @@ App({
       return wxRequest.getRequest(`${this.globalData.baseUrl}/customers/decodeUserInfo`, param);
     }).then(res => {
       //解密成功，缓存数据
-      var user = JSON.parse(res.data.data);
+      var user = res.data.data;
       console.info(user);
 
       this.globalData.userInfo = user;
       wx.setStorageSync("userInfo", user);
 
       //临时user_id
-      this.globalData.userId = 1;
+      this.globalData.userId = user.id;
     }).catch(err => {
       console.error('登录错误', err);
     }).finally(res => {
