@@ -6,31 +6,29 @@ App({
   onLaunch: function () {
     this.checkLogin();
   },
+  //检查登录状态
   checkLogin: function () {
     let thirdSessionId = wx.getStorageSync("thirdSessionId");
     let user = wx.getStorageSync("userInfo");
     if (thirdSessionId && user) {
-      wx.checkSession({
-        success: () => {
-          this.globalData.userInfo = user;
-          this.globalData.userId = user.id;
-          return false;
-        },
-        fail: function () {
-          this.login();
-        }
-      })
+      wxApi.checkSession().then(res => {
+        this.globalData.userInfo = user;
+        this.globalData.userId = user.id;
+        return false;
+      }).catch(res => {
+        this.login();
+      });
     }
     else {
       this.login();
     }
   },
+
+  //用户登录
   login: function () {
     var thirdSessionId;
     var userInfo;
-    var wxLogin = wxApi.wxLogin();
-
-    wxLogin().then(res => {
+    wxApi.wxLogin().then(res => {
       if (!res.code) {
         console.error("用户登录js_code获取失败");
         console.info(res);
@@ -48,9 +46,8 @@ App({
       console.info(`3rd_sessionId=${thirdSessionId}`);
       //缓存3rd_sessionId
       wx.setStorageSync('thirdSessionId', thirdSessionId);
-      var wxGetUserInfo = wxApi.wxGetUserInfo();
       //获取用户信息
-      return wxGetUserInfo();
+      return wxApi.wxGetUserInfo();
     }).then(res => {
       console.info(res);
       userInfo = res;
@@ -94,7 +91,7 @@ App({
     userInfo: {},
     userId: null,
     shopId: "3",
-    baseUrl: "http://192.168.31.124:9999/v1/customer",
+    baseUrl: "http://leshare.shop:9999/v1/customer",
     imgUrl: "http://115.28.93.210"
   }
 });

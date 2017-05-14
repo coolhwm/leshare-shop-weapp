@@ -25,27 +25,34 @@ Promise.prototype.finally = function (callback) {
  * 微信用户登录,获取code
  */
 function wxLogin() {
-  return wxPromisify(wx.login)
+  return wxPromisify(wx.login)();
 }
 /**
  * 获取微信用户信息
  * 注意:须在登录之后调用
  */
 function wxGetUserInfo() {
-  return wxPromisify(wx.getUserInfo)
+  return wxPromisify(wx.getUserInfo)();
 }
 /**
  * 获取系统信息
  */
 function wxGetSystemInfo() {
-  return wxPromisify(wx.getSystemInfo)
+  return wxPromisify(wx.getSystemInfo)();
 }
 
 /**
  * 调起客户端小程序设置界面
  */
 function wxOpenSetting() {
-  return wxPromisify(wx.openSetting)
+  return wxPromisify(wx.openSetting)();
+}
+
+/**
+ * 检查客户端会话状态
+ */
+function checkSession() {
+  return wxPromisify(wx.checkSession)();
 }
 
 
@@ -55,5 +62,6 @@ module.exports = {
   wxLogin: wxLogin,
   wxGetUserInfo: wxGetUserInfo,
   wxGetSystemInfo: wxGetSystemInfo,
-  wxOpenSetting: wxOpenSetting
+  wxOpenSetting: wxOpenSetting,
+  checkSession: checkSession
 }
