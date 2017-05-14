@@ -26,66 +26,98 @@ App({
 
   //用户登录
   login: function () {
-    var thirdSessionId;
-    var userInfo;
-    wxApi.wxLogin().then(res => {
-      if (!res.code) {
-        console.error("用户登录js_code获取失败");
-        console.info(res);
-      }
-      console.info(`js_code=${res.code}`);
+    this.userLogin()
+      .then(this.getSession)
+      .then(this.getUserInfo)
+      .then(this.checkUserInfo)
+      .then(this.decodeUserInfo);
+  },
 
-      //请求服务端使用JS_CODE换取3rd_sessionId
-      return wxRequest.getRequest(`${this.globalData.baseUrl}/customers/session`, { code: res.code });
-    }).then(res => {
-      thirdSessionId = res.data.data.sessionId;
-      if (!thirdSessionId) {
-        console.error("thirdSessionId获取失败");
-        console.info(res);
-      }
-      console.info(`3rd_sessionId=${thirdSessionId}`);
-      //缓存3rd_sessionId
-      wx.setStorageSync('thirdSessionId', thirdSessionId);
-      //获取用户信息
-      return wxApi.wxGetUserInfo();
-    }).then(res => {
-      console.info(res);
-      userInfo = res;
-      let param = {
-        rawData: res.rawData,
-        signature: res.signature,
-        sessionId: thirdSessionId
-      };
-      //检验用户信息完整性
-      return wxRequest.getRequest(`${this.globalData.baseUrl}/customers/checkUserInfo`, param);
-    }).then(res => {
-      if (!res.data.data.checkPass) {
-        console.error("数据完整性验证失败");
-        console.info(res);
-      }
-      let param = {
-        encryptedData: userInfo.encryptedData,
-        iv: userInfo.iv,
-        sessionId: thirdSessionId
-      };
-      //请求服务端解密数据
-      return wxRequest.getRequest(`${this.globalData.baseUrl}/customers/decodeUserInfo`, param);
-    }).then(res => {
-      //解密成功，缓存数据
-      var user = res.data.data;
-      console.info(user);
 
-      this.globalData.userInfo = user;
-      wx.setStorageSync("userInfo", user);
-
-      //临时user_id
-      this.globalData.userId = user.id;
-    }).catch(err => {
-      console.error('登录错误', err);
-    }).finally(res => {
-      console.log('finally~')
+  userLogin: function () {
+    return new Promise((resolve, reject) => {
+      wxApi.wxLogin().then(res => {
+        if (!res.code) {
+          reject("用户登录js_code获取失败");
+        }
+        else {
+          console.info(`js_code=${res.code}`);
+          resolve(res.code);
+        }
+      }, reject);
     });
   },
+
+  getSession: function (jsCode) {
+    return new Promise((resolve, reject) => {
+      let url = `${this.globalData.baseUrl}/customers/session`;
+      let param = { code: jsCode };
+
+      wxRequest.getRequest(url, param).then(res => {
+        let thirdSessionId = res.data.data.sessionId;
+        if (!thirdSessionId) {
+          reject("thirdSessionId获取失败");
+        }
+        else {
+          console.info(`3rd_sessionId=${thirdSessionId}`);
+          //缓存3rd_sessionId
+          wx.setStorageSync('thirdSessionId', thirdSessionId);
+          resolve(thirdSessionId);
+        }
+      }, reject);
+    });
+  },
+
+  getUserInfo: function (thirdSessionId) {
+    return new Promise((resolve, reject) => {
+      wxApi.wxGetUserInfo().then(res => {
+        res["thirdSessionId"] = thirdSessionId;
+        resolve(res);
+      }, reject);
+    });
+  },
+
+  checkUserInfo: function (rawUser) {
+    return new Promise((resolve, reject) => {
+      let url = `${this.globalData.baseUrl}/customers/checkUserInfo`;
+      let param = {
+        rawData: rawUser.rawData,
+        signature: rawUser.signature,
+        sessionId: rawUser.thirdSessionId
+      };
+      wxRequest.getRequest(url, param).then(res => {
+        if (!res.data.data.checkPass) {
+          reject("数据完整性验证失败");
+        }
+        else {
+          resolve(rawUser);
+        }
+      }, reject);
+
+    });
+  },
+
+  decodeUserInfo: function (rawUser) {
+    return new Promise((resolve, reject) => {
+      let url = `${this.globalData.baseUrl}/customers/decodeUserInfo`;
+      let param = {
+        encryptedData: rawUser.encryptedData,
+        iv: rawUser.iv,
+        sessionId: rawUser.thirdSessionId
+      };
+      //请求服务端解密数据
+      wxRequest.getRequest(url, param).then(res => {
+        //解密成功，缓存数据
+        var user = res.data.data;
+        console.info(user);
+        this.globalData.userInfo = user;
+        wx.setStorageSync("userInfo", user);
+        //临时user_id
+        this.globalData.userId = user.id;
+      }, reject);
+    });
+  },
+
   globalData: {
     isReloadOrderList: false,
     userInfo: {},
