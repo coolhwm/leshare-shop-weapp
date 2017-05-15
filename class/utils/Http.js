@@ -41,10 +41,9 @@ class Http {
         //需要进行缓存
         let sessionId = wx.getStorageSync("thirdSessionId");
         let user = wx.getStorageSync("userInfo");
-        var header = {
-            sessionId: sessionId,
-            userId: user.id
-        };
+        var header = { };
+        header["3rdSession"] = sessionId;
+        header["customer_id"] = user.id;
         return header;
     }
 

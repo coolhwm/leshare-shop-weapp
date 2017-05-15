@@ -56,7 +56,7 @@ App({
   getSession: function (jsCode) {
     console.info('获取用户thirdSessionId');
     return new Promise((resolve, reject) => {
-      let url = `${this.globalData.baseUrl}/customers/session`;
+      let url = `${this.globalData.baseUrl}/auth/session`;
       let param = { code: jsCode };
 
       wxRequest.getRequest(url, param).then(res => {
@@ -87,7 +87,7 @@ App({
   checkUserInfo: function (rawUser) {
     console.info('检查用户信息完整性', rawUser);
     return new Promise((resolve, reject) => {
-      let url = `${this.globalData.baseUrl}/customers/checkUserInfo`;
+      let url = `${this.globalData.baseUrl}/auth/checkUserInfo`;
       let param = {
         rawData: rawUser.rawData,
         signature: rawUser.signature,
@@ -108,7 +108,7 @@ App({
   decodeUserInfo: function (rawUser) {
     console.info('解密并保存用户信息');
     return new Promise((resolve, reject) => {
-      let url = `${this.globalData.baseUrl}/customers/decodeUserInfo`;
+      let url = `${this.globalData.baseUrl}/auth/decodeUserInfo`;
       let param = {
         encryptedData: rawUser.encryptedData,
         iv: rawUser.iv,
@@ -137,7 +137,7 @@ App({
     userInfo: {},
     userId: null,
     shopId: "3",
-    baseUrl: "http://leshare.shop:9999/v1/customer",
+    baseUrl: "http://192.168.31.124:9999/v1/customer",
     imgUrl: "http://115.28.93.210"
   }
 });
