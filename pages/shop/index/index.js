@@ -26,7 +26,27 @@ Page({
     //请求加载商品
     this.loadNextPage();
   },
-  
+
+  /**
+  * 下拉刷新
+  */
+  onPullDownRefresh: function () {
+    this.clearData();
+    this.loadNextPage();
+    wx.stopPullDownRefresh();
+  },
+
+  /**
+   * 清除数据
+   */
+  clearData: function () {
+    this.setData({
+      start: 0,
+      count: 10,
+      goods: []
+    });
+  },
+
   /**
    * 点击商品
    */

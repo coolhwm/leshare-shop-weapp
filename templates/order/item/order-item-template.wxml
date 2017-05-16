@@ -10,7 +10,7 @@
                 <image class="icon-tiny" src="/images/icons/shop-gray.png"/>
                 <text class="shop-info-name">{{shop_name}} ></text>
             </view>
-            <text class="order-status-complete">{{status_text}}</text>
+            <text class="order-status-complete" >{{status_text}}</text>
         </view>
         <view class="hr-light"/>
 

@@ -14,8 +14,10 @@ App({
           .then(this.decodeUserInfo);
       });
   },
-  
-  //检查登录状态
+
+  /**
+   * 检查登录状态
+   */
   checkLogin: function () {
     console.info('检查用户登录情况');
     return new Promise((resolve, reject) => {
@@ -32,12 +34,18 @@ App({
     });
   },
 
-  userInit: function(user){
+  /**
+   * 初始化用户信息
+   */
+  userInit: function (user) {
     console.info('用户已登录成功', user)
     this.globalData.userInfo = user;
     this.globalData.userId = user.id;
   },
 
+  /**
+   * 用户登录请求
+   */
   userLogin: function () {
     console.info('用户尚未登录，获取用户js_code');
     return new Promise((resolve, reject) => {
@@ -53,6 +61,9 @@ App({
     });
   },
 
+  /**
+   * 获取3rd_session
+   */
   getSession: function (jsCode) {
     console.info('获取用户thirdSessionId');
     return new Promise((resolve, reject) => {
@@ -74,6 +85,9 @@ App({
     });
   },
 
+  /**
+   * 获取用户信息
+   */
   getUserInfo: function (thirdSessionId) {
     console.info('获取用户基本信息');
     return new Promise((resolve, reject) => {
@@ -84,6 +98,9 @@ App({
     });
   },
 
+  /**
+   *检查用户信息完整性
+   */
   checkUserInfo: function (rawUser) {
     console.info('检查用户信息完整性', rawUser);
     return new Promise((resolve, reject) => {
@@ -105,6 +122,9 @@ App({
     });
   },
 
+  /**
+   *解密并保存用户信息
+   */
   decodeUserInfo: function (rawUser) {
     console.info('解密并保存用户信息');
     return new Promise((resolve, reject) => {
@@ -138,6 +158,7 @@ App({
     userId: null,
     shopId: "3",
     baseUrl: "http://192.168.31.124:9999/v1/customer",
+    //baseUrl: "http://leshare.shop:9999/v1/customer",
     imgUrl: "http://115.28.93.210"
   }
 });

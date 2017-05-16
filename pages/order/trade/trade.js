@@ -29,23 +29,26 @@ Page({
     trade.message = this.data.message;
 
     let url = `${app.globalData.baseUrl}/customers/${app.globalData.userId}/shops/${app.globalData.shopId}/orders`;
+    wx.showLoading({
+      title: '订单创建中',
+      mask: true
+    })
     Http.post(url, trade, data => {
       //展示提示窗口
+      wx.hideLoading();
       wx.showToast({
         title: "订单创建成功",
         icon: "success",
         mask: true,
-        duration: 800,
-        complete: function () {
-          app.globalData.isReloadOrderList = true;
-          setTimeout(function () {
-            //跳转到订单列列表
-            wx.switchTab({
-              url: "/pages/order/index/index"
-            });
-          }, 800);
-        }
+        duration: 500
       });
+
+      //跳转到订单列列表
+      setTimeout(() => {
+        wx.switchTab({
+          url: "/pages/order/index/index"
+        });
+      }, 500);
     });
   }
 });

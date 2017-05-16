@@ -68,17 +68,17 @@ class Http {
     }
 
     //PUT
-    static put(url, data, onSuccess, onFail = defaultOnFail) {
+    static put(url, data, onSuccess, onFail = this.defaultOnFail) {
         this.request(url, data, "PUT", onSuccess, onFail);
     }
 
     //PATCH
-    static patch(url, data, onSuccess, onFail = defaultOnFail) {
+    static patch(url, data, onSuccess, onFail = this.defaultOnFail) {
         this.request(url, data, "PATCH", onSuccess, onFail);
     }
 
     //DELETE
-    static patch(url, onSuccess, onFail = defaultOnFail) {
+    static delete(url, onSuccess, onFail = this.defaultOnFail) {
         this.request(url, {}, "DELETE", onSuccess, onFail);
     }
 

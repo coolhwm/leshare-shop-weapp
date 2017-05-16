@@ -37,7 +37,7 @@ Page({
   /**
    * 购买
    */
-  onBuyTap: function(event) {
+  onBuyTap: function (event) {
     let goods = this.data.goods;
     //构造交易对象
     var trade = {
@@ -60,7 +60,7 @@ Page({
     };
     let param = JSON.stringify(trade);
     wx.navigateTo({
-      url : `/pages/order/trade/trade?trade=${param}`
+      url: `/pages/order/trade/trade?trade=${param}`
     });
   }
 });

@@ -12,13 +12,20 @@ Page({
     this.iniOrderTabBar();
     this.loadNextPage();
   },
+
   onShow: function () {
-    //订单有更新的时候，要进行刷新操作
-    if (app.globalData.isReloadOrderList) {
-      app.globalData.isReloadOrderList = false;
-      this.clearData();
-      this.loadNextPage();
-    }
+    //需要判断脏数据
+    this.clearData();
+    this.loadNextPage();
+  },
+
+  /**
+   * 下拉刷新
+   */
+  onPullDownRefresh: function () {
+    this.clearData();
+    this.loadNextPage();
+    wx.stopPullDownRefresh();
   },
 
   /**
@@ -72,14 +79,16 @@ Page({
    * 处理订单数据
    */
   processOrderData: function (order) {
-    let statusDict = {
+
+    const statusDict = {
       "0": "全部",
-      "1": "待发货",
-      "2": "待付款",
+      "1": "待付款",
+      "2": "待发货",
       "3": "已发货",
-      "4": "退款中",
-      "5": "已完成",
-      "6": "已关闭"
+      "4": "待评论",
+      "5": "退款中",
+      "6": "已完成",
+      "7": "已关闭"
     };
 
     order.status_text = statusDict[order.status];

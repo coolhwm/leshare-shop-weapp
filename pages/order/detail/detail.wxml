@@ -59,11 +59,11 @@
 
     <!--操作按钮-->
     <view class="btn-box">
-        <view class="btn btn-warn">
+        <view class="btn btn-warn" catchtap="onOrderClose">
             关闭订单
         </view>
-        <view class="btn btn-primary">
-            完成支付
+        <view class="btn btn-primary" catchtap="onWxPay">
+            支付订单
         </view>
     </view>
 </view>
