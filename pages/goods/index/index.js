@@ -45,7 +45,7 @@ Page({
       deal_price: goods.original_price,
       final_price: goods.sell_price,
       address_id: "1",
-      payment_type: "0",
+      payment_type: "1",
       message: "",
       orderGoodsInfos: [
         {

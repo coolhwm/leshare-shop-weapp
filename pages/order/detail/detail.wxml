@@ -49,7 +49,7 @@
             <text>{{order.payment_text}}</text>
             <text>{{order.order_time}}</text>
             <text>{{order.payment_time}}</text>
-            <text>{{order.send_time}}</text>
+            <text>{{order.sended_time}}</text>
             <text>{{order.update_time}}</text>
             <text>{{order.close_time}}</text>
         </view>
@@ -62,8 +62,14 @@
         <view class="btn btn-warn" catchtap="onOrderClose">
             关闭订单
         </view>
+        <view class="btn btn-warn" catchtap="onOrderRefund">
+            申请退款
+        </view>
         <view class="btn btn-primary" catchtap="onWxPay">
             支付订单
+        </view>
+        <view class="btn btn-primary" catchtap="onOrderConfirm">
+            确认收货
         </view>
     </view>
 </view>

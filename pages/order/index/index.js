@@ -88,7 +88,8 @@ Page({
       "4": "待评论",
       "5": "退款中",
       "6": "已完成",
-      "7": "已关闭"
+      "7": "已关闭",
+      "8": "已退款"
     };
 
     order.status_text = statusDict[order.status];
@@ -114,10 +115,10 @@ Page({
     let tabbar = {
       tabs: [
         { "value": "0", "name": "全部" },
-        { "value": "2", "name": "待付款" },
-        { "value": "1", "name": "待发货" },
+        { "value": "1", "name": "待付款" },
+        { "value": "2", "name": "待发货" },
         { "value": "3", "name": "待收货" },
-        { "value": "5", "name": "已完成" },
+        { "value": "4", "name": "待评价" },
       ],
       selected: this.data.status
     };
