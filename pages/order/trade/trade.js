@@ -28,7 +28,7 @@ Page({
     var trade = this.data.trade;
     trade.message = this.data.message;
 
-    let url = `${app.globalData.baseUrl}/customers/${app.globalData.userId}/shops/${app.globalData.shopId}/orders`;
+    let url = `${app.globalData.baseUrl}/shops/${app.globalData.shopId}/orders`;
     wx.showLoading({
       title: '订单创建中',
       mask: true

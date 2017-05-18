@@ -21,6 +21,18 @@ Promise.prototype.finally = function (callback) {
     reason => P.resolve(callback()).then(() => { throw reason })
   );
 };
+
+function createAuthHeader() {
+  //需要进行缓存
+  let sessionId = wx.getStorageSync("thirdSessionId");
+  let user = wx.getStorageSync("userInfo");
+  var header = {};
+  header["3rdSession"] = sessionId;
+  header["customer_id"] = user.id;
+  return header;
+}
+
+
 /**
  * 微信请求get方法
  * url
@@ -32,9 +44,7 @@ function getRequest(url, data) {
     url: url,
     method: 'GET',
     data: data,
-    header: {
-      'Content-Type': 'application/json'
-    }
+    header: createAuthHeader()
   })
 }
 
@@ -49,9 +59,7 @@ function postRequest(url, data) {
     url: url,
     method: 'POST',
     data: data,
-    header: {
-      "content-type": "application/x-www-form-urlencoded"
-    },
+    header: createAuthHeader()
   })
 }
 
