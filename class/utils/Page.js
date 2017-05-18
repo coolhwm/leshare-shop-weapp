@@ -26,35 +26,45 @@ export default class Pagination {
         };
         return wxRequest.getRequest(this.url, param).then(res => {
             const data = res.data;
-            if (!this.processFunc) {
-                for (let i in data) {
-                    this.processFunc(data[i]);
-                }
-            }
+
+            //处理数据
+            this._processData(data);
 
             //设置数据
             this.list = this.list.concat(data);
             this.start += this.count;
-            return this.export();
+            return this._export();
         });
     }
+
+
     /**
-     * 导出数据
+     * 恢复到第一页
      */
-    export() {
+    reset() {
+        this.start = 0;
+        this.list = [];
+    }
+
+    /**
+     * 处理数据（私有）
+     */
+    _processData(data) {
+        if (!this.processFunc) {
+            for (let i in data) {
+                this.processFunc(data[i]);
+            }
+        }
+    }
+
+    /**
+     * 导出数据（私有）
+     */
+    _export() {
         return {
             list: this.list,
             start: this.start,
             count: this.count
         }
     }
-
-    /**
-     * 恢复到第一页
-     */
-    reset() {
-
-
-    }
-
 }

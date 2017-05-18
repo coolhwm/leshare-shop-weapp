@@ -1,6 +1,7 @@
 var app = getApp();
 var wxRequest = require('../utils/wxRequest');
 
+
 /**
  * 基础服务类
  */
