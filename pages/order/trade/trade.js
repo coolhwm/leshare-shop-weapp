@@ -1,5 +1,8 @@
-import { Http } from "../../../class/utils/Http.js";
-var app = getApp();
+import OrderService from "../../../class/service/OrderService";
+import Tips from "../../../class/utils/Tips";
+import Router from "../../../class/utils/Router";
+const app = getApp();
+const orderService = new OrderService();
 
 Page({
   data: {
@@ -25,30 +28,14 @@ Page({
   onConfirmTap: function (event) {
 
     //准备交易对象
-    var trade = this.data.trade;
+    const trade = this.data.trade;
     trade.message = this.data.message;
 
-    let url = `${app.globalData.baseUrl}/shops/${app.globalData.shopId}/orders`;
-    wx.showLoading({
-      title: '订单创建中',
-      mask: true
-    })
-    Http.post(url, trade, data => {
-      //展示提示窗口
-      wx.hideLoading();
-      wx.showToast({
-        title: "订单创建成功",
-        icon: "success",
-        mask: true,
-        duration: 500
+    Tips.loading('订单创建中');
+    orderService.createOrder(trade).then(data => {
+      Tips.toast("订单创建成功", () => {
+        Router.orderIndex();
       });
-
-      //跳转到订单列列表
-      setTimeout(() => {
-        wx.switchTab({
-          url: "/pages/order/index/index"
-        });
-      }, 500);
     });
   }
 });

@@ -21,12 +21,19 @@ export default class ShopService extends BaseService {
     }
 
     /**
-     * 获取店铺公告
+     * 获取店铺公告（第一个）
      */
-    getNotice(){
+    getFirstNotice(){
         const url = `${this.baseUrl}/shops/${this.shopId}/notices/shows`;
         return this.get(url, {}).then(res => {
-            return res.data;
+            const data = res.data;
+            if(data && data.length > 0){
+                return data[0];
+            }
+            else{
+                return '暂无公告';
+            }
+            
         });
     }
 

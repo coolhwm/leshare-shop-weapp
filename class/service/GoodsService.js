@@ -5,6 +5,7 @@ import Pagination from "../utils/Page";
  * 商品服务类
  */
 export default class GoodsService extends BaseService {
+    
     constructor() {
         super();
     }
@@ -15,6 +16,16 @@ export default class GoodsService extends BaseService {
     page() {
         const url = `${this.baseUrl}/shops/${this.shopId}/goods`;
         return new Pagination(url, this._processGoodsData);
+    }
+
+    /**
+     * 查询商品详情
+     */
+    getInfo(goodsId){
+        const url = `${this.baseUrl}/shops/${this.shopId}/goods/${goodsId}`;
+        return this.get(url, {}).then(res => {
+            return res.data;
+        });
     }
 
     /**
