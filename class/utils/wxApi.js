@@ -55,6 +55,27 @@ function checkSession() {
   return wxPromisify(wx.checkSession)();
 }
 
+/**
+ * 检查客户端会话状态
+ */
+function wxPay(data) {
+  return new Promise((resolve, reject) => {
+    wx.requestPayment({
+      timeStamp: data.timeStamp,
+      nonceStr: data.nonceStr,
+      package: data.package,
+      signType: 'MD5',
+      paySign: data.paySign,
+      success: function(res){
+        resolve(res);
+      },
+      fail: function(res) {
+        reject(res);
+      }
+    });
+  });
+}
+
 
 
 module.exports = {
@@ -63,5 +84,7 @@ module.exports = {
   wxGetUserInfo: wxGetUserInfo,
   wxGetSystemInfo: wxGetSystemInfo,
   wxOpenSetting: wxOpenSetting,
-  checkSession: checkSession
+  checkSession: checkSession,
+  wxPay: wxPay
+
 }

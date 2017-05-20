@@ -19,11 +19,13 @@ export default class Pagination {
     /**
      * 加载下一页数据
      */
-    next() {
+    next(args) {
         const param = {
             from: this.start,
             limit: this.count
         };
+        //扩展额外参数
+        Object.assign(param, args);
         return wxRequest.getRequest(this.url, param).then(res => {
             let data = res;            
             if(res.data){

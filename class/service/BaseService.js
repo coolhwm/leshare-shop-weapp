@@ -1,6 +1,6 @@
 const app = getApp();
 const wxRequest = require('../utils/wxRequest');
-
+const wxApi = require('../utils/wxApi');
 
 /**
  * 基础服务类
@@ -13,6 +13,8 @@ export default class BaseService{
         this.shopName = app.globalData.shopName;
         this.get = wxRequest.getRequest;
         this.post = wxRequest.postRequest;
+        this.patch = wxRequest.patchRequest;
+        this.wxpay = wxApi.wxPay;
     }
 
 }

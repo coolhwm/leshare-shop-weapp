@@ -63,7 +63,23 @@ function postRequest(url, data) {
   })
 }
 
+/**
+ * 微信请求post方法封装
+ * url
+ * data 以对象的格式传入
+ */
+function patchRequest(url, data) {
+  var patchRequest = wxPromisify(wx.request)
+  return patchRequest({
+    url: url,
+    method: 'PATCH',
+    data: data,
+    header: createAuthHeader()
+  })
+}
+
 module.exports = {
   postRequest: postRequest,
-  getRequest: getRequest
+  getRequest: getRequest,
+  patchRequest: patchRequest
 }

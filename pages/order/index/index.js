@@ -20,7 +20,7 @@ Page({
     this.iniOrderTabBar()
     this.loadNextPage();
   },
-  
+
   /**
    * 页面展现
    */
@@ -34,7 +34,7 @@ Page({
    * 加载下一页
    */
   loadNextPage: function () {
-    this.page.next().then(data => {
+    this.page.next({ status: this.data.status }).then(data => {
       this.setData({ orders: data.list }
       );
     });
@@ -70,7 +70,7 @@ Page({
    * 初始化TAB数据
    */
   iniOrderTabBar: function () {
-    let tabbar = {
+    const tabbar = {
       tabs: [
         { "value": "0", "name": "全部" },
         { "value": "1", "name": "待付款" },
@@ -86,18 +86,18 @@ Page({
 
   //点击TAB页的事件
   onOrderTabTap: function (event) {
-    let status = event.currentTarget.dataset.status;
-    var tabbar = this.data.tabbar;
+    const status = event.currentTarget.dataset.status;
+    const tabbar = this.data.tabbar;
     tabbar.selected = status;
 
     //更新/初始化页面数据
     this.setData({
       status: status,
       tabbar: tabbar,
-      start: 0,
-      count: 10,
-      orders: []
     });
+
+    //初始化分页数据
+    this.page.reset();
 
     //刷新页面
     this.loadNextPage();
