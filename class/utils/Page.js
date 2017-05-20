@@ -25,8 +25,10 @@ export default class Pagination {
             limit: this.count
         };
         return wxRequest.getRequest(this.url, param).then(res => {
-            const data = res.data;
-
+            let data = res;            
+            if(res.data){
+                data = res.data;
+            }
             //处理数据
             this._processData(data);
 
@@ -50,7 +52,7 @@ export default class Pagination {
      * 处理数据（私有）
      */
     _processData(data) {
-        if (!this.processFunc) {
+        if (this.processFunc) {
             for (let i in data) {
                 this.processFunc(data[i]);
             }

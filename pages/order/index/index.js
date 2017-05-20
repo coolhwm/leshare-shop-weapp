@@ -1,112 +1,70 @@
-import { Http } from "../../../class/utils/Http.js";
-var app = getApp();
+import OrderService from "../../../class/service/OrderService";
+import Router from "../../../class/utils/Router";
+
+const app = getApp();
+const orderService = new OrderService();
+
 Page({
+  page: {},
   data: {
     orders: [],
-    start: 0,
-    count: 10,
     status: 0,
     tabbar: {}
   },
+
+  /**
+   * 页面加载
+   */
   onLoad: function (options) {
-    this.iniOrderTabBar();
+    this.page = orderService.page();
+    this.iniOrderTabBar()
     this.loadNextPage();
   },
-
+  
+  /**
+   * 页面展现
+   */
   onShow: function () {
     //需要判断脏数据
-    this.clearData();
-    this.loadNextPage();
-  },
-
-  /**
-   * 下拉刷新
-   */
-  onPullDownRefresh: function () {
-    this.clearData();
-    this.loadNextPage();
-    wx.stopPullDownRefresh();
-  },
-
-  /**
-   * 点击单个订单 
-   */
-  onOrderTap: function (event) {
-    let orderId = event.currentTarget.dataset.orderId;
-    wx.navigateTo({
-      url: `/pages/order/detail/detail?orderId=${orderId}`
-    });
-  },
-
-  /**
-   * 点击单个订单 
-   */
-  onReachBottom: function (event) {
-    this.loadNextPage();
+    //this.clearData();
+    //this.loadNextPage();
   },
 
   /**
    * 加载下一页
    */
   loadNextPage: function () {
-    wx.showNavigationBarLoading();
-    //请求订单信息
-    let url = `${app.globalData.baseUrl}/orders`;
-
-    let params = {
-      from: this.data.start,
-      limit: this.data.count,
-      status: this.data.status
-    };
-
-    Http.get(url, params, (data) => {
-      for (let item of data) {
-        //对数据做一些处理
-        this.processOrderData(item);
-      }
-
-      //视图刷新
-      var orders = this.data.orders;
-      orders = orders.concat(data);
-      this.setData({ orders: orders });
-      //移动到下一页
-      this.data.start += this.data.count;
-      wx.hideNavigationBarLoading();
+    this.page.next().then(data => {
+      this.setData({ orders: data.list }
+      );
     });
   },
 
   /**
-   * 处理订单数据
+   * 上划加载
    */
-  processOrderData: function (order) {
+  onReachBottom: function (event) {
+    this.loadNextPage();
+  },
 
-    const statusDict = {
-      "0": "全部",
-      "1": "待付款",
-      "2": "待发货",
-      "3": "已发货",
-      "4": "待评论",
-      "5": "退款中",
-      "6": "已完成",
-      "7": "已关闭",
-      "8": "已退款"
-    };
-
-    order.status_text = statusDict[order.status];
+  /**
+    * 下拉刷新
+    */
+  onPullDownRefresh: function () {
+    this.page.reset();
+    this.loadNextPage();
+    wx.stopPullDownRefresh();
   },
 
 
   /**
-   * 清除数据
+   * 点击单个订单 
    */
-  clearData: function () {
-    this.setData({
-      status: 0,
-      start: 0,
-      count: 10,
-      orders: []
-    });
+  onOrderTap: function (event) {
+    const orderId = event.currentTarget.dataset.orderId;
+    Router.orderDetail(orderId);
   },
+
 
   /**
    * 初始化TAB数据

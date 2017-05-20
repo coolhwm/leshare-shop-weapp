@@ -26,6 +26,10 @@ export default class Router {
         });
     }
 
+    static orderDetail(orderId) {
+       this.goto(`/pages/order/detail/detail?orderId=${orderId}`);
+    }
+
     static goto(url) {
         wx.navigateTo({
             url: url
