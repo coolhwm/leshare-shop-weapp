@@ -14,7 +14,7 @@ export default class ShopService extends BaseService {
      * 获取店铺详情
      */
     getInfo() {
-        const url = `${this.baseUrl}/shops/${this.shopId}`;
+        const url = `${this.baseUrl}/shops`;
         return this.get(url, {}).then(res => {
             return res.data;
         });
@@ -24,7 +24,7 @@ export default class ShopService extends BaseService {
      * 获取店铺公告（第一个）
      */
     getFirstNotice(){
-        const url = `${this.baseUrl}/shops/${this.shopId}/notices/shows`;
+        const url = `${this.baseUrl}/notices/shows`;
         return this.get(url, {}).then(res => {
             const data = res.data;
             if(data && data.length > 0){

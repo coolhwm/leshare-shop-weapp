@@ -14,7 +14,7 @@ export default class GoodsService extends BaseService {
      * 返回分页对象
      */
     page() {
-        const url = `${this.baseUrl}/shops/${this.shopId}/goods`;
+        const url = `${this.baseUrl}/goods`;
         return new Pagination(url, this._processGoodsData);
     }
 
@@ -22,7 +22,7 @@ export default class GoodsService extends BaseService {
      * 查询商品详情
      */
     getInfo(goodsId){
-        const url = `${this.baseUrl}/shops/${this.shopId}/goods/${goodsId}`;
+        const url = `${this.baseUrl}/goods/${goodsId}`;
         return this.get(url, {}).then(res => {
             return res.data;
         });

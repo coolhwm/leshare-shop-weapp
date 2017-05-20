@@ -1,4 +1,4 @@
-
+const app = getApp();
 // HTTP工具类
 class Http {
     //构造函数
@@ -39,10 +39,12 @@ class Http {
     //增加权限Header
     static createAuthHeader() {
         //需要进行缓存
-        let sessionId = wx.getStorageSync("thirdSessionId");
-        let user = wx.getStorageSync("userInfo");
+        const sessionId = wx.getStorageSync("thirdSessionId");
+        const user = wx.getStorageSync("userInfo");
+        const shopId = app.globalData.shopId;
         var header = { };
         header["3rdSession"] = sessionId;
+        header["shop_id"] = shopId;
         header["customer_id"] = user.id;
         return header;
     }

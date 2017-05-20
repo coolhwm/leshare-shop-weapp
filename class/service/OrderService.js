@@ -75,7 +75,7 @@ export default class OrderService extends BaseService {
      * 创建订单
      */
     createOrder(trade) {
-        const url = `${this.baseUrl}/shops/${this.shopId}/orders`;
+        const url = `${this.baseUrl}/orders`;
         return this.post(url, trade).then(res => {
             return res.data;
         });

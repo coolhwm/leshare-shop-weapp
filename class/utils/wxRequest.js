@@ -1,3 +1,5 @@
+const app = getApp();
+
 function wxPromisify(fn) {
   return function (obj = {}) {
     return new Promise((resolve, reject) => {
@@ -24,11 +26,12 @@ Promise.prototype.finally = function (callback) {
 
 function createAuthHeader() {
   //需要进行缓存
-  let sessionId = wx.getStorageSync("thirdSessionId");
-  let user = wx.getStorageSync("userInfo");
+  const sessionId = wx.getStorageSync("thirdSessionId");
+  const user = wx.getStorageSync("userInfo");
   var header = {};
   header["3rdSession"] = sessionId;
   header["customer_id"] = user.id;
+  header["shop_id"] = 3;
   return header;
 }
 
