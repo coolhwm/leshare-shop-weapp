@@ -1,0 +1,57 @@
+/*外框容器*/
+.cart-item-container{
+    padding: 20rpx;
+    background-color: #FFF;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2px;
+}
+
+/*选择框容器*/
+.cart-check-container{
+    width: 40rpx;
+    margin-right: 20rpx;
+    text-align: center;
+}
+
+/*图片*/
+.cart-item-image{ 
+    width: 200rpx;
+    height: 200rpx;
+    border: 1px solid #E7E7E7;
+    border-radius: 5px;
+}
+
+/* 信息容器 */
+.cart-info-container{
+    width: auto;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    margin-left: 20rpx;
+    justify-content: space-between;
+    height: 200rpx;
+}
+/*商品主标题*/
+.goods-title-text{
+    font-size: 28rpx;
+    color: #2D2D2D;
+}
+/*商品价格*/
+.goods-price-small{
+    font-size: 26rpx;
+    color:#ff6200;
+}
+.goods-price-big{
+    font-size: 36rpx;
+    color:#ff6200;
+}
+
+/*价格/数量栏*/
+.goods-price-num-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

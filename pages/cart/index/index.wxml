@@ -1,2 +1,40 @@
-<!--pages/cart/index/index.wxml-->
-<text>pages/cart/index/index.wxml</text>
+<!--购物车列表页面-->
+<!--依赖模板：购物车项目-->
+
+<import src="/templates/cart/item/cart-item-template.wxml" />
+
+
+<view class="container">
+    <view class="item-shop-container">
+        商铺信息.....
+    </view>
+    <view class="item-list-container">
+        <template is="cartItemTemplate" />
+        <template is="cartItemTemplate" />
+        <template is="cartItemTemplate" />
+        <template is="cartItemTemplate" />
+        <template is="cartItemTemplate" />
+        <template is="cartItemTemplate" />
+    </view>
+
+    <view class="cart-bar-container">
+
+        <view class="cart-check-all-container">
+            <view class="zan-icon zan-icon-checked" />
+            <text>全选</text>
+        </view>
+
+
+        <view class="cart-check-info-container" >
+            <view class="cart-check-price-container">
+                <text>总计：</text> <text>￥123.00</text>
+            </view>
+            <text class="cart-check-tips-text">不含运费，已优惠￥0.00</text>
+        </view>
+
+        <view class="bar-buy-container" catchtap="onBuyTap">
+            <text>去结算</text><text>(5件)</text>
+        </view>
+    </view>
+
+</view>

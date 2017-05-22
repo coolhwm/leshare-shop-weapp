@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/cart/index/index",
     "pages/shop/index/index",
     "pages/home/visit-shop/visit-shop",
     "pages/order/detail/detail",
@@ -9,7 +10,6 @@
     "pages/customer/index/index",
     "pages/customer/address/edit",
     "pages/goods/index/index",
-    "pages/cart/index/index",
     "pages/order/index/index"
   ],
   "window": {
@@ -19,7 +19,7 @@
     "color": "#bfbfbf",
     "selectedColor": "#1296db",
     "borderStyle": "white",
-    "backgroundColor": "#fbfbfb",
+    "backgroundColor": "#FFFFFF",
     "list": [
       {
         "iconPath": "images/tab/home.png",

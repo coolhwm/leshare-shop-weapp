@@ -13,6 +13,8 @@
     background-color: #F2F2F2;
     z-index: 100;
 }
+
+/*购买/加入购物车*/
 .bar-buy-container{
     background-color: #1296db;
     text-align: center;
@@ -25,6 +27,13 @@
     height: 100%;
     width: 35%;
 }
+.bar-buy-container text,.bar-cart-container  text{
+    font-size: 32rpx;
+    line-height: 100rpx;
+    color: #FFF;
+}
+
+/*收藏/购物车按钮*/
 .bar-action-container{
     display: flex;
     flex-direction: column;
@@ -35,41 +44,24 @@
     width: 15%;
     padding-left: 10rpx;
 }
-
-.bar-buy-container text,.bar-cart-container  text{
-    font-size: 32rpx;
-    line-height: 100rpx;
-    color: #FFF;
+.bar-action-container text{
+    margin-top: 8rpx;
+    font-size: 22rpx;
 }
+
+/*竖线*/
 .gap-v{
     height: 70%;
     width: 1px;
     background-color: #e5e5e5;
 }
 
-/*
-* 确认购买（型号选择。数量选择）
-*/
-/*遮罩*/
-.check-panel-shade{
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    height: 100%;
-    width: 100%;
-    background-color: #666;
-     -webkit-filter:opacity(.5);
-     z-index: 150;
+/*调整购物车徽章位置*/
+.zan-badge {
+    height: 45rpx;
     
 }
-
-.check-panel-container{
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    height: 350rpx;
-    background-color: red;
-    z-index: 200;
+.zan-badge__count{
+    top:-6px;
+    right: -5px;
 }

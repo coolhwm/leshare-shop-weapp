@@ -14,14 +14,14 @@ export default class ShopService extends BaseService {
      * 获取店铺详情
      */
     getInfo() {
-        const url = `${this.baseUrl}/shops`;
         const cacheShop = this.app.globalData.shop;
         if (cacheShop) {
             return new Promise(resolve => {
-                return cacheShop;
+                resolve(cacheShop);
             });
         }
         else {
+            const url = `${this.baseUrl}/shops`;
             return this.get(url, {}).then(res => {
                 const shop = res.data;
                 this.app.globalData.shop = shop;
