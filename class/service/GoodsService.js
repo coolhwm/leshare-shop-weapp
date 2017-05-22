@@ -47,10 +47,10 @@ export default class GoodsService extends BaseService {
 
         //图片处理
         if (images == null || images.length < 1) {
-            item.imageUrl = "/images/goods/mock.png";
+            item.imageUrl = "/images/goods/broken.png";
         }
         else if (images[0].url == null) {
-            item.imageUrl = "/images/goods/mock.png";
+            item.imageUrl = "/images/goods/broken.png";
         }
         else {
             item.imageUrl = images[0].url;

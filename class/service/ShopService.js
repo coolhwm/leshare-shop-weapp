@@ -15,25 +15,36 @@ export default class ShopService extends BaseService {
      */
     getInfo() {
         const url = `${this.baseUrl}/shops`;
-        return this.get(url, {}).then(res => {
-            return res.data;
-        });
+        const cacheShop = this.app.globalData.shop;
+        if (cacheShop) {
+            return new Promise(resolve => {
+                return cacheShop;
+            });
+        }
+        else {
+            return this.get(url, {}).then(res => {
+                const shop = res.data;
+                this.app.globalData.shop = shop;
+                return res.data;
+            });
+        }
+
     }
 
     /**
      * 获取店铺公告（第一个）
      */
-    getFirstNotice(){
+    getFirstNotice() {
         const url = `${this.baseUrl}/notices/shows`;
         return this.get(url, {}).then(res => {
             const data = res.data;
-            if(data && data.length > 0){
+            if (data && data.length > 0) {
                 return data[0];
             }
-            else{
+            else {
                 return '暂无公告';
             }
-            
+
         });
     }
 

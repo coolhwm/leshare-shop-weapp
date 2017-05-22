@@ -15,6 +15,7 @@ export default class BaseService{
         this.post = wxRequest.postRequest;
         this.patch = wxRequest.patchRequest;
         this.wxpay = wxApi.wxPay;
+        this.app = app;
     }
 
 }

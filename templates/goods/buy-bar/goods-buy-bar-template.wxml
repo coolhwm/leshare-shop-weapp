@@ -3,17 +3,23 @@
 <!--依赖：无-->
 <template name="goodsBuyBarTemplate">
     <view class="buy-bar-container">
+
         <view class="bar-action-container">
-            <image class="icon-middle" src="/images/icons/phone.png" />
-            <text>联系卖家</text>
+            <image class="icon-middle" src="/images/icons/shop.png" />
+            <text>店铺</text>
         </view>
         
         <view class="gap-v"></view>
 
         <view class="bar-action-container">
-            <image class="icon-middle" src="/images/icons/shop.png" />
-            <text>进入店铺</text>
+            <image class="icon-middle" src="/images/icons/cart.png" />
+            <text>购物车</text>
         </view>
+
+        <view class="bar-cart-container" catchtap="onBuyTap">
+            <text>加入购物车</text>
+        </view>
+
         <view class="bar-buy-container" catchtap="onBuyTap">
             <text>立即购买</text>
         </view>

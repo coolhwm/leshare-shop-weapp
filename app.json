@@ -9,6 +9,7 @@
     "pages/customer/index/index",
     "pages/customer/address/edit",
     "pages/goods/index/index",
+    "pages/cart/index/index",
     "pages/order/index/index"
   ],
   "window": {
@@ -25,6 +26,12 @@
         "selectedIconPath": "images/tab/home-active.png",
         "pagePath": "pages/shop/index/index",
         "text": "店铺"
+      },
+      {
+        "iconPath": "images/tab/cart.png",
+        "selectedIconPath": "images/tab/cart-active.png",
+        "pagePath": "pages/cart/index/index",
+        "text": "购物车"
       },
       {
         "iconPath": "images/tab/order.png",

@@ -8,7 +8,7 @@
     align-items: center;
     position: fixed;
     bottom: 0;
-    height: 90rpx;
+    height: 100rpx;
     width: 100%;
     background-color: #F2F2F2;
     z-index: 100;
@@ -17,21 +17,28 @@
     background-color: #1296db;
     text-align: center;
     height: 100%;
-    width: 50%;
+    width: 35%;
+}
+.bar-cart-container{
+    background-color: #49a9ee;
+    text-align: center;
+    height: 100%;
+    width: 35%;
 }
 .bar-action-container{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     height: 100%;
+    text-align: center;
     align-items: center;
+    justify-content: center;
+    width: 15%;
     padding-left: 10rpx;
 }
-.bar-action-container text{
-    margin-left: 15rpx;
-}
-.bar-buy-container text{
+
+.bar-buy-container text,.bar-cart-container  text{
     font-size: 32rpx;
-    line-height: 90rpx;
+    line-height: 100rpx;
     color: #FFF;
 }
 .gap-v{

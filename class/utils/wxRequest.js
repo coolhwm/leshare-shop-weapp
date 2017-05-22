@@ -28,10 +28,17 @@ function createAuthHeader() {
   //需要进行缓存
   const sessionId = wx.getStorageSync("thirdSessionId");
   const user = wx.getStorageSync("userInfo");
+  const shopId = 3;
   var header = {};
-  header["3rdSession"] = sessionId;
-  header["customer_id"] = user.id;
-  header["shop_id"] = 3;
+  if (sessionId) {
+    header["3rdSession"] = sessionId;
+  }
+  if (user) {
+    header["customer_id"] = user.id;
+  }
+  if (shopId) {
+    header["shop_id"] = shopId;
+  }
   return header;
 }
 
