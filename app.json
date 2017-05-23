@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/cart/index/index",
     "pages/shop/index/index",
+    "pages/cart/index/index",
     "pages/home/visit-shop/visit-shop",
     "pages/order/detail/detail",
     "pages/customer/address/list",
@@ -16,7 +16,7 @@
     "navigationBarBackgroundColor": "#1296db"
   },
   "tabBar": {
-    "color": "#bfbfbf",
+    "color": "#222224",
     "selectedColor": "#1296db",
     "borderStyle": "white",
     "backgroundColor": "#FFFFFF",

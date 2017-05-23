@@ -1,17 +1,16 @@
 @import "/templates/shop/item/shop-item-template.wxss";
 @import "/templates/goods/grid/goods-grid-template.wxss";
 @import "/templates/notice/bar/notice-bar-template.wxss";
-/*.shop-head-image{
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    width: 750rpx;
-    height: 230rpx;
-    -webkit-filter: blur(40px) opacity(.2);
-}*/
 
 /*特殊处理*/
 .shop-item-container{
     background-color: transparent;
+}
+
+.footer-line{
+    position: fixed;
+    height: 1px;
+    width: 100%;
+    background-color: #E6E8EB;
+    bottom: 1px;
 }

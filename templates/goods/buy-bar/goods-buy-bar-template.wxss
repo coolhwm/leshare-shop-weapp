@@ -10,7 +10,8 @@
     bottom: 0;
     height: 100rpx;
     width: 100%;
-    background-color: #F2F2F2;
+    background-color: #FEFEFE;
+    border-top: 1px solid #E6E8EB;
     z-index: 100;
 }
 

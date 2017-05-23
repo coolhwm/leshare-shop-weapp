@@ -4,8 +4,6 @@
 .container{
     background-color: #f2f2f2;
 }
-
-
 /*
 * 底部购买栏样式
 */
@@ -22,4 +20,54 @@
     border-top: 1px solid #DCDCDC;
     border-bottom: 1px solid #EEEEEE;
     z-index: 100;
+}
+
+/*选择框容器*/
+.cart-check-all-container{
+    display: flex;
+    flex-direction: column;
+    width: 80rpx;
+    margin-right: 20rpx;
+    text-align: center;
+}
+
+
+/*购买框容器*/
+.bar-buy-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 250rpx;
+    background-color: #1296db;
+    color: #FFF;
+}
+/*购买按钮*/
+.bar-buy-container text{
+    color: #FFF;
+}
+.bar-buy-container .text-btn{
+    font-size: 40rpx;
+}
+
+/*汇总信息*/
+.cart-check-info-container{
+    display: flex;
+    flex:1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    padding-right: 30rpx;
+}
+/*汇总信息文字*/
+.cart-check-price-container text{
+    font-size: 35rpx;
+}
+.cart-check-tips-text{
+    font-size: 26rpx;
+    color: #A6A6A6;
+}
+.goods-price{
+    color:#ff6200;
 }

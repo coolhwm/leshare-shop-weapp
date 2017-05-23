@@ -245,6 +245,6 @@ text {
 }
 .zan-quantity--small .zan-quantity__text {
   width: 30px;
-  line-height: 24px;
-  height: 24px;
+  line-height: 26px;
+  height: 26px;
 }

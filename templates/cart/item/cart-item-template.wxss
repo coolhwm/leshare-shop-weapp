@@ -18,8 +18,8 @@
 
 /*图片*/
 .cart-item-image{ 
-    width: 200rpx;
-    height: 200rpx;
+    width: 180rpx;
+    height: 180rpx;
     border: 1px solid #E7E7E7;
     border-radius: 5px;
 }
@@ -32,7 +32,7 @@
     flex-direction: column;
     margin-left: 20rpx;
     justify-content: space-between;
-    height: 200rpx;
+    height: 180rpx;
 }
 /*商品主标题*/
 .goods-title-text{
