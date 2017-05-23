@@ -158,9 +158,10 @@ App({
     userId: null,
     shop: null,
     shopId: "3",
+    cartNum: 0,
     shopName: '连江海蜇专卖',
-    //baseUrl: "http://192.168.31.124:9999/v1/customer",
-    baseUrl: "http://leshare.shop:9999/v1/customer",
+    baseUrl: "http://192.168.31.124:9999/v1/customer",
+    //baseUrl: "http://leshare.shop:9999/v1/customer",
     imgUrl: "http://115.28.93.210"
   }
 });

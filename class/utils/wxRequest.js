@@ -88,8 +88,41 @@ function patchRequest(url, data) {
   })
 }
 
+/**
+ * 微信请求post方法封装
+ * url
+ * data 以对象的格式传入
+ */
+function deleteRequest(url, data) {
+  var deleteRequest = wxPromisify(wx.request)
+  return deleteRequest({
+    url: url,
+    method: 'DELETE',
+    data: data,
+    header: createAuthHeader()
+  })
+}
+
+/**
+ * 微信请求post方法封装
+ * url
+ * data 以对象的格式传入
+ */
+function putRequest(url, data) {
+  var putRequest = wxPromisify(wx.request)
+  return putRequest({
+    url: url,
+    method: 'PUT',
+    data: data,
+    header: createAuthHeader()
+  })
+}
+
+
 module.exports = {
   postRequest: postRequest,
   getRequest: getRequest,
-  patchRequest: patchRequest
+  patchRequest: patchRequest,
+  deleteRequest: deleteRequest,
+  putRequest: putRequest
 }

@@ -1,30 +1,29 @@
 <!--订单商品模板 -->
 <!--依赖：无-->
-<!--输入：...goods-->
+<!--输入：...carts-->
 <import src="/templates/quantity/index.wxml" />
 
 <template name="cartItemTemplate">
-    <view class="cart-item-container">
+    <view class="cart-item-container" data-cart-id="{{cart_id}}" catchlongtap="onCartLongTap">
         <!--多选按钮-->
         <view class="cart-check-container">
             <view class="zan-icon zan-icon-checked" />
         </view>
 
         <!--商品图片-->
-        <image class="cart-item-image" src="/images/mock/img.jpg" />
+        <image class="cart-item-image" src="{{goods_image}}" />
 
         <!--商品说明-->
         <view class="cart-info-container">
-            <text class="goods-title-text">三得利（Suntory）三得利 无糖乌龙茶</text>
-            <text class="goods-sku-text">颜色：无糖乌龙茶500ml*15</text>
+            <text class="goods-title-text">{{goods_name}}</text>
+            <text class="goods-sku-text" wx:if="{{goods_sku}}">{{goods_sku}}</text>
             <view class="goods-price-num-container">
                 <view class="goods-price-container">
                     <text class="goods-price-small">￥</text>
-                    <text class="goods-price-big">125.</text>
-                    <text class="goods-price-small">00</text>
+                    <text class="goods-price-big">{{goods_price}}</text>
                 </view>
                 
-                <template is="zan-quantity" data="{{ quantity: 10, min: 1, max: 20, componentId: 'num', size: 'small' }}" />
+                <template is="zan-quantity" data="{{ quantity: goods_num, min: 1, max: 999, componentId: cart_id, size: 'small' }}" />
             </view>
         </view>
     </view>

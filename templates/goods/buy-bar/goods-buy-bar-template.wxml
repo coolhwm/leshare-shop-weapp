@@ -14,7 +14,7 @@
         <view class="bar-action-container" catchtap="onToCartTap">
             <view class="zan-badge">
                 <image class="icon-middle" src="/images/icons/cart-gray.png" />
-                <view class="zan-badge__count">1</view>
+                <view class="zan-badge__count">{{cartNum}}</view>
             </view>
             <text>购物车</text>
         </view>

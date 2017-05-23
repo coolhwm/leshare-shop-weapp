@@ -7,12 +7,10 @@
 <view class="container">
 
     <view class="item-list-container">
-        <template is="cartItemTemplate" />
-        <template is="cartItemTemplate" />
-        <template is="cartItemTemplate" />
-        <template is="cartItemTemplate" />
-        <template is="cartItemTemplate" />
-        <template is="cartItemTemplate" />
+        <block wx:for="{{carts}}">
+            <template is="cartItemTemplate" data="{{...item}}" />
+        </block>
+        
     </view>
 
     <view class="cart-bar-container">
