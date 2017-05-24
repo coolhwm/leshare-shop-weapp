@@ -15,9 +15,7 @@ export default class CartService extends BaseService {
      */
     page() {
         const url = `${this.baseUrl}/carts`;
-        return this.get(url, {}).then(res => {
-            return res.data;
-        });
+        return new Pagination(url, this._processCartData);
     }
 
 
@@ -42,7 +40,7 @@ export default class CartService extends BaseService {
     remove(cartId) {
         const url = `${this.baseUrl}/carts/${cartId}`;
         return this.delete(url, {}).then(res => {
-            console.info(res);
+            //TODO
         });
     }
 
@@ -54,12 +52,17 @@ export default class CartService extends BaseService {
         const param = {
             goods_num: num
         };
-        console.error(param);
-        console.error(url);
         return this.put(url, param).then(res => {
-            console.info(res);
+            //TODO
         });
     }
 
+    /**
+     * 处理购物车数据
+     */
+    _processCartData(cart){
+        cart.check = true;
+        cart.goods_price = cart.goods_price.toFixed(2);
+    }
 
 }

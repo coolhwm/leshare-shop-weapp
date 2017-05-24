@@ -7,14 +7,14 @@
     <view class="cart-item-container" data-cart-id="{{cart_id}}" catchlongtap="onCartLongTap">
         <!--多选按钮-->
         <view class="cart-check-container">
-            <view class="zan-icon zan-icon-checked" />
+            <view class="zan-icon zan-icon-{{check ? 'checked' : 'check'}}" data-cart-id="{{cart_id}}" catchtap="onCheckTap" />
         </view>
 
         <!--商品图片-->
-        <image class="cart-item-image" src="{{goods_image}}" />
+        <image class="cart-item-image" src="{{goods_image}}" data-goods-id="{{goods_id}}" catchtap="onCartTap" />
 
         <!--商品说明-->
-        <view class="cart-info-container">
+        <view class="cart-info-container" >
             <text class="goods-title-text">{{goods_name}}</text>
             <text class="goods-sku-text" wx:if="{{goods_sku}}">{{goods_sku}}</text>
             <view class="goods-price-num-container">

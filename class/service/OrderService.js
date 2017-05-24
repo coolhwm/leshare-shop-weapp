@@ -51,7 +51,7 @@ export default class OrderService extends BaseService {
      * 生成预支付订单
      */
     prepayOrder(orderId) {
-        const url = `${this.baseUrl}/shops/${this.shopId}/orders/${orderId}/wxpay`;
+        const url = `${this.baseUrl}/orders/${orderId}/wxpay`;
         return this.get(url, {}).then(res => {
             //TODO 可能失败
             return res.data.data;
@@ -116,7 +116,41 @@ export default class OrderService extends BaseService {
 
 
     /**
-     * 构建一个交易对象（单个物品）
+     * 购物车下单
+     */
+    createCartTrade(goodsList) {
+        const orderGoodsInfos = [];
+        let price = 0;
+        //根据购物车信息，构造订单的商品列表
+        for (let i in goodsList) {
+            const goods = goodsList[i];
+            const info = {
+                goods_id: goods.goods_id,
+                goods_name: goods.goods_name,
+                image_url: goods.goods_image,
+                goods_price: goods.goods_price,
+                count: goods.goods_num
+            };
+            orderGoodsInfos.push(info);
+            price += goods.goods_price * goods.goods_num;
+        }
+        //构造交易对象
+        const trade = {
+            status_text: "待确认",
+            deal_price: price,
+            final_price: price,
+            address_id: "1",
+            payment_type: "1",
+            message: "",
+            orderGoodsInfos: orderGoodsInfos,
+            shop_name: this.shopName
+        };
+        return trade;
+    }
+
+
+    /**
+     * 构建一个交易对象（单个物品），商品页面直接下单
      */
     createSingleTrade(goods) {
         const hasImage = goods.images && goods.images.length > 0;

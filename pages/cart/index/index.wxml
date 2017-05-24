@@ -6,30 +6,37 @@
 
 <view class="container">
 
+    <view class="cart-empty-tips" wx:if="{{isLoaded && carts.length == 0}}" >
+        <image src="/images/icons/cart-empty.png" />
+        <text>购物车是空的</text>
+    </view>
+
     <view class="item-list-container">
         <block wx:for="{{carts}}">
             <template is="cartItemTemplate" data="{{...item}}" />
         </block>
-        
+
     </view>
 
     <view class="cart-bar-container">
 
-        <view class="cart-check-all-container">
-            <view class="zan-icon zan-icon-check" />
+        <view class="cart-check-all-container" catchtap="onCheckAllTap">
+            <view class="zan-icon zan-icon-{{all ? 'checked' : 'check'}}" />
             <text>全选</text>
         </view>
 
 
-        <view class="cart-check-info-container" >
+        <view class="cart-check-info-container">
             <view class="cart-check-price-container">
-                <text>总计：</text> <text class="goods-price">￥123.00</text>
+                <text>总计：</text>
+                <text class="goods-price">￥{{price}}</text>
             </view>
             <text class="cart-check-tips-text">不含运费，已优惠￥0.00</text>
         </view>
 
         <view class="bar-buy-container" catchtap="onBuyTap">
-            <text class="text-btn">去结算</text><text class="text-small">(5)</text>
+            <text class="text-btn">去结算</text>
+            <text class="text-small">({{num}})</text>
         </view>
     </view>
 

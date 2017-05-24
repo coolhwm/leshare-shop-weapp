@@ -1,36 +1,95 @@
 
+/**
+ * 购物车视图类
+ */
+export default class Cart {
 
-export default class Cart{
-
-    constructor(){
-        this.items = [];
+    constructor(context) {
+        this.context = context;
+        this.carts = [];
+        this.price = 0;
+        this.num = 0;
+        this.all = false;
+        this.reload = false;
     }
 
     /**
-     * 增加购物车项目
+     * 设置数据
      */
-    add(){
-
+    setCarts(carts) {
+        this.carts = carts;
+        this._setTotalNumAndPrice();
     }
     /**
-     * 删除购物车项目
+     * 获取总价
      */
-    remove(){
-    
-    }
-
-    /**
-     * 增加购物车商品数量
-     */
-    incr(){
+    getTotalPrice() {
 
     }
 
     /**
-     * 减少购物车商品数量
+     * 获取总数
      */
-    decr(){
+    getTotoalNum() {
 
+    }
+
+    /**
+     * 获取已选择商品
+     */
+    getCheckedCart() {
+
+    }
+
+    /**
+     * 切换一个商品的选择
+     */
+    toggleCartCheck(cartId) {
+        //遍历查询
+        for (let i in this.carts) {
+            const cart = this.carts[i];
+            if (cart.cart_id == cartId) {
+                cart.check = !cart.check;
+            }
+        }
+        this._setTotalNumAndPrice();
+    }
+
+    /**
+     * 切换全部商品的选择
+     */
+    toggleAllCheck() {
+
+    }
+
+    /**
+     * 移除一个购物车项目
+     */
+    remveCart() {
+
+    }
+
+    /**
+    * 设置价格和数量
+    */
+    _setTotalNumAndPrice() {
+        let all = true;
+        let price = 0;
+        let num = 0;
+        for (let i in this.carts) {
+            const cart = this.carts[i];
+            if (!cart.check) {
+                all = false;
+                continue;
+            }
+            num += cart.goods_num;
+            price += cart.goods_price * cart.goods_num;
+        }
+        price = price.toFixed(2);
+
+        this.all = all;
+        this.num = num;
+        this.price = price;
     }
 
 }

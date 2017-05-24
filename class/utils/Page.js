@@ -14,6 +14,8 @@ export default class Pagination {
         this.count = 10;
         //数据处理函数
         this.processFunc = processFunc;
+        //正在加载中
+        this.loading = false;
     }
 
     /**
@@ -24,6 +26,7 @@ export default class Pagination {
             from: this.start,
             limit: this.count
         };
+        this.loading = true;
         //扩展额外参数
         Object.assign(param, args);
         return wxRequest.getRequest(this.url, param).then(res => {
@@ -37,6 +40,9 @@ export default class Pagination {
             //设置数据
             this.list = this.list.concat(data);
             this.start += this.count;
+            //加载完毕
+            this.loading = false;
+            //导出列表数据
             return this._export();
         });
     }
