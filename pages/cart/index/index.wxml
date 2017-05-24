@@ -12,7 +12,7 @@
     </view>
 
     <view class="item-list-container">
-        <block wx:for="{{carts}}">
+        <block wx:for="{{cart.carts}}">
             <template is="cartItemTemplate" data="{{...item}}" />
         </block>
 
@@ -21,7 +21,7 @@
     <view class="cart-bar-container">
 
         <view class="cart-check-all-container" catchtap="onCheckAllTap">
-            <view class="zan-icon zan-icon-{{all ? 'checked' : 'check'}}" />
+            <view class="zan-icon zan-icon-{{cart.all ? 'checked' : 'check'}}" />
             <text>全选</text>
         </view>
 
@@ -29,14 +29,14 @@
         <view class="cart-check-info-container">
             <view class="cart-check-price-container">
                 <text>总计：</text>
-                <text class="goods-price">￥{{price}}</text>
+                <text class="goods-price">￥{{cart.price}}</text>
             </view>
             <text class="cart-check-tips-text">不含运费，已优惠￥0.00</text>
         </view>
 
         <view class="bar-buy-container" catchtap="onBuyTap">
             <text class="text-btn">去结算</text>
-            <text class="text-small">({{num}})</text>
+            <text class="text-small">({{cart.num}})</text>
         </view>
     </view>
 

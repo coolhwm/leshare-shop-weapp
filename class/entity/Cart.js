@@ -4,8 +4,7 @@
  */
 export default class Cart {
 
-    constructor(context) {
-        this.context = context;
+    constructor() {
         this.carts = [];
         this.price = 0;
         this.num = 0;
@@ -14,24 +13,24 @@ export default class Cart {
     }
 
     /**
+     * 导出数据
+     */
+    export() {
+        return {
+            carts: this.carts,
+            price: this.price,
+            num: this.num,
+            all: this.all,
+            reload: this.reload
+        };
+    }
+
+    /**
      * 设置数据
      */
     setCarts(carts) {
         this.carts = carts;
         this._setTotalNumAndPrice();
-    }
-    /**
-     * 获取总价
-     */
-    getTotalPrice() {
-
-    }
-
-    /**
-     * 获取总数
-     */
-    getTotoalNum() {
-
     }
 
     /**
@@ -59,15 +58,40 @@ export default class Cart {
      * 切换全部商品的选择
      */
     toggleAllCheck() {
+        this.all = !this.all;
+        for (let i in this.carts) {
+            const cart = this.carts[i];
+            cart.check = this.all;
+        }
+        this._setTotalNumAndPrice();
+    }
 
+    /**
+     * 更新商品数量
+     */
+    updateCartNum(cartId, num) {
+        for (let i in this.carts) {
+            const cart = this.carts[i];
+            if (cart.cart_id == cartId) {
+                cart.goods_num = num;
+            }
+        }
+        this._setTotalNumAndPrice();
     }
 
     /**
      * 移除一个购物车项目
      */
-    remveCart() {
-
+    remveCart(cartId) {
+        for (let i in this.carts) {
+            const cart = this.carts[i];
+            if (cart.cart_id == cartId) {
+                this.carts.splice(i, 1);
+            }
+        }
+        this._setTotalNumAndPrice();
     }
+
 
     /**
     * 设置价格和数量

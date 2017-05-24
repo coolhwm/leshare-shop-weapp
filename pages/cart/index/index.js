@@ -9,19 +9,12 @@ const orderService = new OrderService();
 
 Page(Object.assign({}, Quantity, {
 
-  /**
-   * 页面的初始数据
-   */
+  cart: {},
   page: {},
+
   data: {
-    isLoaded: false,
-    carts: [],
-    price: 0,
-    num: 0,
-    all: false,
     cart: {}
   },
-
 
   /**
    * 页面初始化
@@ -30,9 +23,9 @@ Page(Object.assign({}, Quantity, {
     //初始化分页参数
     this.page = cartService.page();
     //初始化购物车对象
-    this.data.cart = new Cart();
+    this.cart = new Cart();
     //加载第一页
-    this.loadNextPage(this);
+    this.loadNextPage();
   },
 
   /**
@@ -41,33 +34,19 @@ Page(Object.assign({}, Quantity, {
   loadNextPage: function () {
     this.page.next().then(data => {
       //设置购物车对象参数
-      this.data.cart.setCarts(data.list);
-      this.setData({ carts: data.list });
-      this.setCheckedTotalNumAndPrice();
+      this.cart.setCarts(data.list);
+      this.render();
     });
   },
 
-
   /**
-   * 设置价格和数量
+   * 执行渲染购物车视图
    */
-  setCheckedTotalNumAndPrice: function () {
-    const carts = this.data.carts;
-    let all = true;
-    let price = 0;
-    let num = 0;
-    for (let i in carts) {
-      const cart = carts[i];
-      if (!cart.check) {
-        all = false;
-        continue;
-      }
-      num += cart.goods_num;
-      price += cart.goods_price * cart.goods_num;
-    }
-    price = price.toFixed(2);
-    this.setData({ num: num, price: price, all: all });
+  render: function () {
+    const cart = this.cart.export();
+    this.setData({ cart: cart });
   },
+
 
   /**
  * 上划加载
@@ -77,42 +56,20 @@ Page(Object.assign({}, Quantity, {
   },
 
   /**
-    * 下拉刷新
-    */
-  // onPullDownRefresh: function () {
-  //   this.page.reset();
-  //   this.loadNextPage();
-  //   wx.stopPullDownRefresh();
-  // },
-
-  /**
    * 点击多选事件
    */
   onCheckTap: function (e) {
     const cartId = e.currentTarget.dataset.cartId;
-    //点击切换多选按钮
-    this.data.cart.toggleCartCheck(cartId);
-    //--
-    const carts = this.data.carts;
-    const cart = this.findCartItemById(cartId).cart;
-    cart.check = !cart.check;
-    //刷新视图
-    this.setData({ carts: carts });
-    this.setCheckedTotalNumAndPrice();
+    this.cart.toggleCartCheck(cartId);
+    this.render();
   },
 
   /**
    * 点击多选按钮
    */
   onCheckAllTap: function (e) {
-    //--
-    const check = !this.data.all;
-    const carts = this.data.carts;
-    for (let i in carts) {
-      const cart = carts[i];
-      cart.check = check;
-    }
-    this.setData({ carts: carts, all: check });
+    this.cart.toggleAllCheck();
+    this.render();
   },
 
   /**
@@ -144,20 +101,11 @@ Page(Object.assign({}, Quantity, {
       showCancel: true,
       success: res => {
         if (res.confirm) {
-          //UI渲染
-          const carts = this.data.carts;
-          for (let i in carts) {
-            const cart = carts[i];
-            if (cart.cart_id == cartId) {
-              carts.splice(i, 1);
-            }
-          }
+          this.cart.remveCart(cartId);
+          this.render();
 
-          this.setData({ carts: carts, isLoaded: true });
-          this.setCheckedTotalNumAndPrice();
           //请求服务器
           cartService.remove(cartId).then(data => {
-
           });
         } else if (res.cancel) {
           console.log('用户点击取消')
@@ -167,37 +115,17 @@ Page(Object.assign({}, Quantity, {
   },
 
   /**
-   * 查找购物车项目
-   */
-  findCartItemById: function (cartId) {
-    const carts = this.data.carts;
-    for (let i in carts) {
-      const cart = carts[i];
-      if (cart.cart_id == cartId) {
-        return { index: i, cart: cart };
-      }
-    }
-  },
-
-  /**
    * 处理数量选择器请求
    */
   handleZanQuantityChange(e) {
-    var cart_id = e.componentId;
+    var cartId = e.componentId;
     var num = e.quantity;
-    const carts = this.data.carts;
 
-    //页面渲染
-    carts.forEach(cart => {
-      if (cart.cart_id == cart_id) {
-        cart.goods_num = num;
-        this.setData({ carts: carts });
-      }
-    });
-    this.setCheckedTotalNumAndPrice();
+    this.cart.updateCartNum(cartId, num);
+    this.render();
 
     //请求服务端
-    cartService.update(cart_id, num).then(res => {
+    cartService.update(cartId, num).then(res => {
       //修改商品数量
     });
   }
