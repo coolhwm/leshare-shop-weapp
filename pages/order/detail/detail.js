@@ -24,7 +24,7 @@ Page({
     const orderId = this.data.order.order_id;
     Tips.loading('订单关闭中');
     orderService.closeOrder(orderId).then(data => {
-      Tips.toast('订单关闭成功', () => Router.orderIndex());
+      Tips.toast('订单关闭成功', () => Router.orderIndexRefresh());
     });
   },
 
@@ -35,7 +35,7 @@ Page({
     const orderId = this.data.order.order_id;
     Tips.loading('退款申请中');
     orderService.refundOrder(orderId).then(data => {
-      Tips.toast('退款申请成功', () => Router.orderIndex());
+      Tips.toast('退款申请成功', () => Router.orderIndexRefresh());
     });
   },
 
@@ -46,7 +46,7 @@ Page({
     const orderId = this.data.order.order_id;
     Tips.loading('确认收货中');
     orderService.confirmOrder(orderId).then(data => {
-      Tips.toast('确认收货成功', () => Router.orderIndex());
+      Tips.toast('确认收货成功', () => Router.orderIndexRefresh());
     });
   },
 
@@ -60,7 +60,7 @@ Page({
       Tips.loaded();
       return orderService.wxpayOrder(payment);
     }).then(res => {
-      Tips.toast('支付成功', () => Router.orderIndex());
+      Tips.toast('支付成功', () => Router.orderIndexRefresh());
     }).catch(() => {
       Tips.toast('支付已取消');
     });

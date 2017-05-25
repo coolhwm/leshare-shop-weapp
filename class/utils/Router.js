@@ -20,7 +20,14 @@ export default class Router {
         this.goto(`/pages/order/trade/trade?trade=${trade}`);
     }
 
+    static orderIndexRefresh() {
+        app.globalData.order.reload = true;
+        this.orderIndex();
+    }
+
     static orderIndex() {
+        const cache = app.globalData.order;
+        cache.reload = true;
         wx.switchTab({
             url: "/pages/order/index/index"
         });

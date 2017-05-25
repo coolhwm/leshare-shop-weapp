@@ -2,6 +2,7 @@ import OrderService from "../../../class/service/OrderService";
 import Router from "../../../class/utils/Router";
 
 const app = getApp();
+const cache = app.globalData.order;
 const orderService = new OrderService();
 
 Page({
@@ -25,9 +26,10 @@ Page({
    * 页面展现
    */
   onShow: function () {
-    //需要判断脏数据
-    //this.clearData();
-    //this.loadNextPage();
+    if (cache.reload) {
+      this.page.reset();
+      this.loadNextPage();
+    }
   },
 
   /**
@@ -50,11 +52,11 @@ Page({
   /**
     * 下拉刷新
     */
-  onPullDownRefresh: function () {
-    this.page.reset();
-    this.loadNextPage();
-    wx.stopPullDownRefresh();
-  },
+  // onPullDownRefresh: function () {
+  //   this.page.reset();
+  //   this.loadNextPage();
+  //   wx.stopPullDownRefresh();
+  // },
 
 
   /**

@@ -6,11 +6,17 @@
 <view class="order-index-container">
     <!--状态操作栏-->
     <view class="order-tab-wrap">
-        <template is="orderTabTemplate" data="{{...tabbar}}"/>
+        <template is="orderTabTemplate" data="{{...tabbar}}" />
     </view>
-    
+
+    <!--占位提示-->
+    <view class="order-empty-tips" wx:if="{{orders.length == 0}}">
+        <image src="/images/icons/order-empty.png" />
+        <text>您还没有相关订单</text>
+    </view>
+
     <!--订单列表页面-->
     <view class="order-list-wrap">
-        <template is="orderListTemplate" data="{{orders}}"/>
+        <template is="orderListTemplate" data="{{orders}}" />
     </view>
 </view>

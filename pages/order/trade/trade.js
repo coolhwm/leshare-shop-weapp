@@ -33,7 +33,7 @@ Page({
 
     Tips.loading('订单创建中');
     orderService.createOrder(trade).then(data => {
-      Tips.toast("订单创建成功", () => Router.orderIndex());
+      Tips.toast("订单创建成功", () => Router.orderIndexRefresh());
     });
   }
 });

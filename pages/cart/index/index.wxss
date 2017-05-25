@@ -6,7 +6,9 @@ page{
     background-color: #F5F5F5;
 }
 
+/*占位*/
 .cart-empty-tips{
+    margin-top: 300rpx;
     height: 300rpx;
     display: flex;
     flex-direction: row;

@@ -1,6 +1,11 @@
 @import "/templates/address/item/address-item-template.wxss";
 @import "/templates/order/item/order-item-template.wxss";
 
+page{
+    height: 100%;
+    background-color: #F5F5F5;
+}
+
 /*状态栏*/
 .order-status-container{
     background-color: #FFF;
