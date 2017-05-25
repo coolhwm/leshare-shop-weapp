@@ -44,13 +44,11 @@ export default class Cart {
      * 切换一个商品的选择
      */
     toggleCartCheck(cartId) {
-        //遍历查询
-        for (let i in this.carts) {
-            const cart = this.carts[i];
+        this.carts.forEach(cart => {
             if (cart.cart_id == cartId) {
                 cart.check = !cart.check;
             }
-        }
+        });
         this._setTotalNumAndPrice();
     }
 
@@ -59,10 +57,9 @@ export default class Cart {
      */
     toggleAllCheck() {
         this.all = !this.all;
-        for (let i in this.carts) {
-            const cart = this.carts[i];
+        this.carts.forEach(cart => {
             cart.check = this.all;
-        }
+        });
         this._setTotalNumAndPrice();
     }
 
@@ -70,12 +67,11 @@ export default class Cart {
      * 更新商品数量
      */
     updateCartNum(cartId, num) {
-        for (let i in this.carts) {
-            const cart = this.carts[i];
+        this.carts.forEach(cart => {
             if (cart.cart_id == cartId) {
                 cart.goods_num = num;
             }
-        }
+        });
         this._setTotalNumAndPrice();
     }
 
@@ -91,7 +87,6 @@ export default class Cart {
         }
         this._setTotalNumAndPrice();
     }
-
 
     /**
     * 设置价格和数量

@@ -3,7 +3,8 @@ import OrderService from "../../../class/service/OrderService";
 import Router from "../../../class/utils/Router";
 import Cart from "../../../class/entity/Cart";
 
-var Quantity = require('../../../templates/quantity/index');
+const Quantity = require('../../../templates/quantity/index');
+const cache = getApp().globalData.cart;
 const cartService = new CartService();
 const orderService = new OrderService();
 
@@ -11,21 +12,40 @@ Page(Object.assign({}, Quantity, {
 
   cart: {},
   page: {},
-
   data: {
     cart: {}
   },
+
 
   /**
    * 页面初始化
    */
   onLoad: function (options) {
+    cache.init = true;
     //初始化分页参数
     this.page = cartService.page();
     //初始化购物车对象
     this.cart = new Cart();
     //加载第一页
     this.loadNextPage();
+  },
+
+  /**
+   * 页面隐藏，同步数据
+   */
+  onHide: function () {
+    cache.num = this.cart.num;
+  },
+
+
+  /**
+   * 页面展现
+   */
+  onShow: function () {
+    if (cache.init && cache.reload) {
+      this.page.reset();
+      this.loadNextPage();
+    }
   },
 
   /**
@@ -84,7 +104,7 @@ Page(Object.assign({}, Quantity, {
    * 点击购买
    */
   onBuyTap: function (e) {
-    const trade = orderService.createCartTrade(this.data.carts);
+    const trade = orderService.createCartTrade(this.data.cart.carts);
     const param = JSON.stringify(trade);
     Router.createTrade(param);
   },
@@ -95,9 +115,10 @@ Page(Object.assign({}, Quantity, {
    */
   onCartLongTap: function (e) {
     const cartId = e.currentTarget.dataset.cartId;
+    const goodsName =e.currentTarget.dataset.goodsName;
     wx.showModal({
       title: '删除商品',
-      content: '是否删除该商品',
+      content: `是否删除${goodsName}`,
       showCancel: true,
       success: res => {
         if (res.confirm) {
@@ -106,6 +127,7 @@ Page(Object.assign({}, Quantity, {
 
           //请求服务器
           cartService.remove(cartId).then(data => {
+            //TODO
           });
         } else if (res.cancel) {
           console.log('用户点击取消')

@@ -5,6 +5,7 @@ import CartService from "../../../class/service/CartService";
 import Router from "../../../class/utils/Router";
 
 const app = getApp();
+const cache = getApp().globalData.cart;
 const shopService = new ShopService();
 const goodsService = new GoodsService();
 const orderService = new OrderService();
@@ -45,7 +46,8 @@ Page({
    */
   onAddCartTap: function (event) {
     //页面渲染
-    app.globalData.cartNum++;
+    cache.num++;
+    cache.reload = true;
     this.setCartNumFromApp();
     //请求服务端
     cartService.add(this.data.goods.id).then(res => {
@@ -67,6 +69,6 @@ Page({
    * private 设置购物车商品数量
    */
   setCartNumFromApp: function () {
-    this.setData({ cartNum: app.globalData.cartNum });
+    this.setData({ cartNum: cache.num });
   }
 });

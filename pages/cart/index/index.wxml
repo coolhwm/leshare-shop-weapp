@@ -5,12 +5,13 @@
 
 
 <view class="container">
-
-    <view class="cart-empty-tips" wx:if="{{isLoaded && carts.length == 0}}" >
+    <!--占位提示-->
+    <view class="cart-empty-tips" wx:if="{{cart.carts.length == 0}}" >
         <image src="/images/icons/cart-empty.png" />
         <text>购物车是空的</text>
     </view>
 
+    <!--购物车内容-->
     <view class="item-list-container">
         <block wx:for="{{cart.carts}}">
             <template is="cartItemTemplate" data="{{...item}}" />
@@ -18,6 +19,7 @@
 
     </view>
 
+    <!--底栏-->
     <view class="cart-bar-container">
 
         <view class="cart-check-all-container" catchtap="onCheckAllTap">
