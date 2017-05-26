@@ -3,22 +3,24 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    height: 70rpx;
+    height: 85rpx;
     background-color: #FFF;
     margin-bottom: 10rpx;
+    z-index: 10000;
 }
 
 .order-tab-item{
     flex-grow: 1;
     height: 100%;
     text-align: center;
-    border-bottom: solid 3px #e6e6e6;
+    border-bottom: solid 3px #FAFAFA;
 }
 
 
 .order-tab-item text{
-    font-size: 27rpx;
-    line-height: 70rpx;
+    font-size: 30rpx;
+    line-height: 85rpx;
+    color: #4B515C;
 }
 
 

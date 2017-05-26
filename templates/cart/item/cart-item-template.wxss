@@ -39,6 +39,11 @@
     font-size: 28rpx;
     color: #2D2D2D;
 }
+/*规则*/
+.goods-sku-text{
+    font-size: 28rpx;
+    color: #A3A3A3;
+}
 /*商品价格*/
 .goods-price-small{
     font-size: 26rpx;

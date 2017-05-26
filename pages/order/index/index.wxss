@@ -40,5 +40,14 @@ page{
 }
 
 .order-list-wrap{
-    margin-top: 70rpx;
+    margin-top: 95rpx;
+}
+
+/*底部边线*/
+.footer-line{
+    position: fixed;
+    height: 1px;
+    width: 100%;
+    background-color: #E6E8EB;
+    bottom: 0px;
 }

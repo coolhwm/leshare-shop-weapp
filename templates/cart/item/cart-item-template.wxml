@@ -16,7 +16,7 @@
         <!--商品说明-->
         <view class="cart-info-container" >
             <text class="goods-title-text">{{goods_name}}</text>
-            <text class="goods-sku-text" wx:if="{{goods_sku}}">{{goods_sku}}</text>
+            <text class="goods-sku-text" >颜色分类：(无)</text>
             <view class="goods-price-num-container">
                 <view class="goods-price-container">
                     <text class="goods-price-small">￥</text>

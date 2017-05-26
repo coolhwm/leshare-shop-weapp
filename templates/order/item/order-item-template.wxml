@@ -5,31 +5,35 @@
 <template name="orderItemTemplate">
     <view class="order-item-container" catchtap="onOrderTap" data-order-id="{{order_id}}">
         <!--基本信息-->
-        <view class="order-info-container">
+        <view class="order-header-container">
             <view class="order-shop-info-container">
-                <image class="icon-tiny" src="/images/icons/shop-gray.png"/>
-                <text class="shop-info-name">{{shop_name}} ></text>
+                <image class="shop-info-icon" src="/images/icons/shop-gray.png" />
+                <text class="shop-info-name">{{shop_name}}</text>
+                <image class="shop-info-icon" src="/images/icons/more-gray.png" />
             </view>
-            <text class="order-status-complete" >{{status_text}}</text>
+            <text class="order-status-complete">{{status_text}}</text>
         </view>
-        <view class="hr-light"/>
 
         <!--商品列表-->
         <view class="order-goods-list-container">
             <block wx:for="{{orderGoodsInfos}}">
-                <template is="orderGoodsTemplate" data="{{...item}}"/>
+                <template is="orderGoodsTemplate" data="{{...item}}" />
+                <view class="order-goods-hr" />
             </block>
         </view>
 
-        <view class="hr-light"/>
         <!--汇总信息-->
-        <view class="order-info-container">
-            <text>共 {{orderGoodsInfos.length}} 件商品</text>
-            <view>
-                 <text>总价：</text>
-                 <text class="order-price">￥{{final_price}}</text>
-            </view>
-           
+        <view class="order-footer-container">
+            <text class="footer-count">共{{orderGoodsInfos.length}}件商品</text>
+            <text>合计:</text>
+            <text class="footer-price">￥{{final_price}}</text>
+            <text>(含运费￥0.00)</text>
+        </view>
+
+        <!--操作栏-->
+        <view class="order-action-bar">
+            <view class="zan-btn zan-btn--small">取消订单</view>
+            <view class="zan-btn zan-btn--small zan-btn--primary">确认付款</view>
         </view>
     </view>
 </template>

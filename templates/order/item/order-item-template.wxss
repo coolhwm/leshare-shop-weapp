@@ -2,44 +2,85 @@
 
 
 .order-item-container{
+    border-top: 1px solid #F2F2F2;
+    border-bottom: 1px solid #EDEDED;
     display: flex;
     flex-direction: column;
-    padding-left: 20rpx;
-    padding-right:20rpx;
     background-color: #FFF;
     margin-bottom: 10rpx;
-    
 }
 
 .order-status-complete{
+    font-size: 26rpx;
     color: limegreen;
 }
 
-.order-info-container{
+/*顶栏*/
+.order-header-container{
+    padding-left: 25rpx;
+    padding-right: 20rpx;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding-top: 15rpx;
-    padding-bottom: 15rpx;
+    height: 85rpx;
 }
 
-.shop-info-icon{
-    
-}
-
-.shop-info-name{
-    margin-left: 10rpx;
-    font-size: 26rpx;
-}
-.order-shop-info-container{
+/*底栏*/
+.order-footer-container{
+    padding-left: 25rpx;
+    padding-right: 20rpx;
     display: flex;
     flex-direction: row;
+    justify-content: flex-end;
     align-items: center;
-    justify-content: center;
+    height: 70rpx;
+}
+/*底栏文字*/
+.order-footer-container text{
+    color:#262626;
+    font-size: 28rpx;
 }
 
-.order-price{
+/*顶栏图片*/
+.shop-info-icon{
+    height: 40rpx;
+    width: 40rpx;
+    vertical-align: middle;
+}
+
+/*顶栏店铺名称*/
+.shop-info-name{
+    margin-left: 10rpx;
+    margin-right: 20rpx;
     font-size: 28rpx;
+    color:#262626;
+}
+
+/*价格*/
+.order-footer-container .footer-price{
+    font-size: 32rpx;
     color:#ff6200;
+    margin-right: 20rpx;
+}
+
+/* 数量 */
+.footer-count{
+    margin-right: 20rpx;
+}
+
+/*间隔*/
+.order-goods-hr{
+    width: 100%;
+    height: 6rpx;
+}
+
+/* 操作栏 */
+.order-action-bar{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border-top: 1px solid #F5F5F5;
+    height: 90rpx;
+    padding-right: 20rpx;
 }

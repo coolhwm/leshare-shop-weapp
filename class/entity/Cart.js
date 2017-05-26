@@ -92,7 +92,7 @@ export default class Cart {
     * 设置价格和数量
     */
     _setTotalNumAndPrice() {
-        let all = true;
+        let all = this.carts.length > 0 ? true : false;
         let price = 0;
         let num = 0;
         for (let i in this.carts) {

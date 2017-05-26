@@ -19,4 +19,7 @@
     <view class="order-list-wrap">
         <template is="orderListTemplate" data="{{orders}}" />
     </view>
+
+     <!--底部边线-->
+    <view class="footer-line"></view>
 </view>
