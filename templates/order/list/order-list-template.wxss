@@ -1,1 +1,1 @@
-@import "/templates/order/item/order-item-template.wxss";
+@import "/templates/order/list-item/order-item-template.wxss";

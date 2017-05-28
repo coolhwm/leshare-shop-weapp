@@ -1,7 +1,7 @@
 <!--订单列表模板 -->
 <!--依赖：订单商品（间接），订单项目-->
 <!--输入：orers-->
-<import src="/templates/order/item/order-item-template.wxml" />
+<import src="/templates/order/list-item/order-item-template.wxml" />
 <template name="orderListTemplate">
     <view class="order-list-container">
         <!--订单-->

@@ -1,78 +1,55 @@
 <!--订单详情页-->
 <!--依赖：地址项目页面、订单项目页面-->
 <import src="/templates/address/show/address-show-template.wxml" />
-<import src="/templates/order/item/order-item-template.wxml" />
+<import src="/templates/order/detail-item/order-item-template.wxml" />
 
 <view class="container">
     <!--订单状态栏/需要抽取模板-->
     <view class="order-status-bar">
-        <image class="order-status-icon" src="/images/icons/status-{{order.status}}.png"/>
+        <image class="order-status-icon" src="/images/icons/status-{{order.status}}.png" />
         <view class="order-status-container">
             <text class="order-status-text">{{order.status_text}}</text>
             <text class="order-status-desc">请于23时10分10秒内付款，超时订单自动关闭</text>
         </view>
     </view>
 
-    <view class="status-address-gap"/>
+    <view class="status-address-gap" />
 
     <!--收货地址-->
-    <template is="addressItemTemplate"/>
+    <template is="addressItemTemplate" />
 
     <image class="address-hr" src="/images/icons/address-hr.png" />
 
     <!--订单项目-->
-    <template is="orderItemTemplate" data="{{...order}}"/>
-
-    <!--买家留言-->
-    <view class="trade-note-container" wx:if="{{order.message}}">
-        <view class="text-bar">
-            <text class="text-major">买家留言:</text>
+    <template is="orderItemTemplate" data="{{...order}}" />
+    <!--订单信息-->
+    <view class="zan-panel">
+        <view class="zan-cell">
+            <text class="zan-cell__bd">订单号</text>
+            <text class="zan-cell__ft">{{order.uuid}}</text>
         </view>
-        <text class="textarea">{{order.message}}</text>
-    </view>
-
-    <view class="gap"></view>
-
-    <!--订单明细-->
-    <view class="order-detail-container">
-        <!--字段名-->
-        <view class="order-detail-key-container">
-            <text>订单号：</text> 
-            <text>交易方式：</text>
-            <text>下单时间：</text>
-            <text>付款时间：</text>
-            <text>发货时间：</text>
-            <text>更新时间：</text>
-            <text>完成时间：</text>
+        <view class="zan-cell">
+            <text class="zan-cell__bd">配送方式</text>
+            <text class="zan-cell__ft">快递 免邮</text>
         </view>
-        
-        <!--字段值-->
-         <view class="order-detail-value-container">
-            <text>{{order.uuid}}</text>
-            <text>{{order.payment_text}}</text>
-            <text>{{order.order_time}}</text>
-            <text>{{order.payment_time}}</text>
-            <text>{{order.sended_time}}</text>
-            <text>{{order.update_time}}</text>
-            <text>{{order.close_time}}</text>
+         <view class="zan-cell">
+            <text class="zan-cell__bd">买家留言</text>
+            <text class="zan-cell__ft">无</text>
+        </view>
+        <view class="zan-cell tarde-summary-container">
+            <text class="tarde-summary-text">共{{order.orderGoodsInfos.length}}件商品</text>
+            <text class="tarde-summary-text">小计：</text><text class="tarde-summary-price">￥{{order.final_price}}</text>
         </view>
     </view>
 
-    <view class="gap"></view>
-
-    <!--操作按钮-->
-    <view class="btn-box">
-        <view class="btn btn-warn" catchtap="onOrderClose">
-            关闭订单
+    <!--购买栏-->
+    <view class="tarde-action-bar">
+        <view>
+            <text class="tarde-total-text">合计：</text>
+            <text class="tarde-total-price">￥{{order.final_price}}</text>
         </view>
-        <view class="btn btn-warn" catchtap="onOrderRefund">
-            申请退款
-        </view>
-        <view class="btn btn-primary" catchtap="onWxPay">
-            支付订单
-        </view>
-        <view class="btn btn-primary" catchtap="onOrderConfirm">
-            确认收货
+        <view class="trade-confirm-button" catchtap="onConfirmTap">
+            <text>去支付</text>
         </view>
     </view>
 </view>

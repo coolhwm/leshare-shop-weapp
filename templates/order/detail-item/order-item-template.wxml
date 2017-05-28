@@ -1,0 +1,35 @@
+<!--订单项目模板 -->
+<!--依赖：订单商品-->
+<!--输入：...order-->
+<import src="/templates/order/goods/order-goods-template.wxml" />
+<template name="orderItemTemplate">
+    <view class="order-item-container" catchtap="onOrderTap" data-order-id="{{order_id}}">
+        <!--基本信息-->
+        <view class="order-header-container">
+            <view class="order-shop-info-container">
+                <image class="shop-info-icon" src="/images/icons/shop-gray.png" />
+                <text class="shop-info-name">{{shop_name}}</text>
+                <image class="shop-info-icon" src="/images/icons/more-gray.png" />
+            </view>
+            <text class="order-status-complete">{{status_text}}</text>
+        </view>
+
+        <!--商品列表-->
+        <view class="order-goods-list-container">
+            <block wx:for="{{orderGoodsInfos}}">
+                <template is="orderGoodsTemplate" data="{{...item}}" />
+                <view class="order-goods-hr" />
+            </block>
+        </view>
+
+        <!--汇总信息-->
+        <view class="order-footer-container">
+            <text class="footer-count">共{{orderGoodsInfos.length}}件商品</text>
+            <text>合计:</text>
+            <text class="footer-price">￥{{final_price}}</text>
+            <text>(含运费￥0.00)</text>
+        </view>
+
+
+    </view>
+</template>

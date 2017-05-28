@@ -2,6 +2,8 @@
   "pages": [
     "pages/shop/index/index",
     "pages/order/detail/detail",
+    
+    
     "pages/shop/detail/detail",
     
     "pages/order/trade/trade",
