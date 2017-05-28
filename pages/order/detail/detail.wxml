@@ -1,21 +1,24 @@
 <!--订单详情页-->
 <!--依赖：地址项目页面、订单项目页面-->
-<import src="/templates/address/item/address-item-template.wxml" />
+<import src="/templates/address/show/address-show-template.wxml" />
 <import src="/templates/order/item/order-item-template.wxml" />
 
 <view class="container">
-    <!--订单状态-->
-    <view class="order-status-container">
-        <image class="icon-middle" src="/images/icons/order.png"/>
-        <text class="order-status-text">订单状态：{{order.status_text}}</text>
+    <!--订单状态栏/需要抽取模板-->
+    <view class="order-status-bar">
+        <image class="order-status-icon" src="/images/icons/status-{{order.status}}.png"/>
+        <view class="order-status-container">
+            <text class="order-status-text">{{order.status_text}}</text>
+            <text class="order-status-desc">请于23时10分10秒内付款，超时订单自动关闭</text>
+        </view>
     </view>
 
-    <view class="gap"></view>
+    <view class="status-address-gap"/>
 
     <!--收货地址-->
     <template is="addressItemTemplate"/>
 
-    <view class="gap"></view>
+    <image class="address-hr" src="/images/icons/address-hr.png" />
 
     <!--订单项目-->
     <template is="orderItemTemplate" data="{{...order}}"/>

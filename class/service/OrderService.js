@@ -10,7 +10,7 @@ export default class OrderService extends BaseService {
         //交易状态字典
         this.statusDict = {
             "0": "全部",
-            "1": "待付款",
+            "1": "等待买家付款",
             "2": "待发货",
             "3": "已发货",
             "4": "待评论",
