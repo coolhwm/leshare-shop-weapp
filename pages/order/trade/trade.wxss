@@ -1,6 +1,44 @@
 @import "/templates/address/item/address-item-template.wxss";
-@import "/templates/order/item/order-item-template.wxss";
+@import "/templates/trade/item/order-item-template.wxss";
 
+page{
+    height: 100%;
+    background-color: #F4F4F4;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+}
+
+/*收货地址间隔*/
+.address-hr{
+    width: 100%;
+    height: 5px;
+    margin-bottom: 15rpx;
+}
+
+/*订单详情面板*/
+.zan-panel{
+    border-top: none;
+    margin-top: 0;
+}
+
+/*订单小计*/
+.tarde-summary-container{
+    display:  flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.tarde-summary-text{
+    color:#000311;
+    margin-left: 20rpx;
+    font-size: 28rpx;
+}
+.tarde-summary-price{
+    color:#ff6200;
+    font-size: 28rpx;
+}
 
 /*买家留言*/
 .trade-note-container{
@@ -25,26 +63,31 @@
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-    height: 80rpx;
+    height: 100rpx;
     width: 100%;
-    background-color: #FFF;
+    background-color: #FAFAFA;
+    border-top: 1px solid #DCDCDC;
     
 }
 .trade-confirm-button{
     height: 100%;
-    width: 300rpx;
-    line-height: 80rpx;
+    width: 240rpx;
+    line-height: 100rpx;
     text-align: center;
     background-color: #1296db;
     color: #FFF;
 }
 .trade-confirm-button text{
     color: #FFF;
-    font-size: 30rpx;
+    font-size: 34rpx;
+}
+.tarde-total-text{
+    font-size: 34rpx;
+    color: #000311;
 }
 .tarde-total-price{
       color:#ff6200;
-      font-size: 30rpx;
+      font-size: 34rpx;
       font-weight: bold;
       margin-right: 20rpx;
 }

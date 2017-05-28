@@ -30,7 +30,6 @@ Page({
     //准备交易对象
     const trade = this.data.trade;
     trade.message = this.data.message;
-
     Tips.loading('订单创建中');
     orderService.createOrder(trade).then(data => {
       Tips.toast("订单创建成功", () => Router.orderIndexRefresh());

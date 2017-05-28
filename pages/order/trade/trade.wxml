@@ -1,32 +1,48 @@
 <!--订单交易页面-->
 <!--依赖：地址项目页面、订单项目页面-->
 <import src="/templates/address/item/address-item-template.wxml" />
-<import src="/templates/order/item/order-item-template.wxml" />
+<import src="/templates/trade/item/order-item-template.wxml" />
 
 <view class="container">
 
-    <view class="gap"></view>
-
     <!--收货地址-->
-    <template is="addressItemTemplate"/>
+    <template is="addressItemTemplate" />
 
-    <view class="gap"></view>
+    <image class="address-hr" src="/images/icons/address-hr.png" />
 
     <!--订单项目-->
-    <template is="orderItemTemplate" data="{{...trade}}"/>
+    <template is="orderItemTemplate" data="{{...trade}}" />
+
+    <!--订单信息-->
+    <view class="zan-panel">
+        <view class="zan-cell">
+            <text class="zan-cell__bd">配送方式</text>
+            <text class="zan-cell__ft">快递 免邮</text>
+        </view>
+        <view class="zan-cell zan-form__item">
+            <text class="zan-form__title">买家留言</text>
+            <input class="zan-form__input zan-cell__bd" type="text" placeholder="选填：对本次交易的说明"  bindinput="onMessageInput"/>
+        </view>
+        <view class="zan-cell tarde-summary-container">
+            <text class="tarde-summary-text">共{{trade.orderGoodsInfos.length}}件商品</text>
+            <text class="tarde-summary-text">小计：</text><text class="tarde-summary-price">￥{{trade.final_price}}</text>
+        </view>
+    </view>
+
 
     <!--买家留言-->
-    <view class="trade-note-container">
+    <!--<view class="trade-note-container">
         <view class="text-bar">
-            <text class="text-major"  >买家留言：</text>
+            <text class="text-major">买家留言：</text>
         </view>
-        <textarea class="textarea" type="text" placeholder="选填：对本次交易的说明（建议填写已和卖家沟通的内容）" bindinput="onMessageInput"/>
-    </view>
+        <textarea class="textarea" type="text" placeholder="选填：对本次交易的说明（建议填写已和卖家沟通的内容）" bindinput="onMessageInput" />
+    </view>-->
 
     <!--购买栏-->
     <view class="tarde-action-bar">
         <view>
-           <text class="tarde-total-price">总价：￥{{trade.final_price}}</text> 
+            <text class="tarde-total-text">合计：</text>
+            <text class="tarde-total-price">￥{{trade.final_price}}</text>
         </view>
         <view class="trade-confirm-button" catchtap="onConfirmTap">
             <text>提交订单</text>

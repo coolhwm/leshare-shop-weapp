@@ -394,3 +394,160 @@ text {
   margin-right: 0;
 }
 
+/*有赞-标签*/
+.zan-label {
+  display: inline-block;
+  font-size: 12px;
+  height: 28px;
+  line-height: 28px;
+  color: #333;
+  border: 1rpx solid #999;
+  padding: 0px 10px;
+  border-radius: 2px;
+  margin-right: 10px;
+  box-sizing: border-box;
+  vertical-align: middle;
+  text-align: center;
+}
+.zan-label--primary {
+  color: #fff;
+  background: #1296db;
+  border: 1rpx solid #1296db;
+}
+.zan-label--disabled {
+  color: #cacaca;
+  background: #eee;
+  border: 1rpx solid #e5e5e5;
+}
+.zan-label--small {
+  font-size: 11px;
+  height: 16px;
+  line-height: 16px;
+  padding: 0px 3px;
+}
+.zan-label--plain.zan-label--primary {
+  color: #1296db;
+  background: #fff;
+}
+
+/*有赞-面板*/
+.zan-panel {
+  background: #fff;
+  border-top: 1rpx solid #e5e5e5;
+  border-bottom: 1rpx solid #e5e5e5;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.zan-panel-title {
+  font-size: 14px;
+  line-height: 1;
+  color: #999;
+  padding: 20px 15px 0 15px;
+}
+
+
+.zan-panel--without-margin-top {
+  margin-top: 0;
+}
+
+
+/*有赞-列表*/
+.zan-cell {
+  position: relative;
+  padding: 12px 15px;
+  display: flex;
+  align-items: center;
+  line-height: 1.4;
+  font-size: 14px;
+}
+
+.zan-cell::after {
+  position: absolute;
+  left: 15px;
+  right: 0;
+  bottom: 0;
+  border-top: 1rpx solid #e5e5e5;
+  background: #e5e5e5;
+  content: ' ';
+}
+.zan-cell__bd {
+  flex: 1;
+  font-size: 30rpx;
+  color: #303030;
+}
+.zan-cell__ft {
+  position: relative;
+  text-align: right;
+  color: #303030;
+  font-size: 30rpx;
+}
+
+.zan-cell--last-child::after,
+.zan-cell:last-child::after {
+  display: none;
+}
+
+.zan-cell--access .zan-cell__ft {
+  padding-right: 13px;
+}
+
+.zan-cell--access .zan-cell__ft::after {
+  position: absolute;
+  top: 50%;
+  right: 2px;
+  content: " ";
+  display: inline-block;
+  height: 6px;
+  width: 6px;
+  border-width: 2px 2px 0 0;
+  border-color: #c8c8c8;
+  border-style: solid;
+  transform: translateY(-50%) matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+}
+.zan-cell--switch {
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+/*有赞-表单*/
+.zan-form {
+  background-color: #fff;
+  border-top: 1rpx solid #e5e5e5;
+  border-bottom: 1rpx solid #e5e5e5;
+}
+
+.zan-form__item {
+  line-height: 26px;
+}
+
+.zan-form__title {
+  float: left;
+  width: 80px;
+  font-size: 30rpx;
+  color: #303030;
+}
+
+.zan-form__title--top {
+  align-self: flex-start;
+}
+
+.zan-form__input, .zan-form__textarea {
+  min-height: 26px;
+}
+
+.zan-form__input input {
+  min-height: 26px;
+}
+
+.zan-form__textarea {
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+}
+
+.zan-form__textarea textarea {
+  width: auto;
+  flex: 1;
+}
+
