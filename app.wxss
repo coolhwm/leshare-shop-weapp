@@ -225,7 +225,7 @@ text {
   display: inline-block;
   text-align: center;
   vertical-align: middle;
-  height: 30px;
+  height: 28px;
   width: 30px;
   font-size: 12px;
   line-height: 30px;

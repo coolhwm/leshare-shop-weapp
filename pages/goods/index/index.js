@@ -18,7 +18,8 @@ Page({
     cartNum: 0
   },
   onLoad: function (options) {
-    const goodsId = options.goodsId;
+    //const goodsId = options.goodsId;
+    const goodsId = 2;
     //请求店铺基本信息
     shopService.getInfo().then(data => {
       this.setData({ shop: data });

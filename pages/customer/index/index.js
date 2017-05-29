@@ -1,4 +1,4 @@
-import { Http } from "../../../class/utils/Http.js";
+ import { Http } from "../../../class/utils/Http.js";
 var app = getApp();
 
 Page({
