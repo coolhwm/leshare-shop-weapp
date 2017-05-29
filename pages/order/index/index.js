@@ -1,5 +1,6 @@
 import OrderService from "../../../class/service/OrderService";
 import Router from "../../../class/utils/Router";
+import Tips from "../../../class/utils/Tips";
 
 const app = getApp();
 const cache = app.globalData.order;
@@ -52,11 +53,11 @@ Page({
   /**
     * 下拉刷新
     */
-  // onPullDownRefresh: function () {
-  //   this.page.reset();
-  //   this.loadNextPage();
-  //   wx.stopPullDownRefresh();
-  // },
+  onPullDownRefresh: function () {
+    this.page.reset();
+    this.loadNextPage();
+    wx.stopPullDownRefresh();
+  },
 
 
   /**
@@ -103,5 +104,56 @@ Page({
 
     //刷新页面
     this.loadNextPage();
+  },
+
+  //******************* 订单操作 ******************/
+
+  /**
+   * 确认收货
+   */
+  onOrderConfirm: function (event) {
+    const orderId = event.currentTarget.dataset.orderId;
+    Tips.confirm('您确认已收到货品？').then(() => {
+      Tips.loading('确认收货中');
+      return orderService.confirmOrder(orderId);
+    }).then(data => {
+      Tips.toast('确认收货成功', () => this.onPullDownRefresh());
+    });
+  },
+
+  /**
+   * 微信支付
+   */
+  onWxPay: function (event) {
+    const orderId = event.currentTarget.dataset.orderId;
+    Tips.loading('支付加载中');
+    orderService.prepayOrder(orderId).then(payment => {
+      Tips.loaded();
+      return orderService.wxpayOrder(payment);
+    }).then(res => {
+      Tips.toast('支付成功', () => this.onPullDownRefresh());
+    }).catch(() => {
+      Tips.toast('支付已取消');
+    });
+  },
+
+  /**
+  * 关闭订单
+  */
+  onOrderClose: function (event) {
+    const orderId = event.currentTarget.dataset.orderId;
+    Tips.confirm('您确认取消该订单吗？').then(() => {
+      Tips.loading('订单关闭中');
+      return orderService.closeOrder(orderId);
+    }).then(data => {
+      Tips.toast('订单关闭成功', () => this.onPullDownRefresh());
+    });
+  },
+
+  /**
+   * 评论订单
+   */
+  onOrderComment: function(event){
+    Tips.toast("尚未实现");
   }
 })

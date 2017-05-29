@@ -7,6 +7,7 @@
 <view class="shop-index-container">
     <!--店铺基本信息-->
     <template is="shopItemTemplate" data="{{...shop}}" />
+
     <!--店铺公告-->
     <template is="noitceBarTemplate" data="{{...notice}}"/>
 

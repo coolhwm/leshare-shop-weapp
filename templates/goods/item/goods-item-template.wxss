@@ -2,29 +2,32 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    margin-top: 6rpx;
-    height: 440rpx;
-    width: 373rpx;
+    margin-top: 10rpx;
+    width: 370rpx;
     background-color: #FFF;
 }
 .goods-item-image{
-    padding: 2rpx;
-    height: 336rpx;
-    width: 369rpx;
+    height: 370rpx;
+    width: 370rpx;
 }
 
 .goods-item-describe{
     height: 100rpx;
-    padding: 0 20rpx 0 20rpx;
+    margin-top: 10rpx;
+    padding: 0 20rpx;
 }
 
 .goods-item-title{
-    font-size: 26rpx;
-    color: #222;
+    font-size: 28rpx;
+    text-overflow: ellipsis;
+    word-break:keep-all;/* 不换行 */
+    white-space:nowrap;/* 不换行 */
+    overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+    color:#262626;
 }
 
 .goods-item-price-cost{
-    font-size: 28rpx;
+    font-size: 33rpx;
     color:#ff6200;
 }
 

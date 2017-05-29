@@ -11,6 +11,6 @@
     position: fixed;
     height: 1px;
     width: 100%;
-    background-color: #E6E8EB;
-    bottom: 1px;
+    background-color: #F5F5F5;
+    bottom: 0px;
 }

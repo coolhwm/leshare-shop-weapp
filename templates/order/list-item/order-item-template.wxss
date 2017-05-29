@@ -12,7 +12,7 @@
 
 .order-status-complete{
     font-size: 26rpx;
-    color: limegreen;
+    color: #1296db;
 }
 
 /*顶栏*/

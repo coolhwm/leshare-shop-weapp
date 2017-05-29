@@ -3,6 +3,7 @@ page{
     background-color: #f2f2f2;
 }
 
+/*用户信息*/
 .user-info-container{
     display: flex;
     flex-direction: column;
@@ -20,6 +21,28 @@ page{
 .user-nickname{
     color: white;
     font-size: 40rpx;
+}
+
+/*列表*/
+.zan-cell__bd{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.zan-cell__bd image{
+    height: 46rpx;
+    width: 46rpx;
+    margin-right: 25rpx;
+    vertical-align: middle;
+}
+
+/*底部边线*/
+.footer-line{
+    position: fixed;
+    height: 1px;
+    width: 100%;
+    background-color: #E6E8EB;
+    bottom: 0px;
 }
 
 .user-func-container{

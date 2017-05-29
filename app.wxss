@@ -471,7 +471,7 @@ text {
   background: #e5e5e5;
   content: ' ';
 }
-.zan-cell__bd {
+.zan-cell__bd, .zan-cell__bd text{
   flex: 1;
   font-size: 30rpx;
   color: #303030;

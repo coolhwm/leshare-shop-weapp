@@ -11,13 +11,13 @@ export default class OrderService extends BaseService {
         this.statusDict = {
             "0": "全部",
             "1": "等待买家付款",
-            "2": "待发货",
-            "3": "已发货",
-            "4": "待评论",
-            "5": "退款中",
-            "6": "已完成",
-            "7": "已关闭",
-            "8": "已退款"
+            "2": "等待卖家发货",
+            "3": "卖家已发货",
+            "4": "等待买家评论",
+            "5": "申请退款中",
+            "6": "交易成功",
+            "7": "交易关闭",
+            "8": "卖家已退款"
         };
         //字符字典
         this.paymentDict = {
@@ -182,7 +182,10 @@ export default class OrderService extends BaseService {
      * 处理订单列表数据
      */
     _processOrderListItem(order) {
-        order.status_text = this.statusDict[order.status];
+        const status = order.status;
+        order.status_text = this.statusDict[status];
+        //动作控制 待付款/待评论/待收货
+        order.is_action = status == 1 || status == 3 || status == 4;
     }
 
     /**

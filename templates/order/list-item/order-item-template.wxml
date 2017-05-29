@@ -31,9 +31,24 @@
         </view>
 
         <!--操作栏-->
-        <view class="order-action-bar">
-            <view class="zan-btn zan-btn--small">取消订单</view>
-            <view class="zan-btn zan-btn--small zan-btn--primary">确认付款</view>
+        <view class="order-action-bar" wx:if="{{is_action}}">
+
+            <!--待付款-->
+            <block wx:if="{{status == 1}}">
+                <view class="zan-btn zan-btn--small" data-order-id="{{order_id}}" catchtap="onOrderClose">取消订单</view>
+                <view class="zan-btn zan-btn--small zan-btn--primary"  data-order-id="{{order_id}}" catchtap="onWxPay">确认付款</view>
+            </block>
+            
+            <!-- 收货 -->
+            <block wx:if="{{status == 3}}">
+                <view class="zan-btn zan-btn--small zan-btn--primary"  data-order-id="{{order_id}}" catchtap="onOrderConfirm">确认收货</view>
+            </block>
+
+            <!--待评论-->
+            <block wx:if="{{status == 4}}">
+                <view class="zan-btn zan-btn--small zan-btn--primary"  data-order-id="{{order_id}}" catchtap="onOrderComment">评价订单</view>
+            </block>
+
         </view>
     </view>
 </template>

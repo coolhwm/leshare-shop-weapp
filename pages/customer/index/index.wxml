@@ -8,24 +8,55 @@
         <text class="user-nickname">{{userInfo.nickName}}</text>
     </view>
 
-    <!-- 个人功能区域 -->
-    <view class="user-func-container" >
-        <view class="user-func-item" catchtap="onAddressTap">
-            <text class="func-text">收货地址</text>
-            <image class="icon-middle" src="/images/icons/more.png" />
+    <view class="zan-panel">
+        <view class="zan-cell zan-cell--access">
+            <view class="zan-cell__bd">
+                <image src="/images/icons/address.png" />
+                <text>收货地址</text>
+            </view>
+            <view class="zan-cell__ft"></view>
+        </view>
+        <view class="zan-cell zan-cell--access">
+            <view class="zan-cell__bd">
+                <image src="/images/icons/like-empty.png" />
+                <text>我的收藏</text>
+            </view>
+            <view class="zan-cell__ft"></view>
+        </view>
+        <view class="zan-cell zan-cell--access">
+            <view class="zan-cell__bd">
+                <image src="/images/icons/cuppon.png" />
+                <text>优惠券</text>
+            </view>
+            <view class="zan-cell__ft"></view>
+        </view>
+        <view class="zan-cell zan-cell--access">
+            <view class="zan-cell__bd">
+                <image src="/images/icons/vip.png" />
+                <text>会员卡</text>
+            </view>
+            <view class="zan-cell__ft"></view>
         </view>
     </view>
-        
-    <!-- 系统功能区域 -->
-    <view class="user-func-container">
-        <view class="user-func-item">
-            <text class="func-text">我要开店</text>
-            <image class="icon-middle" src="/images/icons/more.png" />
+
+    <view class="zan-panel">
+        <view class="zan-cell zan-cell--access">
+            <view class="zan-cell__bd">
+                <image src="/images/icons/cooperate.png" />
+                <text>加盟合作</text>
+            </view>
+            <view class="zan-cell__ft"></view>
         </view>
-        <view class="hr-light gap"/>
-        <view class="user-func-item">
-            <text class="func-text">关于我们</text>
-            <image class="icon-middle" src="/images/icons/more.png" />
+        <view class="zan-cell zan-cell--access">
+            <view class="zan-cell__bd">
+                <image src="/images/icons/gift.png" />
+                <text>推荐有奖</text>
+            </view>
+            <view class="zan-cell__ft"></view>
         </view>
     </view>
+
+     <!--底部边线-->
+    <view class="footer-line"></view>
+
 </view>

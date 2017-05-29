@@ -24,9 +24,13 @@ Page({
    */
   onOrderClose: function (event) {
     const orderId = this.data.order.order_id;
-    Tips.loading('订单关闭中');
-    orderService.closeOrder(orderId).then(data => {
+    Tips.confirm('您确认取消该订单吗？').then(() => {
+      Tips.loading('订单关闭中');
+      return orderService.closeOrder(orderId);
+    }).then(data => {
       Tips.toast('订单关闭成功', () => Router.orderIndexRefresh());
+    }).catch(() => {
+      //取消关闭订单
     });
   },
 
