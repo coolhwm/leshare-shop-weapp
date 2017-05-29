@@ -26,6 +26,7 @@ export default class Tips {
      * 弹出加载提示
      */
     static loading(title) {
+        this.loaded();
         wx.showLoading({
             title: title,
             mask: true

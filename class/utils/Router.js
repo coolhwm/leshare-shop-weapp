@@ -37,6 +37,11 @@ export default class Router {
     static orderDetail(orderId) {
        this.goto(`/pages/order/detail/detail?orderId=${orderId}`);
     }
+    //订单详情（跳转）
+    static orderDetailRedirect(orderId) {
+       this.redirectTo(`/pages/order/detail/detail?orderId=${orderId}`);
+    }
+
     //购物车
     static cartIndex() {
         const cache = app.globalData.order;
@@ -47,6 +52,12 @@ export default class Router {
 
     static goto(url) {
         wx.navigateTo({
+            url: url
+        });
+    }
+
+    static redirectTo(url) {
+        wx.redirectTo({
             url: url
         });
     }
