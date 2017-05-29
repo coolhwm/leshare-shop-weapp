@@ -5,6 +5,7 @@ var wxRequest = require('./class/utils/wxRequest')
 App({
   onLaunch: function () {
     this.checkLogin()
+      .then(this.checkSession)
       .then(this.userInit)
       .catch(() => {
         this.userLogin()
@@ -16,14 +17,37 @@ App({
   },
 
   /**
+   * 检查和服务器的会话
+   */
+  checkSession: function (user) {
+    const sessionId = wx.getStorageSync("session_id");
+    const url = `${this.globalData.baseUrl}/auth/checkSession`;
+    const param = { wxLoginCode: sessionId };
+    return new Promise((resolve, reject) => {
+      wxRequest.getRequest(url, param).then(res => {
+        const result = res.data.data;
+        if(result == 'ok'){
+          resolve(user);
+        }
+        else{
+          //清理缓存信息
+          console.info('登录信息失效');
+          wx.removeStorageSync('session_id');
+          wx.removeStorageSync('userInfo');
+          reject();
+        }
+      });
+    });
+  },
+
+  /**
    * 检查登录状态
    */
   checkLogin: function () {
     console.info('检查用户登录情况');
     return new Promise((resolve, reject) => {
-      let thirdSessionId = wx.getStorageSync("thirdSessionId");
-      let user = wx.getStorageSync("userInfo");
-      if (thirdSessionId && user) {
+      const user = wx.getStorageSync("userInfo");
+      if (user) {
         wxApi.checkSession().then(res => {
           resolve(user);
         }, reject);
@@ -78,7 +102,7 @@ App({
         else {
           console.info(`thirdSessionId=${thirdSessionId}`);
           //缓存3rd_sessionId
-          wx.setStorageSync('thirdSessionId', thirdSessionId);
+          //wx.setStorageSync('thirdSessionId', thirdSessionId);
           resolve(thirdSessionId);
         }
       }, reject);
@@ -128,8 +152,8 @@ App({
   decodeUserInfo: function (rawUser) {
     console.info('解密并保存用户信息');
     return new Promise((resolve, reject) => {
-      let url = `${this.globalData.baseUrl}/auth/decodeUserInfo`;
-      let param = {
+      const url = `${this.globalData.baseUrl}/auth/decodeUserInfo`;
+      const param = {
         encryptedData: rawUser.encryptedData,
         iv: rawUser.iv,
         sessionId: rawUser.thirdSessionId
@@ -137,13 +161,15 @@ App({
       //请求服务端解密数据
       wxRequest.getRequest(url, param).then(res => {
         //解密成功，缓存数据
-        var user = res.data.data;
+        const user = res.data.data.user;
+        const sessionId = res.data.data.session_id;
         if (user) {
-          console.info(user);
+          console.info('用户解密信息:', user);
+          console.info('session_id', sessionId);
           this.globalData.userInfo = user;
-          wx.setStorageSync("userInfo", user);
-          //临时user_id
           this.globalData.userId = user.id;
+          wx.setStorageSync("userInfo", user);
+          wx.setStorageSync("session_id", sessionId);
         }
         else {
           console.error("用户信息解密失败", res);
@@ -163,7 +189,7 @@ App({
     order: {
       reload: false
     },
-    
+
     //用户缓存
     userInfo: {},
     userId: null,

@@ -8,23 +8,24 @@ export default class Router {
         this.shopId = app.globalData.shopId;
     }
 
+    //商品详情
     static goodsIndex(goodsId) {
         this.goto(`/pages/goods/index/index?goodsId=${goodsId}`);
     }
-
+    //店铺详情
     static shopDetail() {
         this.goto(`/pages/shop/detail/detail?shopId=${this.shopId}`);
     }
-
+    //创建订单
     static createTrade(trade) {
         this.goto(`/pages/order/trade/trade?trade=${trade}`);
     }
-
+    //订单列表（刷新）
     static orderIndexRefresh() {
         app.globalData.order.reload = true;
         this.orderIndex();
     }
-
+    //订单列表
     static orderIndex() {
         const cache = app.globalData.order;
         cache.reload = true;
@@ -32,9 +33,16 @@ export default class Router {
             url: "/pages/order/index/index"
         });
     }
-
+    //订单详情
     static orderDetail(orderId) {
        this.goto(`/pages/order/detail/detail?orderId=${orderId}`);
+    }
+    //购物车
+    static cartIndex() {
+        const cache = app.globalData.order;
+        wx.switchTab({
+            url: "/pages/cart/index/index"
+        });
     }
 
     static goto(url) {
@@ -42,5 +50,4 @@ export default class Router {
             url: url
         });
     }
-
 }

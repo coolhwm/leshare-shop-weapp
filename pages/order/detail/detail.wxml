@@ -9,7 +9,15 @@
         <image class="order-status-icon" src="/images/icons/status-{{order.status}}.png" />
         <view class="order-status-container">
             <text class="order-status-text">{{order.status_text}}</text>
-            <text class="order-status-desc">请于23时10分10秒内付款，超时订单自动关闭</text>
+            <!-- 订单文本描述 -->
+            <text class="order-status-desc" wx:if="{{order.status == 1}}">请于23时10分10秒内付款，超时订单自动关闭</text>
+            <text class="order-status-desc" wx:if="{{order.status == 2}}">您已完成付款，卖家准备发货中</text>
+            <text class="order-status-desc" wx:if="{{order.status == 3}}">请您耐心等待，到货后请确认收货</text>
+            <text class="order-status-desc" wx:if="{{order.status == 4}}">卖家已收到您的货款，请对本次交易进行评价</text>
+            <text class="order-status-desc" wx:if="{{order.status == 5}}">您已发起退款申请，等待卖家处理</text>
+            <text class="order-status-desc" wx:if="{{order.status == 6}}">交易已完成，卖家已收到您的货款</text>
+            <text class="order-status-desc" wx:if="{{order.status == 7}}">本交易已取消，欢迎您下次光临</text>
+            <text class="order-status-desc" wx:if="{{order.status == 8}}">货款已原路退回，请查收</text>
         </view>
     </view>
 
@@ -43,13 +51,33 @@
     </view>
 
     <!--购买栏-->
-    <view class="tarde-action-bar">
-        <view>
-            <text class="tarde-total-text">合计：</text>
-            <text class="tarde-total-price">￥{{order.final_price}}</text>
+    <view class="tarde-action-bar" wx:if="{{order.is_action}}">
+
+        <!--待支付-->
+        <block  wx:if="{{order.status == 1}}">
+            <view>
+                <text class="tarde-total-text">合计：</text>
+                <text class="tarde-total-price">￥{{order.final_price}}</text>
+            </view>
+            <view class="trade-confirm-button" catchtap="onWxPay">
+                <text>去支付</text>
+            </view>
+        </block>
+
+        <!--待发货-->
+        <view class="tarde-button-panel" wx:if="{{order.status == 2}}">
+            <view class="zan-btn zan-btn--small "  data-order-id="{{order_id}}" catchtap="onOrderRefund">申请退款</view>
         </view>
-        <view class="trade-confirm-button" catchtap="onConfirmTap">
-            <text>去支付</text>
+
+        <!--待收货-->
+        <view class="tarde-button-panel" wx:if="{{order.status == 3}}">
+            <view class="zan-btn zan-btn--small "  data-order-id="{{order_id}}" catchtap="onOrderRefund">申请退款</view>
+            <view class="zan-btn zan-btn--small zan-btn--primary"  data-order-id="{{order_id}}" catchtap="onOrderConfirm">确认收货</view>
+        </view>
+
+        <!-- 已收货 -->
+        <view class="tarde-button-panel" wx:if="{{order.status == 4}}">
+            <view class="zan-btn zan-btn--small zan-btn--primary"  data-order-id="{{order_id}}" catchtap="onOrderComment">评价订单</view>
         </view>
     </view>
 </view>

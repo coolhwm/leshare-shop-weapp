@@ -11,7 +11,6 @@
                 <text class="shop-info-name">{{shop_name}}</text>
                 <image class="shop-info-icon" src="/images/icons/more-gray.png" />
             </view>
-            <text class="order-status-complete">{{status_text}}</text>
         </view>
 
         <!--商品列表-->

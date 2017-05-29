@@ -26,6 +26,13 @@ export default class Cart {
     }
 
     /**
+     * 是否为空
+     */
+    empty(){
+        return !this.carts.length || this.carts.length == 0;
+    }
+
+    /**
      * 设置数据
      */
     setCarts(carts) {

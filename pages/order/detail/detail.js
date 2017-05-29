@@ -39,10 +39,13 @@ Page({
   */
   onOrderRefund: function (event) {
     const orderId = this.data.order.order_id;
-    Tips.loading('退款申请中');
-    orderService.refundOrder(orderId).then(data => {
+    Tips.confirm('您确认要申请退款吗？').then(() => {
+      Tips.loading('退款申请中');
+      return orderService.refundOrder(orderId);
+    }).then(data => {
       Tips.toast('退款申请成功', () => Router.orderIndexRefresh());
-    });
+    });;
+
   },
 
   /**
@@ -50,8 +53,10 @@ Page({
    */
   onOrderConfirm: function (event) {
     const orderId = this.data.order.order_id;
-    Tips.loading('确认收货中');
-    orderService.confirmOrder(orderId).then(data => {
+    Tips.confirm('您确认已收到货品？').then(() => {
+      Tips.loading('确认收货中');
+      return orderService.confirmOrder(orderId);
+    }).then(data => {
       Tips.toast('确认收货成功', () => Router.orderIndexRefresh());
     });
   },
@@ -71,5 +76,13 @@ Page({
       Tips.toast('支付已取消');
     });
   },
+
+
+  /**
+   * 评论订单
+   */
+  onOrderComment: function (event) {
+    Tips.toast("尚未实现");
+  }
 
 });

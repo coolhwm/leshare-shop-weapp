@@ -13,7 +13,7 @@ export default class OrderService extends BaseService {
             "1": "等待买家付款",
             "2": "等待卖家发货",
             "3": "卖家已发货",
-            "4": "等待买家评论",
+            "4": "等待买家评价",
             "5": "申请退款中",
             "6": "交易成功",
             "7": "交易关闭",
@@ -192,14 +192,19 @@ export default class OrderService extends BaseService {
      * 处理订单详情
      */
     _processOrderDetail(detail) {
-        //处理字典数据
-        detail.status_text = this.statusDict[detail.status];
+        //状态字典
+        const status = detail.status;
+        detail.status_text = this.statusDict[status];
+        detail.is_action = status == 1  || status == 2 || status == 3 || status == 4;
+
+        //支付方式
         detail.payment_text = this.paymentDict[detail.payment_type];
+
         //时间默认值
-        detail.payment_time = !detail.payment_time ? '-' : detail.payment_time;
-        detail.sended_time = !detail.sended_time ? '-' : detail.sended_time;
-        detail.update_time = !detail.update_time ? '-' : detail.update_time;
-        detail.close_time = !detail.close_time ? '-' : detail.close_time;
+        // detail.payment_time = !detail.payment_time ? '-' : detail.payment_time;
+        // detail.sended_time = !detail.sended_time ? '-' : detail.sended_time;
+        // detail.update_time = !detail.update_time ? '-' : detail.update_time;
+        // detail.close_time = !detail.close_time ? '-' : detail.close_time;
     }
 
 }

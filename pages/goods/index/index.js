@@ -56,6 +56,13 @@ Page({
   },
 
   /**
+   * 跳转到购物车
+   */
+  onToCartTap: function(event){
+    Router.cartIndex();
+  },
+
+  /**
    * 购买
    */
   onBuyTap: function (event) {

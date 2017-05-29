@@ -3,6 +3,7 @@
 
 page{
     height: 100%;
+    padding-bottom: 100rpx;
     background-color: #F5F5F5;
 }
 
@@ -159,4 +160,18 @@ page{
       font-size: 34rpx;
       font-weight: bold;
       margin-right: 20rpx;
+}
+
+.trade-full-button{
+    height: 100%;
+    width: 100%;
+    line-height: 100rpx;
+    text-align: center;
+    background-color: #1296db;
+    color: #FFF;
+}
+
+/*按钮样式调整*/
+.tarde-button-panel{
+    padding-right: 20rpx;
 }

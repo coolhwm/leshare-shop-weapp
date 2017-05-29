@@ -2,6 +2,7 @@ import CartService from "../../../class/service/CartService";
 import OrderService from "../../../class/service/OrderService";
 import Router from "../../../class/utils/Router";
 import Cart from "../../../class/entity/Cart";
+import Tips from "../../../class/utils/Tips";
 
 const Quantity = require('../../../templates/quantity/index');
 const cache = getApp().globalData.cart;
@@ -104,36 +105,30 @@ Page(Object.assign({}, Quantity, {
    * 点击购买
    */
   onBuyTap: function (e) {
-    const trade = orderService.createCartTrade(this.data.cart.carts);
-    const param = JSON.stringify(trade);
-    Router.createTrade(param);
+    if (this.cart.empty()) {
+      Tips.toast("请选择商品");
+    }
+    else {
+      const trade = orderService.createCartTrade(this.data.cart.carts);
+      const param = JSON.stringify(trade);
+      Router.createTrade(param);
+    }
   },
 
 
   /**
-   * 长按项目
+   * 长按项目，删除商品
    */
   onCartLongTap: function (e) {
     const cartId = e.currentTarget.dataset.cartId;
-    const goodsName =e.currentTarget.dataset.goodsName;
-    wx.showModal({
-      title: '删除商品',
-      content: `是否删除${goodsName}`,
-      showCancel: true,
-      success: res => {
-        if (res.confirm) {
-          this.cart.remveCart(cartId);
-          this.render();
-
-          //请求服务器
-          cartService.remove(cartId).then(data => {
-            //TODO
-          });
-        } else if (res.cancel) {
-          console.log('用户点击取消')
-        }
-      }
-    })
+    const goodsName = e.currentTarget.dataset.goodsName;
+    Tips.confirm(`是否删除${goodsName}`).then(() => {
+      this.cart.remveCart(cartId);
+      this.render();
+      return cartService.remove(cartId);
+    }).then(() => {
+      console.log('请求删除成功')
+    });
   },
 
   /**
