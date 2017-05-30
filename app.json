@@ -9,8 +9,7 @@
     "pages/order/trade/trade",
     "pages/cart/index/index",
     "pages/home/visit-shop/visit-shop",
-    "pages/customer/address/list",
-    "pages/customer/address/edit"
+    "pages/customer/address/list"
   ],
   "window": {
     "navigationBarBackgroundColor": "#1296db"
