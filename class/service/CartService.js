@@ -63,6 +63,10 @@ export default class CartService extends BaseService {
     _processCartData(cart){
         cart.check = true;
         cart.goods_price = cart.goods_price.toFixed(2);
+        if(cart.goods_sku){
+            cart.sku_text = cart.goods_sku.replace(/:/g, ',');
+        }
+        console.info(cart);
     }
 
 }

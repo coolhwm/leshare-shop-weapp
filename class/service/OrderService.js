@@ -129,7 +129,9 @@ export default class OrderService extends BaseService {
                 goods_name: goods.goods_name,
                 image_url: goods.goods_image,
                 goods_price: goods.goods_price,
-                count: goods.goods_num
+                count: goods.goods_num,
+                sku_text: goods.sku_text,
+                goods_sku: goods.goods_sku
             };
             orderGoodsInfos.push(info);
             price += goods.goods_price * goods.goods_num;
@@ -137,8 +139,8 @@ export default class OrderService extends BaseService {
         //构造交易对象
         const trade = {
             status_text: "待确认",
-            deal_price: price,
-            final_price: price,
+            deal_price: price.toFixed(2),
+            final_price: price.toFixed(2),
             address_id: "1",
             payment_type: "1",
             message: "",
@@ -152,14 +154,19 @@ export default class OrderService extends BaseService {
     /**
      * 构建一个交易对象（单个物品），商品页面直接下单
      */
-    createSingleTrade(goods) {
+    createSingleTrade(goods, num = 1, sku = "") {
         const hasImage = goods.images && goods.images.length > 0;
         const imageUrl = hasImage ? goods.images[0].url : null;
+        let skuText = "";
+        if(sku){
+            skuText = sku.replace(/:/g, ',');
+        }
+
         //构造交易对象
         const trade = {
             status_text: "待确认",
             deal_price: goods.original_price,
-            final_price: goods.sell_price,
+            final_price: (goods.sell_price * num).toFixed(2),
             address_id: "1",
             payment_type: "1",
             message: "",
@@ -167,9 +174,11 @@ export default class OrderService extends BaseService {
                 {
                     goods_id: goods.id,
                     goods_name: goods.name,
+                    goods_sku: sku,
+                    sku_text: skuText,
                     image_url: imageUrl,
                     goods_price: goods.sell_price,
-                    count: "1"
+                    count: num
                 }
             ],
             shop_name: this.shopName
@@ -195,16 +204,10 @@ export default class OrderService extends BaseService {
         //状态字典
         const status = detail.status;
         detail.status_text = this.statusDict[status];
-        detail.is_action = status == 1  || status == 2 || status == 3 || status == 4;
+        detail.is_action = status == 1 || status == 2 || status == 3 || status == 4;
 
         //支付方式
         detail.payment_text = this.paymentDict[detail.payment_type];
-
-        //时间默认值
-        // detail.payment_time = !detail.payment_time ? '-' : detail.payment_time;
-        // detail.sended_time = !detail.sended_time ? '-' : detail.sended_time;
-        // detail.update_time = !detail.update_time ? '-' : detail.update_time;
-        // detail.close_time = !detail.close_time ? '-' : detail.close_time;
     }
 
 }

@@ -22,7 +22,6 @@ Page(Object.assign({}, Quantity, {
    * 页面初始化
    */
   onLoad: function (options) {
-    cache.init = true;
     //初始化分页参数
     this.page = cartService.page();
     //初始化购物车对象
@@ -55,6 +54,7 @@ Page(Object.assign({}, Quantity, {
   loadNextPage: function () {
     this.page.next().then(data => {
       //设置购物车对象参数
+      cache.init = true;
       this.cart.setCarts(data.list);
       this.render();
     });

@@ -85,6 +85,7 @@
 
 /*SKU列表*/
 .buy-panel-sku-list{
+    padding: 15rpx 0;
     display: flex;
     flex-direction: row;
 }
@@ -110,11 +111,6 @@
     padding-top: 30rpx;
     padding-bottom: 30rpx;
     padding-right: 30rpx;
-}
-
-/*SKU标签容器*/
-.buy-panel-sku-list{
-    padding: 25rpx 0;
 }
 
 /*购买数量/剩余 容器*/

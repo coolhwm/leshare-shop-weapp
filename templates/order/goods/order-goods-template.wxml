@@ -9,7 +9,7 @@
         <!--商品说明-->
         <view class="order-goods-title-container">  
             <text class="order-goods-title">{{goods_name}}</text>
-            <text class="order-goods-sku">颜色分类：(无)</text>
+            <text class="order-goods-sku">{{sku_text}}</text>
         </view>
 
         <!--商品购买信息-->

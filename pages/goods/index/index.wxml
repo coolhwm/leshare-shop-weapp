@@ -30,6 +30,6 @@
     <view class="goods-index-footer"></view>
 
     <!--购买面板-->
-    <template is="goodsBuyPanelTemplate" data="{{panel}}" />
+    <template is="goodsBuyPanelTemplate" data="{{sku, ...goods}}" />
 
 </view>
