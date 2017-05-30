@@ -25,8 +25,8 @@
             <text class="goods-info-title">{{name}}</text>
         </view>
          <view class="goods-price-container">
-            <text class="goods-info-price">￥ {{sell_price}}</text>
-            <text class="goods-item-price-original">￥ {{original_price}}</text>
+            <text class="goods-info-price">￥ {{sku.isReady ? sku.detail.price: priceLable}}</text>
+            <text class="goods-item-price-original" wx:if="{{!sku.exists}}">￥ {{original_price}}</text>
         </view>
     </view>
 </template>

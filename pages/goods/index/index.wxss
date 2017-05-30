@@ -3,6 +3,7 @@
 @import "/templates/shop/item/shop-item-template.wxss";
 @import "/templates/goods/buy-bar/goods-buy-bar-template.wxss";
 @import "/templates/goods/buy-panel/goods-buy-panel-template.wxss";
+@import "/templates/goods/sku/goods-sku-template.wxss";
 
 .goods-index-container{
     background-color: #F2F2F2;
@@ -12,5 +13,3 @@
     height: 100rpx;
     width: 100%;
 }
-
-

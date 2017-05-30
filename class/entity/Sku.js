@@ -25,9 +25,12 @@ export default class Sku {
         this.stock = 0;
         //SKU 的拼装文本
         this.skuText = ""
+        //占位符
+        this.skuKeys = ""
+        //处理后的已选择SKU值
+        this.skuValues = ""
         //SKU 面板的动作
         this.action = "";
-
         //初始化
         this.init();
     }
@@ -35,16 +38,17 @@ export default class Sku {
 
     init() {
         this.labels = this.goods.labels;
+        //没有规格的情况
         if(!this.labels){
             this.exists = false;
             this.stock = this.goods.stock;
         }
-
+        //初始化已被选择的对象 / 占位符
         for (let i in this.labels) {
             const label = this.labels[i].key;
             this.selected[label] = null;
+            this.skuKeys += `${label} `;
         }
-
     }
 
     /**
@@ -84,7 +88,10 @@ export default class Sku {
             display: this.display,
             exists: this.exists,
             stock: this.stock,
-            action: this.action
+            action: this.action,
+            skuKeys: this.skuKeys,
+            skuText: this.skuText,
+            skuValues: this.skuValues
         };
     }
 
@@ -109,6 +116,7 @@ export default class Sku {
         if (ready) {
             skuText = skuText.substring(0, skuText.length - 1);
             this.skuText = skuText;
+            this.skuValues = skuText.replace(/:/g, ' ');
         }
         return ready;
     }
