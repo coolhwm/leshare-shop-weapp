@@ -43,8 +43,8 @@ export default class Cart {
     /**
      * 获取已选择商品
      */
-    getCheckedCart() {
-
+    getCheckedCarts() {
+        return this.carts.filter( cart => cart.check);
     }
 
     /**

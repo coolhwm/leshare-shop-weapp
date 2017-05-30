@@ -157,10 +157,7 @@ export default class OrderService extends BaseService {
     createSingleTrade(goods, num = 1, sku = "") {
         const hasImage = goods.images && goods.images.length > 0;
         const imageUrl = hasImage ? goods.images[0].url : null;
-        let skuText = "";
-        if(sku){
-            skuText = sku.replace(/:/g, ',');
-        }
+        const skuText = this._processOrderSku(sku);
 
         //构造交易对象
         const trade = {
@@ -195,6 +192,9 @@ export default class OrderService extends BaseService {
         order.status_text = this.statusDict[status];
         //动作控制 待付款/待评论/待收货
         order.is_action = status == 1 || status == 3 || status == 4;
+        //处理商品信息
+        const goods = order.orderGoodsInfos;
+        this._processOrderGoods(goods);
     }
 
     /**
@@ -208,8 +208,36 @@ export default class OrderService extends BaseService {
 
         //支付方式
         detail.payment_text = this.paymentDict[detail.payment_type];
+
+        //处理商品信息
+        const goods = detail.orderGoodsInfos;
+        this._processOrderGoods(goods);
     }
 
+
+    /**
+     * 处理订单商品信息
+     */
+    _processOrderGoods(goods) {
+        goods.forEach(item => {
+            //处理SKU描述
+            const sku = item.goods_sku;
+            const skuText = this._processOrderSku(sku);
+            item.sku_text = skuText;
+        });
+    }
+
+    /**
+     * 处理SKU的默认值
+     */
+
+    _processOrderSku(goods_sku) {
+        let skuText = "";
+        if (goods_sku && goods_sku != '') {
+            skuText = goods_sku.replace(/:/g, ',');
+        }
+        return skuText;
+    }
 }
 
 

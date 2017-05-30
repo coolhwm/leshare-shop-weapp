@@ -109,7 +109,7 @@ Page(Object.assign({}, Quantity, {
       Tips.toast("请选择商品");
     }
     else {
-      const trade = orderService.createCartTrade(this.data.cart.carts);
+      const trade = orderService.createCartTrade(this.cart.getCheckedCarts());
       const param = JSON.stringify(trade);
       Router.createTrade(param);
     }
