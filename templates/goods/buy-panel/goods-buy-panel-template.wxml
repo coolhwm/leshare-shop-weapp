@@ -1,0 +1,69 @@
+<import src="/templates/quantity/index.wxml" />
+
+<!-- 购买面板栏模板-->
+<template name="goodsBuyPanelTemplate">
+
+    <view class="goods-buy-panel-cover" wx:if="{{panel}}"></view>
+    
+    <!--购买面板-->
+    <view class="goods-buy-panel-container" wx:if="{{panel}}">
+        <!--信息面板-->
+        <view class="buy-panel-info-container">
+            <!--商品图-->
+            <image class="buy-panel-icon" src="http://op09okwcw.bkt.clouddn.com/timg.jpg" />
+            <!--文字 -->
+            <view class="buy-panel-title-price">
+                <text class="buy-panel-title">纳克萨玛斯BB烤鸭</text>
+                <text class="buy-panel-price">￥59.00</text>
+            </view>
+            <!--关闭按钮-->
+            <view class="buy-panel-close-container">
+                <image class="buy-panel-close-icon" catchtap="onPanelClose" src="/images/icons/close.png" />
+            </view>
+
+        </view>
+
+        <!--SKU展示 -->
+        <view class="buy-panel-sku-container">
+            <view>
+                <view class="buy-panel-sku-title">
+                    <text class="buy-panel-sku-title-text">颜色：</text>
+                </view>
+                <view class="buy-panel-sku-list">
+                    <view class="zan-label">蓝色</view>
+                    <view class="zan-label">白色</view>
+                    <view class="zan-label">黄色</view>
+                    <view class="zan-label">绿色</view>
+                </view>
+            </view>
+
+            <view>
+                <view class="buy-panel-sku-title">
+                    <text class="buy-panel-sku-title-text">尺码：</text>
+                </view>
+                <view class="buy-panel-sku-list">
+                    <view class="zan-label">S</view>
+                    <view class="zan-label">M</view>
+                    <view class="zan-label">L</view>
+                </view>
+            </view>
+
+        </view>
+
+        <!--购买数量 -->
+        <view class="buy-panel-num-container">
+            <view class="buy-panel-num-title">
+                <text class="buy-panel-num-text">购买数量：</text>
+                <text class="buy-panel-stock-text">剩余75件</text>
+            </view>
+
+            <view class="buy-panel-num-selector">
+                <template is="zan-quantity" data="{{quantity:1, min: 1, max:999, componentId: 'quantity1' }}" />
+            </view>
+        </view>
+
+        <view class="buy-panel-next">
+            <text>下一步</text>
+        </view>
+    </view>
+</template>

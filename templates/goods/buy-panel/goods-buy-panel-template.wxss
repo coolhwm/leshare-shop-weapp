@@ -1,0 +1,150 @@
+/*购买面板*/
+.goods-buy-panel-container{
+    position: fixed;
+    background: #FFF;
+    bottom: 0px;
+    width: 100%;
+    z-index: 1000;
+}
+
+/*遮罩层*/
+.goods-buy-panel-cover{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    background-color: black;
+    -webkit-filter:opacity(.6);
+    z-index: 100;
+}
+
+/*信息面板*/
+.buy-panel-info-container{
+    margin-left: 30rpx;
+    border-bottom: 1px solid #E2E2E2;
+    display: flex;
+    flex-direction: row;
+}
+
+/*面板图片*/
+.buy-panel-icon{
+    position: relative;
+    top: -20rpx;
+    height: 170rpx;
+    width: 170rpx;
+    border-radius: 5px;
+    border: 1px solid #E2E2E2;
+}
+
+/*信息-价格/标题面板*/
+.buy-panel-title-price{
+    display: flex;
+    flex:1;
+    flex-direction: column;
+    padding-left: 30rpx;
+    padding-top: 28rpx;
+}
+
+/*商品标题*/
+.buy-panel-title{
+    font-size: 30rpx;
+    text-overflow: ellipsis;
+    word-break:keep-all;/* 不换行 */
+    white-space:nowrap;/* 不换行 */
+    overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+    color:#1F1F1F;
+}
+/*关闭图标*/
+.buy-panel-close-container{
+    padding-top: 28rpx;
+    width: 100rpx;
+    text-align: center;
+}
+.buy-panel-close-icon{
+    height: 45rpx;
+    width: 45rpx;
+}
+
+/**
+* 商品价格
+*/
+.buy-panel-price{
+    margin-top: 20rpx;
+    font-size: 35rpx;
+    color:#ff6200;
+}
+
+/*SKU展示区域*/
+.buy-panel-sku-container{
+    display: flex;
+    flex-direction: column;
+    margin-left: 30rpx;
+    padding-top: 25rpx;
+    border-bottom: 1px solid #E2E2E2;
+}
+
+/*SKU列表*/
+.buy-panel-sku-list{
+    display: flex;
+    flex-direction: row;
+}
+
+/*SKU标题容器*/
+.buy-panel-sku-title{
+
+}
+
+/*SKU标题文字*/
+.buy-panel-sku-title-text{
+    font-size: 30rpx;
+    color: #1F1F1F;
+}
+
+/*购买数量*/
+.buy-panel-num-container{
+    display: flex;
+    flex-direction:  row;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 30rpx;
+    padding-top: 30rpx;
+    padding-bottom: 30rpx;
+    padding-right: 30rpx;
+}
+
+/*SKU标签容器*/
+.buy-panel-sku-list{
+    padding: 25rpx 0;
+}
+
+/*购买数量/剩余 容器*/
+.buy-panel-num-title{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+/*购买数量文字*/
+.buy-panel-num-text{
+    font-size: 30rpx;
+    color: #1F1F1F;
+}
+/*剩余数量文字*/
+.buy-panel-stock-text{
+    margin-top: 10rpx;
+}
+
+
+
+/*购买栏底部*/
+.buy-panel-next{
+    background-color: #1296db;
+    height: 100rpx;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.buy-panel-next text{
+    font-size: 36rpx;
+    color: #FFF;
+}

@@ -15,7 +15,8 @@ Page({
   data: {
     goods: {},
     shop: {},
-    cartNum: 0
+    cartNum: 0,
+    panel: true
   },
   onLoad: function (options) {
     //const goodsId = options.goodsId;
@@ -42,6 +43,8 @@ Page({
     Router.shopDetail();
   },
 
+  /***********************购买栏事件***********************/
+
   /**
    * 点击加入购物车
    */
@@ -59,7 +62,7 @@ Page({
   /**
    * 跳转到购物车
    */
-  onToCartTap: function(event){
+  onToCartTap: function (event) {
     Router.cartIndex();
   },
 
@@ -67,10 +70,11 @@ Page({
    * 购买
    */
   onBuyTap: function (event) {
-    const goods = this.data.goods;
-    const trade = orderService.createSingleTrade(goods);
-    const param = JSON.stringify(trade);
-    Router.createTrade(param);
+    // const goods = this.data.goods;
+    // const trade = orderService.createSingleTrade(goods);
+    // const param = JSON.stringify(trade);
+    // Router.createTrade(param);
+    this.setData({ panel: true });
   },
 
   /**
@@ -78,5 +82,12 @@ Page({
    */
   setCartNumFromApp: function () {
     this.setData({ cartNum: cache.num });
+  },
+
+  /***********************购买面板事件***********************/
+
+  onPanelClose: function () {
+    this.setData({ panel: false });
   }
+
 });
