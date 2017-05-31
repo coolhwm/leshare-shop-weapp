@@ -55,6 +55,8 @@ function checkSession() {
   return wxPromisify(wx.checkSession)();
 }
 
+
+
 /**
  * 检查客户端会话状态
  */

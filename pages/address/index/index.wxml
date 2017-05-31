@@ -12,10 +12,10 @@
     </view>
 
     <view class="address-action-bar">
-        <navigator class="address-wechart">
+        <view class="address-wechart" catchtap="onWxAddressTap">
             <image src="/images/icons/wecahrt-white.png" />
             <text>从微信选择</text>
-        </navigator>
+        </view>
         <navigator class="address-add" url="../edit/edit">
             <image src="/images/icons/plus-white.png" />
             <text>新增地址</text>

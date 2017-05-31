@@ -14,13 +14,15 @@
         </view>
         <view class="address-mgr-container">
             <view class="address-default-container">
-                <view class="zan-icon zan-icon-{{is_default ? 'checked' : 'check'}}" /><text>设为默认</text>
+                <view catchtap="onDefaultTap" data-id="{{id}}">
+                    <view class="zan-icon zan-icon-{{is_default ? 'checked' : 'check'}}" /><text>设为默认</text>
+                </view>
             </view>
             <view class="address-opt-container">
-                <view class="address-opt-action">
+                <view class="address-opt-action" data-id="{{id}}" catchtap="onEditTap">
                     <image src="/images/icons/edit.png"/><text>编辑</text>
                 </view>
-                <view class="address-opt-action">
+                <view class="address-opt-action" data-id="{{id}}" catchtap="onDeleteTap">
                     <image src="/images/icons/delete.png"/><text>删除</text>
                 </view>
             </view>

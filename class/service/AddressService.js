@@ -20,7 +20,7 @@ export default class AddressService extends BaseService {
     /**
      * 新增地址
      */
-    save(address){
+    save(address) {
         const url = `${this.baseUrl}/addresses`;
         return this.post(url, address).then(res => {
             return res;
@@ -28,9 +28,47 @@ export default class AddressService extends BaseService {
     }
 
     /**
+     * 设置默认
+     */
+    default(id) {
+        const url = `${this.baseUrl}/addresses/${id}/default`;
+        return this.patch(url, {});
+    }
+
+    /**
+    * 删除地址对象
+    */
+    remove(id) {
+        const url = `${this.baseUrl}/addresses/${id}`;
+        return this.delete(url, {});
+    }
+
+    /**
      * 更新地址对象
      */
-    update(){
+    update() {
 
+    }
+
+    /**
+     * 选择微信地址
+     */
+    wxAddress() {
+        return new Promise((resolve, reject) => {
+            wx.chooseAddress({
+                success: data => {
+                    resolve({
+                        name: data.userName,
+                        phone: data.telNumber,
+                        province: data.provinceName,
+                        city: data.cityName,
+                        country: data.countyName,
+                        detail: data.detailInfo,
+                        is_default: 0
+                    });
+                },
+                fail: reject
+            });
+        });
     }
 }
