@@ -16,4 +16,21 @@ export default class AddressService extends BaseService {
         const url = `${this.baseUrl}/addresses`;
         return new Pagination(url);
     }
+
+    /**
+     * 新增地址
+     */
+    save(address){
+        const url = `${this.baseUrl}/addresses`;
+        return this.post(url, address).then(res => {
+            return res;
+        });
+    }
+
+    /**
+     * 更新地址对象
+     */
+    update(){
+
+    }
 }

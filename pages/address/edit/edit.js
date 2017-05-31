@@ -1,8 +1,13 @@
+import AddressService from "../../../class/service/AddressService";
+import Router from "../../../class/utils/Router";
+import Tips from "../../../class/utils/Tips";
+
+const addressService = new AddressService();
 var area = require('../../../data/area')
 var p = 0, c = 0, d = 0
 Page({
-  data:{
-    provinceName:[],
+  data: {
+    provinceName: [],
     provinceCode: [],
     provinceSelIndex: '',
     cityName: [],
@@ -15,12 +20,12 @@ Page({
     messageContent: '',
     showDistpicker: false
   },
-  onLoad:function(options){
+  onLoad: function (options) {
     // 载入时要显示再隐藏一下才能显示数据，如果有解决方法可以在issue提一下，不胜感激:-)
     // 初始化数据
     this.setAreaData()
   },
-  setAreaData: function(p, c, d){
+  setAreaData: function (p, c, d) {
     var p = p || 0 // provinceSelIndex
     var c = c || 0 // citySelIndex
     var d = d || 0 // districtSelIndex
@@ -61,23 +66,23 @@ Page({
       districtCode: districtCode
     })
   },
-  changeArea: function(e) {
+  changeArea: function (e) {
     p = e.detail.value[0]
     c = e.detail.value[1]
     d = e.detail.value[2]
     this.setAreaData(p, c, d)
   },
-  showDistpicker: function() {
+  showDistpicker: function () {
     this.setData({
       showDistpicker: true
     })
   },
-  distpickerCancel: function() {
+  distpickerCancel: function () {
     this.setData({
       showDistpicker: false
     })
   },
-  distpickerSure: function() {
+  distpickerSure: function () {
     this.setData({
       provinceSelIndex: p,
       citySelIndex: c,
@@ -85,16 +90,16 @@ Page({
     })
     this.distpickerCancel()
   },
-  savePersonInfo: function(e) {
+  savePersonInfo: function (e) {
     var data = e.detail.value
     var telRule = /^1[3|4|5|7|8]\d{9}$/, nameRule = /^[\u2E80-\u9FFF]+$/
     if (data.name == '') {
       this.showMessage('请输入姓名')
-    } else if (! nameRule.test(data.name)) {
+    } else if (!nameRule.test(data.name)) {
       this.showMessage('请输入中文名')
     } else if (data.tel == '') {
       this.showMessage('请输入手机号码')
-    } else if (! telRule.test(data.tel)) {
+    } else if (!telRule.test(data.tel)) {
       this.showMessage('手机号码格式不正确')
     } else if (data.province == '') {
       this.showMessage('请选择所在地区')
@@ -105,21 +110,41 @@ Page({
     } else if (data.address == '') {
       this.showMessage('请输入详细地址')
     } else {
-      this.showMessage(' 保存成功')
-      console.log(data)
+      //this.showMessage(' 保存成功')
+      this.saveOrUpdate(data);
     }
   },
-  showMessage: function(text) {
+  showMessage: function (text) {
     var that = this
     that.setData({
       showMessage: true,
       messageContent: text
     })
-    setTimeout(function(){
+    setTimeout(function () {
       that.setData({
         showMessage: false,
         messageContent: ''
       })
     }, 3000)
+  },
+
+  /**
+   * 业务代码
+   */
+  saveOrUpdate: function (data) {
+    //构造参数
+    const address = {
+      name: data.name,
+      phone: data.tel,
+      province: data.province,
+      city: data.city,
+      country: data.district,
+      detail: data.address,
+      is_default: data.default ? 1 : 0
+    };
+    //保存地址
+    addressService.save(address).then(res => {
+      Tips.toast('保存成功', () => Router.addressIndex());
+    });
   }
 })

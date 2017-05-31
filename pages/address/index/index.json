@@ -1,3 +1,4 @@
 {
-    "navigationBarTitleText" : "管理收货地址"
+    "navigationBarTitleText": "管理收货地址",
+    "enablePullDownRefresh": true
 }

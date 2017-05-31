@@ -50,6 +50,10 @@ export default class Router {
         });
     }
 
+    static addressIndex(reload = false){
+        this.goto(`/pages/address/index/index?reload=${reload}`);
+    }
+
     static goto(url) {
         wx.navigateTo({
             url: url

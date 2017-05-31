@@ -13,6 +13,12 @@ Page({
     this.loadNextPage();
   },
 
+  onShow: function (options) {
+    if(options && options.reload){
+      this.onPullDownRefresh();
+    }
+  },
+
   /**
   * 加载下一页
   */
@@ -22,5 +28,21 @@ Page({
     });
   },
 
+  /**
+   * 上划加载
+   */
+  onReachBottom: function (event) {
+    this.loadNextPage();
+  },
+
+
+  /**
+   * 下拉刷新
+   */
+  onPullDownRefresh: function () {
+    this.page.reset();
+    this.loadNextPage();
+    wx.stopPullDownRefresh();
+  },
 
 });
