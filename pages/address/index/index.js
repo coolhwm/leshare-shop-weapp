@@ -21,4 +21,6 @@ Page({
       this.setData({ addresses: data.list });
     });
   },
+
+
 });

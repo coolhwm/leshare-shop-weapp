@@ -1,7 +1,10 @@
 
 /*全局字体*/
-text {
+text,view,input {
   font-family: MicroSoft Yahei;
+}
+
+text{
   font-size: 24rpx;
   color: #666;
 }

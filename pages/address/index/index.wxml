@@ -12,13 +12,13 @@
     </view>
 
     <view class="address-action-bar">
-        <view class="address-wechart">
+        <navigator class="address-wechart">
             <image src="/images/icons/wecahrt-white.png" />
             <text>从微信选择</text>
-        </view>
-        <view class="address-add">
+        </navigator>
+        <navigator class="address-add" url="../edit/edit">
             <image src="/images/icons/plus-white.png" />
             <text>新增地址</text>
-        </view>
+        </navigator>
     </view>
 </view>
