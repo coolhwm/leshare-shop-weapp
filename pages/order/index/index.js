@@ -69,9 +69,9 @@ Page({
   },
 
 
-  /**
-   * 初始化TAB数据
-   */
+  //******************* TAB页 ******************/
+
+
   iniOrderTabBar: function () {
     const tabbar = {
       tabs: [

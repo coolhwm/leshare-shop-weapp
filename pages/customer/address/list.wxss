@@ -1,8 +1,45 @@
-@import "/templates/address/list/address-list-template.wxss";
+@import "/templates/address/mgr/address-item-template.wxss";
 page{
     height: 100%;
     background-color: #f2f2f2;
 }
-.address-action-container{
-    background: #FFF;
+
+.address-list-container{
+    padding-bottom: 100rpx;
+}
+
+
+/*底栏*/
+.address-action-bar{
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100rpx;
+}
+.address-action-bar text{
+    font-size: 32rpx;
+    color: #FFF;
+}
+.address-action-bar image{
+    height: 40rpx;
+    width: 40rpx;
+    margin-right: 10rpx;
+}
+
+.address-wechart{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    background-color: #09BB07;
+}
+
+.address-add{
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1296db;
 }

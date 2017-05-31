@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/customer/address/list",
     "pages/shop/index/index",
     "pages/goods/index/index",
     "pages/order/index/index",
@@ -8,8 +9,8 @@
     "pages/shop/detail/detail",
     "pages/order/trade/trade",
     "pages/cart/index/index",
-    "pages/home/visit-shop/visit-shop",
-    "pages/customer/address/list"
+    "pages/home/visit-shop/visit-shop"
+    
   ],
   "window": {
     "navigationBarBackgroundColor": "#1296db"

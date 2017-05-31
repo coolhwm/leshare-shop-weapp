@@ -1,16 +1,24 @@
 <!--我的地址列表页面-->
 <!--依赖模板：地址列表模板-->
-<import src="/templates/address/list/address-list-template.wxml" />
+<import src="/templates/address/mgr/address-item-template.wxml" />
 
 <view class="container">
     <view class="gap"></view>
-
-    <!--新增-->
-    <view class="address-action-container list-item">
-        <text class="list-item-title">新增地址</text>
-        <text class="list-item-value"></text>
-        <image class="list-item-icon" src="/images/icons/more.png"/>
+    <view class="address-list-container">
+        <block wx:for="{{addresses}}" >
+            <template is="addressItemTemplate" data="{{...item}}" />
+            <view class="gap"></view>
+        </block>
     </view>
-    <view class="gap"></view>
-    <template is="addressListTemplate"/>
+
+    <view class="address-action-bar">
+        <view class="address-wechart">
+            <image src="/images/icons/wecahrt-white.png" />
+            <text>从微信选择</text>
+        </view>
+        <view class="address-add">
+            <image src="/images/icons/plus-white.png" />
+            <text>新增地址</text>
+        </view>
+    </view>
 </view>
