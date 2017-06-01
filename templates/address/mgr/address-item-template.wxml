@@ -3,7 +3,7 @@
 <template name="addressItemTemplate">
     <view class="address-item-container">
         <!-- 地址内容 -->
-        <view class="address-info-container">
+        <view class="address-info-container" data-id="{{id}}" catchtap="onAddressTap">
             <view class="address-name-phone-container">
                 <text class="address-info-name">{{name}}</text>
                 <text class="address-info-phone">{{phone}}</text>

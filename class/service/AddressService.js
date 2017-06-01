@@ -38,9 +38,17 @@ export default class AddressService extends BaseService {
     /**
      * 设置默认
      */
-    default(id) {
+    setDefault(id) {
         const url = `${this.baseUrl}/addresses/${id}/default`;
         return this.patch(url, {});
+    }
+
+    /**
+     * 获取默认
+     */
+    getDefault(){
+        const url = `${this.baseUrl}/addresses/default`;
+        return this.get(url, {}).then(res => res.data);
     }
 
     /**

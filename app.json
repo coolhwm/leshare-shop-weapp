@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/order/trade/trade",
     "pages/shop/index/index",
     "pages/address/index/index",
     "pages/address/edit/edit",
@@ -8,7 +9,6 @@
     "pages/customer/index/index",
     "pages/order/detail/detail",
     "pages/shop/detail/detail",
-    "pages/order/trade/trade",
     "pages/cart/index/index",
     "pages/home/visit-shop/visit-shop"
     

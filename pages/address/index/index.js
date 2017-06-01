@@ -2,15 +2,22 @@ import AddressService from "../../../class/service/AddressService";
 import Router from "../../../class/utils/Router";
 import Tips from "../../../class/utils/Tips";
 
+const notification = require("../../../class/utils/WxNotificationCenter.js");
 const addressService = new AddressService();
 
 Page({
   page: {},
   data: {
+    mode: '',
     addresses: []
   },
 
   onLoad: function (options) {
+    const mode = options.mode;
+    if (mode) {
+      this.setData({ mode: mode });
+    }
+
     this.page = addressService.page();
     this.loadNextPage();
   },
@@ -70,7 +77,7 @@ Page({
   onDefaultTap: function (event) {
     const addrId = event.currentTarget.dataset.id;
     Tips.loading();
-    addressService.default(addrId).then(res => {
+    addressService.setDefault(addrId).then(res => {
       Tips.toast('设置成功', () => this.onPullDownRefresh());
     });
   },
@@ -81,7 +88,7 @@ Page({
   onDeleteTap: function (event) {
     const addrId = event.currentTarget.dataset.id;
     Tips.confirm('是否确认删除该地址', addrId)
-      .then(res =>{
+      .then(res => {
         Tips.loading();
         return addressService.remove(addrId);
       })
@@ -96,9 +103,25 @@ Page({
   onEditTap: function (event) {
     const addrId = event.currentTarget.dataset.id;
     const result = this.data.addresses.filter(addr => addr.id == addrId);
-    if(result.length > 0){
+    if (result.length > 0) {
       const addr = JSON.stringify(result[0]);
       Router.addressEdit(addr);
     }
+  },
+
+  /**
+   * 点击地址
+   */
+
+  onAddressTap: function (event) {
+    const addrId = event.currentTarget.dataset.id;
+    //只响应选择模式的点击
+    if (this.data.mode != 'choice') {
+      return;
+    }
+
+    const choice = this.data.addresses.find(addr => addr.id == addrId);
+    notification.postNotificationName("ON_ADDRESS_CHOICE",choice);
+    Router.backTrade();
   }
 });

@@ -20,6 +20,14 @@ export default class Router {
     static createTrade(trade) {
         this.goto(`/pages/order/trade/trade?trade=${trade}`);
     }
+
+    //选择订单地址返回
+    static backTrade() {
+        wx.navigateBack({
+            delta: 1,
+        });
+    }
+
     //订单列表（刷新）
     static orderIndexRefresh() {
         app.globalData.order.reload = true;
@@ -35,11 +43,11 @@ export default class Router {
     }
     //订单详情
     static orderDetail(orderId) {
-       this.goto(`/pages/order/detail/detail?orderId=${orderId}`);
+        this.goto(`/pages/order/detail/detail?orderId=${orderId}`);
     }
     //订单详情（跳转）
     static orderDetailRedirect(orderId) {
-       this.redirectTo(`/pages/order/detail/detail?orderId=${orderId}`);
+        this.redirectTo(`/pages/order/detail/detail?orderId=${orderId}`);
     }
 
     //购物车
@@ -53,15 +61,22 @@ export default class Router {
     /**
      * 地址列表(跳转)
      */
-    static addressIndex(reload = false){
+    static addressIndexRedirect(reload = false) {
         this.redirectTo(`/pages/address/index/index?reload=${reload}`);
+    }
+
+    /**
+    * 地址列表
+    */
+    static addressIndex(mode = 'none') {
+        this.goto(`/pages/address/index/index?mode=${mode}`);
     }
 
     /**
      * 地址详情页面
      */
-    static addressEdit(address){
-         this.goto(`/pages/address/edit/edit?addr=${address}`);
+    static addressEdit(address) {
+        this.goto(`/pages/address/edit/edit?addr=${address}`);
     }
 
     static goto(url) {
