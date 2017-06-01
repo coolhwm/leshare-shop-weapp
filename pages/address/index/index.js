@@ -1,4 +1,5 @@
 import AddressService from "../../../class/service/AddressService";
+import Router from "../../../class/utils/Router";
 import Tips from "../../../class/utils/Tips";
 
 const addressService = new AddressService();
@@ -94,5 +95,10 @@ Page({
    */
   onEditTap: function (event) {
     const addrId = event.currentTarget.dataset.id;
+    const result = this.data.addresses.filter(addr => addr.id == addrId);
+    if(result.length > 0){
+      const addr = JSON.stringify(result[0]);
+      Router.addressEdit(addr);
+    }
   }
 });

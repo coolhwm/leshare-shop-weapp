@@ -35,7 +35,7 @@
         <view class="form-item">
             <view class="form-item-hd">设为默认：</view>
             <view class="form-item-bd">
-                <switch type="switch" name="default" color="#2EA9DF" />
+                <switch type="switch" checked="{{default}}" name="default" color="#2EA9DF" />
             </view>
         </view>
     </view>

@@ -43,3 +43,23 @@ page{
     justify-content: center;
     background-color: #1296db;
 }
+
+
+/*占位*/
+.order-empty-tips{
+    margin-top: 300rpx;
+    height: 300rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.order-empty-tips image{
+    width:100rpx;
+    height: 100rpx;
+}
+.order-empty-tips text{
+    color: #656565;
+    font-size: 40rpx;
+    margin-left: 30rpx;
+}

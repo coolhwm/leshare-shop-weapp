@@ -50,8 +50,18 @@ export default class Router {
         });
     }
 
+    /**
+     * 地址列表
+     */
     static addressIndex(reload = false){
         this.goto(`/pages/address/index/index?reload=${reload}`);
+    }
+
+    /**
+     * 地址详情页面
+     */
+    static addressEdit(address){
+         this.goto(`/pages/address/edit/edit?addr=${address}`);
     }
 
     static goto(url) {

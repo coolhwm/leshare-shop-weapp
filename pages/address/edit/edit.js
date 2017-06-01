@@ -23,7 +23,14 @@ Page({
   onLoad: function (options) {
     // 载入时要显示再隐藏一下才能显示数据，如果有解决方法可以在issue提一下，不胜感激:-)
     // 初始化数据
-    this.setAreaData()
+    this.setAreaData();
+
+    //编辑模式
+    const param = options.addr;
+    if (param) {
+      const addr = JSON.parse(param);
+      this.setFormData(addr);
+    }
   },
   setAreaData: function (p, c, d) {
     var p = p || 0 // provinceSelIndex
@@ -128,10 +135,14 @@ Page({
     }, 3000)
   },
 
+
+  //******************* 业务代码 ******************/
+
   /**
-   * 业务代码
+   * 保存/更新
    */
   saveOrUpdate: function (data) {
+    console.info(data);
     //构造参数
     const address = {
       name: data.name,
@@ -141,10 +152,71 @@ Page({
       country: data.district,
       detail: data.address,
       is_default: data.default ? 1 : 0
-    };
+    }
     //保存地址
-    addressService.save(address).then(res => {
-      Tips.toast('保存成功', () => Router.addressIndex());
+    const addrId = this.data.addrId;
+    if (addrId) {
+      addressService.update(addrId, address).then(res => {
+        Tips.toast('保存成功', () => Router.addressIndex());
+      });
+    }
+    else {
+      addressService.save(address).then(res => {
+        Tips.toast('保存成功', () => Router.addressIndex());
+      });
+    }
+  },
+
+  /**
+   * 初始化数据
+   */
+  setFormData: function (data) {
+    //选择省的数据 provinceSelIndex
+    const p = this.data.provinceName.indexOf(data.province);
+
+    // 设置市的数据
+    var city = area[this.data.provinceCode[p]]
+    var cityName = [];
+    var cityCode = [];
+    for (var item in city) {
+      cityName.push(city[item])
+      cityCode.push(item)
+    }
+    this.setData({
+      cityName: cityName,
+      cityCode: cityCode
+    });
+
+    //选择市的数据
+    const c = cityName.indexOf(data.city);
+
+    // 设置区的数据
+    var district = area[cityCode[c]]
+    var districtName = [];
+    var districtCode = [];
+    for (var item in district) {
+      districtName.push(district[item])
+      districtCode.push(item)
+    }
+    this.setData({
+      districtName: districtName,
+      districtCode: districtCode
+    });
+
+    //选择区的数据
+    const d = districtName.indexOf(data.country);
+
+    //数据渲染
+    this.setData({
+      value: [p, c, d],
+      provinceSelIndex: p,
+      citySelIndex: c,
+      districtSelIndex: d,
+      name: data.name,
+      tel: data.phone,
+      address: data.detail,
+      default: data.is_default == 1,
+      addrId: data.id
     });
   }
 })

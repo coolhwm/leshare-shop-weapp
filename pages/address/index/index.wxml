@@ -5,7 +5,7 @@
 <view class="container">
     <view class="gap"></view>
     <view class="address-list-container">
-        <block wx:for="{{addresses}}" >
+        <block wx:for="{{addresses}}">
             <template is="addressItemTemplate" data="{{...item}}" />
             <view class="gap"></view>
         </block>
@@ -20,5 +20,11 @@
             <image src="/images/icons/plus-white.png" />
             <text>新增地址</text>
         </navigator>
+    </view>
+
+    <!--占位提示-->
+    <view class="order-empty-tips" wx:if="{{addresses.length == 0}}">
+        <image src="/images/icons/order-empty.png" />
+        <text>您还没有收货地址</text>
     </view>
 </view>

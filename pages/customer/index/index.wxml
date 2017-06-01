@@ -9,7 +9,7 @@
     </view>
 
     <view class="zan-panel">
-        <navigator class="zan-cell zan-cell--access" url="/pages/customer/address/list">
+        <navigator class="zan-cell zan-cell--access" url="/pages/address/index/index">
             <view class="zan-cell__bd">
                 <image src="/images/icons/address.png" />
                 <text>收货地址</text>

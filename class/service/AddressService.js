@@ -28,6 +28,14 @@ export default class AddressService extends BaseService {
     }
 
     /**
+     * 更新地址对象
+     */
+    update(addrId, address) {
+        const url = `${this.baseUrl}/addresses/${addrId}`;
+        return this.put(url, address);
+    }
+
+    /**
      * 设置默认
      */
     default(id) {
@@ -41,13 +49,6 @@ export default class AddressService extends BaseService {
     remove(id) {
         const url = `${this.baseUrl}/addresses/${id}`;
         return this.delete(url, {});
-    }
-
-    /**
-     * 更新地址对象
-     */
-    update() {
-
     }
 
     /**
