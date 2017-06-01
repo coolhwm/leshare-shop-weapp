@@ -21,12 +21,7 @@ export default class Router {
         this.goto(`/pages/order/trade/trade?trade=${trade}`);
     }
 
-    //选择订单地址返回
-    static backTrade() {
-        wx.navigateBack({
-            delta: 1,
-        });
-    }
+
 
     //订单列表（刷新）
     static orderIndexRefresh() {
@@ -88,6 +83,13 @@ export default class Router {
     static redirectTo(url) {
         wx.redirectTo({
             url: url
+        });
+    }
+
+    //返回一次
+    static back() {
+        wx.navigateBack({
+            delta: 1,
         });
     }
 }

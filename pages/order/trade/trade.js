@@ -47,7 +47,7 @@ Page({
 
     //注册事件监听器
     const that = this;
-    notification.addNotification("ON_ADDRESS_CHOICE", that.updateAddress, that)
+    notification.addNotification("ON_ADDRESS_CHOICE", that.updateAddress, that);
   },
 
   onShow(options) {

@@ -18,6 +18,10 @@ Page({
       this.setData({ mode: mode });
     }
 
+    //注册事件（列表更新）
+    const that = this;
+    notification.addNotification("ON_ADDRESS_UPDATE", that.onPullDownRefresh, that);
+
     this.page = addressService.page();
     this.loadNextPage();
   },
@@ -122,6 +126,6 @@ Page({
 
     const choice = this.data.addresses.find(addr => addr.id == addrId);
     notification.postNotificationName("ON_ADDRESS_CHOICE",choice);
-    Router.backTrade();
+    Router.back();
   }
 });

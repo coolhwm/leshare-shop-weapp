@@ -2,6 +2,7 @@ import AddressService from "../../../class/service/AddressService";
 import Router from "../../../class/utils/Router";
 import Tips from "../../../class/utils/Tips";
 
+const notification = require("../../../class/utils/WxNotificationCenter.js");
 const addressService = new AddressService();
 var area = require('../../../data/area')
 var p = 0, c = 0, d = 0
@@ -156,15 +157,18 @@ Page({
     //保存地址
     const addrId = this.data.addrId;
     if (addrId) {
-      addressService.update(addrId, address).then(res => {
-        Tips.toast('保存成功', () => Router.addressIndexRedirect(true));
-      });
+      addressService.update(addrId, address).then(this.onSaveOrUpdateSuccess);
     }
     else {
-      addressService.save(address).then(res => {
-        Tips.toast('保存成功', () => Router.addressIndexRedirect(true));
-      });
+      addressService.save(address).then(this.onSaveOrUpdateSuccess);
     }
+  },
+
+
+  onSaveOrUpdateSuccess: function(){
+    //通知列表发生变化
+    notification.postNotificationName("ON_ADDRESS_UPDATE");
+    Tips.toast('保存成功', () => Router.back());
   },
 
   /**
