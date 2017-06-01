@@ -157,12 +157,12 @@ Page({
     const addrId = this.data.addrId;
     if (addrId) {
       addressService.update(addrId, address).then(res => {
-        Tips.toast('保存成功', () => Router.addressIndex());
+        Tips.toast('保存成功', () => Router.addressIndex(true));
       });
     }
     else {
       addressService.save(address).then(res => {
-        Tips.toast('保存成功', () => Router.addressIndex());
+        Tips.toast('保存成功', () => Router.addressIndex(true));
       });
     }
   },

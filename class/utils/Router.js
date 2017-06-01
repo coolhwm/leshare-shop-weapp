@@ -51,10 +51,10 @@ export default class Router {
     }
 
     /**
-     * 地址列表
+     * 地址列表(跳转)
      */
     static addressIndex(reload = false){
-        this.goto(`/pages/address/index/index?reload=${reload}`);
+        this.redirectTo(`/pages/address/index/index?reload=${reload}`);
     }
 
     /**

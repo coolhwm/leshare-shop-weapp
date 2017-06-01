@@ -1,6 +1,6 @@
 
 /*全局字体*/
-text,view,input {
+text,input {
   font-family: MicroSoft Yahei;
 }
 
