@@ -73,7 +73,10 @@ Page({
       Tips.toast('支付成功', () => Router.orderIndexRefresh());
     }).catch(() => {
       //支付取消，跳转到订详情页面
-      Tips.toast('支付已取消', () => Router.orderDetailRedirect(orderId));
+      Tips.toast('支付已取消', () => {
+        notification.postNotificationName("ON_ORDER_UPDATE");
+        Router.orderDetailRedirect(orderId);
+      });
     });
   },
 
@@ -89,7 +92,7 @@ Page({
   /**
    * 地址修改回调函数
    */
-  updateAddress: function(info){
+  updateAddress: function (info) {
     this.setData({
       address: info
     });

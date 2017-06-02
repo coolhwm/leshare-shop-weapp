@@ -6,6 +6,7 @@ import Router from "../../../class/utils/Router";
 import Tips from "../../../class/utils/Tips";
 import Sku from "../../../class/entity/Sku";
 
+const notification = require("../../../class/utils/WxNotificationCenter.js");
 const Quantity = require('../../../templates/quantity/index');
 const app = getApp();
 const cache = getApp().globalData.cart;
@@ -40,7 +41,7 @@ Page(Object.assign({}, Quantity, {
     });
 
     //获取购物车商品数量
-    this.setCartNumFromApp()
+    this.setCartNumFromApp();
 
   },
 
@@ -83,7 +84,10 @@ Page(Object.assign({}, Quantity, {
   /**
    * private 设置购物车商品数量
    */
-  setCartNumFromApp: function () {
+  setCartNumFromApp: function (num) {
+    if (num) {
+      cache.num += num;
+    }
     this.setData({ cartNum: cache.num });
   },
 
@@ -124,14 +128,12 @@ Page(Object.assign({}, Quantity, {
    * 确定加入购物车
    */
   onConfirmCartTap: function (event) {
-    //页面渲染
-    cache.num += this.sku.num;
-    cache.reload = true;
-    this.setCartNumFromApp();
+    this.setCartNumFromApp(this.sku.num);
     //请求服务端
     cartService.add(this.data.goods.id, this.sku.num, this.sku.skuText).then(res => {
       Tips.toast('加入购物成功');
       this.sku.num = 1;
+      notification.postNotificationName("ON_CART_UPDATE");
       this.onPanelClose();
     });
   },

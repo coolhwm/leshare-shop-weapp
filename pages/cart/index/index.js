@@ -4,6 +4,7 @@ import Router from "../../../class/utils/Router";
 import Cart from "../../../class/entity/Cart";
 import Tips from "../../../class/utils/Tips";
 
+const notification = require("../../../class/utils/WxNotificationCenter.js");
 const Quantity = require('../../../templates/quantity/index');
 const cache = getApp().globalData.cart;
 const cartService = new CartService();
@@ -24,6 +25,9 @@ Page(Object.assign({}, Quantity, {
   onLoad: function (options) {
     //初始化分页参数
     this.page = cartService.page();
+    //注册事件,数量改变的时候重新加载
+    const that = this;
+    notification.addNotification("ON_CART_UPDATE", that.reload, that);
     //初始化购物车对象
     this.cart = new Cart();
     //加载第一页
@@ -37,15 +41,9 @@ Page(Object.assign({}, Quantity, {
     cache.num = this.cart.num;
   },
 
-
-  /**
-   * 页面展现
-   */
-  onShow: function () {
-    if (cache.init && cache.reload) {
-      this.page.reset();
-      this.loadNextPage();
-    }
+  reload: function () {
+    this.page.reset();
+    this.loadNextPage();
   },
 
   /**

@@ -1,5 +1,5 @@
 const app = getApp();
-
+const notification = require("./WxNotificationCenter.js");
 /**
  * 路由导航
  */
@@ -25,13 +25,12 @@ export default class Router {
 
     //订单列表（刷新）
     static orderIndexRefresh() {
-        app.globalData.order.reload = true;
+        notification.postNotificationName("ON_ORDER_UPDATE");
         this.orderIndex();
     }
+
     //订单列表
     static orderIndex() {
-        const cache = app.globalData.order;
-        cache.reload = true;
         wx.switchTab({
             url: "/pages/order/index/index"
         });

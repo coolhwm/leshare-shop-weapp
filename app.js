@@ -36,6 +36,8 @@ App({
           wx.removeStorageSync('userInfo');
           reject();
         }
+      }, res => {
+        console.error(res);
       });
     });
   },
@@ -181,8 +183,6 @@ App({
   globalData: {
     //购物车缓存
     cart: {
-      init: false,
-      reload: false,
       num: 0
     },
 
@@ -200,7 +200,7 @@ App({
     shopName: '连江海蜇专卖',
 
     //API地址
-    //baseUrl: "http://192.168.31.124:9999/v1/customer",
-    baseUrl: "http://leshare.shop:9999/v1/customer"
+    baseUrl: "http://192.168.31.124:9999/v1/customer",
+    //baseUrl: "http://leshare.shop:9999/v1/customer"
   }
 });

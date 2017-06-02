@@ -2,6 +2,7 @@ import OrderService from "../../../class/service/OrderService";
 import Router from "../../../class/utils/Router";
 import Tips from "../../../class/utils/Tips";
 
+const notification = require("../../../class/utils/WxNotificationCenter.js");
 const app = getApp();
 const cache = app.globalData.order;
 const orderService = new OrderService();
@@ -21,16 +22,20 @@ Page({
     this.page = orderService.page();
     this.iniOrderTabBar()
     this.loadNextPage();
+
+    //事件监听
+    const that = this;
+    notification.addNotification("ON_ORDER_UPDATE", that.reload, that);
   },
 
   /**
    * 页面展现
    */
   onShow: function () {
-    if (cache.reload) {
-      this.page.reset();
-      this.loadNextPage();
-    }
+    // if (cache.reload) {
+    //   this.page.reset();
+    //   this.loadNextPage();
+    // }
   },
 
   /**
@@ -54,11 +59,17 @@ Page({
     * 下拉刷新
     */
   onPullDownRefresh: function () {
+    this.reload();
+  },
+
+  /**
+   * 重新加载
+   */
+  reload: function () {
     this.page.reset();
     this.loadNextPage();
     wx.stopPullDownRefresh();
   },
-
 
   /**
    * 点击单个订单 
@@ -117,7 +128,7 @@ Page({
       Tips.loading('确认收货中');
       return orderService.confirmOrder(orderId);
     }).then(data => {
-      Tips.toast('确认收货成功', () => this.onPullDownRefresh());
+      Tips.toast('确认收货成功', () => this.reload());
     });
   },
 
@@ -131,7 +142,7 @@ Page({
       Tips.loaded();
       return orderService.wxpayOrder(payment);
     }).then(res => {
-      Tips.toast('支付成功', () => this.onPullDownRefresh());
+      Tips.toast('支付成功', () => this.reload());
     }).catch(() => {
       Tips.toast('支付已取消');
     });
@@ -146,14 +157,14 @@ Page({
       Tips.loading('订单关闭中');
       return orderService.closeOrder(orderId);
     }).then(data => {
-      Tips.toast('订单关闭成功', () => this.onPullDownRefresh());
+      Tips.toast('订单关闭成功', () => this.reload());
     });
   },
 
   /**
    * 评论订单
    */
-  onOrderComment: function(event){
+  onOrderComment: function (event) {
     Tips.toast("尚未实现");
   }
 })
