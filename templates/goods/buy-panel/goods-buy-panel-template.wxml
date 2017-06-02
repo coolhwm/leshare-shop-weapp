@@ -25,13 +25,13 @@
 
         <!--SKU展示 -->
         <view class="buy-panel-sku-container" wx:if="{{sku.exists}}">
-            <view wx:for="{{sku.labels}}" wx:for-item="label">
+            <view wx:for="{{sku.labels}}" wx:for-item="label" wx:key="key">
                 <view class="buy-panel-sku-title">
                     <text class="buy-panel-sku-title-text">{{label.key}}：</text>
                 </view>
 
                 <view class="buy-panel-sku-list">
-                    <view class="zan-label  {{sku.selected[label.key] == skuValue ? 'zan-label--primary' : ''}}" wx:for-item="skuValue" wx:for="{{label.value}}"
+                    <view class="zan-label  {{sku.selected[label.key] == skuValue ? 'zan-label--primary' : ''}}" wx:for-item="skuValue" wx:for="{{label.value}}" wx:key="*this"
                         data-sku-key="{{label.key}}" data-sku-value="{{skuValue}}" catchtap="onSkuTap">{{skuValue}}</view>
             </view>
         </view>

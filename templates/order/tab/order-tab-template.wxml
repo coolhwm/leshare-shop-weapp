@@ -3,7 +3,7 @@
 <!--依赖：无-->
 <template name="orderTabTemplate">
     <view class="order-tab-container">
-        <block wx:for="{{tabs}}">
+        <block wx:for="{{tabs}}" wx:key="value">
             <view class="order-tab-item {{selected==item.value?'active':''}}" data-status="{{item.value}}" catchtap="onOrderTabTap">
                 <text>{{item.name}}</text>
             </view>

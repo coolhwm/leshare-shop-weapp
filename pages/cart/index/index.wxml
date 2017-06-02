@@ -13,7 +13,7 @@
 
     <!--购物车内容-->
     <view class="item-list-container">
-        <block wx:for="{{cart.carts}}">
+        <block wx:for="{{cart.carts}}" wx:key="cart_id">
             <template is="cartItemTemplate" data="{{...item}}" />
         </block>
 

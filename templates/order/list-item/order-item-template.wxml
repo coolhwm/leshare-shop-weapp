@@ -16,7 +16,7 @@
 
         <!--商品列表-->
         <view class="order-goods-list-container">
-            <block wx:for="{{orderGoodsInfos}}">
+            <block wx:for="{{orderGoodsInfos}}" wx:key="goods_id">
                 <template is="orderGoodsTemplate" data="{{...item}}" />
                 <view class="order-goods-hr" />
             </block>

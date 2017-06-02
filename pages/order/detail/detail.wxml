@@ -6,7 +6,7 @@
 <view class="container">
     <!--订单状态栏/需要抽取模板-->
     <view class="order-status-bar">
-        <image class="order-status-icon" src="/images/icons/status-{{order.status}}.png" />
+        <image class="order-status-icon" src="/images/icons/status-{{order.status}}.png" wx:if="{{order.status}}" />
         <view class="order-status-container">
             <text class="order-status-text">{{order.status_text}}</text>
             <!-- 订单文本描述 -->
