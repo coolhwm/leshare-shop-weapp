@@ -2,12 +2,19 @@
 <!--依赖：无-->
 <template name="addressItemTemplate">
     <view class="address-item-container" catchtap="onAddressTap">
+
+        <!-- 占位空间 -->
+        <view class="address-empty-container" wx:if="{{!id}}">
+            <image class="address-empty-add" src="/images/icons/plus-square.png"/>
+            <text class="address-empty-text">新增收货地址</text>
+        </view>
+
         <!--左侧图标-->
-        <view class="address-icon-container">
+        <view class="address-icon-container" wx:if="{{id}}">
             <image class="icon-middle" src="/images/icons/address.png"/>
         </view>
         <!-- 地址内容 -->
-        <view class="address-info-container">
+        <view class="address-info-container" wx:if="{{id}}">
             <view class="address-name-phone-container">
                 <text class="address-info-name">{{name}}</text>
                 <text class="address-info-phone">{{phone}}</text>

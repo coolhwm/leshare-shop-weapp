@@ -53,3 +53,20 @@
 .address-default-label{
     margin-left: 10rpx;
 }
+
+/*占位符*/
+.address-empty-container{
+    display: flex;
+    flex-direction: row;
+    flex:1;
+    padding-left: 20rpx;
+    align-items: center;
+}
+.address-empty-add{
+    height: 80rpx;
+    width: 80rpx;
+}
+.address-empty-text{
+    font-size: 30rpx;
+    margin-left: 20rpx;
+}

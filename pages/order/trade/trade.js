@@ -16,28 +16,7 @@ Page({
   },
 
   onLoad: function (options) {
-    //const trade = JSON.parse(options.trade);
-    console.info('laod', options);
-    const trade = {
-      "status_text": "待确认",
-      "deal_price": 0.01,
-      "final_price": "0.01",
-      "address_id": "1",
-      "payment_type": "1",
-      "message": "",
-      "orderGoodsInfos": [
-        {
-          "goods_id": 2,
-          "goods_name": "纳克萨玛斯BB烤鸭",
-          "goods_sku": "五香:臻品:大红盒",
-          "sku_text": "五香,臻品,大红盒",
-          "image_url": "http://op09okwcw.bkt.clouddn.com/timg.jpg",
-          "goods_price": 0.01,
-          "count": 1
-        }
-      ],
-      "shop_name": "连江海蜇专卖"
-    };
+    const trade = JSON.parse(options.trade);
     this.setData({ trade: trade });
 
     //默认地址
@@ -51,7 +30,6 @@ Page({
   },
 
   onShow(options) {
-    console.info('show', options);
   },
 
   /**
@@ -70,11 +48,12 @@ Page({
 
     //准备交易对象
     const trade = this.data.trade;
+    const address = this.data.address;
     trade.message = this.data.message;
     Tips.loading('订单创建中');
 
     //订单创建成功后直接拉起支付页面
-    orderService.createOrder(trade).then(data => {
+    orderService.createOrder(trade, address).then(data => {
       return data.order_id;
     }).then(this.wxPay).catch(() => {
       Tips.toast('订单创建失败');

@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/order/trade/trade",
     "pages/shop/index/index",
+    "pages/order/trade/trade",
     "pages/address/index/index",
     "pages/address/edit/edit",
     "pages/goods/index/index",
@@ -11,7 +11,6 @@
     "pages/shop/detail/detail",
     "pages/cart/index/index",
     "pages/home/visit-shop/visit-shop"
-    
   ],
   "window": {
     "navigationBarBackgroundColor": "#1296db"

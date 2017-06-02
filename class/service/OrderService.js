@@ -74,8 +74,9 @@ export default class OrderService extends BaseService {
     /**
      * 创建订单
      */
-    createOrder(trade) {
+    createOrder(trade, address) {
         const url = `${this.baseUrl}/orders`;
+        this._processOrderAddress(trade, address);
         return this.post(url, trade).then(res => {
             return res.data;
         });
@@ -181,6 +182,16 @@ export default class OrderService extends BaseService {
             shop_name: this.shopName
         };
         return trade;
+    }
+
+
+    /**
+     * 处理订单地址
+     */
+    _processOrderAddress(order, address){
+        order.receiveName = address.name;
+        order.receivePhone = address.phone;
+        order.address = address.fullAddress;
     }
 
 

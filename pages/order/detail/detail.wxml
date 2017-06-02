@@ -24,7 +24,7 @@
     <view class="status-address-gap" />
 
     <!--收货地址-->
-    <template is="addressItemTemplate" />
+    <template is="addressItemTemplate" data="{{name:order.receiveName, phone:order.receivePhone, fullAddress: order.address}}" />
 
     <image class="address-hr" src="/images/icons/address-hr.png" />
 
