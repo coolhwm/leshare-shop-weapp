@@ -23,8 +23,10 @@ App({
     const sessionId = wx.getStorageSync("session_id");
     const url = `${this.globalData.baseUrl}/auth/checkSession`;
     const param = { wxLoginCode: sessionId };
+    console.info('开始检查服务端会话', param);
     return new Promise((resolve, reject) => {
       wxRequest.getRequest(url, param).then(res => {
+        console.info('服务端返回：', res);
         const result = res.data.data;
         if(result == 'ok'){
           resolve(user);
@@ -97,11 +99,11 @@ App({
       let param = { code: jsCode };
 
       wxRequest.getRequest(url, param).then(res => {
-        let thirdSessionId = res.data.data.sessionId;
-        if (!thirdSessionId) {
+        if(res.data.data == null || res.data.data.sessionId == null){
           reject("thirdSessionId获取失败");
         }
         else {
+          const thirdSessionId = res.data.data.sessionId;
           console.info(`thirdSessionId=${thirdSessionId}`);
           //缓存3rd_sessionId
           //wx.setStorageSync('thirdSessionId', thirdSessionId);

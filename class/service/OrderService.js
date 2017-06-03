@@ -1,6 +1,8 @@
 import BaseService from "./BaseService";
 import Pagination from "../utils/Page";
 
+
+
 /**
  * 订单服务类
  */
@@ -85,12 +87,15 @@ export default class OrderService extends BaseService {
     /**
      * 申请退款
      */
-    refundOrder(orderId) {
+    refundOrder(orderId, refund) {
         const url = `${this.baseUrl}/orders/${orderId}/status/refund`;
-        return this.patch(url, {}).then(res => {
-            //TODO 可能失败
-            return res.data;
+        return this.put(url, refund).then(res => {
+            console.info(res);
         });
+        // return this.patch(url, {}).then(res => {
+        //     //TODO 可能失败
+        //     return res.data;
+        // });
     }
 
     /**
@@ -186,9 +191,24 @@ export default class OrderService extends BaseService {
 
 
     /**
+     * 根据订单构造退款对象
+     */
+    createOrderRefund(order) {
+        return {
+            order_id: order.order_id,
+            uuid: order.uuid,
+            type: 0,
+            contact_name: order.receiveName,
+            contact_phone: order.receivePhone,
+            price: order.final_price
+        };
+    }
+
+
+    /**
      * 处理订单地址
      */
-    _processOrderAddress(order, address){
+    _processOrderAddress(order, address) {
         order.receiveName = address.name;
         order.receivePhone = address.phone;
         order.address = address.fullAddress;

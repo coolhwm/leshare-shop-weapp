@@ -39,16 +39,7 @@ Page({
   */
   onOrderRefund: function (event) {
     const order = this.data.order;
-
-    const refund = {
-      order_id: order.order_id,
-      uuid: order.uuid,
-      type: 1,
-      contact_name: order.receiveName,
-      contact_phone: order.receivePhone,
-      price: order.final_price
-    };
-
+    const refund = orderService.createOrderRefund(order);
     const refundStr = JSON.stringify(refund);
     Tips.confirm('您确认要申请退款吗？').then(() => {
       return Router.refundApply(refundStr);

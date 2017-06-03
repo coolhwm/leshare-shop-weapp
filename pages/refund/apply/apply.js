@@ -1,4 +1,8 @@
+import OrderService from "../../../class/service/OrderService";
+import Router from "../../../class/utils/Router";
+import Tips from "../../../class/utils/Tips";
 
+const orderService = new OrderService();
 const TopTips = require('../../../templates/toptips/index');
 
 Page(Object.assign({}, TopTips, {
@@ -9,17 +13,7 @@ Page(Object.assign({}, TopTips, {
   },
 
   onLoad: function (options) {
-    //const refund = JSON.parse(options.refund);
-
-    const refund = {
-      "order_id": 1627,
-      "uuid": "201706022300306813752899MOVZW",
-      "type": 1,
-      "contact_name": "张三",
-      "contact_phone": "18888888888",
-      "price": 0.11
-    };
-
+    const refund = JSON.parse(options.refund);
     this.setData({ refund: refund });
   },
 
@@ -51,6 +45,7 @@ Page(Object.assign({}, TopTips, {
    * 提交申请
    */
   onSubmitTap: function (event) {
+    //校验
     let errorMsg = '';
     if (this.isEmpty(this.data.refund.cause)) {
       errorMsg = '请填写退款原因';
@@ -65,8 +60,16 @@ Page(Object.assign({}, TopTips, {
       this.showZanTopTips(errorMsg);
       return;
     }
-    
-    console.info(event);
+
+    //发起退款
+    const refund = this.data.refund;
+    const orderId = refund.order_id;
+    Tips.confirm('您确认要申请退款吗？').then(() => {
+      Tips.loading('退款申请中');
+      return orderService.refundOrder(orderId, refund);
+    }).then(data => {
+      Tips.toast('退款申请成功', () => Router.orderIndexRefresh());
+    });
   },
 
   /**

@@ -36,6 +36,7 @@ export default class Tips {
 
     /**
     * 加载完毕
+    */
     static loaded() {
         wx.hideLoading();
     }
