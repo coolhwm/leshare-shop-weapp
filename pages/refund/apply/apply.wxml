@@ -5,11 +5,11 @@
         <!--基本信息-->
         <view class="zan-cell">
             <view class="zan-cell__bd">订单号：</view>
-            <view class="zan-cell__ft">201706022311185292673587OWOOS</view>
+            <view class="zan-cell__ft">{{refund.uuid}}</view>
         </view>
         <view class="zan-cell">
             <view class="zan-cell__bd">退款金额：</view>
-            <view class="zan-cell__ft">￥127.00</view>
+            <view class="zan-cell__ft">￥{{refund.price}}</view>
         </view>
     </view>
 
@@ -18,22 +18,22 @@
         <view class="zan-cell zan-form__item ">
             <view class="zan-form__title">退款原因：</view>
             <view class="zan-form__input zan-cell__bd">
-                <picker mode="selector" range="{{ area }}" value="{{ areaIndex }}" bindchange="onAreaChange">
-                    {{ area[areaIndex] ? area[areaIndex] : '请选择退款原因' }}
+                <picker id="cause" mode="selector" range="{{ reason }}" value="{{ reasonIndex }}" bindchange="onReasonChange">
+                    {{ reason[reasonIndex] ? reason[reasonIndex] : '请选择退款原因' }}
                 </picker>
             </view>
         </view>
         <view class="zan-cell zan-form__item">
             <view class="zan-form__title">联系人：</view>
-            <input class="zan-form__input zan-cell__bd" placeholder="联系人姓名" />
+            <input id='contact_name' class="zan-form__input zan-cell__bd" placeholder="联系人姓名" value="{{refund.contact_name}}" bindchange="onInputChange" />
         </view>
         <view class="zan-cell zan-form__item zan-cell--last-child">
             <view class="zan-form__title">联系方式：</view>
-            <input class="zan-form__input zan-cell__bd" type="number" maxlength="20" placeholder="手机或固定电话" />
+            <input id='contact_phone' class="zan-form__input zan-cell__bd" type="number" maxlength="20" placeholder="手机或固定电话"  value="{{refund.contact_phone}}" bindchange="onInputChange"  />
         </view>
     </view>
 
-    <view class="refund-action-bar">
+    <view class="refund-action-bar" catchtap="onSubmitTap">
         <text>提交申请</text>
     </view>
 </view>

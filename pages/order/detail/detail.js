@@ -38,13 +38,31 @@ Page({
   * 订单退款
   */
   onOrderRefund: function (event) {
-    const orderId = this.data.order.order_id;
+    const order = this.data.order;
+
+    const refund = {
+      order_id: order.order_id,
+      uuid: order.uuid,
+      type: 1,
+      contact_name: order.receiveName,
+      contact_phone: order.receivePhone,
+      price: order.final_price
+    };
+
+    const refundStr = JSON.stringify(refund);
     Tips.confirm('您确认要申请退款吗？').then(() => {
-      Tips.loading('退款申请中');
-      return orderService.refundOrder(orderId);
-    }).then(data => {
-      Tips.toast('退款申请成功', () => Router.orderIndexRefresh());
-    });;
+      return Router.refundApply(refundStr);
+    });
+
+
+
+    //const orderId = this.data.order.order_id;
+    // Tips.confirm('您确认要申请退款吗？').then(() => {
+    //   Tips.loading('退款申请中');
+    //   return orderService.refundOrder(orderId);
+    // }).then(data => {
+    //   Tips.toast('退款申请成功', () => Router.orderIndexRefresh());
+    // });;
 
   },
 

@@ -1,66 +1,44 @@
 // pages/refund/apply/apply.js
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
-  
+    refund: {},
+    reason: ['重复下单/误下单', '操作有误', '其他渠道价格更低', '不想买了', '其他原因']
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
-  
+    const refund = JSON.parse(options.refund);
+    this.setData({ refund: refund });
+  },
+
+
+  /**
+   * 修改输入框
+   */
+  onInputChange: function(e) {
+    console.info(e);
+    const refund = this.data.refund;
+    refund[e.currentTarget.id] = e.detail.value
+    this.setData(refund);
+  },
+  /**
+   * 修改原因
+   */
+  onReasonChange: function(e) {
+    console.info(e);
+    const refund = this.data.refund;
+    const reasonIndex = e.detail.value;
+    refund['cause'] = this.data.reason[reasonIndex];
+    this.setData({
+      refund: refund,
+      reasonIndex: reasonIndex
+    });
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
+   * 提交申请
    */
-  onReady: function () {
-  
-  },
+  onSubmitTap: function(){
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
   }
 })

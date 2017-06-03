@@ -44,6 +44,13 @@ export default class Router {
         this.redirectTo(`/pages/order/detail/detail?orderId=${orderId}`);
     }
 
+    /**
+     * 退款页面
+     */
+    static refundApply(refund){
+        this.goto(`/pages/refund/apply/apply?refund=${refund}`);
+    }
+
     //购物车
     static cartIndex() {
         const cache = app.globalData.order;
