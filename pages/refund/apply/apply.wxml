@@ -1,2 +1,39 @@
-<!--pages/refund/apply/apply.wxml-->
-<text>pages/refund/apply/apply.wxml</text>
+<!--申请退款页面-->
+<view class="container">
+
+    <view class="zan-panel">
+        <!--基本信息-->
+        <view class="zan-cell">
+            <view class="zan-cell__bd">订单号：</view>
+            <view class="zan-cell__ft">201706022311185292673587OWOOS</view>
+        </view>
+        <view class="zan-cell">
+            <view class="zan-cell__bd">退款金额：</view>
+            <view class="zan-cell__ft">￥127.00</view>
+        </view>
+    </view>
+
+    <!--填写内容-->
+    <view class="refund-form-container zan-form">
+        <view class="zan-cell zan-form__item ">
+            <view class="zan-form__title">退款原因：</view>
+            <view class="zan-form__input zan-cell__bd">
+                <picker mode="selector" range="{{ area }}" value="{{ areaIndex }}" bindchange="onAreaChange">
+                    {{ area[areaIndex] ? area[areaIndex] : '请选择退款原因' }}
+                </picker>
+            </view>
+        </view>
+        <view class="zan-cell zan-form__item">
+            <view class="zan-form__title">联系人：</view>
+            <input class="zan-form__input zan-cell__bd" placeholder="联系人姓名" />
+        </view>
+        <view class="zan-cell zan-form__item zan-cell--last-child">
+            <view class="zan-form__title">联系方式：</view>
+            <input class="zan-form__input zan-cell__bd" type="number" maxlength="20" placeholder="手机或固定电话" />
+        </view>
+    </view>
+
+    <view class="refund-action-bar">
+        <text>提交申请</text>
+    </view>
+</view>

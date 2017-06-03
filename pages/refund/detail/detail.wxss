@@ -1,1 +1,25 @@
-/* pages/refund/detail/detail.wxss */
+@import "/templates/steps/index.wxss";
+page{
+    height: 100%;
+    padding-bottom: 100rpx;
+    background-color: #F5F5F5;
+}
+/*按钮样式调整*/
+.tarde-button-panel{
+    padding-right: 20rpx;
+}
+
+/*购买栏*/
+.tarde-action-bar{
+    position: fixed;
+    bottom: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100rpx;
+    width: 100%;
+    background-color: #FAFAFA;
+    border-top: 1px solid #DCDCDC;
+    
+}

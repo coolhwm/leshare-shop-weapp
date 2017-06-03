@@ -2,7 +2,6 @@
   "pages": [
     "pages/refund/apply/apply",
     "pages/refund/detail/detail",
-    "pages/shop/index/index",
     "pages/order/trade/trade",
     "pages/address/index/index",
     "pages/address/edit/edit",
