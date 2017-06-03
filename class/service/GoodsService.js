@@ -45,7 +45,6 @@ export default class GoodsService extends BaseService {
         //处理价格标签
         this._processGoodsPriceLabel(detail);
 
-        console.info('订单详情', detail);
         return detail;
     }
 
