@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/refund/apply/apply",
     "pages/order/index/index",
     "pages/shop/index/index",
-    "pages/refund/apply/apply",
     "pages/refund/detail/detail",
     "pages/order/trade/trade",
     "pages/address/index/index",

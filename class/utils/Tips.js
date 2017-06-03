@@ -1,3 +1,4 @@
+
 /**
  * 提示与加载工具类
  */
@@ -35,7 +36,6 @@ export default class Tips {
 
     /**
     * 加载完毕
-    */
     static loaded() {
         wx.hideLoading();
     }

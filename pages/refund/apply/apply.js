@@ -1,5 +1,7 @@
-// pages/refund/apply/apply.js
-Page({
+
+const TopTips = require('../../../templates/toptips/index');
+
+Page(Object.assign({}, TopTips, {
 
   data: {
     refund: {},
@@ -7,7 +9,17 @@ Page({
   },
 
   onLoad: function (options) {
-    const refund = JSON.parse(options.refund);
+    //const refund = JSON.parse(options.refund);
+
+    const refund = {
+      "order_id": 1627,
+      "uuid": "201706022300306813752899MOVZW",
+      "type": 1,
+      "contact_name": "张三",
+      "contact_phone": "18888888888",
+      "price": 0.11
+    };
+
     this.setData({ refund: refund });
   },
 
@@ -15,7 +27,7 @@ Page({
   /**
    * 修改输入框
    */
-  onInputChange: function(e) {
+  onInputChange: function (e) {
     console.info(e);
     const refund = this.data.refund;
     refund[e.currentTarget.id] = e.detail.value
@@ -24,7 +36,7 @@ Page({
   /**
    * 修改原因
    */
-  onReasonChange: function(e) {
+  onReasonChange: function (e) {
     console.info(e);
     const refund = this.data.refund;
     const reasonIndex = e.detail.value;
@@ -38,7 +50,29 @@ Page({
   /**
    * 提交申请
    */
-  onSubmitTap: function(){
+  onSubmitTap: function (event) {
+    let errorMsg = '';
+    if (this.isEmpty(this.data.refund.cause)) {
+      errorMsg = '请填写退款原因';
+    }
+    else if (this.isEmpty(this.data.refund.contact_name)) {
+      errorMsg = '请填联系人';
+    }
+    else if (this.isEmpty(this.data.refund.contact_phone)) {
+      errorMsg = '请填联系方式';
+    }
+    if(!this.isEmpty(errorMsg)){
+      this.showZanTopTips(errorMsg);
+      return;
+    }
+    
+    console.info(event);
+  },
 
+  /**
+   * 工具方法，校验
+   */
+  isEmpty: function (str) {
+    return str == null || str == '';
   }
-})
+}))

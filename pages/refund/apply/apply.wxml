@@ -1,3 +1,5 @@
+<import src="/templates/toptips/index.wxml" />
+
 <!--申请退款页面-->
 <view class="container">
 
@@ -25,15 +27,28 @@
         </view>
         <view class="zan-cell zan-form__item">
             <view class="zan-form__title">联系人：</view>
-            <input id='contact_name' class="zan-form__input zan-cell__bd" placeholder="联系人姓名" value="{{refund.contact_name}}" bindchange="onInputChange" />
+            <input id='contact_name' class="zan-form__input zan-cell__bd" placeholder="联系人姓名" value="{{refund.contact_name}}" bindchange="onInputChange"
+            />
         </view>
         <view class="zan-cell zan-form__item zan-cell--last-child">
             <view class="zan-form__title">联系方式：</view>
-            <input id='contact_phone' class="zan-form__input zan-cell__bd" type="number" maxlength="20" placeholder="手机或固定电话"  value="{{refund.contact_phone}}" bindchange="onInputChange"  />
+            <input id='contact_phone' class="zan-form__input zan-cell__bd" type="number" maxlength="20" placeholder="手机或固定电话" value="{{refund.contact_phone}}"
+                bindchange="onInputChange" />
         </view>
     </view>
 
-    <view class="refund-action-bar" catchtap="onSubmitTap">
-        <text>提交申请</text>
+    <!--操作底栏-->
+    <view class="refund-action-bar">
+        <navigator class="refund-action" open-type="navigateBack">
+            <text>取消</text>
+        </navigator>
+
+        <view class="refund-action-primary" catchtap="onSubmitTap">
+            <text>提交申请</text>
+        </view>
     </view>
+
+    <!--提示框-->
+    <template is="zan-toptips" data="{{ zanTopTips }}"></template>
+
 </view>

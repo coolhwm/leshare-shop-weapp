@@ -1,4 +1,4 @@
-
+@import "/templates/toptips/index.wxss";
 page{
     height: 100%;
     padding-bottom: 100rpx;
@@ -18,10 +18,29 @@ page{
     align-items: center;
     width: 100%;
     height: 100rpx;
-    background-color: #1296db;
 }
 
-.refund-action-bar text{
+.refund-action-primary{
+    background-color: #1296db;
+}
+.refund-action{
+    background-color: #FFF;
+    border-top: 1px solid #e5e5e5;
+}
+.refund-action-primary text{
     font-size: 32rpx;
     color: #FFF;
+}
+
+.refund-action text{
+    font-size: 32rpx;
+    color: #333;
+}
+
+.refund-action, .refund-action-primary{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
