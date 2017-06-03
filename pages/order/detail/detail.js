@@ -73,15 +73,30 @@ Page({
       Tips.toast('支付已取消');
     });
   },
-  
+
   /**
    * 退款详情
    */
 
-  onRefundInfo: function(event){
+  onRefundInfo: function (event) {
     const refund = this.data.order.cur_refund;
     const refundStr = JSON.stringify(refund);
     Router.refundDetail(refundStr);
+  },
+
+
+  /**
+   * 撤销退款
+   */
+  onCancelRefund: function (event) {
+    const orderId = this.data.order.order_id;
+    const refundUUID = this.data.order.cur_refund.refund_uuid;
+    Tips.confirm('您确认取消退款申请吗？').then(() => {
+      Tips.loading('退款取消中');
+      return orderService.cancelRefund(orderId, refundUUID);
+    }).then(res => {
+      Tips.toast('退款取消成功', () => Router.orderDetailRedirect(orderId));
+    });
   },
 
   /**

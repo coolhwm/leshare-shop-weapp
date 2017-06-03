@@ -40,6 +40,7 @@ export default class Router {
     }
     //订单详情（跳转）
     static orderDetailRedirect(orderId) {
+        notification.postNotificationName("ON_ORDER_UPDATE");
         this.redirectTo(`/pages/order/detail/detail?orderId=${orderId}`);
     }
 

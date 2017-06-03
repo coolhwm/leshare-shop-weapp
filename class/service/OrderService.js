@@ -90,12 +90,19 @@ export default class OrderService extends BaseService {
     refundOrder(orderId, refund) {
         const url = `${this.baseUrl}/orders/${orderId}/status/refund`;
         return this.put(url, refund).then(res => {
-            console.info(res);
+            return res;
         });
-        // return this.patch(url, {}).then(res => {
-        //     //TODO 可能失败
-        //     return res.data;
-        // });
+    }
+
+    /**
+     *  取消退款
+     */
+    cancelRefund(orderId, refundUUID){
+        const url = `${this.baseUrl}/orders/${orderId}/status/cancelRefundMoney`;
+        const param = {
+            refund_uuid: refundUUID
+        };
+        return this.put(url, param);
     }
 
     /**
@@ -120,6 +127,8 @@ export default class OrderService extends BaseService {
         });
     }
 
+
+     /*********************** 生成方法 ***********************/
 
     /**
      * 购物车下单
@@ -203,7 +212,7 @@ export default class OrderService extends BaseService {
             price: order.final_price
         };
     }
-
+    
 
     /**
      * 根据退款时间生成退款步骤
@@ -273,6 +282,9 @@ export default class OrderService extends BaseService {
         };
     }
 
+
+
+    /*********************** 数据处理方法 ***********************/
 
     /**
      * 处理订单地址

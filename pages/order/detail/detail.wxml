@@ -81,7 +81,7 @@
             <view wx:if="{{order.is_refund}}" class="zan-btn zan-btn--small" catchtap="onRefundInfo">退款详情</view>
 
             <!--退款中-->
-            <view wx:if="{{order.status == 5}}" class="zan-btn zan-btn--small zan-btn--primary" catchtap="onRefundCancel">取消退款</view>
+            <view wx:if="{{order.status == 5}}" class="zan-btn zan-btn--small zan-btn--primary" catchtap="onCancelRefund">取消退款</view>
         </view>
     </view>
 </view>

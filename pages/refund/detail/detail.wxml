@@ -37,12 +37,4 @@
         </view>
     </view>
 
-    <!-- 底栏 -->
-    <view class="tarde-action-bar">
-        <view class="tarde-button-panel">
-            <view class="zan-btn zan-btn--small">联系卖家</view>
-            <view class="zan-btn zan-btn--small zan-btn--primary">取消退款</view>
-        </view>
-    </view>
-
 </view>
