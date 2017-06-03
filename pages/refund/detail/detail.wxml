@@ -8,23 +8,23 @@
         <!--基本信息-->
         <view class="zan-cell">
             <view class="zan-cell__bd">订单号：</view>
-            <view class="zan-cell__ft">201706022311185292673587OWOOS</view>
+            <view class="zan-cell__ft">{{refund.order_uuid}}</view>
         </view>
         <view class="zan-cell">
             <view class="zan-cell__bd">退款单号：</view>
-            <view class="zan-cell__ft">20170602231118529</view>
+            <view class="zan-cell__ft">{{refund.refund_uuid}}</view>
         </view>
         <view class="zan-cell">
             <view class="zan-cell__bd">退款金额：</view>
-            <view class="zan-cell__ft">￥127.00</view>
+            <view class="zan-cell__ft">￥{{refund.refund_price}}</view>
         </view>
         <view class="zan-cell">
             <view class="zan-cell__bd">退款原因：</view>
-            <view class="zan-cell__ft">重复下单/误下单</view>
+            <view class="zan-cell__ft">{{refund.cause}}</view>
         </view>
         <view class="zan-cell">
             <view class="zan-cell__bd">联系方式：</view>
-            <view class="zan-cell__ft"> 张三 13700000000</view>
+            <view class="zan-cell__ft"> {{refund.contact_name}} {{refund.contact_phone}}</view>
         </view>
     </view>
 
@@ -41,7 +41,7 @@
     <view class="tarde-action-bar">
         <view class="tarde-button-panel">
             <view class="zan-btn zan-btn--small">联系卖家</view>
-            <view class="zan-btn zan-btn--small zan-btn--primary">撤销退款</view>
+            <view class="zan-btn zan-btn--small zan-btn--primary">取消退款</view>
         </view>
     </view>
 

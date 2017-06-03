@@ -22,7 +22,6 @@ export default class Router {
     }
 
 
-
     //订单列表（刷新）
     static orderIndexRefresh() {
         notification.postNotificationName("ON_ORDER_UPDATE");
@@ -49,6 +48,13 @@ export default class Router {
      */
     static refundApply(refund){
         this.goto(`/pages/refund/apply/apply?refund=${refund}`);
+    }
+
+    /**
+     * 退款详情页面
+     */
+    static refundDetail(refund){
+         this.goto(`/pages/refund/detail/detail?refund=${refund}`);
     }
 
     //购物车

@@ -205,6 +205,9 @@ export default class OrderService extends BaseService {
     }
 
 
+
+
+
     /**
      * 处理订单地址
      */
@@ -242,7 +245,29 @@ export default class OrderService extends BaseService {
 
         //处理商品信息
         const goods = detail.orderGoodsInfos;
+        //处理退款信息
+        this._processOrderRefund(detail);
+        //处理商品信息
         this._processOrderGoods(goods);
+    }
+
+        /**
+     * 处理订单的退货信息
+     */
+    _processOrderRefund(order){
+        const refunds = order.orderRefunds;
+        if(refunds == null || refunds.length < 1){
+            //订单没有退款信息，不做处理
+            return;
+        }
+
+        const refund = refunds[0];
+        //曾经退款过，就一定需要展现退款记录
+        order.is_action = true;
+        //控制展现退款详情字段
+        order.is_refund = true;
+        //取出第一条退款记录
+        order.cur_refund = refund;
     }
 
 

@@ -1,4 +1,3 @@
-import { Http } from "../../../class/utils/Http.js";
 import OrderService from "../../../class/service/OrderService";
 import Tips from "../../../class/utils/Tips";
 import Router from "../../../class/utils/Router";
@@ -44,17 +43,6 @@ Page({
     Tips.confirm('您确认要申请退款吗？').then(() => {
       return Router.refundApply(refundStr);
     });
-
-
-
-    //const orderId = this.data.order.order_id;
-    // Tips.confirm('您确认要申请退款吗？').then(() => {
-    //   Tips.loading('退款申请中');
-    //   return orderService.refundOrder(orderId);
-    // }).then(data => {
-    //   Tips.toast('退款申请成功', () => Router.orderIndexRefresh());
-    // });;
-
   },
 
   /**
@@ -85,7 +73,16 @@ Page({
       Tips.toast('支付已取消');
     });
   },
+  
+  /**
+   * 退款详情
+   */
 
+  onRefundInfo: function(event){
+    const refund = this.data.order.cur_refund;
+    const refundStr = JSON.stringify(refund);
+    Router.refundDetail(refundStr);
+  },
 
   /**
    * 评论订单
