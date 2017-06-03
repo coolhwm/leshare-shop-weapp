@@ -205,7 +205,73 @@ export default class OrderService extends BaseService {
     }
 
 
+    /**
+     * 根据退款时间生成退款步骤
+     */
 
+    createOrderRefundSetps(refund) {
+        let steps = [];
+
+        //提交申请
+        const creareTime = refund.create_time;
+        if (creareTime) {
+            steps.push(this._createRefundSetp('您的取消申请已提交，请耐心等待', creareTime));
+            steps.push(this._createRefundSetp('等待卖家处理中,卖家24小时未处理将自动退款', creareTime));
+        }
+
+        //卖家处理
+        const sellerTime = refund.seller_dealtime;
+        if (sellerTime) {
+            //卖家同意
+            if (refund.is_agree == 1) {
+                steps.push(this._createRefundSetp('卖家已同意退款', sellerTime));
+                steps.push(this._createRefundSetp('款项已原路退回中，请注意查收', sellerTime));
+            }
+            //卖家不同意
+            else {
+                steps.push(this._createRefundSetp(`卖家不同意退款，原因：${refund.disagree_cause}`, sellerTime));
+
+            }
+        }
+
+        //处理结束
+        const finishTime = refund.finish_time;
+        if (finishTime) {
+            //卖家同意
+            if (refund.is_agree == 1) {
+                steps.push(this._createRefundSetp('退款成功', finishTime));
+            }
+            //卖家不同意
+            else {
+                steps.push(this._createRefundSetp('退款关闭，请联系卖家处理', finishTime));
+            }
+        }
+
+        //买家关闭
+        const closeTime = refund.close_time;
+        if (closeTime) {
+            steps.push(this._createRefundSetp('买家取消退款，交易恢复', closeTime));
+        }
+
+
+        //改变最后一个状态
+        const lastStep = steps[steps.length - 1];
+        lastStep.done = true;
+        lastStep.current = true;
+
+        //反转
+        steps = steps.reverse();
+        return steps;
+    }
+
+    _createRefundSetp(text, time) {
+        return {
+            text: text,
+            timestape: time,
+            done: false,
+            current: false
+        };
+    }
 
 
     /**
@@ -251,12 +317,12 @@ export default class OrderService extends BaseService {
         this._processOrderGoods(goods);
     }
 
-        /**
-     * 处理订单的退货信息
-     */
-    _processOrderRefund(order){
+    /**
+ * 处理订单的退货信息
+ */
+    _processOrderRefund(order) {
         const refunds = order.orderRefunds;
-        if(refunds == null || refunds.length < 1){
+        if (refunds == null || refunds.length < 1) {
             //订单没有退款信息，不做处理
             return;
         }
