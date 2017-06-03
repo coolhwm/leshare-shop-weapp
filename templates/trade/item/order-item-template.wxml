@@ -20,13 +20,5 @@
                 <view class="order-goods-hr" />
             </block>
         </view>
-
-        <!--汇总信息-->
-        <!--<view class="order-footer-container">
-            <text class="footer-count">共{{orderGoodsInfos.length}}件商品</text>
-            <text>合计:</text>
-            <text class="footer-price">￥{{final_price}}</text>
-            <text>(含运费￥0.00)</text>
-        </view>-->
     </view>
 </template>
