@@ -1,9 +1,11 @@
 import OrderService from "../../../class/service/OrderService";
+import ExpressService from "../../../class/service/ExpressService";
 import Tips from "../../../class/utils/Tips";
 import Router from "../../../class/utils/Router";
 
 const app = getApp();
 const orderService = new OrderService();
+const expressService = new ExpressService();
 
 Page({
   data: {
@@ -97,6 +99,17 @@ Page({
     }).then(res => {
       Tips.toast('退款取消成功', () => Router.orderDetailRedirect(orderId));
     });
+  },
+
+  /**
+   * 查看物流
+   */
+  onOrderTrace: function(event){
+    const order = this.data.order;
+    const preview = expressService.createExpressOrderPreview(order);
+    const previewStr = JSON.stringify(preview);
+    Router.orderTrace(previewStr);
+
   },
 
   /**

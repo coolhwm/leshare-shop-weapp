@@ -130,14 +130,14 @@ export default class ExpressService extends BaseService {
      */
 
     _queryExpressInfo(orderId) {
-        // const url = `${this.baseUrl}/express`;
-        // const param = { order_id: orderId };
-        // return this.get(url, param).then(res => res.showapi_res_body);
+        const url = `${this.publicUrl}/express`;
+        const param = { order_id: orderId };
+        return this.get(url, param).then(res => res.showapi_res_body);
 
         //模拟测试
-        return new Promise((resolve, reject) => {
-            resolve(this.mock.showapi_res_body);
-        });
+        // return new Promise((resolve, reject) => {
+        //     resolve(this.mock.showapi_res_body);
+        // });
     }
 
 

@@ -43,6 +43,10 @@ export default class Router {
         notification.postNotificationName("ON_ORDER_UPDATE");
         this.redirectTo(`/pages/order/detail/detail?orderId=${orderId}`);
     }
+    //订单物流信息
+    static orderTrace(order) {
+        this.goto(`/pages/order/trace/trace?order=${order}`);
+    }
 
     /**
      * 退款页面
@@ -86,6 +90,9 @@ export default class Router {
     static addressEdit(address) {
         this.goto(`/pages/address/edit/edit?addr=${address}`);
     }
+
+
+   
 
     static goto(url) {
         wx.navigateTo({

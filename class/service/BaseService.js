@@ -9,6 +9,7 @@ export default class BaseService {
 
     constructor() {
         this.baseUrl = app.globalData.baseUrl;
+        this.publicUrl = app.globalData.publicUrl;
         this.shopId = app.globalData.shopId;
         this.shopName = app.globalData.shopName;
         this.get = wxRequest.getRequest;

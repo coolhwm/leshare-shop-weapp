@@ -41,6 +41,7 @@
             
             <!-- 收货 -->
             <block wx:if="{{status == 3}}">
+                <view class="zan-btn zan-btn--small"  data-order-id="{{order_id}}" catchtap="onOrderTrace">物流查询</view>
                 <view class="zan-btn zan-btn--small zan-btn--primary"  data-order-id="{{order_id}}" catchtap="onOrderConfirm">确认收货</view>
             </block>
 

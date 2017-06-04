@@ -4,6 +4,10 @@ var wxApi = require('./class/utils/wxApi')
 var wxRequest = require('./class/utils/wxRequest')
 App({
   onLaunch: function () {
+    //URL初始化
+    this.globalData.baseUrl = this.globalData.publicUrl + '/customer';
+
+    //登录初始化
     this.checkLogin()
       .then(this.checkSession)
       .then(this.userInit)
@@ -202,7 +206,6 @@ App({
     shopName: '连江海蜇专卖',
 
     //API地址
-    //baseUrl: "http://192.168.31.124:9999/v1/customer",
-    baseUrl: "http://leshare.shop:9999/v1/customer"
+    publicUrl: "http://192.168.31.124:9999/v1",
   }
 });

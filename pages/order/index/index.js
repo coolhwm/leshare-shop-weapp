@@ -1,4 +1,5 @@
 import OrderService from "../../../class/service/OrderService";
+import ExpressService from "../../../class/service/ExpressService";
 import Router from "../../../class/utils/Router";
 import Tips from "../../../class/utils/Tips";
 
@@ -6,6 +7,7 @@ const notification = require("../../../class/utils/WxNotificationCenter.js");
 const app = getApp();
 const cache = app.globalData.order;
 const orderService = new OrderService();
+const expressService = new ExpressService();
 
 Page({
   page: {},
@@ -159,6 +161,17 @@ Page({
     }).then(data => {
       Tips.toast('订单关闭成功', () => this.reload());
     });
+  },
+
+  /**
+   * 物流查询
+   */
+  onOrderTrace: function (event) {
+    const orderId = event.currentTarget.dataset.orderId;
+    const order = this.data.orders.find(order => order.order_id == orderId);
+    const preview = expressService.createExpressOrderPreview(order);
+    const previewStr = JSON.stringify(preview);
+    Router.orderTrace(previewStr);
   },
 
   /**
