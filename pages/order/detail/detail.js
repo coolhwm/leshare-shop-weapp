@@ -9,15 +9,24 @@ const expressService = new ExpressService();
 
 Page({
   data: {
-    order: {}
+    order: {},
+    express: {}
   },
 
   onLoad: function (options) {
     const orderId = options.orderId;
     //const orderId = 1632;
+
+    //获取订单信息
     orderService.getInfo(orderId).then(data => {
       this.setData({ order: data });
     });
+
+    //获取当前物流信息
+    expressService.queryCurrentTrace(orderId).then(express => {
+      this.setData({ express: express });
+    });
+
   },
 
   /**
@@ -104,7 +113,10 @@ Page({
   /**
    * 查看物流
    */
-  onOrderTrace: function(event){
+  onOrderTrace: function (event) {
+    if(!this.data.express.timestape){
+      return;
+    }
     const order = this.data.order;
     const preview = expressService.createExpressOrderPreview(order);
     const previewStr = JSON.stringify(preview);

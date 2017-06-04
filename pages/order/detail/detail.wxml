@@ -23,18 +23,19 @@
 
     <view class="status-address-gap" />
 
-    <!--最新物流状态预览-->
-    <view class="order-trace-container" catchtap="onOrderTrace">
-        <image class="order-trace-icon" src="/images/icons/car.png" />
-        <view class="trace-info-container">
-            <text class="trace-info-text">[晋安五部] [福州市] [晋安五部]的派件已签收 感谢使用中通快递,期待再次为您服务!</text>
-            <text class="trace-info-timestape">2017/5/26/ 17:59:01</text>
+    <!--最新物流状态预览/展现标志位待确认-->
+    <block wx:if="{{order.is_express}}">
+        <view class="order-trace-container" catchtap="onOrderTrace">
+            <image class="order-trace-icon" src="/images/icons/car.png" />
+            <view class="trace-info-container">
+                <text class="trace-info-text">{{express.text}}</text>
+                <text class="trace-info-timestape" wx:if="{{express.timestape}}">{{express.timestape}}</text>
+            </view>
+            <image class="order-trace-more" wx:if="{{express.timestape}}" src="/images/icons/more-gray.png" />
         </view>
-        <image class="order-trace-more" src="/images/icons/more-gray.png" />
-    </view>
 
-    <view class="status-address-gap" />
-
+        <view class="status-address-gap" />
+    </block>
     <!--收货地址-->
     <template is="addressItemTemplate" data="{{name:order.receiveName, phone:order.receivePhone, fullAddress: order.address}}"
     />
@@ -85,15 +86,14 @@
 
             <!--有退款-->
             <view wx:if="{{order.is_refund}}" class="zan-btn zan-btn--small" catchtap="onRefundInfo">退款详情</view>
+            <!--有物流-->
+            <view wx:if="{{order.is_express}}" class="zan-btn zan-btn--small" data-order-id="{{order_id}}" catchtap="onOrderTrace">物流查询</view>
 
             <!--待发货-->
             <view wx:if="{{order.status == 2}}" class="zan-btn zan-btn--small " data-order-id="{{order_id}}" catchtap="onOrderRefund">申请退款</view>
 
             <!--待收货-->
-            <block wx:if="{{order.status == 3}}">
-                <view class="zan-btn zan-btn--small" data-order-id="{{order_id}}" catchtap="onOrderTrace">物流查询</view>
-                <view class="zan-btn zan-btn--small zan-btn--primary" data-order-id="{{order_id}}" catchtap="onOrderConfirm">确认收货</view>
-            </block>
+            <view wx:if="{{order.status == 3}}" class="zan-btn zan-btn--small zan-btn--primary" data-order-id="{{order_id}}" catchtap="onOrderConfirm">确认收货</view>
 
             <!--已收货-->
             <view wx:if="{{order.status == 4}}" class="zan-btn zan-btn--small zan-btn--primary" data-order-id="{{order_id}}" catchtap="onOrderComment">评价订单</view>

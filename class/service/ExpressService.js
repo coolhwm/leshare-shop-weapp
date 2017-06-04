@@ -13,16 +13,17 @@ export default class ExpressService extends BaseService {
      * 查询订单当前的物流状态
      */
     queryCurrentTrace(orderId) {
-        const express = this.queryTrace(orderId);
-        //没有物流信息
-        if(express.steps == null && express.steps.length < 1){
-            return {
-                text: '尚未查询到物流信息'
+        return this.queryTrace(orderId).then(express => {
+            //没有物流信息
+            if (express.steps == null || express.steps.length < 1) {
+                return {
+                    text: '尚未查询到物流信息'
+                }
             }
-        }
-        else{
-            return express.steps[0];
-        }
+            else {
+                return express.steps[0];
+            }
+        });
     }
 
 
@@ -46,7 +47,7 @@ export default class ExpressService extends BaseService {
     /**
      * 创建物流页面展现的基本信息
      */
-    createExpressOrderPreview(order){
+    createExpressOrderPreview(order) {
         const imageUrl = order.orderGoodsInfos[0].image_url;
         const goodsCount = order.orderGoodsInfos.length;
         return {
@@ -78,6 +79,10 @@ export default class ExpressService extends BaseService {
      * 提取步骤信息
      */
     _createTraceSteps(data) {
+        if(!data.expressBases){
+            return null;
+        }
+
         //映射每个步骤
         const steps = data.expressBases.map(this._processTraceStep);
 

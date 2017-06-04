@@ -327,11 +327,30 @@ export default class OrderService extends BaseService {
         this._processOrderRefund(detail);
         //处理商品信息
         this._processOrderGoods(goods);
+        //处理物流信息
+        this._processOrderTrace(detail);
     }
 
+
     /**
- * 处理订单的退货信息
- */
+     * 处理商品物流信息
+     */
+    _processOrderTrace(order){
+        const express = order.orderExpress;
+        if(express == null){
+            //没有物流信息，不做处理
+            return;
+        }
+
+        //有物流，就一定需要展现动作列表
+        order.is_action = true;
+        order.is_express = true;
+    }
+
+
+    /**
+     * 处理订单的退货信息
+     */
     _processOrderRefund(order) {
         const refunds = order.orderRefunds;
         if (refunds == null || refunds.length < 1) {
