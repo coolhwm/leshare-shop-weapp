@@ -34,16 +34,16 @@ page{
     background-color: #000;
     -webkit-filter:opacity(.8);
     width: 160rpx;
-    height: 40rpx;
+    height: 45rpx;
     position: absolute;
-    top:167rpx;
+    top:162rpx;
     text-align: center;
 }
 /*商品数量文字*/
 .goods-count-text{
     position: relative;
-    top: -2px;
-    font-size: 28rpx;
+    top: -1px;
+    font-size: 30rpx;
     color: #FFF;
 }
 

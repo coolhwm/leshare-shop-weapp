@@ -6,7 +6,22 @@ export default class ExpressService extends BaseService {
 
     constructor() {
         super();
+        this.statusDict = {
+            "-1": "待查询",
+            "0": "查询异常",
+            "1": "暂无记录",
+            "2": "在途中",
+            "3": "派送中",
+            "4": "已签收",
+            "5": "用户拒签",
+            "6": "疑难件",
+            "7": "无效单",
+            "8": "超时单",
+            "9": "签收失败",
+            "10": "退回"
+        };
 
+        
         // 模拟数据
         this.mock = {
             "showapi_res_code": 0,
@@ -67,6 +82,7 @@ export default class ExpressService extends BaseService {
         };
 
     }
+    /*********************** 对外方法 ***********************/
 
     /**
      * 查询订单当前的物流状态
@@ -91,6 +107,23 @@ export default class ExpressService extends BaseService {
         });
     }
 
+    /*********************** 对象构造方法 ***********************/
+
+    /**
+     * 创建物流页面展现的基本信息
+     */
+    createExpressOrderPreview(order){
+        const imageUrl = order.orderGoodsInfos[0].image_url;
+        const goodsCount = order.orderGoodsInfos.length;
+        return {
+            imageUrl: imageUrl,
+            goodsCount: goodsCount,
+            orderId: order.order_id
+        }
+    }
+
+
+    /*********************** 数据处理方法 ***********************/
 
     /**
      * 查询物流信息
@@ -143,6 +176,7 @@ export default class ExpressService extends BaseService {
             expTextName: data.expTextName,
             mailNo: data.mailNo,
             status: data.status,
+            statusText: this.statusDict[data.status],
             tel: data.tel,
         }
     }

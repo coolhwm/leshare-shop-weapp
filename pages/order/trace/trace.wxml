@@ -8,17 +8,17 @@
     <view class="express-container">
         <!--商品概览图片-->
         <view class="goods-info-container">
-            <image class="goods-info-image" src="http://op09okwcw.bkt.clouddn.com/timg.jpg" />
+            <image class="goods-info-image" src="{{order.imageUrl}}" />
 
             <!--商品数量概览-->
             <view class="goods-info-count">
-                <text class="goods-count-text">1件商品</text>
+                <text class="goods-count-text">{{order.goodsCount}}件商品</text>
             </view>
         </view>
 
         <!--快递信息-->
         <view class="express-info-container">
-            <text class="express-text-primary">物流状态：运输中</text>
+            <text class="express-text-primary">物流状态：{{info.statusText}}</text>
             <text class="express-text-desc">承运公司：{{info.expTextName}}</text>
             <text class="express-text-desc">运单编号：{{info.mailNo}}</text>
             <text class="express-text-desc">官方电话：{{info.tel}}</text>

@@ -12,7 +12,13 @@ Page({
 
 
   onLoad: function (options) {
-    const order = option.order;
+    //const order = options.order;
+    //模拟测试
+    const order = {
+      imageUrl: 'http://op09okwcw.bkt.clouddn.com/timg.jpg',
+      goodsCount: 2,
+      orderId: 123
+    };
     this.setData({
       order: order
     });

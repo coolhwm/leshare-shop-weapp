@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/order/trace/trace",
+    "pages/order/index/index",
     "pages/order/trade/trade",
     "pages/order/detail/detail",
     "pages/refund/detail/detail",
