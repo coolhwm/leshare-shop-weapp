@@ -23,6 +23,13 @@
             </view>
             <view class="zan-cell__ft"></view>
         </navigator>
+        <navigator class="zan-cell zan-cell--access" url="/pages/goods/favorite/favorite">
+            <view class="zan-cell__bd">
+                <image src="/images/icons/history.png" />
+                <text>浏览历史</text>
+            </view>
+            <view class="zan-cell__ft"></view>
+        </navigator>
         <view class="zan-cell zan-cell--access">
             <view class="zan-cell__bd">
                 <image src="/images/icons/cuppon.png" />

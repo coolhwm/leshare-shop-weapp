@@ -26,7 +26,7 @@
 /*商品名称*/
 .goods-name{
     color: #000311;
-    font-size: 32rpx;
+    font-size: 30rpx;
 }
 
 /*商品价格*/

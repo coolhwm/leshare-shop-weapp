@@ -1,66 +1,38 @@
-// pages/goods/favorite/favorite.js
+import FavoriteService from "../../../class/service/FavoriteService";
+
+const favoriteService = new FavoriteService();
 Page({
-
-  /**
-   * 页面的初始数据
-   */
+  page: {},
   data: {
-  
+    favorites: []
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
-  
+    //初始化分页参数
+    this.page = favoriteService.page();
+    this.loadNextPage();
+  },
+
+  reload: function () {
+    this.page.reset();
+    this.loadNextPage();
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
+   * 加载下一页
    */
-  onReady: function () {
-  
+  loadNextPage: function () {
+    this.page.next().then(data => {
+      console.info('收藏信息', data);
+    });
   },
 
   /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
+  * 上划加载
+  */
+  onReachBottom: function (event) {
+    this.loadNextPage();
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  }
+   /***********************操作事件***********************/
 })

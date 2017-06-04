@@ -1,6 +1,7 @@
 import ShopService from "../../../class/service/ShopService";
 import GoodsService from "../../../class/service/GoodsService";
 import OrderService from "../../../class/service/OrderService";
+import FavoriteService from "../../../class/service/FavoriteService";
 import CartService from "../../../class/service/CartService";
 import Router from "../../../class/utils/Router";
 import Tips from "../../../class/utils/Tips";
@@ -14,6 +15,7 @@ const shopService = new ShopService();
 const goodsService = new GoodsService();
 const orderService = new OrderService();
 const cartService = new CartService();
+const favoriteService = new FavoriteService();
 
 Page(Object.assign({}, Quantity, {
   sku: {},
@@ -24,8 +26,8 @@ Page(Object.assign({}, Quantity, {
     cartNum: 0,
   },
   onLoad: function (options) {
-    const goodsId = options.goodsId;
-    //const goodsId = 2;
+    //const goodsId = options.goodsId;
+    const goodsId = 2;
     //请求店铺基本信息
     shopService.getInfo().then(data => {
       this.setData({ shop: data });
@@ -136,6 +138,14 @@ Page(Object.assign({}, Quantity, {
       notification.postNotificationName("ON_CART_UPDATE");
       this.onPanelClose();
     });
+  },
+
+  /**
+   * 点击收藏
+   */
+  onLikeTap: function(event){
+    //favoriteService.add(this.data.goods.id);
+    favoriteService.remove(this.data.goods.id);
   },
 
   /**
