@@ -9,8 +9,8 @@
         <image class="order-status-icon" src="/images/icons/status-{{order.status}}.png" wx:if="{{order.status}}" />
         <view class="order-status-container">
             <text class="order-status-text">{{order.status_text}}</text>
-            <!-- 订单文本描述 -->
-            <text class="order-status-desc" wx:if="{{order.status == 1}}">请于23时10分10秒内付款，超时订单自动关闭</text>
+            <!-- 订单文本描述/需要抽取到Service中 -->
+            <text class="order-status-desc" wx:if="{{order.status == 1}}">请于24时00分00秒内付款，超时订单自动关闭</text>
             <text class="order-status-desc" wx:if="{{order.status == 2}}">您已完成付款，卖家准备发货中</text>
             <text class="order-status-desc" wx:if="{{order.status == 3}}">请您耐心等待，到货后请确认收货</text>
             <text class="order-status-desc" wx:if="{{order.status == 4}}">卖家已收到您的货款，请对本次交易进行评价</text>
@@ -23,14 +23,26 @@
 
     <view class="status-address-gap" />
 
+    <!--最新物流状态预览-->
+    <view class="order-trace-container">
+        <image class="order-trace-icon" src="/images/icons/car.png" />
+        <view class="trace-info-container">
+            <text class="trace-info-text">[晋安五部] [福州市] [晋安五部]的派件已签收 感谢使用中通快递,期待再次为您服务!</text>
+            <text class="trace-info-timestape">2017/5/26/ 17:59:01</text>
+        </view>
+         <image class="order-trace-more" src="/images/icons/more-gray.png" />
+    </view>
+
+    <view class="status-address-gap" />
+
     <!--收货地址-->
-    <template is="addressItemTemplate" data="{{name:order.receiveName, phone:order.receivePhone, fullAddress: order.address}}"
-    />
+    <template is="addressItemTemplate" data="{{name:order.receiveName, phone:order.receivePhone, fullAddress: order.address}}"/>
 
     <image class="address-hr" src="/images/icons/address-hr.png" />
 
     <!--订单项目-->
     <template is="orderItemTemplate" data="{{...order}}" />
+
     <!--订单信息-->
     <view class="zan-panel">
         <view class="zan-cell">
@@ -52,7 +64,8 @@
         </view>
     </view>
 
-    <!--购买栏-->
+
+    <!--购买栏/需要抽取模板-->
     <view class="tarde-action-bar" wx:if="{{order.is_action}}">
 
         <!--待支付（展现操作栏）-->

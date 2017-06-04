@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/order/detail/detail",
     "pages/order/index/index",
     "pages/refund/detail/detail",
     "pages/refund/apply/apply",
@@ -9,7 +10,6 @@
     "pages/address/edit/edit",
     "pages/goods/index/index",
     "pages/customer/index/index",
-    "pages/order/detail/detail",
     "pages/shop/detail/detail",
     "pages/cart/index/index",
     "pages/home/visit-shop/visit-shop"

@@ -175,3 +175,42 @@ page{
 .tarde-button-panel{
     padding-right: 20rpx;
 }
+
+
+
+/*物流状态预览栏*/
+.order-trace-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 25rpx;
+    background-color: #FFF;
+}
+
+/*跟踪-图标*/
+.order-trace-icon, .order-trace-more{
+    height: 40rpx;
+    width: 40rpx;
+}
+
+/*跟踪-主区域*/
+.trace-info-container{
+    display: flex;
+    flex-direction: column;
+    width: 600rpx;
+    margin-left: 20rpx;
+}
+
+/*跟踪-主文本*/
+.trace-info-text{
+    font-size: 28rpx;
+    color: #262626;
+    text-overflow: ellipsis;
+    word-break:keep-all;/* 不换行 */
+    white-space:nowrap;/* 不换行 */
+    overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+}
+/*跟踪-时间戳*/
+.trace-info-timestape{
+    margin-top: 10rpx;
+}
