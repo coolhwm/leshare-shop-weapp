@@ -11,8 +11,8 @@ Page({
   },
 
   onLoad: function (options) {
-    //const orderId = options.orderId;
-    const orderId = 1632;
+    const orderId = options.orderId;
+    //const orderId = 1632;
     orderService.getInfo(orderId).then(data => {
       this.setData({ order: data });
     });

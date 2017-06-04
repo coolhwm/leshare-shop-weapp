@@ -1,11 +1,11 @@
 {
   "pages": [
+    "pages/order/trace/trace",
+    "pages/order/trade/trade",
     "pages/order/detail/detail",
-    "pages/order/index/index",
     "pages/refund/detail/detail",
     "pages/refund/apply/apply",
     "pages/shop/index/index",
-    "pages/order/trade/trade",
     "pages/address/index/index",
     "pages/address/edit/edit",
     "pages/goods/index/index",
