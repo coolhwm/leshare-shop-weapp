@@ -88,7 +88,16 @@ export default class ExpressService extends BaseService {
      * 查询订单当前的物流状态
      */
     queryCurrentTrace(orderId) {
-
+        const express = this.queryTrace(orderId);
+        //没有物流信息
+        if(express.steps == null && express.steps.length < 1){
+            return {
+                text: '尚未查询到物流信息'
+            }
+        }
+        else{
+            return express.steps[0];
+        }
     }
 
 
@@ -121,7 +130,6 @@ export default class ExpressService extends BaseService {
             orderId: order.order_id
         }
     }
-
 
     /*********************** 数据处理方法 ***********************/
 
