@@ -1,1 +1,60 @@
-/* pages/order/trace/trace.wxss */
+@import "/templates/steps/index.wxss";
+
+page{
+    height: 100%;
+    background-color: #F5F5F5;
+}
+
+/*物流基本信息区域*/
+.express-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #FFF;
+    padding: 40rpx 25rpx;
+    border-bottom: 1px solid #E3E3E3;
+}
+
+/*快递信息区域*/
+.express-info-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 30rpx;
+}
+
+/*商品概览图片*/
+.goods-info-image{
+    height: 160rpx;
+    width: 160rpx;
+}
+
+/*商品数量*/
+.goods-info-count{
+    background-color: #000;
+    -webkit-filter:opacity(.8);
+    width: 160rpx;
+    height: 40rpx;
+    position: absolute;
+    top:167rpx;
+    text-align: center;
+}
+/*商品数量文字*/
+.goods-count-text{
+    position: relative;
+    top: -2px;
+    font-size: 28rpx;
+    color: #FFF;
+}
+
+/*主要文字*/
+.express-text-primary{
+    font-size: 30rpx;
+    color: #000311;
+}
+/*次要文字*/
+.express-text-desc{
+    font-size: 28rpx;
+    color: #A3A3A3;
+    margin-top: 10rpx;
+}

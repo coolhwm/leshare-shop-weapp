@@ -1,2 +1,38 @@
-<!--pages/order/trace/trace.wxml-->
-<text>pages/order/trace/trace.wxml</text>
+<!-- 物流跟踪展页面 -->
+
+<import src="/templates/steps/index.wxml" />
+
+<view class="container">
+
+    <!-- 物流基本信息区域 -->
+    <view class="express-container">
+        <!--商品概览图片-->
+        <view class="goods-info-container">
+            <image class="goods-info-image" src="http://op09okwcw.bkt.clouddn.com/timg.jpg" />
+
+            <!--商品数量概览-->
+            <view class="goods-info-count">
+                <text class="goods-count-text">1件商品</text>
+            </view>
+        </view>
+
+        <!--快递信息-->
+        <view class="express-info-container">
+            <text class="express-text-primary">物流状态：运输中</text>
+            <text class="express-text-desc">承运公司：{{info.expTextName}}</text>
+            <text class="express-text-desc">运单编号：{{info.mailNo}}</text>
+            <text class="express-text-desc">官方电话：{{info.tel}}</text>
+        </view>
+
+    </view>
+
+    <!-- 物流进度 -->
+    <view class="zan-panel">
+        <view class="zan-cell zan-cell--last-child">
+            <view class="zan-cell__bd">
+                <template is="zan-steps" data="{{ type: 'vertical', hasDesc: true, hasTimestape: true, steps }}"></template>
+            </view>
+        </view>
+    </view>
+
+</view>
