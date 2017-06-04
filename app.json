@@ -1,8 +1,8 @@
 {
   "pages": [ 
-    "pages/goods/favorite/favorite",
     "pages/order/index/index",
     "pages/order/trace/trace",
+    "pages/goods/favorite/favorite",
     "pages/order/trade/trade",
     "pages/order/detail/detail",
     "pages/refund/detail/detail",

@@ -17,7 +17,7 @@
 
         <!--快递信息-->
         <view class="express-info-container">
-            <text class="express-text-primary">物流状态：{{info.statusText}}</text>
+            <text class="express-text-primary">物流状态：{{info.status}}</text>
             <text class="express-text-desc">承运公司：{{info.expTextName}}</text>
             <text class="express-text-desc">运单编号：{{info.mailNo}}</text>
             <text class="express-text-desc">官方电话：{{info.tel}}</text>
