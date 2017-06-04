@@ -1,2 +1,10 @@
-<!--pages/goods/favorite/favorite.wxml-->
-<text>pages/goods/favorite/favorite.wxml</text>
+<!--收藏列表页面-->
+<!--依赖：收藏项目列表-->
+<import src="/templates/goods/fav/goods-fav-template.wxml" />
+
+<view class="container">
+    <template is="goodsFavTemplate" />
+    <template is="goodsFavTemplate" />
+    <template is="goodsFavTemplate" />
+    <template is="goodsFavTemplate" />
+</view>

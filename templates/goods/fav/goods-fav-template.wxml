@@ -1,0 +1,19 @@
+<!--收藏项目模板-->
+<!--依赖：无-->
+<!--输入：...goods -->
+<template name="goodsFavTemplate">
+    <view class="goods-fav-container">
+        <!--商品图片-->
+        <image class="goods-item-img" src="/images/mock/img.jpg" />
+
+        <!--商品信息-->
+        <view class="goods-info-container">
+            <text class="goods-name">纳克萨玛斯BB烤鸭</text>
+            <text class="goods-price">￥120.00</text>
+        </view>
+
+        <!--操作按钮-->
+        <image class="goods-cart-img" src="/images/icons/cart-add.png" />
+    </view>
+    <view class="goods-item-border"></view>
+</template>
