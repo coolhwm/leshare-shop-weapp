@@ -1,0 +1,10 @@
+<!--浏览历史列表-->
+<!--依赖：收藏项目列表-->
+<import src="/templates/goods/fav/goods-fav-template.wxml" />
+
+<view class="container">
+    <template is="goodsFavTemplate" />
+    <template is="goodsFavTemplate" />
+    <template is="goodsFavTemplate" />
+    <template is="goodsFavTemplate" />
+</view>
