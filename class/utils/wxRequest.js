@@ -26,18 +26,10 @@ Promise.prototype.finally = function (callback) {
 
 function createAuthHeader() {
   //需要进行缓存
-  const sessionId = wx.getStorageSync("session_id");
-  const user = wx.getStorageSync("userInfo");
-  const shopId = 3;
+  const loginCode = wx.getStorageSync("login_code");
   var header = {};
-  if (sessionId) {
-    header["session_id"] = sessionId;
-  }
-  if (user) {
-    header["customer_id"] = user.id;
-  }
-  if (shopId) {
-    header["shop_id"] = shopId;
+  if (loginCode) {
+    header["login_code"] = loginCode;
   }
   return header;
 }
