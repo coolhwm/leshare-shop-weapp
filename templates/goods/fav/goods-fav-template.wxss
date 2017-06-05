@@ -36,9 +36,9 @@
 }
 
 /*加入购物车图片*/
-.goods-cart-img{
-    height: 60rpx;
-    width: 60rpx;
+.goods-more-img{
+    height: 45rpx;
+    width: 45rpx;
 }
 /*分隔符*/
 .goods-item-border{

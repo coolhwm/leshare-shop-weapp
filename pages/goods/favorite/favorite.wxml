@@ -3,8 +3,13 @@
 <import src="/templates/goods/fav/goods-fav-template.wxml" />
 
 <view class="container">
-    <template is="goodsFavTemplate" />
-    <template is="goodsFavTemplate" />
-    <template is="goodsFavTemplate" />
-    <template is="goodsFavTemplate" />
+    <block wx:for="{{favorites}}" wx:key="goods_id">
+        <template is="goodsFavTemplate" data="{{...item}}" />
+    </block>
+</view>
+
+<!--占位提示-->
+<view class="order-empty-tips" wx:if="{{favorites.length == 0}}">
+    <image src="/images/icons/order-empty.png" />
+    <text>您还没有收藏商品</text>
 </view>

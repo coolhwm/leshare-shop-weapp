@@ -5,7 +5,7 @@
 <view class="container">
     <view class="gap"></view>
     <view class="address-list-container">
-        <block wx:for="{{addresses}}">
+        <block wx:for="{{addresses}}" wx:key="id">
             <template is="addressItemTemplate" data="{{...item}}" />
             <view class="gap"></view>
         </block>

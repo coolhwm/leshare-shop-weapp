@@ -15,7 +15,7 @@ export default class FavoriteService extends BaseService {
     */
     page() {
         const url = `${this.baseUrl}/shops/favorite_goods`;
-        return new Pagination(url, null);
+        return new Pagination(url, this._processFavGoods.bind(this));
     }
 
 
@@ -50,6 +50,18 @@ export default class FavoriteService extends BaseService {
             console.info(res);
             return res;
         });
+    }
+
+    /**
+     * 数据处理
+     */
+    _processFavGoods(data){
+        return {
+            goods_id: data.goods_id,
+            goods_name: data.goods.name,
+            goods_price: data.goods.sell_price,
+            image_url: data.goods.images[0].url
+        };
     }
 }
 

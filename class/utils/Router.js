@@ -12,6 +12,11 @@ export default class Router {
     static goodsIndex(goodsId) {
         this.goto(`/pages/goods/index/index?goodsId=${goodsId}`);
     }
+
+    static goodsIndexRedirect(goodsId) {
+        this.redirectTo(`/pages/goods/index/index?goodsId=${goodsId}`);
+    }
+
     //店铺详情
     static shopDetail() {
         this.goto(`/pages/shop/detail/detail?shopId=${this.shopId}`);

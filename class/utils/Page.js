@@ -62,7 +62,10 @@ export default class Pagination {
     _processData(data) {
         if (this.processFunc) {
             for (let i in data) {
-                this.processFunc(data[i]);
+                const result = this.processFunc(data[i]);
+                if(result){
+                    data[i] = result;
+                }
             }
         }
     }

@@ -27,8 +27,8 @@ Page(Object.assign({}, Quantity, {
     cartNum: 0,
   },
   onLoad: function (options) {
-    //const goodsId = options.goodsId;
-    const goodsId = 2;
+    const goodsId = options.goodsId;
+    //const goodsId = 2;
     //请求店铺基本信息
     shopService.getInfo().then(data => {
       this.setData({ shop: data });
@@ -158,6 +158,7 @@ Page(Object.assign({}, Quantity, {
       favoriteService.add(this.data.goods.id);
     }
     this.setData({ isFav: !isFav });
+    notification.postNotificationName("ON_FAV_UPDATE");
   },
 
   /**
