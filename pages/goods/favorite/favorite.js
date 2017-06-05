@@ -1,7 +1,6 @@
 import FavoriteService from "../../../class/service/FavoriteService";
 import Router from "../../../class/utils/Router";
 
-const notification = require("../../../class/utils/WxNotificationCenter.js");
 const favoriteService = new FavoriteService();
 Page({
   page: {},
@@ -13,9 +12,6 @@ Page({
     //初始化分页参数
     this.page = favoriteService.page();
     this.loadNextPage();
-    //注册监听
-    const that = this;
-    notification.addNotification("ON_FAV_UPDATE", that.reload, that);
   },
 
   reload: function () {

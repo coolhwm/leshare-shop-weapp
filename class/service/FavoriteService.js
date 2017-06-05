@@ -53,15 +53,31 @@ export default class FavoriteService extends BaseService {
     }
 
     /**
-     * 数据处理
-     */
-    _processFavGoods(data){
+    * 数据处理
+    */
+    _processFavGoods(data) {
         return {
             goods_id: data.goods_id,
             goods_name: data.goods.name,
             goods_price: data.goods.sell_price,
-            image_url: data.goods.images[0].url
+            image_url: this._processGoodsPreview(data.goods.images)
         };
+    }
+
+     /**
+     * 处理预览图
+     */
+    _processGoodsPreview(images) {
+        //图片处理
+        if (images == null || images.length < 1) {
+            return "/images/goods/broken.png";
+        }
+        else if (images[0].url == null) {
+            return "/images/goods/broken.png";
+        }
+        else {
+            return images[0].url;
+        }
     }
 }
 

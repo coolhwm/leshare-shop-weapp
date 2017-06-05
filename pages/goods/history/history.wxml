@@ -1,10 +1,15 @@
-<!--浏览历史列表-->
+<!--浏览历史列表页面-->
 <!--依赖：收藏项目列表-->
 <import src="/templates/goods/fav/goods-fav-template.wxml" />
 
 <view class="container">
-    <template is="goodsFavTemplate" />
-    <template is="goodsFavTemplate" />
-    <template is="goodsFavTemplate" />
-    <template is="goodsFavTemplate" />
+    <block wx:for="{{histories}}" wx:key="goods_id">
+        <template is="goodsFavTemplate" data="{{...item}}" />
+    </block>
+</view>
+
+<!--占位提示-->
+<view class="order-empty-tips" wx:if="{{histories.length == 0}}">
+    <image src="/images/icons/order-empty.png" />
+    <text>您还没有浏览历史记录</text>
 </view>

@@ -1,66 +1,55 @@
-// pages/goods/history/history.js
+import LogService from "../../../class/service/LogService";
+import Router from "../../../class/utils/Router";
+const logService = new LogService();
+
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
+  page: {},
   data: {
-  
+    histories: []
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
-  
+    //初始化分页参数
+    this.page = logService.page();
+    this.loadNextPage();
+  },
+
+  reload: function () {
+    this.page.reset();
+    this.loadNextPage();
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
+   * 加载下一页
    */
-  onReady: function () {
-  
+  loadNextPage: function () {
+    this.page.next().then(data => {
+      this.setData({ histories: data.list });
+    });
   },
 
   /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
+  * 下拉刷新
+  */
   onPullDownRefresh: function () {
-  
+    this.reload();
   },
 
   /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
+  * 上划加载
+  */
+  onReachBottom: function (event) {
+    this.loadNextPage();
   },
 
+  /***********************操作事件***********************/
+
   /**
-   * 用户点击右上角分享
+   * 点击商品
    */
-  onShareAppMessage: function () {
-  
+  onGoodsTap: function(event){
+      const goodsId = event.currentTarget.dataset.goodsId;
+      Router.goodsIndex(goodsId);
   }
-})
+});

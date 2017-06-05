@@ -158,7 +158,6 @@ Page(Object.assign({}, Quantity, {
       favoriteService.add(this.data.goods.id);
     }
     this.setData({ isFav: !isFav });
-    notification.postNotificationName("ON_FAV_UPDATE");
   },
 
   /**
