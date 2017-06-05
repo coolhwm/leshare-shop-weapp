@@ -4,9 +4,9 @@
 <template name="goodsBuyBarTemplate">
     <view class="buy-bar-container">
 
-        <view class="bar-action-container" catchtap="onLikeTap">
-            <image class="icon-middle" src="/images/icons/like-gray.png" />
-            <text>收藏</text>
+        <view class="bar-action-container" data-fav='{{isFav}}' catchtap="onLikeTap">
+            <image class="icon-middle" src="/images/icons/like-{{isFav ? 'red' : 'gray'}}.png" />
+            <text>{{isFav ? '已收藏': '收藏' }}</text>
         </view>
 
         <view class="gap-v"></view>

@@ -28,7 +28,7 @@
     <template is="goodsDetailTemplate" data="{{details : goods.goodsDetails}}" />
 
     <!--购买栏-->
-    <template is="goodsBuyBarTemplate" data="{{...goods, cartNum}}" />
+    <template is="goodsBuyBarTemplate" data="{{...goods, cartNum, isFav}}" />
 
     <!--底栏占位-->
     <view class="goods-index-footer"></view>

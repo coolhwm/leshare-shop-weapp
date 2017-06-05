@@ -22,8 +22,10 @@ export default class FavoriteService extends BaseService {
     /**
      * 判断是否为收藏商品
      */
-    is(){
-        
+    is(goodsId) {
+        const url = `${this.baseUrl}/favorite_goods/check`;
+        const param = {goods_id : goodsId};
+        return this.get(url, param);
     }
 
     /**
@@ -34,6 +36,7 @@ export default class FavoriteService extends BaseService {
         const param = { goods_id: goodsId }
         return this.post(url, param).then(res => {
             console.info(res);
+            return res;
         });
     }
 
@@ -45,6 +48,7 @@ export default class FavoriteService extends BaseService {
         const param = { goods_id: goodsId }
         return this.delete(url, param).then(res => {
             console.info(res);
+            return res;
         });
     }
 }

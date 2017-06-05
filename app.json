@@ -1,9 +1,9 @@
 {
   "pages": [ 
+    "pages/goods/index/index",
     "pages/shop/index/index",
     "pages/goods/history/history",
     "pages/goods/favorite/favorite",
-    "pages/goods/index/index",
     "pages/order/index/index",
     "pages/order/trace/trace",
     "pages/order/trade/trade",

@@ -23,6 +23,7 @@ Page(Object.assign({}, Quantity, {
     goods: {},
     shop: {},
     sku: {},
+    isFav: false,
     cartNum: 0,
   },
   onLoad: function (options) {
@@ -40,6 +41,11 @@ Page(Object.assign({}, Quantity, {
         goods: data,
         sku: this.sku.export()
       });
+      return favoriteService.is(goodsId);
+    }).then(res => {
+      if (res.data.state == 1) {
+        this.setData({ isFav: 1 });
+      }
     });
 
     //获取购物车商品数量
@@ -143,9 +149,15 @@ Page(Object.assign({}, Quantity, {
   /**
    * 点击收藏
    */
-  onLikeTap: function(event){
-    //favoriteService.add(this.data.goods.id);
-    favoriteService.remove(this.data.goods.id);
+  onLikeTap: function (event) {
+    const isFav = event.currentTarget.dataset.fav;
+    if (isFav) {
+      favoriteService.remove(this.data.goods.id);
+    }
+    else {
+      favoriteService.add(this.data.goods.id);
+    }
+    this.setData({ isFav: !isFav });
   },
 
   /**
