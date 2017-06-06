@@ -24,7 +24,7 @@ export default class FavoriteService extends BaseService {
      */
     is(goodsId) {
         const url = `${this.baseUrl}/favorite_goods/check`;
-        const param = {goods_id : goodsId};
+        const param = {goodsId : goodsId};
         return this.get(url, param);
     }
 
@@ -33,7 +33,7 @@ export default class FavoriteService extends BaseService {
      */
     add(goodsId) {
         const url = `${this.baseUrl}/favorite_goods`;
-        const param = { goods_id: goodsId }
+        const param = { goodsId: goodsId }
         return this.post(url, param).then(res => {
             console.info(res);
             return res;
@@ -45,7 +45,7 @@ export default class FavoriteService extends BaseService {
      */
     remove(goodsId) {
         const url = `${this.baseUrl}/favorite_goods`;
-        const param = { goods_id: goodsId }
+        const param = { goodsId: goodsId }
         return this.delete(url, param).then(res => {
             console.info(res);
             return res;
@@ -57,10 +57,10 @@ export default class FavoriteService extends BaseService {
     */
     _processFavGoods(data) {
         return {
-            goods_id: data.goods_id,
-            goods_name: data.goods.name,
-            goods_price: data.goods.sell_price,
-            image_url: this._processGoodsPreview(data.goods.images)
+            goodsId: data.goodsId,
+            goodsName: data.goods.name,
+            goodsPrice: data.goods.sellPrice,
+            imageUrl: this._processGoodsPreview(data.goods.images)
         };
     }
 

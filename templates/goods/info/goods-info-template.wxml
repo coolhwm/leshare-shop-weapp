@@ -15,7 +15,7 @@
 
         <!-- 销量窗口(浮动) -->
         <view class="goods-sales-container">
-            <text>销量: {{sales_volume}}</text>
+            <text>销量: {{salesVolume}}</text>
         </view>
         
         <view class="hr-light"></view>
@@ -26,7 +26,7 @@
         </view>
          <view class="goods-price-container">
             <text class="goods-info-price">￥ {{sku.isReady ? sku.detail.price: priceLable}}</text>
-            <text class="goods-item-price-original" wx:if="{{!sku.exists}}">￥ {{original_price}}</text>
+            <text class="goods-item-price-original" wx:if="{{!sku.exists}}">￥ {{originalPrice}}</text>
         </view>
     </view>
 </template>

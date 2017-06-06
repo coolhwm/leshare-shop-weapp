@@ -25,9 +25,9 @@ export default class CartService extends BaseService {
     add(goodsId, num = 1, sku) {
         const url = `${this.baseUrl}/carts`;
         const param = {
-            goods_id: goodsId,
-            goods_sku: sku,
-            goods_num: num
+            goodsId: goodsId,
+            goodsSku: sku,
+            goodsNum: num
         };
         return this.post(url, param).then(res => {
             return res;
@@ -50,7 +50,7 @@ export default class CartService extends BaseService {
     update(cartId, num) {
         const url = `${this.baseUrl}/carts/${cartId}`;
         const param = {
-            goods_num: num
+            goodsNum: num
         };
         return this.put(url, param).then(res => {
             //TODO
@@ -62,9 +62,9 @@ export default class CartService extends BaseService {
      */
     _processCartData(cart){
         cart.check = true;
-        cart.goods_price = cart.goods_price.toFixed(2);
-        if(cart.goods_sku){
-            cart.sku_text = cart.goods_sku.replace(/:/g, ',');
+        cart.goodsPrice = cart.goodsPrice.toFixed(2);
+        if(cart.goodsSku){
+            cart.skuText = cart.goodsSku.replace(/:/g, ',');
         }
         console.info(cart);
     }

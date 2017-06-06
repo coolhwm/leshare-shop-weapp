@@ -15,7 +15,7 @@
         <view class="address-mgr-container">
             <view class="address-default-container">
                 <view catchtap="onDefaultTap" data-id="{{id}}">
-                    <view class="zan-icon zan-icon-{{is_default ? 'checked' : 'check'}}" /><text>设为默认</text>
+                    <view class="zan-icon zan-icon-{{isDefault ? 'checked' : 'check'}}" /><text>设为默认</text>
                 </view>
             </view>
             <view class="address-opt-container">

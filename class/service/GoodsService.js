@@ -18,6 +18,15 @@ export default class GoodsService extends BaseService {
         return new Pagination(url, this._processGoodsData.bind(this));
     }
 
+
+    /**
+     * 查询商品目录
+     */
+    categories(pid = 0){
+        const url = `${this.baseUrl}/shop_parent_categories/${pid}`;
+        return this.get(url).then(res => res.data);
+    }
+
     /**
      * 查询商品详情
      */
@@ -115,7 +124,7 @@ export default class GoodsService extends BaseService {
      */
     _processGoodsData(item) {
         //结构赋值
-        var {name, sell_price, original_price} = item;
+        var {name, sellPrice, originalPrice} = item;
 
         //长名字处理
         if (name.length > 12) {
@@ -123,8 +132,8 @@ export default class GoodsService extends BaseService {
         }
 
         //销售价处理
-        if (original_price == null || original_price == 0) {
-            item.original_price = sell_price;
+        if (originalPrice == null || originalPrice == 0) {
+            item.originalPrice = sellPrice;
         }
 
         //处理图片

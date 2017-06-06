@@ -54,7 +54,7 @@ Page({
 
     //订单创建成功后直接拉起支付页面
     orderService.createOrder(trade, address).then(data => {
-      return data.order_id;
+      return data.orderId;
     }).then(this.wxPay).catch(() => {
       Tips.toast('订单创建失败');
     });

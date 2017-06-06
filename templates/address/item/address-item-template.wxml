@@ -18,7 +18,7 @@
             <view class="address-name-phone-container">
                 <text class="address-info-name">{{name}}</text>
                 <text class="address-info-phone">{{phone}}</text>
-                <view class="address-default-label zan-label zan-label--primary zan-label--small zan-label--plain" wx:if="{{is_default == 1}}">默认</view>
+                <view class="address-default-label zan-label zan-label--primary zan-label--small zan-label--plain" wx:if="{{isDefault == 1}}">默认</view>
             </view>
             <view class="address-detail-container">
                 <text class="address-info-detail">{{fullAddress}}</text>

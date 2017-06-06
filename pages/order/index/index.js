@@ -168,7 +168,7 @@ Page({
    */
   onOrderTrace: function (event) {
     const orderId = event.currentTarget.dataset.orderId;
-    const order = this.data.orders.find(order => order.order_id == orderId);
+    const order = this.data.orders.find(order => order.orderId == orderId);
     const preview = expressService.createExpressOrderPreview(order);
     const previewStr = JSON.stringify(preview);
     Router.orderTrace(previewStr);

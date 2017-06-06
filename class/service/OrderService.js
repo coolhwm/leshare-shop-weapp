@@ -97,10 +97,10 @@ export default class OrderService extends BaseService {
     /**
      *  取消退款
      */
-    cancelRefund(orderId, refundUUID){
+    cancelRefund(orderId, refundUuid){
         const url = `${this.baseUrl}/orders/${orderId}/status/cancelRefundMoney`;
         const param = {
-            refund_uuid: refundUUID
+            refundUuid: refundUuid
         };
         return this.put(url, param);
     }
@@ -140,27 +140,27 @@ export default class OrderService extends BaseService {
         for (let i in goodsList) {
             const goods = goodsList[i];
             const info = {
-                goods_id: goods.goods_id,
-                goods_name: goods.goods_name,
-                image_url: goods.goods_image,
-                goods_price: goods.goods_price,
-                count: goods.goods_num,
-                sku_text: goods.sku_text,
-                goods_sku: goods.goods_sku
+                goodsId: goods.goodsId,
+                goodsName: goods.goodsName,
+                imageUrl: goods.goodsImage,
+                goodsPrice: goods.goodsPrice,
+                count: goods.goodsNum,
+                skuText: goods.skuText,
+                goodsSku: goods.goodsSku
             };
             orderGoodsInfos.push(info);
-            price += goods.goods_price * goods.goods_num;
+            price += goods.goodsPrice * goods.goodsNum;
         }
         //构造交易对象
         const trade = {
-            status_text: "待确认",
-            deal_price: price.toFixed(2),
-            final_price: price.toFixed(2),
-            address_id: "1",
-            payment_type: "1",
+            statusText: "待确认",
+            dealPrice: price.toFixed(2),
+            finalPrice: price.toFixed(2),
+            addressId: "1",
+            paymentType: "1",
             message: "",
             orderGoodsInfos: orderGoodsInfos,
-            shop_name: this.shopName
+            shopName: this.shopName
         };
         return trade;
     }
@@ -176,24 +176,24 @@ export default class OrderService extends BaseService {
 
         //构造交易对象
         const trade = {
-            status_text: "待确认",
-            deal_price: goods.original_price,
-            final_price: (goods.sell_price * num).toFixed(2),
-            address_id: "1",
-            payment_type: "1",
+            statusText: "待确认",
+            dealPrice: goods.originalPrice,
+            finalPrice: (goods.sellPrice * num).toFixed(2),
+            addressId: "1",
+            paymentType: "1",
             message: "",
             orderGoodsInfos: [
                 {
-                    goods_id: goods.id,
-                    goods_name: goods.name,
-                    goods_sku: sku,
-                    sku_text: skuText,
-                    image_url: imageUrl,
-                    goods_price: goods.sell_price,
+                    goodsId: goods.id,
+                    goodsName: goods.name,
+                    goodsSku: sku,
+                    skuText: skuText,
+                    imageUrl: imageUrl,
+                    goodsPrice: goods.sellPrice,
                     count: num
                 }
             ],
-            shop_name: this.shopName
+            shopName: this.shopName
         };
         return trade;
     }
@@ -204,12 +204,12 @@ export default class OrderService extends BaseService {
      */
     createOrderRefund(order) {
         return {
-            order_id: order.order_id,
+            orderId: order.orderId,
             uuid: order.uuid,
             type: 0,
-            contact_name: order.receiveName,
-            contact_phone: order.receivePhone,
-            price: order.final_price
+            contactName: order.receiveName,
+            contactPhone: order.receivePhone,
+            price: order.finalPrice
         };
     }
     
@@ -222,29 +222,29 @@ export default class OrderService extends BaseService {
         let steps = [];
 
         //提交申请
-        const creareTime = refund.create_time;
+        const creareTime = refund.createTime;
         if (creareTime) {
             steps.push(this._createRefundSetp('您的取消申请已提交，请耐心等待', creareTime));
             steps.push(this._createRefundSetp('等待卖家处理中,卖家24小时未处理将自动退款', creareTime));
         }
 
         //卖家处理
-        const sellerTime = refund.seller_dealtime;
+        const sellerTime = refund.sellerDealtime;
         if (sellerTime) {
             //卖家同意
-            if (refund.is_agree == 1) {
+            if (refund.isAgree == 1) {
                 steps.push(this._createRefundSetp('卖家已同意退款', sellerTime));
                 steps.push(this._createRefundSetp('款项已原路退回中，请注意查收', sellerTime));
             }
             //卖家不同意
             else {
-                steps.push(this._createRefundSetp(`卖家不同意退款，原因：${refund.disagree_cause}`, sellerTime));
+                steps.push(this._createRefundSetp(`卖家不同意退款，原因：${refund.disagreeCause}`, sellerTime));
 
             }
         }
 
         //处理结束
-        const finishTime = refund.finish_time;
+        const finishTime = refund.finishTime;
         if (finishTime) {
             //卖家同意
             if (refund.is_agree == 1) {
@@ -257,7 +257,7 @@ export default class OrderService extends BaseService {
         }
 
         //买家关闭
-        const closeTime = refund.close_time;
+        const closeTime = refund.closeTime;
         if (closeTime) {
             steps.push(this._createRefundSetp('买家取消退款，交易恢复', closeTime));
         }
@@ -301,9 +301,9 @@ export default class OrderService extends BaseService {
      */
     _processOrderListItem(order) {
         const status = order.status;
-        order.status_text = this.statusDict[status];
+        order.statusText = this.statusDict[status];
         //动作控制 待付款/待评论/待收货
-        order.is_action = status == 1 || status == 3 || status == 4;
+        order.isAction = status == 1 || status == 3 || status == 4;
         //处理商品信息
         const goods = order.orderGoodsInfos;
         this._processOrderGoods(goods);
@@ -315,11 +315,11 @@ export default class OrderService extends BaseService {
     _processOrderDetail(detail) {
         //状态字典
         const status = detail.status;
-        detail.status_text = this.statusDict[status];
-        detail.is_action = status == 1 || status == 2 || status == 3 || status == 4;
+        detail.statusText = this.statusDict[status];
+        detail.isAction = status == 1 || status == 2 || status == 3 || status == 4;
 
         //支付方式
-        detail.payment_text = this.paymentDict[detail.payment_type];
+        detail.paymentText = this.paymentDict[detail.payment_type];
 
         //处理商品信息
         const goods = detail.orderGoodsInfos;
@@ -343,8 +343,8 @@ export default class OrderService extends BaseService {
         }
 
         //有物流，就一定需要展现动作列表
-        order.is_action = true;
-        order.is_express = true;
+        order.isAction = true;
+        order.isExpress = true;
     }
 
 
@@ -360,11 +360,11 @@ export default class OrderService extends BaseService {
 
         const refund = refunds[0];
         //曾经退款过，就一定需要展现退款记录
-        order.is_action = true;
+        order.isAction = true;
         //控制展现退款详情字段
-        order.is_refund = true;
+        order.isRefund = true;
         //取出第一条退款记录
-        order.cur_refund = refund;
+        order.curRefund = refund;
     }
 
 
@@ -374,9 +374,9 @@ export default class OrderService extends BaseService {
     _processOrderGoods(goods) {
         goods.forEach(item => {
             //处理SKU描述
-            const sku = item.goods_sku;
+            const sku = item.goodsSku;
             const skuText = this._processOrderSku(sku);
-            item.sku_text = skuText;
+            item.skuText = skuText;
         });
     }
 
@@ -384,10 +384,10 @@ export default class OrderService extends BaseService {
      * 处理SKU的默认值
      */
 
-    _processOrderSku(goods_sku) {
+    _processOrderSku(goodsSku) {
         let skuText = "";
-        if (goods_sku && goods_sku != '') {
-            skuText = goods_sku.replace(/:/g, ',');
+        if (goodsSku && goodsSku != '') {
+            skuText = goodsSku.replace(/:/g, ',');
         }
         return skuText;
     }

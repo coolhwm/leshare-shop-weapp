@@ -25,7 +25,7 @@
         </view>
         <view class="zan-cell tarde-summary-container">
             <text class="tarde-summary-text">共{{trade.orderGoodsInfos.length}}件商品</text>
-            <text class="tarde-summary-text">小计：</text><text class="tarde-summary-price">￥{{trade.final_price}}</text>
+            <text class="tarde-summary-text">小计：</text><text class="tarde-summary-price">￥{{trade.finalPrice}}</text>
         </view>
     </view>
 
@@ -33,7 +33,7 @@
     <view class="tarde-action-bar">
         <view>
             <text class="tarde-total-text">合计：</text>
-            <text class="tarde-total-price">￥{{trade.final_price}}</text>
+            <text class="tarde-total-price">￥{{trade.finalPrice}}</text>
         </view>
         <view class="trade-confirm-button" catchtap="onConfirmTap">
             <text>提交订单</text>

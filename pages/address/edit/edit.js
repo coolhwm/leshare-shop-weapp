@@ -152,7 +152,7 @@ Page({
       city: data.city,
       country: data.district,
       detail: data.address,
-      is_default: data.default ? 1 : 0
+      isDefault: data.default ? 1 : 0
     }
     //保存地址
     const addrId = this.data.addrId;

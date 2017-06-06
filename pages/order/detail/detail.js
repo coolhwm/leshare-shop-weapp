@@ -33,7 +33,7 @@ Page({
    * 关闭订单
    */
   onOrderClose: function (event) {
-    const orderId = this.data.order.order_id;
+    const orderId = this.data.order.orderId;
     Tips.confirm('您确认取消该订单吗？').then(() => {
       Tips.loading('订单关闭中');
       return orderService.closeOrder(orderId);
@@ -60,7 +60,7 @@ Page({
    * 确认收货
    */
   onOrderConfirm: function (event) {
-    const orderId = this.data.order.order_id;
+    const orderId = this.data.order.orderId;
     Tips.confirm('您确认已收到货品？').then(() => {
       Tips.loading('确认收货中');
       return orderService.confirmOrder(orderId);
@@ -73,7 +73,7 @@ Page({
    * 微信支付
    */
   onWxPay: function (event) {
-    const orderId = this.data.order.order_id;
+    const orderId = this.data.order.orderId;
     Tips.loading('支付加载中');
     orderService.prepayOrder(orderId).then(payment => {
       Tips.loaded();
@@ -90,7 +90,7 @@ Page({
    */
 
   onRefundInfo: function (event) {
-    const refund = this.data.order.cur_refund;
+    const refund = this.data.order.curRefund;
     const refundStr = JSON.stringify(refund);
     Router.refundDetail(refundStr);
   },
@@ -100,11 +100,11 @@ Page({
    * 撤销退款
    */
   onCancelRefund: function (event) {
-    const orderId = this.data.order.order_id;
-    const refundUUID = this.data.order.cur_refund.refund_uuid;
+    const orderId = this.data.order.orderId;
+    const refundUuid = this.data.order.curRefund.refundUuid;
     Tips.confirm('您确认取消退款申请吗？').then(() => {
       Tips.loading('退款取消中');
-      return orderService.cancelRefund(orderId, refundUUID);
+      return orderService.cancelRefund(orderId, refundUuid);
     }).then(res => {
       Tips.toast('退款取消成功', () => Router.orderDetailRedirect(orderId));
     });

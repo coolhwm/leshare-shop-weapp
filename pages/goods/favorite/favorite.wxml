@@ -3,7 +3,7 @@
 <import src="/templates/goods/fav/goods-fav-template.wxml" />
 
 <view class="container">
-    <block wx:for="{{favorites}}" wx:key="goods_id">
+    <block wx:for="{{favorites}}" wx:key="goodsId">
         <template is="goodsFavTemplate" data="{{...item}}" />
     </block>
 </view>

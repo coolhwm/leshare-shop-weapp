@@ -3,20 +3,20 @@
 <!--输入：...order-->
 <import src="/templates/order/goods/order-goods-template.wxml" />
 <template name="orderItemTemplate">
-    <view class="order-item-container" catchtap="onOrderTap" data-order-id="{{order_id}}">
+    <view class="order-item-container" catchtap="onOrderTap" data-order-id="{{orderId}}">
         <!--基本信息-->
         <view class="order-header-container">
             <view class="order-shop-info-container">
                 <image class="shop-info-icon" src="/images/icons/shop-gray.png" />
-                <text class="shop-info-name">{{shop_name}}</text>
+                <text class="shop-info-name">{{shopName}}</text>
                 <image class="shop-info-icon" src="/images/icons/more-gray.png" />
             </view>
-            <text class="order-status-complete">{{status_text}}</text>
+            <text class="order-status-complete">{{statusText}}</text>
         </view>
 
         <!--商品列表-->
         <view class="order-goods-list-container">
-            <block wx:for="{{orderGoodsInfos}}" wx:key="goods_id">
+            <block wx:for="{{orderGoodsInfos}}" wx:key="goodsId">
                 <template is="orderGoodsTemplate" data="{{...item}}" />
                 <view class="order-goods-hr" />
             </block>
@@ -26,28 +26,28 @@
         <view class="order-footer-container">
             <text class="footer-count">共{{orderGoodsInfos.length}}件商品</text>
             <text>合计:</text>
-            <text class="footer-price">￥{{final_price}}</text>
+            <text class="footer-price">￥{{finalPrice}}</text>
             <text>(含运费￥0.00)</text>
         </view>
 
         <!--操作栏-->
-        <view class="order-action-bar" wx:if="{{is_action}}">
+        <view class="order-action-bar" wx:if="{{isAction}}">
 
             <!--待付款-->
             <block wx:if="{{status == 1}}">
-                <view class="zan-btn zan-btn--small" data-order-id="{{order_id}}" catchtap="onOrderClose">取消订单</view>
-                <view class="zan-btn zan-btn--small zan-btn--primary"  data-order-id="{{order_id}}" catchtap="onWxPay">确认付款</view>
+                <view class="zan-btn zan-btn--small" data-order-id="{{orderId}}" catchtap="onOrderClose">取消订单</view>
+                <view class="zan-btn zan-btn--small zan-btn--primary"  data-order-id="{{orderId}}" catchtap="onWxPay">确认付款</view>
             </block>
             
             <!-- 收货 -->
             <block wx:if="{{status == 3}}">
-                <view class="zan-btn zan-btn--small"  data-order-id="{{order_id}}" catchtap="onOrderTrace">物流查询</view>
-                <view class="zan-btn zan-btn--small zan-btn--primary"  data-order-id="{{order_id}}" catchtap="onOrderConfirm">确认收货</view>
+                <view class="zan-btn zan-btn--small"  data-order-id="{{orderId}}" catchtap="onOrderTrace">物流查询</view>
+                <view class="zan-btn zan-btn--small zan-btn--primary"  data-order-id="{{orderId}}" catchtap="onOrderConfirm">确认收货</view>
             </block>
 
             <!--待评论-->
             <block wx:if="{{status == 4}}">
-                <view class="zan-btn zan-btn--small zan-btn--primary"  data-order-id="{{order_id}}" catchtap="onOrderComment">评价订单</view>
+                <view class="zan-btn zan-btn--small zan-btn--primary"  data-order-id="{{orderId}}" catchtap="onOrderComment">评价订单</view>
             </block>
 
         </view>

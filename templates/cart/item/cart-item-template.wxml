@@ -4,26 +4,26 @@
 <import src="/templates/quantity/index.wxml" />
 
 <template name="cartItemTemplate">
-    <view class="cart-item-container" data-cart-id="{{cart_id}}" data-goods-name="{{goods_name}}" catchlongtap="onCartLongTap">
+    <view class="cart-item-container" data-cart-id="{{cartId}}" data-goods-name="{{goodsName}}" catchlongtap="onCartLongTap">
         <!--多选按钮-->
         <view class="cart-check-container">
-            <view class="zan-icon zan-icon-{{check ? 'checked' : 'check'}}" data-cart-id="{{cart_id}}" catchtap="onCheckTap" />
+            <view class="zan-icon zan-icon-{{check ? 'checked' : 'check'}}" data-cart-id="{{cartId}}" catchtap="onCheckTap" />
         </view>
 
         <!--商品图片-->
-        <image class="cart-item-image" src="{{goods_image}}" data-goods-id="{{goods_id}}" catchtap="onCartTap" />
+        <image class="cart-item-image" src="{{goodsImage}}" data-goods-id="{{goodsId}}" catchtap="onCartTap" />
 
         <!--商品说明-->
         <view class="cart-info-container" >
-            <text class="goods-title-text">{{goods_name}}</text>
-            <text class="goods-sku-text" >{{sku_text}}</text>
+            <text class="goods-title-text">{{goodsName}}</text>
+            <text class="goods-sku-text" >{{skuText}}</text>
             <view class="goods-price-num-container">
                 <view class="goods-price-container">
                     <text class="goods-price-small">￥</text>
-                    <text class="goods-price-big">{{goods_price}}</text>
+                    <text class="goods-price-big">{{goodsPrice}}</text>
                 </view>
                 
-                <template is="zan-quantity" data="{{ quantity: goods_num, min: 1, max: 999, componentId: cart_id, size: 'small' }}" />
+                <template is="zan-quantity" data="{{ quantity: goodsNum, min: 1, max: 999, componentId: cartId, size: 'small' }}" />
             </view>
         </view>
     </view>

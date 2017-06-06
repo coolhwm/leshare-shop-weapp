@@ -73,7 +73,7 @@ export default class AddressService extends BaseService {
                         city: data.cityName,
                         country: data.countyName,
                         detail: data.detailInfo,
-                        is_default: 0
+                        isDefault: 0
                     });
                 },
                 fail: reject

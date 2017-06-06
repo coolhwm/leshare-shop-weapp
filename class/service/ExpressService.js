@@ -48,12 +48,12 @@ export default class ExpressService extends BaseService {
      * 创建物流页面展现的基本信息
      */
     createExpressOrderPreview(order) {
-        const imageUrl = order.orderGoodsInfos[0].image_url;
+        const imageUrl = order.orderGoodsInfos[0].imageUrl;
         const goodsCount = order.orderGoodsInfos.length;
         return {
             imageUrl: imageUrl,
             goodsCount: goodsCount,
-            orderId: order.order_id
+            orderId: order.orderId
         }
     }
 
@@ -111,10 +111,10 @@ export default class ExpressService extends BaseService {
      */
     _createExpressInfo(data) {
         return {
-            expTextName: data.express_type,
-            mailNo: data.express_no,
+            expTextName: data.expressType,
+            mailNo: data.expressNo,
             status: data.status,
-            tel: data.tel_phone,
+            tel: data.telPhone,
         }
     }
 }

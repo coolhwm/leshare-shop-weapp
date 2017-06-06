@@ -138,6 +138,7 @@ Page(Object.assign({}, Quantity, {
   onConfirmCartTap: function (event) {
     this.setCartNumFromApp(this.sku.num);
     //请求服务端
+    Tips.loading('数据加载中');
     cartService.add(this.data.goods.id, this.sku.num, this.sku.skuText).then(res => {
       Tips.toast('加入购物成功');
       this.sku.num = 1;

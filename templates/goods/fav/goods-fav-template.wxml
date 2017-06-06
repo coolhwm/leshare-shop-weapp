@@ -2,14 +2,14 @@
 <!--依赖：无-->
 <!--输入：...goods -->
 <template name="goodsFavTemplate">
-    <view class="goods-fav-container" data-goods-id="{{goods_id}}"  catchtap="onGoodsTap">
+    <view class="goods-fav-container" data-goods-id="{{goodsId}}"  catchtap="onGoodsTap">
         <!--商品图片-->
-        <image class="goods-item-img" src="{{image_url}}" />
+        <image class="goods-item-img" src="{{imageUrl}}" />
 
         <!--商品信息-->
         <view class="goods-info-container">
-            <text class="goods-name">{{goods_name}}</text>
-            <text class="goods-price">￥{{goods_price}}</text>
+            <text class="goods-name">{{goodsName}}</text>
+            <text class="goods-price">￥{{goodsPrice}}</text>
         </view>
 
         <!--操作按钮-->

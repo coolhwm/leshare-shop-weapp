@@ -16,16 +16,15 @@ export default class LogService extends BaseService {
         const url = `${this.baseUrl}/visit_goods_log`;
         return new Pagination(url, this._processFavGoods.bind(this));
     }
-
     /**
     * 数据处理
     */
     _processFavGoods(data) {
         return {
-            goods_id: data.goods_id,
-            goods_name: data.goods.name,
-            goods_price: data.goods.sell_price,
-            image_url: this._processGoodsPreview(data.goods.images)
+            goodsId: data.goodsId,
+            goodsName: data.goods.name,
+            goodsPrice: data.goods.sellPrice,
+            imageUrl: this._processGoodsPreview(data.goods.images)
         };
     }
 

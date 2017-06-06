@@ -11,8 +11,8 @@
             <text class="goods-item-title">{{name}}</text>
             <!--价格区域-->
             <view class="goods-item-price">
-                <text class="goods-item-price-cost">￥{{sell_price}}</text>
-                <text class="goods-item-price-original">￥{{original_price}}</text>
+                <text class="goods-item-price-cost">￥{{sellPrice}}</text>
+                <text class="goods-item-price-original">￥{{originalPrice}}</text>
             </view>
         </view>
     </view>

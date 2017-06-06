@@ -52,7 +52,7 @@ export default class Cart {
      */
     toggleCartCheck(cartId) {
         this.carts.forEach(cart => {
-            if (cart.cart_id == cartId) {
+            if (cart.cartId == cartId) {
                 cart.check = !cart.check;
             }
         });
@@ -75,8 +75,8 @@ export default class Cart {
      */
     updateCartNum(cartId, num) {
         this.carts.forEach(cart => {
-            if (cart.cart_id == cartId) {
-                cart.goods_num = num;
+            if (cart.cartId == cartId) {
+                cart.goodsNum = num;
             }
         });
         this._setTotalNumAndPrice();
@@ -88,7 +88,7 @@ export default class Cart {
     remveCart(cartId) {
         for (let i in this.carts) {
             const cart = this.carts[i];
-            if (cart.cart_id == cartId) {
+            if (cart.cartId == cartId) {
                 this.carts.splice(i, 1);
             }
         }
@@ -108,8 +108,8 @@ export default class Cart {
                 all = false;
                 continue;
             }
-            num += cart.goods_num;
-            price += cart.goods_price * cart.goods_num;
+            num += cart.goodsNum;
+            price += cart.goodsPrice * cart.goodsNum;
         }
         price = price.toFixed(2);
 
