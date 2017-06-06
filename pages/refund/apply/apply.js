@@ -50,10 +50,10 @@ Page(Object.assign({}, TopTips, {
     if (this.isEmpty(this.data.refund.cause)) {
       errorMsg = '请填写退款原因';
     }
-    else if (this.isEmpty(this.data.refund.contact_name)) {
+    else if (this.isEmpty(this.data.refund.contactName)) {
       errorMsg = '请填联系人';
     }
-    else if (this.isEmpty(this.data.refund.contact_phone)) {
+    else if (this.isEmpty(this.data.refund.contactPhone)) {
       errorMsg = '请填联系方式';
     }
     if(!this.isEmpty(errorMsg)){
@@ -63,7 +63,7 @@ Page(Object.assign({}, TopTips, {
 
     //发起退款
     const refund = this.data.refund;
-    const orderId = refund.order_id;
+    const orderId = refund.orderId;
     Tips.confirm('您确认要申请退款吗？').then(() => {
       Tips.loading('退款申请中');
       return orderService.refundOrder(orderId, refund);

@@ -27,12 +27,12 @@
         </view>
         <view class="zan-cell zan-form__item">
             <view class="zan-form__title">联系人：</view>
-            <input id='contact_name' class="zan-form__input zan-cell__bd" placeholder="联系人姓名" value="{{refund.contact_name}}" bindchange="onInputChange"
+            <input id='contactName' class="zan-form__input zan-cell__bd" placeholder="联系人姓名" value="{{refund.contactName}}" bindchange="onInputChange"
             />
         </view>
         <view class="zan-cell zan-form__item zan-cell--last-child">
             <view class="zan-form__title">联系方式：</view>
-            <input id='contact_phone' class="zan-form__input zan-cell__bd" type="number" maxlength="20" placeholder="手机或固定电话" value="{{refund.contact_phone}}"
+            <input id='contactPhone' class="zan-form__input zan-cell__bd" type="number" maxlength="20" placeholder="手机或固定电话" value="{{refund.contactPhone}}"
                 bindchange="onInputChange" />
         </view>
     </view>
