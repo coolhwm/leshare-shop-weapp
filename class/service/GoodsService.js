@@ -78,7 +78,24 @@ export default class GoodsService extends BaseService {
         //处理价格标签
         this._processGoodsPriceLabel(detail);
 
+        //处理运费
+        this._processGoodsPostFeeText(detail);
         return detail;
+    }
+
+    /**
+     * 处理运费信息
+     */
+    _processGoodsPostFeeText(detail){
+        const fee = detail.postFee;
+        let feeText = '';
+        if(!fee || fee == 0){
+            feeText = '配送：免运费';
+        }
+        else{
+            feeText = `同城配送：￥${fee} (支持自提)`;
+        }
+        detail.feeText = feeText;
     }
 
     /**

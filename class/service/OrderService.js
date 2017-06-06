@@ -127,6 +127,20 @@ export default class OrderService extends BaseService {
         });
     }
 
+    
+
+    /**
+     * 计算支持的物流方式价格（根据商品信息及地址信息）
+     */
+    queryPostPrice(address, goodsList){
+        const url = `${this.baseUrl}/orders/delivery`;
+        const param = {
+            address : address,
+            goodsList: goodsList
+        };
+        return this.post(url, param).then(res => res.data);
+    }   
+
 
      /*********************** 生成方法 ***********************/
 
@@ -153,12 +167,9 @@ export default class OrderService extends BaseService {
         }
         //构造交易对象
         const trade = {
-            statusText: "待确认",
             dealPrice: price.toFixed(2),
             finalPrice: price.toFixed(2),
-            addressId: "1",
             paymentType: "1",
-            message: "",
             orderGoodsInfos: orderGoodsInfos,
             shopName: this.shopName
         };
@@ -176,12 +187,9 @@ export default class OrderService extends BaseService {
 
         //构造交易对象
         const trade = {
-            statusText: "待确认",
             dealPrice: goods.originalPrice,
             finalPrice: (goods.sellPrice * num).toFixed(2),
-            addressId: "1",
             paymentType: "1",
-            message: "",
             orderGoodsInfos: [
                 {
                     goodsId: goods.id,

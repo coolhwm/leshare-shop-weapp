@@ -12,16 +12,32 @@ Page({
   data: {
     trade: {},
     address: {},
-    message: ""
+    message: "",
+    delilveries: [],
+    seletedDelilvery: {}
   },
 
   onLoad: function (options) {
+    Tips.loading('订单加载中');
     const trade = JSON.parse(options.trade);
     this.setData({ trade: trade });
 
-    //默认地址
     addressService.getDefault().then(address => {
+      //处理地址
       this.setData({ address: address });
+      return orderService.queryPostPrice(address, trade.orderGoodsInfos);
+    }).then(data => {
+      //处理运费
+      if (data.dilivery) {
+        const seletedDelilvery = data.delilveryList.find(item => item.default);
+        const trade = this.updateTradePostFee(seletedDelilvery);
+        this.setData({
+          delilveries: data.delilveryList,
+          seletedDelilvery: seletedDelilvery,
+          trade: trade
+        });
+      }
+      Tips.loaded();
     });
 
     //注册事件监听器
@@ -53,7 +69,7 @@ Page({
     Tips.loading('订单创建中');
 
     //订单创建成功后直接拉起支付页面
-    orderService.createOrder(trade, address).then(data => {
+    orderService.createOrder(trade, address, ).then(data => {
       return data.orderId;
     }).then(this.wxPay).catch(() => {
       Tips.toast('订单创建失败');
@@ -76,6 +92,43 @@ Page({
       Tips.toast('支付已取消', () => {
         notification.postNotificationName("ON_ORDER_UPDATE");
         Router.orderDetailRedirect(orderId);
+      });
+    });
+  },
+
+  /**
+   * 更新订单的运费信息
+   */
+  updateTradePostFee: function (delilvery) {
+    const trade = this.data.trade;
+    trade.deliveryType = delilvery.type;
+
+    //扣除原价格
+    if (trade.postFee && trade.postFee != 0) {
+      trade.finalPrice -= trade.postFee;
+    }
+
+    //增加运费
+    trade.postFee = delilvery.fee;
+    trade.finalPrice = (parseFloat(trade.finalPrice) + delilvery.fee).toFixed(2);
+
+    //目前没有优惠功能
+    trade.dealPrice = trade.finalPrice;
+    return trade;
+  },
+
+  /**
+   * 选择运费
+   */
+
+  onPostFeeTap: function () {
+    const actions = this.data.delilveries.map(item => `${item.desc} ￥${item.fee}`);
+    Tips.action(actions).then(res => {
+      const seletedDelilvery = this.data.delilveries[res.index];
+      const trade = this.updateTradePostFee(seletedDelilvery);
+      this.setData({ 
+        seletedDelilvery: seletedDelilvery,
+        trade: trade
       });
     });
   },

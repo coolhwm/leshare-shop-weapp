@@ -47,6 +47,7 @@
 .goods-price-container{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     height: 80rpx;
     padding-left: 20rpx;
@@ -60,4 +61,9 @@
     margin-left: 20rpx;
     text-decoration: line-through;
     color:#999;
+}
+
+/*运费*/
+.goods-post-fee-text{
+    margin-right: 20rpx;
 }

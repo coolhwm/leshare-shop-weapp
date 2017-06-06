@@ -41,10 +41,33 @@ export default class Tips {
         wx.hideLoading();
     }
 
+
+    /**
+     * 弹出下拉动作栏
+     */
+    static action(items) {
+        return new Promise((resolve, reject) => {
+            wx.showActionSheet({
+                itemList: items,
+                success: function (res) {
+                    const result = {
+                        index: res.tapIndex,
+                        text: items[res.tapIndex]
+                    }
+                    resolve(result);
+                },
+                fail: function (res) {
+                    reject(res.errMsg);
+                }
+            })
+        });
+    }
+
+
     /**
      * 弹出确认窗口
      */
-    static confirm(text, payload= {}, title = '提示') {
+    static confirm(text, payload = {}, title = '提示') {
         return new Promise((resolve, reject) => {
             wx.showModal({
                 title: title,
