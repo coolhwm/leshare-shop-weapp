@@ -1,17 +1,18 @@
 import ShopService from "../../../class/service/ShopService";
 import GoodsService from "../../../class/service/GoodsService";
 import Router from "../../../class/utils/Router";
-
+const Tab = require('../../../templates/tab/index');
 const app = getApp();
 const shopService = new ShopService();
 const goodsService = new GoodsService();
 
-Page({
+Page(Object.assign({}, Tab, {
   page: {},
   data: {
     shop: {},
     goods: [],
-    notice: []
+    notice: [],
+    tab: {},
   },
 
   /**
@@ -28,17 +29,24 @@ Page({
       this.setData({ notice: data });
     });
 
-    //生成分页对象
-    this.page = goodsService.page();
-    //请求加载商品
-    this.loadNextPage();
+    //请求分类信息
+    goodsService.categories().then(data => {
+      this.setData({ tab: data });
+      //生成分页对象
+      this.page = goodsService.page();
+      //请求加载商品
+      this.loadNextPage();
+    });
   },
 
   /**
     * 加载下一页
     */
   loadNextPage: function () {
-    this.page.next().then(data => {
+    const param = {
+      category_id: this.data.tab.selectedId
+    }
+    this.page.next(param).then(data => {
       this.setData({ goods: data.list }
       );
     });
@@ -70,10 +78,32 @@ Page({
   * 下拉刷新
   */
   onPullDownRefresh: function () {
-    this.page.reset();
-    this.loadNextPage();
+    this.data.reload();
     wx.stopPullDownRefresh();
   },
 
 
-});
+  /**
+   * 重新加载
+   */
+  reload: function () {
+    this.page.reset();
+    this.loadNextPage();
+  },
+
+
+  /**
+   * 处理点击时间
+   */
+  handleZanTabChange(e) {
+    var componentId = e.componentId;
+    var selectedId = e.selectedId;
+
+    this.setData({
+      [`${componentId}.selectedId`]: selectedId
+    });
+    this.reload();
+  }
+
+
+}));

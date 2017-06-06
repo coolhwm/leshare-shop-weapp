@@ -14,7 +14,7 @@
     <view class="hr-light"/>
 
     <!--商品区域-->
-    <template is="goodsGridTemplate" data="{{goods}}"/>
+    <template is="goodsGridTemplate" data="{{goods, tab}}"/>
 
     <!--底部边线-->
     <view class="footer-line"></view>

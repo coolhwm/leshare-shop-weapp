@@ -1,4 +1,5 @@
 @import "/templates/goods/item/goods-item-template.wxss";
+@import "/templates/tab/index.wxss";
 .goods-grid-container{
     background-color: #F4F4F4;
     display: flex;

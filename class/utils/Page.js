@@ -16,6 +16,8 @@ export default class Pagination {
         this.processFunc = processFunc;
         //正在加载中
         this.loading = false;
+        //参数
+        this.params = [];
     }
 
     /**
@@ -26,8 +28,8 @@ export default class Pagination {
             from: this.start,
             limit: this.count
         };
+        //附加参数
         this.loading = true;
-        //扩展额外参数
         Object.assign(param, args);
         return wxRequest.getRequest(this.url, param).then(res => {
             let data = res;            

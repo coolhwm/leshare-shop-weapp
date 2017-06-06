@@ -215,5 +215,6 @@ App({
     },
     //API地址
     publicUrl: "http://192.168.31.124:9999/v1",
+    //publicUrl: "http://leshare.shop:9999/v1",
   }
 });

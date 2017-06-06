@@ -22,9 +22,9 @@ export default class GoodsService extends BaseService {
     /**
      * 查询商品目录
      */
-    categories(pid = 0){
-        const url = `${this.baseUrl}/shop_parent_categories/${pid}`;
-        return this.get(url).then(res => res.data);
+    categories(pid = 0) {
+        const url = `${this.baseUrl}/goods/inner_category`;
+        return this.get(url).then(res => this._createGoodsCategories(res.data));
     }
 
     /**
@@ -37,6 +37,30 @@ export default class GoodsService extends BaseService {
         });
     }
 
+    /*********************** 数据处理方法 ***********************/
+
+    _createGoodsCategories(data) {
+        const list = [];
+        list.push({
+            id: '0',
+            title: '全部'
+        });
+
+        list.push(...data.map(item => {
+            return {
+                id: item.id,
+                title: item.name
+            }
+        }));
+
+        const tab = {
+            list: list,
+            selectedId: '0',
+            scroll: false
+        }
+
+        return tab;
+    }
 
     /**
      * 处理商品详情
@@ -96,7 +120,7 @@ export default class GoodsService extends BaseService {
      */
     _processSkuLable(detail) {
         const skuInfo = detail.goodsSkuInfo;
-        if(!skuInfo){
+        if (!skuInfo) {
             return;
         }
 
