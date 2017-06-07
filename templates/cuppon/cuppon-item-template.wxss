@@ -1,0 +1,92 @@
+/*父容器*/
+.cuppon-item-container{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin:20rpx 20rpx 0 20rpx;
+    background-color: #FFF;
+    height: 210rpx;
+    border: 1px solid #E7E7E7;
+}
+/*左侧容器*/
+.cuppon-main-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 255rpx;
+    height: 100%;
+    background-color: #5D95D6;
+}
+
+/*单位*/
+.cuppon-value-unit{
+    color: #FFF;
+    font-size: 30rpx;
+}
+
+/*金额*/
+.cuppon-value-text{
+    color:#FFF;
+    font-size: 75rpx;
+}
+
+/*限制条件*/
+.cuppon-limit-text{
+    color: #FFF;
+    font-size: 28rpx;
+    margin-top: 10rpx;
+}
+
+/*右侧容器*/
+.cuppon-info-container{
+    flex: 1;
+    padding: 10rpx 20rpx 0 20rpx;
+    display: flex;
+    height: 200rpx;
+    flex-direction: column;
+    justify-content: space-between;
+    
+}
+/*标题容器*/
+
+/*标题*/
+.cuppon-title-text{
+    color: #000311;
+    font-size: 26rpx;
+}
+/*时间限制*/
+.cuppon-time-text{
+    color: #9e9e9e;
+    font-size: 24rpx;
+}
+/*分隔符*/
+.cuppon-desc-gap{
+    margin-top: 5rpx;
+    border-top: 1px dotted #EFF0F2;
+}
+/*详情栏*/
+.cuppon-detial-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    height: 50rpx;
+}
+.cuppon-detial-text{
+    font-size: 24rpx;
+}
+.cuppon-detial-icon{
+    width: 26rpx;
+    height: 26rpx;
+}
+
+/*新卷角落*/
+.cuppon-new-icon{
+    height: 55rpx;
+    width: 55rpx;
+    position: absolute;
+    top: 0;
+    right: 0;
+}

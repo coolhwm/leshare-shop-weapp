@@ -1,66 +1,25 @@
-// pages/cuppon/index/index.js
-Page({
+const Tab = require('../../../templates/tab/index');
 
-  /**
-   * 页面的初始数据
-   */
+Page(Object.assign({}, Tab, {
+
   data: {
-  
+     tab: {
+      list: [{
+        id: 'all',
+        title: '未使用(43)'
+      }, {
+        id: 'topay',
+        title: '使用记录(24)'
+      }, {
+        id: 'tosend',
+        title: '已过期(27)'
+      }],
+      selectedId: 'all',
+      scroll: false
+    },
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
   
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
   }
-})
+}))

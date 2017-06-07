@@ -1,1 +1,6 @@
-/* pages/cuppon/index/index.wxss */
+@import "/templates/tab/index.wxss";
+@import "/templates/cuppon/cuppon-item-template.wxss";
+page{
+    height: 100%;
+    background-color: #f2f2f2;
+}

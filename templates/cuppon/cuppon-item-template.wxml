@@ -1,0 +1,36 @@
+<!-- 优惠券项目-->
+<!--依赖：无-->
+<template name="cupponItemTemplate">
+    <view class="cuppon-item-container">
+        <!--左侧区域-->
+        <view class="cuppon-main-container">
+            <view class="cuppon-value-container">
+                <text class="cuppon-value-unit">￥</text>
+                <text class="cuppon-value-text">50</text>
+            </view>
+            <text class="cuppon-limit-text">满88元可用</text>
+        </view>
+
+        <!--右侧区域-->
+        <view class="cuppon-info-container">
+            <view>
+                <view class="cuppon-title-container">
+                    <view class="zan-label zan-label--primary zan-label--small">现金</view>
+                    <text class="cuppon-title-text">烤鸭大减价，全场商品可用（特价商品除外）</text>
+                </view>
+                <text class="cuppon-time-text">2017.06.06-2017.06.06</text>
+            </view>
+
+
+            <!--分隔符-->
+            <view>
+                <view class="cuppon-desc-gap"></view>
+                <view class="cuppon-detial-container">
+                    <text class="cuppon-detial-text">详细信息</text>
+                    <image class="cuppon-detial-icon" src="/images/icons/down.png" />
+                </view>
+            </view>
+        </view>
+        <image class="cuppon-new-icon" src="/images/icons/new.png" />
+    </view>
+</template>
