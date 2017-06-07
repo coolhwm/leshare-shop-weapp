@@ -10,14 +10,7 @@
         <view class="order-status-container">
             <text class="order-status-text">{{order.statusText}}</text>
             <!-- 订单文本描述/需要抽取到Service中 -->
-            <text class="order-status-desc" wx:if="{{order.status == 1}}">请于24时00分00秒内付款，超时订单自动关闭</text>
-            <text class="order-status-desc" wx:if="{{order.status == 2}}">您已完成付款，卖家准备发货中</text>
-            <text class="order-status-desc" wx:if="{{order.status == 3}}">请您耐心等待，到货后请确认收货</text>
-            <text class="order-status-desc" wx:if="{{order.status == 4}}">卖家已收到您的货款，请对本次交易进行评价</text>
-            <text class="order-status-desc" wx:if="{{order.status == 5}}">您已发起退款申请，等待卖家处理</text>
-            <text class="order-status-desc" wx:if="{{order.status == 6}}">交易已完成，卖家已收到您的货款</text>
-            <text class="order-status-desc" wx:if="{{order.status == 7}}">本交易已取消，欢迎您下次光临</text>
-            <text class="order-status-desc" wx:if="{{order.status == 8}}">货款已原路退回，请查收</text>
+            <text class="order-status-desc">{{order.statusDesc}}</text>
         </view>
     </view>
 
@@ -53,7 +46,7 @@
         </view>
         <view class="zan-cell">
             <text class="zan-cell__bd">配送方式</text>
-            <text class="zan-cell__ft">快递 免邮</text>
+            <text class="zan-cell__ft">{{order.deliveryText}}</text>
         </view>
         <view class="zan-cell">
             <text class="zan-cell__bd">买家留言</text>

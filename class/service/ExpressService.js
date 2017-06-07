@@ -6,6 +6,7 @@ export default class ExpressService extends BaseService {
 
     constructor() {
         super();
+       
     }
     /*********************** 对外方法 ***********************/
 
