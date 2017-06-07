@@ -1,6 +1,6 @@
 <!--优惠券列表页面-->
 <import src="/templates/tab/index.wxml" />
-<import src="/templates/cuppon/cuppon-item-template.wxml" />
+<import src="/templates/cuppon/item/cuppon-item-template.wxml" />
 
 <view class="container">
     <!--类型选择-->
