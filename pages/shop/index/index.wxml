@@ -1,8 +1,9 @@
 <!--店铺首页面-->
-<!--依赖：店铺项目、店铺公告、商品项目（间接）、商品网格-->
+<!--依赖：店铺项目、店铺公告、商品项目（间接）、商品网格、卡券架-->
 <import src="/templates/shop/item/shop-item-template.wxml" />
 <import src="/templates/goods/grid/goods-grid-template.wxml" />
 <import src="/templates/notice/bar/notice-bar-template.wxml" />
+<import src="/templates/cuppon/shelf/cuppon-shelf-template.wxml" />
 
 <view class="shop-index-container">
     <!--店铺基本信息-->
@@ -10,6 +11,9 @@
 
     <!--店铺公告-->
     <template is="noitceBarTemplate" data="{{...notice}}"/>
+
+    <!--卡券架-->
+    <template is="cupponShelfTemplate"/>
 
     <view class="hr-light"/>
 

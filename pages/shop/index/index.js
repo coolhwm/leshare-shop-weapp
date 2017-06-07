@@ -78,7 +78,7 @@ Page(Object.assign({}, Tab, {
   * 下拉刷新
   */
   onPullDownRefresh: function () {
-    this.data.reload();
+    this.reload();
     wx.stopPullDownRefresh();
   },
 

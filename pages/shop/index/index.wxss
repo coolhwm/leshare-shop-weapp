@@ -1,6 +1,7 @@
 @import "/templates/shop/item/shop-item-template.wxss";
 @import "/templates/goods/grid/goods-grid-template.wxss";
 @import "/templates/notice/bar/notice-bar-template.wxss";
+@import "/templates/cuppon/shelf/cuppon-shelf-template.wxss";
 
 /*特殊处理*/
 .shop-item-container{

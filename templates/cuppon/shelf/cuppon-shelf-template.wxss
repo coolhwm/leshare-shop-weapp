@@ -1,0 +1,13 @@
+@import "/templates/cuppon/pick/cuppon-pick-template.wxss";
+
+.cuppon-shelf-container{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    white-space: nowrap;
+    margin-bottom: 5rpx;
+}
+.cuppon-pick-wrap{
+    display: inline-block;
+    margin-right: 10rpx;
+}

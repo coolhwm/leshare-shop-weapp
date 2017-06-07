@@ -1,0 +1,53 @@
+.cuppon-pick-container{
+    display: flex;
+    flex-direction: row;
+    height: 170rpx;
+}
+.cuppon-pick-container text{
+    color: #FFF;
+}
+.cuppon-value-unit{
+    font-size: 32rpx;
+}
+.cuppon-value-text{
+    font-size: 65rpx;
+}
+.cuppon-main-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-color: #49a9ee;
+    width:320rpx;
+    padding:10rpx 20rpx 20rpx 10rpx;
+}
+
+.cuppon-value-container{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+.cuppon-pick-bar{
+    background-color: #0e77ca;
+}
+.cuppon-time-text{
+    font-size: 22rpx;
+    margin-top: 10rpx;
+}
+.cuppon-limit-text{
+    font-size: 22rpx;
+}
+.cuppon-time-wrap{
+    text-align: right;
+}
+.cuppon-pick-bar{
+    width: 50rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.cuppon-pick-bar text{
+    font-size: 28rpx;
+    margin:10rpx 0;
+}
