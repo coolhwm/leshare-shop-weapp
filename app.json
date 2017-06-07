@@ -1,5 +1,6 @@
 {
   "pages": [ 
+    "pages/cuppon/index/index",
     "pages/shop/index/index",
     "pages/goods/index/index",
     "pages/goods/favorite/favorite",
