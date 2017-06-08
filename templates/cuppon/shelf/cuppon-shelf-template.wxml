@@ -1,4 +1,4 @@
-<import src="/templates/cuppon/pick/cuppon-pick-template.wxml" />
+<import src="/templates/cuppon/pick-simple/cuppon-pick-template.wxml" />
 <!-- 优惠券项目-->
 <!--依赖：无-->
 <template name="cupponShelfTemplate">

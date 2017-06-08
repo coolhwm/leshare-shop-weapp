@@ -1,4 +1,4 @@
-@import "/templates/cuppon/pick/cuppon-pick-template.wxss";
+@import "/templates/cuppon/pick-simple/cuppon-pick-template.wxss";
 
 .cuppon-shelf-container{
     display: flex;

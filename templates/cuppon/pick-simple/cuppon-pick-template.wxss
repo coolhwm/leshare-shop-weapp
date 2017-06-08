@@ -1,0 +1,26 @@
+.cuppon-pick-container{
+    display: flex;
+    flex-direction: column;
+    border: 1px #add8f7 solid;
+    border-radius: 5rpx;
+    justify-content: center;
+    align-items: center;
+    width: 250rpx;
+    padding-bottom: 10rpx;
+    padding-top: 10rpx;
+}
+.cuppon-pick-container text{
+    color: #108ee9;
+}
+.cuppon-value-unit{
+    font-size: 32rpx;
+}
+.cuppon-value-text{
+    font-size: 50rpx;
+}
+.cuppon-value-container{
+
+}
+.cuppon-limit-text{
+    font-size: 22rpx;
+}
