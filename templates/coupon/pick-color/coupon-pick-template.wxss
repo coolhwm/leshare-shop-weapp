@@ -1,18 +1,18 @@
-.cuppon-pick-container{
+.coupon-pick-container{
     display: flex;
     flex-direction: row;
     height: 170rpx;
 }
-.cuppon-pick-container text{
+.coupon-pick-container text{
     color: #FFF;
 }
-.cuppon-value-unit{
+.coupon-value-unit{
     font-size: 32rpx;
 }
-.cuppon-value-text{
+.coupon-value-text{
     font-size: 65rpx;
 }
-.cuppon-main-container{
+.coupon-main-container{
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -21,33 +21,33 @@
     padding:10rpx 20rpx 20rpx 10rpx;
 }
 
-.cuppon-value-container{
+.coupon-value-container{
     display: flex;
     flex-direction: row;
     align-items: flex-end;
     justify-content: space-between;
 }
-.cuppon-pick-bar{
+.coupon-pick-bar{
     background-color: #0e77ca;
 }
-.cuppon-time-text{
+.coupon-time-text{
     font-size: 22rpx;
     margin-top: 10rpx;
 }
-.cuppon-limit-text{
+.coupon-limit-text{
     font-size: 22rpx;
 }
-.cuppon-time-wrap{
+.coupon-time-wrap{
     text-align: right;
 }
-.cuppon-pick-bar{
+.coupon-pick-bar{
     width: 50rpx;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.cuppon-pick-bar text{
+.coupon-pick-bar text{
     font-size: 28rpx;
     margin:10rpx 0;
 }

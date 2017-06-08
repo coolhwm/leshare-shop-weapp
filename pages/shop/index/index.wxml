@@ -12,6 +12,8 @@
     <!--店铺公告-->
     <template is="noitceBarTemplate" data="{{...notice}}"/>
 
+    <view class="hr-light"/>
+
     <!--卡券架-->
     <template is="cupponShelfTemplate"/>
 

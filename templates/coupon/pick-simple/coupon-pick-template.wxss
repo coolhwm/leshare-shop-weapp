@@ -1,4 +1,4 @@
-.cuppon-pick-container{
+.coupon-pick-container{
     display: flex;
     flex-direction: column;
     border: 1px #add8f7 solid;
@@ -9,18 +9,18 @@
     padding-bottom: 10rpx;
     padding-top: 10rpx;
 }
-.cuppon-pick-container text{
+.coupon-pick-container text{
     color: #108ee9;
 }
-.cuppon-value-unit{
+.coupon-value-unit{
     font-size: 32rpx;
 }
-.cuppon-value-text{
+.coupon-value-text{
     font-size: 50rpx;
 }
-.cuppon-value-container{
+.coupon-value-container{
 
 }
-.cuppon-limit-text{
+.coupon-limit-text{
     font-size: 22rpx;
 }

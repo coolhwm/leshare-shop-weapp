@@ -1,5 +1,5 @@
 @import "/templates/tab/index.wxss";
-@import "/templates/cuppon/item/cuppon-item-template.wxss";
+@import "/templates/coupon/item/coupon-item-template.wxss";
 page{
     height: 100%;
     background-color: #f2f2f2;

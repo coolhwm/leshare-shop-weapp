@@ -1,13 +1,13 @@
-@import "/templates/cuppon/pick-simple/cuppon-pick-template.wxss";
+@import "/templates/coupon/pick-simple/coupon-pick-template.wxss";
 
-.cuppon-shelf-container{
+.coupon-shelf-container{
     display: flex;
     flex-direction: row;
     width: 100%;
     white-space: nowrap;
     margin-bottom: 5rpx;
 }
-.cuppon-pick-wrap{
+.coupon-pick-wrap{
     display: inline-block;
     margin-right: 10rpx;
 }

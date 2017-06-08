@@ -1,5 +1,4 @@
- import { Http } from "../../../class/utils/Http.js";
-var app = getApp();
+const app = getApp();
 
 Page({
   data: {

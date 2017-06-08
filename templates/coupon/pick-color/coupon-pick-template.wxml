@@ -1,0 +1,23 @@
+<!-- 优惠券项目-->
+<!--依赖：无-->
+<template name="couponPickTemplate">
+    <view class="coupon-pick-container">
+        <view class="coupon-main-container">
+            <view class="coupon-value-container">
+                <view>
+                    <text class="coupon-value-unit">￥</text>
+                    <text class="coupon-value-text">50</text>
+                </view>
+                <text class="coupon-limit-text">满88元可用</text>
+            </view>
+            <view class="coupon-time-wrap">
+                <text class="coupon-time-text">有效期 2017.06.06-2017.06.06</text>
+            </view>
+        </view>
+
+        <view class="coupon-pick-bar">
+            <text>领</text>
+            <text>取</text>
+        </view>
+    </view>
+</template>

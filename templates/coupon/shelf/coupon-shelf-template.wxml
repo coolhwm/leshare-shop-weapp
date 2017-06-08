@@ -1,0 +1,19 @@
+<import src="/templates/coupon/pick-simple/coupon-pick-template.wxml" />
+<!-- 优惠券项目-->
+<!--依赖：无-->
+<template name="couponShelfTemplate">
+    <scroll-view scroll-x="true" class="coupon-shelf-container">
+        <view class="coupon-pick-wrap">
+            <template is="couponPickTemplate" />
+        </view>
+        <view class="coupon-pick-wrap">
+            <template is="couponPickTemplate" />
+        </view>
+        <view class="coupon-pick-wrap">
+            <template is="couponPickTemplate" />
+        </view>
+        <view class="coupon-pick-wrap">
+            <template is="couponPickTemplate" />
+        </view>
+    </scroll-view>
+</template>

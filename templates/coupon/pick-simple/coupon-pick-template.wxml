@@ -1,0 +1,11 @@
+<!-- 优惠券项目-->
+<!--依赖：无-->
+<template name="couponPickTemplate">
+    <view class="coupon-pick-container">
+        <view class="coupon-value-container">
+            <text class="coupon-value-unit">￥</text>
+            <text class="coupon-value-text">50.00</text>
+        </view>
+        <text class="coupon-limit-text">满88.00元可用</text>
+    </view>
+</template>

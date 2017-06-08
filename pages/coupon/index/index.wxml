@@ -1,0 +1,17 @@
+<!--优惠券列表页面-->
+<import src="/templates/tab/index.wxml" />
+<import src="/templates/coupon/item/coupon-item-template.wxml" />
+
+<view class="container">
+    <!--类型选择-->
+    <template is="zan-tab" data="{{tab: tab, componentId: 'tab'}}"></template>
+
+    <!--优惠券列表-->
+    <view class="coupon-list-container">
+        <template is="couponItemTemplate"></template>
+        <template is="couponItemTemplate"></template>
+        <template is="couponItemTemplate"></template>
+        <template is="couponItemTemplate"></template>
+        <template is="couponItemTemplate"></template>
+    </view>
+</view>
