@@ -8,10 +8,8 @@
 
     <!--优惠券列表-->
     <view class="coupon-list-container">
-        <template is="couponItemTemplate"></template>
-        <template is="couponItemTemplate"></template>
-        <template is="couponItemTemplate"></template>
-        <template is="couponItemTemplate"></template>
-        <template is="couponItemTemplate"></template>
+        <block wx:for="{{coupons}}" wx:key="id">
+            <template is="couponItemTemplate" data="{{...item}}"></template>
+        </block>
     </view>
 </view>

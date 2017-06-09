@@ -6,9 +6,9 @@
         <view class="coupon-main-container">
             <view class="coupon-value-container">
                 <text class="coupon-value-unit">￥</text>
-                <text class="coupon-value-text">50</text>
+                <text class="coupon-value-text">{{price}}</text>
             </view>
-            <text class="coupon-limit-text">满88元可用</text>
+            <text class="coupon-limit-text">满{{limitPrice}}元可用</text>
         </view>
 
         <!--右侧区域-->
@@ -16,11 +16,10 @@
             <view>
                 <view class="coupon-title-container">
                     <view class="zan-label zan-label--primary zan-label--small">现金</view>
-                    <text class="coupon-title-text">烤鸭大减价，全场商品可用</text>
+                    <text class="coupon-title-text">{{name}}</text>
                 </view>
-                <text class="coupon-time-text">2017.06.06-2017.06.06</text>
+                <text class="coupon-time-text">{{beginTime}}-{{dueTime}}</text>
             </view>
-
 
             <!--分隔符-->
             <view>

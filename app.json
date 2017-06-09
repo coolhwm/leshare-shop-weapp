@@ -16,7 +16,7 @@
     "pages/customer/index/index",
     "pages/shop/detail/detail",
     "pages/cart/index/index",
-    "pages/home/visit-shop/visit-shop"
+    "pages/home/visit-shop/visit-shop" 
   ],
   "window": {
     "navigationBarBackgroundColor": "#1296db"

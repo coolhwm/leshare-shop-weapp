@@ -93,7 +93,7 @@ Page(Object.assign({}, Tab, {
 
 
   /**
-   * 处理点击时间
+   * 处理点击事件
    */
   handleZanTabChange(e) {
     var componentId = e.componentId;

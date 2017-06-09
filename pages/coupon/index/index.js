@@ -1,4 +1,5 @@
 import CouponService from "../../../class/service/CouponService";
+import Tips from "../../../class/utils/Tips";
 
 const Tab = require('../../../templates/tab/index');
 const couponService = new CouponService();
@@ -8,16 +9,16 @@ Page(Object.assign({}, Tab, {
   data: {
     tab: {
       list: [{
-        id: 'all',
-        title: '未使用(43)'
+        id: 'NEVER_USED',
+        title: '未使用'
       }, {
-        id: 'topay',
-        title: '使用记录(24)'
+        id: 'USED',
+        title: '使用记录'
       }, {
-        id: 'tosend',
-        title: '已过期(27)'
+        id: 'EXPIRED',
+        title: '已过期'
       }],
-      selectedId: 'all',
+      selectedId: 'NEVER_USED',
       scroll: false
     },
     coupons: []
@@ -40,9 +41,12 @@ Page(Object.assign({}, Tab, {
    * 加载下一页
    */
   loadNextPage: function () {
+    Tips.loading();
     this.page.next().then(data => {
-      console.info(data);
-      this.setData({ coupons: data.list });
+      const selectedId = this.data.tab.selectedId;
+      const coupons = data.list.filter(item => item.status === selectedId);
+      this.setData({ coupons: coupons });
+      Tips.loaded();
     });
   },
 
@@ -59,5 +63,18 @@ Page(Object.assign({}, Tab, {
   onReachBottom: function (event) {
     this.loadNextPage();
   },
+
+  /**
+   * 处理点击事件
+   */
+  handleZanTabChange(e) {
+    var componentId = e.componentId;
+    var selectedId = e.selectedId;
+
+    this.setData({
+      [`${componentId}.selectedId`]: selectedId
+    });
+    this.reload();
+  }
 
 }))
