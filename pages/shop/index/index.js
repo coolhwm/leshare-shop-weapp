@@ -31,6 +31,7 @@ Page(Object.assign({}, Tab, {
 
     //请求分类信息
     goodsService.categories().then(data => {
+      console.info('请求分类成功');
       this.setData({ tab: data });
       //生成分页对象
       this.page = goodsService.page();

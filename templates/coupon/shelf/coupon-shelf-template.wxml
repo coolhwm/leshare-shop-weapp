@@ -3,17 +3,10 @@
 <!--依赖：无-->
 <template name="couponShelfTemplate">
     <scroll-view scroll-x="true" class="coupon-shelf-container">
-        <view class="coupon-pick-wrap">
-            <template is="couponPickTemplate" />
-        </view>
-        <view class="coupon-pick-wrap">
-            <template is="couponPickTemplate" />
-        </view>
-        <view class="coupon-pick-wrap">
-            <template is="couponPickTemplate" />
-        </view>
-        <view class="coupon-pick-wrap">
-            <template is="couponPickTemplate" />
-        </view>
+        <template is="couponPickTemplate" />
+        <template is="couponPickTemplate" />
+        <template is="couponPickTemplate" />
+        <template is="couponPickTemplate" />
+        <template is="couponPickTemplate" />
     </scroll-view>
 </template>

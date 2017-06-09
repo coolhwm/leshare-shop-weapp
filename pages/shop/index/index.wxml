@@ -3,7 +3,7 @@
 <import src="/templates/shop/item/shop-item-template.wxml" />
 <import src="/templates/goods/grid/goods-grid-template.wxml" />
 <import src="/templates/notice/bar/notice-bar-template.wxml" />
-<import src="/templates/cuppon/shelf/cuppon-shelf-template.wxml" />
+<import src="/templates/coupon/shelf/coupon-shelf-template.wxml" />
 
 <view class="shop-index-container">
     <!--店铺基本信息-->
@@ -12,12 +12,10 @@
     <!--店铺公告-->
     <template is="noitceBarTemplate" data="{{...notice}}"/>
 
-    <view class="hr-light"/>
 
     <!--卡券架-->
-    <template is="cupponShelfTemplate"/>
+    <template is="couponShelfTemplate"/>
 
-    <view class="hr-light"/>
 
     <!--商品区域-->
     <template is="goodsGridTemplate" data="{{goods, tab}}"/>

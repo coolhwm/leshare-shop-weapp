@@ -1,5 +1,5 @@
 .coupon-pick-container{
-    display: flex;
+    display: inline-flex;
     flex-direction: column;
     border: 1px #add8f7 solid;
     border-radius: 5rpx;
