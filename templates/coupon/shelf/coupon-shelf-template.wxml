@@ -3,10 +3,8 @@
 <!--依赖：无-->
 <template name="couponShelfTemplate">
     <scroll-view scroll-x="true" class="coupon-shelf-container">
-        <template is="couponPickTemplate" />
-        <template is="couponPickTemplate" />
-        <template is="couponPickTemplate" />
-        <template is="couponPickTemplate" />
-        <template is="couponPickTemplate" />
+        <block wx:for="{{coupons}}" wx:key="id">
+            <template is="couponPickTemplate" data="{{...item}}" />
+        </block>
     </scroll-view>
 </template>

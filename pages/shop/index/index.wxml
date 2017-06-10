@@ -14,7 +14,7 @@
 
 
     <!--卡券架-->
-    <template is="couponShelfTemplate"/>
+    <template is="couponShelfTemplate" data="{{coupons}}"/>
 
 
     <!--商品区域-->

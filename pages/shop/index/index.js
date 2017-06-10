@@ -1,10 +1,12 @@
 import ShopService from "../../../class/service/ShopService";
 import GoodsService from "../../../class/service/GoodsService";
+import CouponService from "../../../class/service/CouponService";
 import Router from "../../../class/utils/Router";
 const Tab = require('../../../templates/tab/index');
 const app = getApp();
 const shopService = new ShopService();
 const goodsService = new GoodsService();
+const couponService = new CouponService();
 
 Page(Object.assign({}, Tab, {
   page: {},
@@ -13,6 +15,7 @@ Page(Object.assign({}, Tab, {
     goods: [],
     notice: [],
     tab: {},
+    coupons:[]
   },
 
   /**
@@ -38,6 +41,9 @@ Page(Object.assign({}, Tab, {
       //请求加载商品
       this.loadNextPage();
     });
+
+    //请求优惠券信息
+    couponService.shelf().then(data => this.setData({coupons: data}));
   },
 
   /**

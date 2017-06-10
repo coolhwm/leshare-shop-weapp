@@ -5,9 +5,10 @@
     border-radius: 5rpx;
     justify-content: center;
     align-items: center;
-    width: 250rpx;
+    width: 200rpx;
     padding-bottom: 10rpx;
     padding-top: 10rpx;
+    margin-right: 5rpx;
 }
 .coupon-pick-container text{
     color: #108ee9;

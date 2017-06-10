@@ -19,6 +19,15 @@ export default class CouponService extends BaseService {
         return new Pagination(url, this._processCouponItem.bind(this));
     }
 
+
+    /**
+     * 卡券货架
+     */
+    shelf(){
+        const url = `${this.baseUrl}/coupons/show`;
+        return this.get(url).then(res => res.data);
+    }
+    
     /**
      * 处理卡券数据
      */
