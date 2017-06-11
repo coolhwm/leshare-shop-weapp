@@ -1,20 +1,21 @@
+import Tips from '../utils/Tips';
+
 const app = getApp();
 
 // HTTP工具类
 export default class Http {
 
     constructor() {
-        //使用promise包装底层方法
-        this.loading = false;
     }
 
 
     static request(method, url, data) {
-
         return new Promise((resolve, reject) => {
+            const header = this.createAuthHeader();
             wx.request({
                 url: url,
                 method: method,
+                header: header,
                 data: data,
                 success: (res) => {
                     //微信状态校验
@@ -79,6 +80,18 @@ export default class Http {
         console.error(`500-服务器内部错误：${res.data.message}`);
     }
 
+    /**
+     * 构造权限头部
+     */
+    static createAuthHeader() {
+        const loginCode =  app.globalData.auth.login_code;
+        var header = {};
+        if (loginCode) {
+            header["login_code"] = loginCode;
+        }
+        return header;
+    }
+
     static get(url, data) {
         return this.request("GET", url, data);
     }
@@ -87,8 +100,8 @@ export default class Http {
         return this.request("PUT", url, data);
     }
 
-    static push(url, data) {
-        return this.request("PUSH", url, data);
+    static post(url, data) {
+        return this.request("POST", url, data);
     }
 
     static patch(url, data) {

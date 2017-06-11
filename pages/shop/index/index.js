@@ -26,13 +26,28 @@ Page(Object.assign({}, Tab, {
    * 页面初始化
    */
   onLoad: function (options) {
-    authService.checkLoginCode().then(this.init, this.login);
+    authService.checkLoginCode()
+      .then(this.init, this.session)
+      .then(this.login);
   },
+
 
   /**
    * 用户登录
    */
   login: function () {
+    authService.checkLoginStatus()
+      .then(user => console.info('用户已登录', user),
+      err => authService.getWxUserInfo()
+        .then(rawUser => authService.checkUserInfo(rawUser))
+        .then(rawUser => authService.decodeUserInfo(rawUser))
+        .then(user => authService.saveUserInfo(user)));
+  },
+
+  /**
+   * 建立会话
+   */
+  session: function () {
     console.info('权限校验失败，与服务器建立新会话');
     return authService.getWxJsCode()
       .then(jsCode => {

@@ -1,4 +1,4 @@
-var wxRequest = require('./wxRequest');
+import Http from '../utils/Http';
 
 export default class Pagination {
 
@@ -30,7 +30,7 @@ export default class Pagination {
         //附加参数
         this.loading = true;
         Object.assign(param, args);
-        return wxRequest.getRequest(this.url, param).then(res => {
+        return Http.get(this.url, param).then(res => {
             let data = res;
             //微信脱壳            
             if (res.data) {

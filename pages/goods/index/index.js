@@ -42,8 +42,8 @@ Page(Object.assign({}, Quantity, {
         sku: this.sku.export()
       });
       return favoriteService.is(goodsId);
-    }).then(res => {
-      if (res.data.state == 1) {
+    }).then(data => {
+      if (data.isFavorite == 1) {
         this.setData({ isFav: 1 });
       }
     });

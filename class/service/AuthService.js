@@ -4,9 +4,6 @@ const app = getApp();
 
 /**
  * 权限服务类
- * 
- * 
- * 
  */
 export default class AuthService {
 
@@ -25,7 +22,6 @@ export default class AuthService {
                 return Promise.reject('用户登录js_code获取失败');
             }
             else {
-
                 return res.code;
             }
         });
@@ -44,7 +40,6 @@ export default class AuthService {
 
         return Http.get(url, param).then(data => {
             console.info(`获取权限信息成功: login_code=${data.login_code}, third_session=${data.third_session}`);
-            
             return data;
         });
     }
@@ -54,22 +49,42 @@ export default class AuthService {
      * 获取用户信息
      */
     getWxUserInfo() {
+        console.info('获取用户信息');
         return wxApi.wxGetUserInfo();
     }
 
 
     /**
-     * 检查用户信息完整性
+     * 检查用户信息
      */
-    checkUserInfo(user) {
+    checkUserInfo(rawUser) {
+        console.info('校验用户信息完整性');
         const url = `${this.baseUrl}/auth/check_userinfo`;
+        const third_session = app.globalData.auth.third_session;
         const param = {
             rawData: rawUser.rawData,
             signature: rawUser.signature,
-            thirdSession: rawUser.third_session
+            thirdSession: third_session
         };
-        return Http.get(url, param);
+        return Http.get(url, param).then(data => {
+            return data.checkPass ? rawUser : Promise.reject('用户信息完整性校验失败');
+        });
     }
+
+    /**
+     * 解密用户数据
+     */
+    decodeUserInfo(rawUser) {
+        const url = `${this.baseUrl}/auth/decode_userinfo`;
+        const third_session = app.globalData.auth.third_session;
+        const param = {
+            encryptedData: rawUser.encryptedData,
+            iv: rawUser.iv,
+            thirdSession: third_session
+        };
+        return Http.get(url, param).then(data => data.user);
+    }
+
 
 
     /**
@@ -80,9 +95,7 @@ export default class AuthService {
         if (user == "") {
             return Promise.reject('user不存在，尚未登录');
         }
-        return wxApi.checkSession().then(res => {
-            console.info('用户微信登录状态校验成功', user);
-        }, err => err);
+        return wxApi.checkSession().then(res => user, err => err);
     }
 
     /**
@@ -101,7 +114,6 @@ export default class AuthService {
             if (code === 'ok') {
                 //校验成功
                 console.info('用户服务端登录状态login_code校验成功');
-                this.saveProperty('login_code', loginCode);
                 return loginCode;
             }
             else {
@@ -115,17 +127,29 @@ export default class AuthService {
     /**
      * 保存loginCode
      */
-    saveProperty(key, value) {
+    saveAuthProperty(key, value) {
         app.globalData.auth[key] = value;
         wx.setStorageSync(key, value);
     }
 
+    
+
     /**
      * 保存权限信息
      */
-    saveAuthInfo(auth){
-        this.saveProperty('third_session', auth.third_session);
-        this.saveProperty('login_code', auth.login_code);
+    saveAuthInfo(auth) {
+        console.info('权限信息：', auth);
+        this.saveAuthProperty('third_session', auth.third_session);
+        this.saveAuthProperty('login_code', auth.login_code);
+    }
+
+    /**
+     * 保存用户信息
+     */
+    saveUserInfo(user){
+        console.info('用户信息', user);
+        wx.setStorageSync('user', user);
+        app.globalData.user = user;
     }
 
 
@@ -135,6 +159,7 @@ export default class AuthService {
     cleanLoginInfo() {
         wx.removeStorageSync('user');
         wx.removeStorageSync('login_code');
+        wx.removeStorageSync('third_session');
     }
 
 

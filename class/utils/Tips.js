@@ -4,6 +4,9 @@
  */
 export default class Tips {
 
+    constructor() {
+    }
+
     /**
      * 弹出提示框
      */

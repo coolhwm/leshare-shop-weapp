@@ -1,5 +1,5 @@
 import BaseService from "./BaseService";
-import Pagination from "../utils/Page";
+import Pagination from "../entity/Page";
 
 /**
  * 卡券服务类
@@ -25,7 +25,7 @@ export default class CouponService extends BaseService {
      */
     shelf() {
         const url = `${this.baseUrl}/coupons/show`;
-        return this.get(url).then(res => res.data.data);
+        return this.get(url);
     }
 
     /**
