@@ -14,13 +14,15 @@ Page({
   data: {
     orders: [],
     status: 0,
-    tabbar: {}
+    tabbar: {},
+    init: false
   },
 
   /**
    * 页面加载
    */
   onLoad: function (options) {
+    Tips.loading();
     this.page = orderService.page();
     this.iniOrderTabBar()
     this.loadNextPage();
@@ -45,8 +47,11 @@ Page({
    */
   loadNextPage: function () {
     this.page.next({ status: this.data.status }).then(data => {
-      this.setData({ orders: data.list }
-      );
+      Tips.loaded();
+      this.setData({ 
+        orders: data.list,
+        init: true
+      });
     });
   },
 
@@ -105,7 +110,7 @@ Page({
     const status = event.currentTarget.dataset.status;
     const tabbar = this.data.tabbar;
     tabbar.selected = status;
-
+    Tips.loading();
     //更新/初始化页面数据
     this.setData({
       status: status,

@@ -3,7 +3,7 @@
 <import src="/templates/address/item/address-item-template.wxml" />
 <import src="/templates/trade/item/order-item-template.wxml" />
 
-<view class="container">
+<view class="container" wx:if="{{init}}">
 
     <!--收货地址-->
     <template is="addressItemTemplate" data="{{...address}}" />

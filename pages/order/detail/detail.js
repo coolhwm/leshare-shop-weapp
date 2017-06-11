@@ -10,16 +10,22 @@ const expressService = new ExpressService();
 Page({
   data: {
     order: {},
-    express: {}
+    express: {},
+    init: false
   },
 
   onLoad: function (options) {
+    Tips.loading();
     const orderId = options.orderId;
     //const orderId = 1632;
 
     //获取订单信息
     orderService.getInfo(orderId).then(data => {
-      this.setData({ order: data });
+      this.setData({ 
+        order: data,
+        init: true
+      });
+      Tips.loaded();
     });
 
     //获取当前物流信息

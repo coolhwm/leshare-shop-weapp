@@ -8,7 +8,7 @@
 <import src="/templates/shop/item/shop-item-template.wxml" />
 
 
-<view class="goods-index-container">
+<view class="goods-index-container" wx:if="{{init}}">
     <!--基本信息-->
     <template is="goodsInfoTemplate" data="{{...goods, sku}}" />
 

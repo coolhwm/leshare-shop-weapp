@@ -25,8 +25,10 @@ Page(Object.assign({}, Quantity, {
     sku: {},
     isFav: false,
     cartNum: 0,
+    init: false
   },
   onLoad: function (options) {
+    Tips.loading();
     const goodsId = options.goodsId;
     //const goodsId = 2;
     //请求店铺基本信息
@@ -44,7 +46,11 @@ Page(Object.assign({}, Quantity, {
       return favoriteService.is(goodsId);
     }).then(data => {
       if (data.isFavorite == 1) {
-        this.setData({ isFav: 1 });
+        this.setData({ 
+          isFav: 1,
+          init: true
+        });
+        Tips.loaded();
       }
     });
 

@@ -3,7 +3,7 @@
 <import src="/templates/order/list/order-list-template.wxml" />
 <import src="/templates/order/tab/order-tab-template.wxml" />
 
-<view class="order-index-container">
+<view class="order-index-container" wx:if="{{init}}">
     <!--状态操作栏-->
     <view class="order-tab-wrap">
         <template is="orderTabTemplate" data="{{...tabbar}}" />

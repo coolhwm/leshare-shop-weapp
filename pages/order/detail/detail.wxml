@@ -3,7 +3,7 @@
 <import src="/templates/address/show/address-show-template.wxml" />
 <import src="/templates/order/detail-item/order-item-template.wxml" />
 
-<view class="container">
+<view class="container" wx:if="{{init}}">
     <!--订单状态栏/需要抽取模板-->
     <view class="order-status-bar">
         <image class="order-status-icon" src="/images/icons/status-{{order.status}}.png" wx:if="{{order.status}}" />

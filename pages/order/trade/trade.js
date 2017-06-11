@@ -16,7 +16,8 @@ Page({
     address: {},
     message: "",
     delilveries: [],
-    seletedDelilvery: {}
+    seletedDelilvery: {},
+    init: false
   },
 
   onLoad: function (options) {
@@ -40,9 +41,9 @@ Page({
         });
       }
       return couponService.available(trade.orderGoodsInfos);
-    }).then(data =>{
+    }).then(data => {
       //处理优惠券
-      console.info(data);
+      this.setData({ init: true });
       Tips.loaded();
     });
 
@@ -132,7 +133,7 @@ Page({
     Tips.action(actions).then(res => {
       const seletedDelilvery = this.data.delilveries[res.index];
       const trade = this.updateTradePostFee(seletedDelilvery);
-      this.setData({ 
+      this.setData({
         seletedDelilvery: seletedDelilvery,
         trade: trade
       });

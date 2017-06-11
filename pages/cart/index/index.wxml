@@ -4,7 +4,7 @@
 <import src="/templates/cart/item/cart-item-template.wxml" />
 
 
-<view class="container">
+<view class="container" wx:if="{{init}}">
     <!--占位提示-->
     <view class="cart-empty-tips" wx:if="{{cart.carts.length == 0}}" >
         <image src="/images/icons/cart-empty.png" />

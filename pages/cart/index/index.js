@@ -15,7 +15,8 @@ Page(Object.assign({}, Quantity, {
   cart: {},
   page: {},
   data: {
-    cart: {}
+    cart: {},
+    init: false
   },
 
 
@@ -23,6 +24,7 @@ Page(Object.assign({}, Quantity, {
    * 页面初始化
    */
   onLoad: function (options) {
+    Tips.loading();
     //初始化分页参数
     this.page = cartService.page();
     //注册事件,数量改变的时候重新加载
@@ -63,7 +65,11 @@ Page(Object.assign({}, Quantity, {
    */
   render: function () {
     const cart = this.cart.export();
-    this.setData({ cart: cart });
+    Tips.loaded();
+    this.setData({ 
+      cart: cart,
+      init: true
+  });
   },
 
 

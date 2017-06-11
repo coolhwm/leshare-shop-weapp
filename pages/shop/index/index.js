@@ -19,13 +19,15 @@ Page(Object.assign({}, Tab, {
     goods: [],
     notice: [],
     tab: {},
-    coupons: []
+    coupons: [],
+    init: false
   },
 
   /**
    * 页面初始化
    */
   onLoad: function (options) {
+    Tips.loading();
     authService.checkLoginCode()
       .then(this.init, this.session)
       .then(this.login);
@@ -99,8 +101,11 @@ Page(Object.assign({}, Tab, {
       category_id: this.data.tab.selectedId
     }
     this.page.next(param).then(data => {
-      this.setData({ goods: data.list }
-      );
+      Tips.loaded();
+      this.setData({ 
+        goods: data.list,
+        init: true
+      });
     });
   },
 
@@ -139,6 +144,7 @@ Page(Object.assign({}, Tab, {
    * 重新加载
    */
   reload: function () {
+    Tips.loading();
     this.page.reset();
     this.loadNextPage();
   },
