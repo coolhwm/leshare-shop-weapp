@@ -10,7 +10,7 @@ export default class CouponService extends BaseService {
         super();
     }
 
-    
+
     /**
      * 返回分页对象
      */
@@ -23,15 +23,33 @@ export default class CouponService extends BaseService {
     /**
      * 卡券货架
      */
-    shelf(){
+    shelf() {
         const url = `${this.baseUrl}/coupons/show`;
-        return this.get(url).then(res => res.data);
+        return this.get(url).then(res => res.data.data);
     }
-    
+
+    /**
+     * 领取卡券
+     */
+    pick(couponId) {
+        const url = `${this.baseUrl}/coupons/${couponId}/get`;
+        return this.get(url);
+    }
+
+    /**
+     * 获取可用的卡券信息
+     */
+    available(goodsList) {
+        const url = `${this.baseUrl}/coupons/order_available`;
+        const param = { orderGoodsInfos: goodsList };
+        return this.post(url, param).then(res => res.data);
+    }
+
+
     /**
      * 处理卡券数据
      */
-    _processCouponItem(data){
+    _processCouponItem(data) {
         const root = data;
         const coupon = data.coupon;
 
@@ -46,9 +64,9 @@ export default class CouponService extends BaseService {
     /**
      * 处理时间格式
      */
-    _convertTimestapeToDay(timestape){
+    _convertTimestapeToDay(timestape) {
         return timestape.substring(0, timestape.indexOf(' ')).replace(/\-/g, '.');
     }
-    
+
 
 }

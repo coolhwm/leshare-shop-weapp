@@ -1,7 +1,7 @@
 <!-- 优惠券项目-->
 <!--依赖：无-->
 <template name="couponPickTemplate">
-    <view class="coupon-pick-container">
+    <view class="coupon-pick-container" catchtap="onCouponTap" data-coupon-id="{{id}}">
         <view class="coupon-value-container">
             <text class="coupon-value-unit">￥</text>
             <text class="coupon-value-text">{{price}}</text>

@@ -126,7 +126,11 @@ Page(Object.assign({}, Quantity, {
   onConfirmBuyTap: function (event) {
     const goods = this.data.goods;
     const num = this.sku.num;
-    const sku = this.sku.skuText;
+    const sku = {
+      skuText: this.sku.skuText,
+      price: this.sku.detail.price,
+      imageUrl:  this.sku.detail.imageUrl,
+    };
     const trade = orderService.createSingleTrade(goods, num, sku);
     const param = JSON.stringify(trade);
     Router.createTrade(param);

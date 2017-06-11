@@ -32,9 +32,14 @@ export default class Pagination {
         this.loading = true;
         Object.assign(param, args);
         return wxRequest.getRequest(this.url, param).then(res => {
-            let data = res;            
-            if(res.data){
+            let data = res;
+            //微信脱壳            
+            if (res.data) {
                 data = res.data;
+            }
+            //报文脱壳
+            if (data.data) {
+                data = data.data;
             }
             //处理数据
             this._processData(data);
@@ -65,7 +70,7 @@ export default class Pagination {
         if (this.processFunc) {
             for (let i in data) {
                 const result = this.processFunc(data[i]);
-                if(result){
+                if (result) {
                     data[i] = result;
                 }
             }

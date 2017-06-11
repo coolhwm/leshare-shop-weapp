@@ -2,6 +2,8 @@ import ShopService from "../../../class/service/ShopService";
 import GoodsService from "../../../class/service/GoodsService";
 import CouponService from "../../../class/service/CouponService";
 import Router from "../../../class/utils/Router";
+import Tips from "../../../class/utils/Tips";
+
 const Tab = require('../../../templates/tab/index');
 const app = getApp();
 const shopService = new ShopService();
@@ -96,6 +98,17 @@ Page(Object.assign({}, Tab, {
   reload: function () {
     this.page.reset();
     this.loadNextPage();
+  },
+
+  /**
+   * 点击领取卡券
+   */
+  onCouponTap: function(event){
+    const couponId = event.currentTarget.dataset.couponId;
+    Tips.loading();
+    couponService.pick(couponId).then(data => {
+      Tips.toast('领取成功！');
+    });
   },
 
 

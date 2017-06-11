@@ -1,5 +1,6 @@
 import OrderService from "../../../class/service/OrderService";
 import AddressService from "../../../class/service/AddressService";
+import CouponService from "../../../class/service/CouponService";
 import Tips from "../../../class/utils/Tips";
 import Router from "../../../class/utils/Router";
 
@@ -7,6 +8,7 @@ const app = getApp();
 const notification = require("../../../class/utils/WxNotificationCenter.js");
 const orderService = new OrderService();
 const addressService = new AddressService();
+const couponService = new CouponService();
 
 Page({
   data: {
@@ -37,6 +39,10 @@ Page({
           trade: trade
         });
       }
+      return couponService.available(trade.orderGoodsInfos);
+    }).then(data =>{
+      //处理优惠券
+      console.info(data);
       Tips.loaded();
     });
 

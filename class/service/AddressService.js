@@ -14,7 +14,7 @@ export default class AddressService extends BaseService {
      */
     page() {
         const url = `${this.baseUrl}/addresses`;
-        return new Pagination(url);
+        return new Pagination(url, this._processAddress.bind(this));
     }
 
     /**
@@ -79,5 +79,12 @@ export default class AddressService extends BaseService {
                 fail: reject
             });
         });
+    }
+
+    /**
+     * 处理地址数据
+     */
+    _processAddress(data){
+        return data.data;
     }
 }

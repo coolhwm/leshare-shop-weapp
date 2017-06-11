@@ -198,11 +198,10 @@ export default class OrderService extends BaseService {
     /**
      * 构建一个交易对象（单个物品），商品页面直接下单
      */
-    createSingleTrade(goods, num = 1, sku = "") {
-        const hasImage = goods.images && goods.images.length > 0;
-        const imageUrl = hasImage ? goods.images[0].url : null;
-        const skuText = this._processOrderSku(sku);
-
+    createSingleTrade(goods, num = 1, sku) {
+        const imageUrl = this._processSingleOrderImageUrl(goods, sku);
+        const skuText = this._processOrderSku(sku.skuText);
+        const price = sku ? sku.price : goods.sellPrice;
         //构造交易对象
         const trade = {
             dealPrice: goods.originalPrice,
@@ -215,7 +214,7 @@ export default class OrderService extends BaseService {
                     goodsSku: sku,
                     skuText: skuText,
                     imageUrl: imageUrl,
-                    goodsPrice: goods.sellPrice,
+                    goodsPrice: price,
                     count: num
                 }
             ],
@@ -312,6 +311,22 @@ export default class OrderService extends BaseService {
 
     /*********************** 数据处理方法 ***********************/
 
+
+    /**
+     * 梳理订单图片（单独下单）
+     */
+    _processSingleOrderImageUrl(goods, seletedSku) {
+        if (seletedSku) {
+            return seletedSku.imageUrl;
+        }
+        else {
+            const hasImage = goods.images && goods.images.length > 0;
+            return hasImage ? goods.images[0].url : null;
+        }
+    }
+
+
+
     /**
      * 处理订单地址
      */
@@ -343,7 +358,7 @@ export default class OrderService extends BaseService {
 
         //支付方式
         detail.paymentText = this.paymentDict[detail.payment_type];
-        
+
         //处理订单状态
         this._processOrderStatusDesc(detail);
         //处理退款信息
@@ -369,75 +384,75 @@ export default class OrderService extends BaseService {
     }
 
 
-        /**
-         * 处理物流配送信息
-         */
-        _processOrderDetailDelivery(order) {
-            const type = this.deliveryText[order.deliveryType];
-            const price = order.postFee == 0 ? '免邮' : '￥' + order.postFee;
-            order.deliveryText = `${type} ${price}`;
-        }
-
-
-        /**
-         * 处理商品物流信息
-         */
-        _processOrderTrace(order) {
-            const express = order.orderExpress;
-            if (express == null) {
-                //没有物流信息，不做处理
-                return;
-            }
-
-            //有物流，就一定需要展现动作列表
-            order.isAction = true;
-            order.isExpress = true;
-        }
-
-
-        /**
-         * 处理订单的退货信息
-         */
-        _processOrderRefund(order) {
-            const refunds = order.orderRefunds;
-            if (refunds == null || refunds.length < 1) {
-                //订单没有退款信息，不做处理
-                return;
-            }
-
-            const refund = refunds[0];
-            //曾经退款过，就一定需要展现退款记录
-            order.isAction = true;
-            //控制展现退款详情字段
-            order.isRefund = true;
-            //取出第一条退款记录
-            order.curRefund = refund;
-        }
-
-
-        /**
-         * 处理订单商品信息
-         */
-        _processOrderGoods(goods) {
-            goods.forEach(item => {
-                //处理SKU描述
-                const sku = item.goodsSku;
-                const skuText = this._processOrderSku(sku);
-                item.skuText = skuText;
-            });
-        }
-
-        /**
-         * 处理SKU的默认值
-         */
-
-        _processOrderSku(goodsSku) {
-            let skuText = "";
-            if (goodsSku && goodsSku != '') {
-                skuText = goodsSku.replace(/:/g, ',');
-            }
-            return skuText;
-        }
+    /**
+     * 处理物流配送信息
+     */
+    _processOrderDetailDelivery(order) {
+        const type = this.deliveryText[order.deliveryType];
+        const price = order.postFee == 0 ? '免邮' : '￥' + order.postFee;
+        order.deliveryText = `${type} ${price}`;
     }
+
+
+    /**
+     * 处理商品物流信息
+     */
+    _processOrderTrace(order) {
+        const express = order.orderExpress;
+        if (express == null) {
+            //没有物流信息，不做处理
+            return;
+        }
+
+        //有物流，就一定需要展现动作列表
+        order.isAction = true;
+        order.isExpress = true;
+    }
+
+
+    /**
+     * 处理订单的退货信息
+     */
+    _processOrderRefund(order) {
+        const refunds = order.orderRefunds;
+        if (refunds == null || refunds.length < 1) {
+            //订单没有退款信息，不做处理
+            return;
+        }
+
+        const refund = refunds[0];
+        //曾经退款过，就一定需要展现退款记录
+        order.isAction = true;
+        //控制展现退款详情字段
+        order.isRefund = true;
+        //取出第一条退款记录
+        order.curRefund = refund;
+    }
+
+
+    /**
+     * 处理订单商品信息
+     */
+    _processOrderGoods(goods) {
+        goods.forEach(item => {
+            //处理SKU描述
+            const sku = item.goodsSku;
+            const skuText = this._processOrderSku(sku);
+            item.skuText = skuText;
+        });
+    }
+
+    /**
+     * 处理SKU的默认值
+     */
+
+    _processOrderSku(goodsSku) {
+        let skuText = "";
+        if (goodsSku && goodsSku != '') {
+            skuText = goodsSku.replace(/:/g, ',');
+        }
+        return skuText;
+    }
+}
 
 
