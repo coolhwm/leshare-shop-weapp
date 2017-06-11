@@ -29,9 +29,7 @@ export default class CartService extends BaseService {
             goodsSku: sku,
             goodsNum: num
         };
-        return this.post(url, param).then(res => {
-            return res;
-        });
+        return this.post(url, param);
     }
 
     /**
@@ -39,9 +37,7 @@ export default class CartService extends BaseService {
      */
     remove(cartId) {
         const url = `${this.baseUrl}/carts/${cartId}`;
-        return this.delete(url, {}).then(res => {
-            //TODO
-        });
+        return this.delete(url);
     }
 
     /**
@@ -52,9 +48,7 @@ export default class CartService extends BaseService {
         const param = {
             goodsNum: num
         };
-        return this.put(url, param).then(res => {
-            //TODO
-        });
+        return this.put(url);
     }
 
     /**

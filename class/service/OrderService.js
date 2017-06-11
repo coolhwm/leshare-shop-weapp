@@ -96,10 +96,7 @@ export default class OrderService extends BaseService {
     createOrder(trade, address) {
         const url = `${this.baseUrl}/orders`;
         this._processOrderAddress(trade, address);
-        return this.post(url, trade).then(res => {
-            //考虑失败的情况
-            return res.data;
-        });
+        return this.post(url, trade);
     }
 
     /**
@@ -107,9 +104,7 @@ export default class OrderService extends BaseService {
      */
     refundOrder(orderId, refund) {
         const url = `${this.baseUrl}/orders/${orderId}/status/refund`;
-        return this.put(url, refund).then(res => {
-            return res;
-        });
+        return this.put(url, refund);
     }
 
     /**
@@ -128,10 +123,7 @@ export default class OrderService extends BaseService {
      */
     closeOrder(orderId) {
         const url = `${this.baseUrl}/orders/${orderId}/status/close`;
-        return this.patch(url, {}).then(res => {
-            //TODO 可能失败
-            return res.data;
-        });
+        return this.patch(url, {});
     }
 
     /**
@@ -139,10 +131,7 @@ export default class OrderService extends BaseService {
      */
     confirmOrder(orderId) {
         const url = `${this.baseUrl}/orders/${orderId}/status/comments`;
-        return this.patch(url, {}).then(res => {
-            //TODO 可能失败
-            return res.data;
-        });
+        return this.patch(url, {});
     }
 
 
@@ -156,7 +145,7 @@ export default class OrderService extends BaseService {
             address: address,
             goodsList: goodsList
         };
-        return this.post(url, param).then(res => res.data);
+        return this.post(url, param);
     }
 
 

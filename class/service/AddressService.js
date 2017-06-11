@@ -22,9 +22,7 @@ export default class AddressService extends BaseService {
      */
     save(address) {
         const url = `${this.baseUrl}/addresses`;
-        return this.post(url, address).then(res => {
-            return res;
-        });
+        return this.post(url, address);
     }
 
     /**
@@ -40,7 +38,7 @@ export default class AddressService extends BaseService {
      */
     setDefault(id) {
         const url = `${this.baseUrl}/addresses/${id}/default`;
-        return this.patch(url, {});
+        return this.patch(url);
     }
 
     /**
@@ -48,7 +46,7 @@ export default class AddressService extends BaseService {
      */
     getDefault(){
         const url = `${this.baseUrl}/addresses/default`;
-        return this.get(url, {}).then(res => res.data);
+        return this.get(url);
     }
 
     /**
@@ -56,7 +54,7 @@ export default class AddressService extends BaseService {
     */
     remove(id) {
         const url = `${this.baseUrl}/addresses/${id}`;
-        return this.delete(url, {});
+        return this.delete(url);
     }
 
     /**
