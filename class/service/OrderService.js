@@ -59,8 +59,7 @@ export default class OrderService extends BaseService {
      */
     getInfo(orderId) {
         const url = `${this.baseUrl}/orders/${orderId}`;
-        return this.get(url, {}).then(res => {
-            const detail = res.data;
+        return this.get(url, {}).then(detail => {
             this._processOrderDetail(detail);
             return detail;
         });
@@ -71,10 +70,7 @@ export default class OrderService extends BaseService {
      */
     prepayOrder(orderId) {
         const url = `${this.baseUrl}/orders/${orderId}/wxpay`;
-        return this.get(url, {}).then(res => {
-            //TODO 可能失败
-            return res.data.data;
-        });
+        return this.get(url, {});
     }
 
     /**
@@ -200,7 +196,7 @@ export default class OrderService extends BaseService {
                 {
                     goodsId: goods.id,
                     goodsName: goods.name,
-                    goodsSku: sku,
+                    goodsSku: sku.skuText,
                     skuText: skuText,
                     imageUrl: imageUrl,
                     goodsPrice: price,
@@ -335,6 +331,7 @@ export default class OrderService extends BaseService {
         //动作控制 待付款/待评论/待收货
         order.isAction = status == 1 || status == 3 || status == 4;
         order.postFee = order.postFee.toFixed(2);
+        order.shopName = this.shopName;
         //处理商品信息
         const goods = order.orderGoodsInfos;
         this._processOrderGoods(goods);
@@ -347,7 +344,7 @@ export default class OrderService extends BaseService {
 
         //支付方式
         detail.paymentText = this.paymentDict[detail.payment_type];
-
+        detail.shopName = this.shopName;
         //处理订单状态
         this._processOrderStatusDesc(detail);
         //处理退款信息

@@ -48,7 +48,7 @@ export default class CartService extends BaseService {
         const param = {
             goodsNum: num
         };
-        return this.put(url);
+        return this.put(url, param);
     }
 
     /**
