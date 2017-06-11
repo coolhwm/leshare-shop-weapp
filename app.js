@@ -1,22 +1,23 @@
 const wxApi = require('./class/utils/wxApi');
 const wxRequest = require('./class/utils/wxRequest');
 
+
 App({
   onLaunch: function () {
     //URL初始化
     this.globalData.baseUrl = this.globalData.publicUrl + '/customer';
-
+    this.globalData.init = true;
     //登录初始化
-    this.checkLogin()
-      .then(this.checkSession)
-      .then(this.userInit)
-      .catch(() => {
-        this.userLogin()
-          .then(this.getSession)
-          .then(this.getUserInfo)
-          .then(this.checkUserInfo)
-          .then(this.decodeUserInfo);
-      });
+    // this.checkLogin()
+    //   .then(this.checkSession)
+    //   .then(this.userInit)
+    //   .catch(() => {
+    //     this.userLogin()
+    //       .then(this.getSession)
+    //       .then(this.getUserInfo)
+    //       .then(this.checkUserInfo)
+    //       .then(this.decodeUserInfo);
+    //   });
   },
 
   /**
@@ -38,7 +39,7 @@ App({
   },
 
   /**
-   * 检查和服务器的会话
+   * 检查和服务器的会话(OK)
    */
   checkSession: function (user) {
     const loginCode = wx.getStorageSync("login_code");
@@ -201,6 +202,7 @@ App({
   },
 
   globalData: {
+    init: false,
     //购物车缓存
     cart: { num: 0 },
     order: { reload: false },

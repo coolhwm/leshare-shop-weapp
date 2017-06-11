@@ -1,92 +1,102 @@
 const app = getApp();
+
 // HTTP工具类
-class Http {
-    //构造函数
+export default class Http {
+
     constructor() {
-
+        //使用promise包装底层方法
+        this.loading = false;
     }
 
-    //默认异常处理方法
-    static defaultOnFail(url, data, result) {
-        console.error(`[ERROR]request error, url=${url}`);
-        console.error(data);
-        console.error(result);
-    }
 
-    //通用HTTP方法
-    static request(url, data, method, onSuccess, onFail) {
-        let header = this.createAuthHeader();
-        wx.request({
-            url: url,
-            method: method,
-            data: data,
-            header: header,
-            success: (res) => {
-                //请求业务错误，打印日志
-                if (res.statusCode != "200") {
-                    this.defaultOnFail(url, data, res);
+    static request(method, url, data) {
+
+        return new Promise((resolve, reject) => {
+            wx.request({
+                url: url,
+                method: method,
+                data: data,
+                success: (res) => {
+                    //微信状态校验
+                    const wxCode = res.statusCode;
+                    if (wxCode != 200) {
+                        console.error('服务端请求错误', res);
+                        this.handleHttpException(res);
+                        reject(res);
+                    }
+                    else {
+                        //服务端状态校验
+                        const wxData = res.data;
+                        const code = wxData.code;
+                        if (code != 0) {
+                            console.error('服务端业务错误', res);
+                            reject(res);
+                        }
+                        else {
+                            //服务端的内部数据
+                            const serverData = wxData.data;
+                            resolve(serverData);
+                        }
+                    }
+                },
+                fail: (res) => {
+                    console.error('网络请求发起失败');
+                    reject(res);
                 }
-                //处理成功数据
-                onSuccess(res.data);
-            },
-            fail: (res) => {
-                //打印异常日志
-                this.defaultOnFail(url, data, res);
-            }
+            });
         });
     }
 
-    //增加权限Header
-    static createAuthHeader() {
-        //需要进行缓存
-        const sessionId = wx.getStorageSync("thirdSessionId");
-        const user = wx.getStorageSync("userInfo");
-        const shopId = app.globalData.shopId;
-        var header = { };
-        header["3rdSession"] = sessionId;
-        header["shop_id"] = shopId;
-        header["customer_id"] = user.id;
-        return header;
-    }
+    /**
+     * 错误处理器
+     */
+    static handleHttpException(res) {
+        const status = res.statusCode;
+        switch (status) {
+            case 403:
+                this.handleHttp403Exception(res);
+                break;
+            case 500:
+                this.handleHttp500Exception(res);
+                break;
+            default:
+                console.info('其他错误', res);
 
-    //GET（重载）
-    static get() {
-        //传递data的情况
-        if (this.isFunction(arguments[1])) {
-            var onFail = arguments[2] ? arguments[2] : this.defaultOnFail;
-            this.request(arguments[0], {}, "GET", arguments[1], onFail);
         }
-        //不传递data的情况
-        else if (arguments[1] instanceof Object) {
-            var onFail = arguments[3] ? arguments[3] : this.defaultOnFail;
-            this.request(arguments[0], arguments[1], "GET", arguments[2], onFail);
-        }
-
     }
 
-    //POST
-    static post(url, data, onSuccess, onFail = this.defaultOnFail) {
-        this.request(url, data, "POST", onSuccess, onFail);
+    /**
+     * 403无权限错误
+     */
+    static handleHttp403Exception(res) {
+        console.error(`403-权限错误：${res.data.message}`);
     }
 
-    //PUT
-    static put(url, data, onSuccess, onFail = this.defaultOnFail) {
-        this.request(url, data, "PUT", onSuccess, onFail);
+    /**
+     * 500内部错误
+     */
+    static handleHttp500Exception(res) {
+        console.error(`500-服务器内部错误：${res.data.message}`);
     }
 
-    //PATCH
-    static patch(url, data, onSuccess, onFail = this.defaultOnFail) {
-        this.request(url, data, "PATCH", onSuccess, onFail);
+    static get(url, data) {
+        return this.request("GET", url, data);
     }
 
-    //DELETE
-    static delete(url, onSuccess, onFail = this.defaultOnFail) {
-        this.request(url, {}, "DELETE", onSuccess, onFail);
+    static put(url, data) {
+        return this.request("PUT", url, data);
     }
 
-    static isFunction(fn) {
-        return Object.prototype.toString.call(fn) === '[object Function]';
+    static push(url, data) {
+        return this.request("PUSH", url, data);
     }
+
+    static patch(url, data) {
+        return this.request("PATCH", url, data);
+    }
+
+    static delete(url, data) {
+        return this.request("DELETE", url, data);
+    }
+
 }
-
-export { Http };

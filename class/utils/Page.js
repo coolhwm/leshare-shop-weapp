@@ -1,4 +1,3 @@
-import { Http } from "./Http.js";
 var wxRequest = require('./wxRequest');
 
 export default class Pagination {

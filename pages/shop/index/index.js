@@ -1,6 +1,7 @@
 import ShopService from "../../../class/service/ShopService";
 import GoodsService from "../../../class/service/GoodsService";
 import CouponService from "../../../class/service/CouponService";
+import AuthService from "../../../class/service/AuthService";
 import Router from "../../../class/utils/Router";
 import Tips from "../../../class/utils/Tips";
 
@@ -9,6 +10,7 @@ const app = getApp();
 const shopService = new ShopService();
 const goodsService = new GoodsService();
 const couponService = new CouponService();
+const authService = new AuthService();
 
 Page(Object.assign({}, Tab, {
   page: {},
@@ -17,13 +19,39 @@ Page(Object.assign({}, Tab, {
     goods: [],
     notice: [],
     tab: {},
-    coupons:[]
+    coupons: []
   },
 
   /**
    * 页面初始化
    */
   onLoad: function (options) {
+    authService.checkLoginCode().then(this.init, this.login);
+  },
+
+  /**
+   * 用户登录
+   */
+  login: function () {
+    console.info('权限校验失败，与服务器建立新会话');
+    return authService.getWxJsCode()
+      .then(jsCode => {
+        return authService.getLoginCode(jsCode);
+      })
+      .then(auth => {
+        authService.saveAuthInfo(auth);
+      })
+      .then(() => {
+        this.onLoad();
+      });
+  },
+
+
+  /**
+   * 初始化店铺信息
+   */
+  init: function () {
+    console.info('权限校验成功，会话正常');
     //请求店铺基本信息
     shopService.getInfo().then(data => {
       this.setData({ shop: data });
@@ -45,7 +73,7 @@ Page(Object.assign({}, Tab, {
     });
 
     //请求优惠券信息
-    couponService.shelf().then(data => this.setData({coupons: data}));
+    couponService.shelf().then(data => this.setData({ coupons: data }));
   },
 
   /**
@@ -103,7 +131,7 @@ Page(Object.assign({}, Tab, {
   /**
    * 点击领取卡券
    */
-  onCouponTap: function(event){
+  onCouponTap: function (event) {
     const couponId = event.currentTarget.dataset.couponId;
     Tips.loading();
     couponService.pick(couponId).then(data => {
