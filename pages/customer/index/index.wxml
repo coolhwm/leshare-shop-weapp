@@ -30,13 +30,13 @@
             </view>
             <view class="zan-cell__ft"></view>
         </navigator>
-        <view class="zan-cell zan-cell--access">
+        <navigator class="zan-cell zan-cell--access"  url="/pages/coupon/index/index">
             <view class="zan-cell__bd">
                 <image src="/images/icons/cuppon.png" />
                 <text>优惠券</text>
             </view>
             <view class="zan-cell__ft"></view>
-        </view>
+        </navigator>
         <view class="zan-cell zan-cell--access">
             <view class="zan-cell__bd">
                 <image src="/images/icons/vip.png" />

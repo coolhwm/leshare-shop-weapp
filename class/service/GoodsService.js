@@ -1,5 +1,5 @@
 import BaseService from "./BaseService";
-import Pagination from "../utils/Page";
+import Pagination from "../entity/Page";
 
 /**
  * 商品服务类
@@ -24,7 +24,7 @@ export default class GoodsService extends BaseService {
      */
     categories(pid = 0) {
         const url = `${this.baseUrl}/goods/inner_category`;
-        return this.get(url).then(res => this._createGoodsCategories(res.data));
+        return this.get(url).then(data => this._createGoodsCategories(data));
     }
 
     /**
@@ -32,9 +32,7 @@ export default class GoodsService extends BaseService {
      */
     getInfo(goodsId) {
         const url = `${this.baseUrl}/goods/${goodsId}`;
-        return this.get(url, {}).then(res => {
-            return this._processGoodsDetail(res.data);
-        });
+        return this.get(url, {}).then(data => this._processGoodsDetail(data));
     }
 
     /*********************** 数据处理方法 ***********************/

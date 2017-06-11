@@ -3,7 +3,7 @@
 <import src="/templates/address/item/address-item-template.wxml" />
 <import src="/templates/trade/item/order-item-template.wxml" />
 
-<view class="container">
+<view class="container" wx:if="{{init}}">
 
     <!--收货地址-->
     <template is="addressItemTemplate" data="{{...address}}" />
@@ -18,6 +18,10 @@
         <view class="zan-cell zan-cell--access" catchtap="onPostFeeTap">
             <text class="zan-cell__bd">配送方式</text>
             <text class="zan-cell__ft" wx:if="{{seletedDelilvery.desc}}" >{{seletedDelilvery.desc}} {{seletedDelilvery.fee != 0 ? ' ￥' + seletedDelilvery.fee : '免邮' }} </text>
+        </view>
+         <view class="zan-cell zan-cell--access" catchtap="onPostFeeTap">
+            <text class="zan-cell__bd">优惠券</text>
+            <text class="zan-cell__ft"  > 请选择 </text>
         </view>
         <view class="zan-cell zan-form__item">
             <text class="zan-form__title">买家留言</text>

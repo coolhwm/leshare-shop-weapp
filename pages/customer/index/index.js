@@ -6,7 +6,7 @@ Page({
   },
 
   onLoad: function (options) {
-    this.setData({ userInfo: app.globalData.userInfo });
+    this.setData({ userInfo: app.globalData.user });
   },
   /**
    * 选择收货地址

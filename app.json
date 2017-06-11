@@ -15,8 +15,7 @@
     "pages/address/edit/edit",
     "pages/customer/index/index",
     "pages/shop/detail/detail",
-    "pages/cart/index/index",
-    "pages/home/visit-shop/visit-shop" 
+    "pages/cart/index/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#1296db"

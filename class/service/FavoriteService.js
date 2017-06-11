@@ -1,5 +1,5 @@
 import BaseService from "./BaseService";
-import Pagination from "../utils/Page";
+import Pagination from "../entity/Page";
 
 /**
  * 收藏信息服务类
@@ -34,10 +34,7 @@ export default class FavoriteService extends BaseService {
     add(goodsId) {
         const url = `${this.baseUrl}/favorite_goods`;
         const param = { goodsId: goodsId }
-        return this.post(url, param).then(res => {
-            console.info(res);
-            return res;
-        });
+        return this.post(url, param);
     }
 
     /**
@@ -46,10 +43,7 @@ export default class FavoriteService extends BaseService {
     remove(goodsId) {
         const url = `${this.baseUrl}/favorite_goods`;
         const param = { goodsId: goodsId }
-        return this.delete(url, param).then(res => {
-            console.info(res);
-            return res;
-        });
+        return this.delete(url, param);
     }
 
     /**

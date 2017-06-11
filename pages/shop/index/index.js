@@ -1,12 +1,16 @@
 import ShopService from "../../../class/service/ShopService";
 import GoodsService from "../../../class/service/GoodsService";
 import CouponService from "../../../class/service/CouponService";
+import AuthService from "../../../class/service/AuthService";
 import Router from "../../../class/utils/Router";
+import Tips from "../../../class/utils/Tips";
+
 const Tab = require('../../../templates/tab/index');
 const app = getApp();
 const shopService = new ShopService();
 const goodsService = new GoodsService();
 const couponService = new CouponService();
+const authService = new AuthService();
 
 Page(Object.assign({}, Tab, {
   page: {},
@@ -15,13 +19,56 @@ Page(Object.assign({}, Tab, {
     goods: [],
     notice: [],
     tab: {},
-    coupons:[]
+    coupons: [],
+    init: false
   },
 
   /**
    * 页面初始化
    */
   onLoad: function (options) {
+    Tips.loading();
+    authService.checkLoginCode()
+      .then(this.init, this.session)
+      .then(this.login);
+  },
+
+
+  /**
+   * 用户登录
+   */
+  login: function () {
+    authService.checkLoginStatus()
+      .then(user => console.info('用户已登录', user),
+      err => authService.getWxUserInfo()
+        .then(rawUser => authService.checkUserInfo(rawUser))
+        .then(rawUser => authService.decodeUserInfo(rawUser))
+        .then(user => authService.saveUserInfo(user)));
+  },
+
+  /**
+   * 建立会话
+   */
+  session: function () {
+    console.info('权限校验失败，与服务器建立新会话');
+    return authService.getWxJsCode()
+      .then(jsCode => {
+        return authService.getLoginCode(jsCode);
+      })
+      .then(auth => {
+        authService.saveAuthInfo(auth);
+      })
+      .then(() => {
+        this.onLoad();
+      });
+  },
+
+
+  /**
+   * 初始化店铺信息
+   */
+  init: function () {
+    console.info('权限校验成功，会话正常');
     //请求店铺基本信息
     shopService.getInfo().then(data => {
       this.setData({ shop: data });
@@ -43,7 +90,7 @@ Page(Object.assign({}, Tab, {
     });
 
     //请求优惠券信息
-    couponService.shelf().then(data => this.setData({coupons: data}));
+    couponService.shelf().then(data => this.setData({ coupons: data }));
   },
 
   /**
@@ -54,8 +101,11 @@ Page(Object.assign({}, Tab, {
       category_id: this.data.tab.selectedId
     }
     this.page.next(param).then(data => {
-      this.setData({ goods: data.list }
-      );
+      Tips.loaded();
+      this.setData({ 
+        goods: data.list,
+        init: true
+      });
     });
   },
 
@@ -94,8 +144,20 @@ Page(Object.assign({}, Tab, {
    * 重新加载
    */
   reload: function () {
+    Tips.loading();
     this.page.reset();
     this.loadNextPage();
+  },
+
+  /**
+   * 点击领取卡券
+   */
+  onCouponTap: function (event) {
+    const couponId = event.currentTarget.dataset.couponId;
+    Tips.loading();
+    couponService.pick(couponId).then(data => {
+      Tips.toast('领取成功！');
+    });
   },
 
 

@@ -20,10 +20,9 @@ export default class ShopService extends BaseService {
         }
         else {
             const url = `${this.baseUrl}/shops`;
-            return this.get(url, {}).then(res => {
-                const shop = res.data;
+            return this.get(url, {}).then(shop => {
                 this.app.globalData.shop.info = shop;
-                return res.data;
+                return shop;
             });
         }
 
@@ -34,8 +33,7 @@ export default class ShopService extends BaseService {
      */
     getFirstNotice() {
         const url = `${this.baseUrl}/notices/shows`;
-        return this.get(url, {}).then(res => {
-            const data = res.data;
+        return this.get(url, {}).then(data => {
             if (data && data.length > 0) {
                 return data[0];
             }

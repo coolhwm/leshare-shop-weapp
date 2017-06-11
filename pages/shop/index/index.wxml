@@ -5,7 +5,7 @@
 <import src="/templates/notice/bar/notice-bar-template.wxml" />
 <import src="/templates/coupon/shelf/coupon-shelf-template.wxml" />
 
-<view class="shop-index-container">
+<view class="shop-index-container" wx:if="{{init}}">
     <!--店铺基本信息-->
     <template is="shopItemTemplate" data="{{...shop}}" />
 

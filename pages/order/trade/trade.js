@@ -1,5 +1,6 @@
 import OrderService from "../../../class/service/OrderService";
 import AddressService from "../../../class/service/AddressService";
+import CouponService from "../../../class/service/CouponService";
 import Tips from "../../../class/utils/Tips";
 import Router from "../../../class/utils/Router";
 
@@ -7,6 +8,7 @@ const app = getApp();
 const notification = require("../../../class/utils/WxNotificationCenter.js");
 const orderService = new OrderService();
 const addressService = new AddressService();
+const couponService = new CouponService();
 
 Page({
   data: {
@@ -14,7 +16,8 @@ Page({
     address: {},
     message: "",
     delilveries: [],
-    seletedDelilvery: {}
+    seletedDelilvery: {},
+    init: false
   },
 
   onLoad: function (options) {
@@ -37,6 +40,10 @@ Page({
           trade: trade
         });
       }
+      return couponService.available(trade.orderGoodsInfos);
+    }).then(data => {
+      //处理优惠券
+      this.setData({ init: true });
       Tips.loaded();
     });
 
@@ -126,7 +133,7 @@ Page({
     Tips.action(actions).then(res => {
       const seletedDelilvery = this.data.delilveries[res.index];
       const trade = this.updateTradePostFee(seletedDelilvery);
-      this.setData({ 
+      this.setData({
         seletedDelilvery: seletedDelilvery,
         trade: trade
       });

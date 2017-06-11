@@ -64,6 +64,7 @@ Page(Object.assign({}, Tab, {
     this.loadNextPage();
   },
 
+
   /**
    * 处理点击事件
    */

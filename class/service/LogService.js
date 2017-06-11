@@ -1,5 +1,5 @@
 import BaseService from "./BaseService";
-import Pagination from "../utils/Page";
+import Pagination from "../entity/Page";
 
 /**
  * 日志服务
