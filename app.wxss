@@ -300,7 +300,7 @@ text{
 .zan-btn--small {
   display: inline-block;
   height: 30px;
-  line-height: 30px;
+  line-height: 29px;
   font-size: 13px;
   margin-left: 0px;
   margin-right: 5px;

@@ -107,7 +107,7 @@ export default class OrderService extends BaseService {
      *  取消退款
      */
     cancelRefund(orderId, refundUuid) {
-        const url = `${this.baseUrl}/orders/${orderId}/status/cancelRefundMoney`;
+        const url = `${this.baseUrl}/orders/${orderId}/status/cancel_refund_money`;
         const param = {
             refundUuid: refundUuid
         };
@@ -127,7 +127,7 @@ export default class OrderService extends BaseService {
      */
     confirmOrder(orderId) {
         const url = `${this.baseUrl}/orders/${orderId}/status/comments`;
-        return this.patch(url);
+        return this.put(url);
     }
 
 

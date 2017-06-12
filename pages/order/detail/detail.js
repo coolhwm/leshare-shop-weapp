@@ -21,18 +21,17 @@ Page({
 
     //获取订单信息
     orderService.getInfo(orderId).then(data => {
-      this.setData({ 
+      if (data.orderExpress != null) {
+        const express = expressService.createCurrentTrace(data.orderExpress);
+        this.setData({ express: express });
+      }
+
+      this.setData({
         order: data,
         init: true
       });
       Tips.loaded();
     });
-
-    //获取当前物流信息
-    expressService.queryCurrentTrace(orderId).then(express => {
-      this.setData({ express: express });
-    });
-
   },
 
   /**
@@ -120,7 +119,7 @@ Page({
    * 查看物流
    */
   onOrderTrace: function (event) {
-    if(!this.data.express.timestape){
+    if (!this.data.express.timestape) {
       return;
     }
     const order = this.data.order;

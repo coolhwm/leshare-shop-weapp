@@ -12,7 +12,7 @@ export default class Tips {
      * 弹出提示框
      */
     static toast(title, onHide, icon = 'success') {
-        this.loaded();
+        // this.loaded();
         wx.showToast({
             title: title,
             icon: icon,
