@@ -3,18 +3,23 @@
 <!--输入：goods-->
 <import src="/templates/goods/item/goods-item-template.wxml" />
 <import src="/templates/tab/index.wxml" />
+<import src="/templates/loadmore/index.wxml" />
 <template name="goodsGridTemplate">
 
     <!--分类器-->
     <view class="goods-grid-tab">
         <template is="zan-tab" data="{{tab: tab, componentId: 'tab'}}"></template>
     </view>
-    
+
     <!--商品列表-->
     <view class="goods-grid-container">
-        
         <block wx:for="{{goods}}" wx:key="id">
             <template is="goodsItemTemplate" data="{{...item}}" />
         </block>
+
+        <template is="zan-loadmore" data="{{loading: loading}}" />
+        <template is="zan-loadmore" data="{{nomore: nomore}}" />
     </view>
+
+
 </template>

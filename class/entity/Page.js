@@ -41,7 +41,7 @@ export default class Pagination {
             //底部判断
             if(data == null || data.length < 1){
                 this.reachBottom = true;
-                return;
+                return this._export();
             }
 
             //处理数据

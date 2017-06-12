@@ -43,14 +43,14 @@
 .zan-loadmore--nodata .zan-loadmore__tips {
   position: relative;
   top: -11px;
-  background: #f9f9f9;
+  background: #F5F5F5;
   padding: 0 6px;
 }
 
 .zan-loadmore--nomore .zan-loadmore__tips {
   position: relative;
   top: -11px;
-  background: #f9f9f9;
+  background: #F5F5F5;
   padding: 0 6px;
 }
 
