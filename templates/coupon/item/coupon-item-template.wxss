@@ -90,3 +90,29 @@
     top: 0;
     right: 0;
 }
+
+/*已使用/已过期情况调整*/
+.coupon-item-disable{
+    overflow: hidden;
+}
+.coupon-item-disable .coupon-main-container{
+    background-color: #C2C2C2;
+}
+.coupon-item-disable .coupon-main-container text{
+    color: #FFF;
+}
+.coupon-item-disable .zan-label--primary{
+    background: #C2C2C2;
+    color: #FFF;
+    border-color: #C2C2C2;
+}
+.coupon-item-disable .coupon-title-text{
+    color: #A7A7A7;
+}
+.coupon-used-icon{
+    height: 64px;
+    width: 64px;
+    position: absolute;
+    top: 2px;
+    right: -8px;
+}
