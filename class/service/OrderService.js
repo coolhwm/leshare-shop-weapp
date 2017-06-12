@@ -336,7 +336,7 @@ export default class OrderService extends BaseService {
         
         order.shopName = this.shopName;
          //处理订单价格
-        this._processOrderPrice(detail);
+        this._processOrderPrice(order);
         //处理商品信息
         const goods = order.orderGoodsInfos;
         this._processOrderGoods(goods);

@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/order/detail/detail",
     "pages/shop/index/index",
+    "pages/order/detail/detail",
     "pages/order/trade/trade",
     "pages/order/trace/trace",
     "pages/coupon/index/index",

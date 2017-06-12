@@ -2,11 +2,15 @@
 <!--依赖：订单商品（间接），订单项目-->
 <!--输入：orers-->
 <import src="/templates/order/list-item/order-item-template.wxml" />
+<import src="/templates/loadmore/index.wxml" />
 <template name="orderListTemplate">
     <view class="order-list-container">
         <!--订单-->
         <block wx:for="{{orders}}" wx:key="id">
             <template is="orderItemTemplate" data="{{...item}}"/>
         </block>
+
+        <template is="zan-loadmore" data="{{loading: loading}}" />
+        <template is="zan-loadmore" data="{{nodata: nomore, nodata_str: '没有更多订单'}}" />
     </view>
 </template>

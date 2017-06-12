@@ -18,7 +18,7 @@
         </block>
 
         <template is="zan-loadmore" data="{{loading: loading}}" />
-        <template is="zan-loadmore" data="{{nomore: nomore}}" />
+        <template is="zan-loadmore" data="{{nodata: nomore, nodata_str: '没有更多商品'}}" />
     </view>
 
 

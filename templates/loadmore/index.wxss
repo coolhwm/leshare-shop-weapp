@@ -36,9 +36,9 @@
   color: #999;
 }
 
-.zan-loadmore--nodata {
+/*.zan-loadmore--nodata {
   margin-top: 120px;
-}
+}*/
 
 .zan-loadmore--nodata .zan-loadmore__tips {
   position: relative;
