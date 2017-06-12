@@ -53,7 +53,7 @@
         </view>
         <view class="zan-cell">
             <text class="zan-cell__bd">买家留言</text>
-            <text class="zan-cell__ft">无</text>
+            <text class="zan-cell__ft">{{order.message ? order.message : '无'}}</text>
         </view>
         <view class="zan-cell tarde-summary-container">
             <text class="tarde-summary-text">共{{order.orderGoodsInfos.length}}件商品</text>
