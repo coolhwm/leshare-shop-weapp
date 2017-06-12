@@ -119,7 +119,7 @@ export default class OrderService extends BaseService {
      */
     closeOrder(orderId) {
         const url = `${this.baseUrl}/orders/${orderId}/status/close`;
-        return this.patch(url, {});
+        return this.put(url);
     }
 
     /**
@@ -127,7 +127,7 @@ export default class OrderService extends BaseService {
      */
     confirmOrder(orderId) {
         const url = `${this.baseUrl}/orders/${orderId}/status/comments`;
-        return this.patch(url, {});
+        return this.patch(url);
     }
 
 

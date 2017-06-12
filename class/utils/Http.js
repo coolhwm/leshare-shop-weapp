@@ -41,7 +41,7 @@ export default class Http {
                     }
                 },
                 fail: (res) => {
-                    console.error('网络请求发起失败');
+                    console.error('网络请求发起失败', res);
                     reject(res);
                 }
             });

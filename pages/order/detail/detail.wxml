@@ -30,8 +30,7 @@
         <view class="status-address-gap" />
     </block>
     <!--收货地址-->
-    <template is="addressItemTemplate" data="{{name:order.receiveName, phone:order.receivePhone, fullAddress: order.address}}"
-    />
+    <template is="addressItemTemplate" data="{{name:order.receiveName, phone:order.receivePhone, fullAddress: order.address}}"/>
 
     <image class="address-hr" src="/images/icons/address-hr.png" />
 
@@ -47,6 +46,10 @@
         <view class="zan-cell">
             <text class="zan-cell__bd">配送方式</text>
             <text class="zan-cell__ft">{{order.deliveryText}}</text>
+        </view>
+        <view class="zan-cell">
+            <text class="zan-cell__bd">优惠券</text>
+            <text class="zan-cell__ft">无</text>
         </view>
         <view class="zan-cell">
             <text class="zan-cell__bd">买家留言</text>
