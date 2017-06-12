@@ -2,12 +2,10 @@
 
 
 .order-item-container{
-    border-top: 1px solid #F2F2F2;
-    border-bottom: 1px solid #EDEDED;
+ 
     display: flex;
     flex-direction: column;
     background-color: #FFF;
-    margin-bottom: 10rpx;
 }
 
 .order-status-complete{

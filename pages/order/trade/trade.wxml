@@ -14,34 +14,47 @@
     <template is="orderItemTemplate" data="{{...trade}}" />
 
     <!--订单信息-->
-    <view class="zan-panel">
+    <view class="zan-panel zan-panel__top">
+
         <view class="zan-cell zan-cell--access" catchtap="onPostFeeTap">
             <text class="zan-cell__bd">配送方式</text>
-            <text class="zan-cell__ft" wx:if="{{seletedDelilvery.desc}}" >{{seletedDelilvery.desc}} {{seletedDelilvery.fee != 0 ? ' +￥' + seletedDelilvery.fee : '免邮' }} </text>
+            <text class="zan-cell__ft" wx:if="{{seletedDelilvery.desc}}">{{seletedDelilvery.desc}} {{seletedDelilvery.fee != 0 ? ' +￥' + seletedDelilvery.fee : '免邮' }} </text>
         </view>
-         <view class="zan-cell zan-cell--access" catchtap="onCouponTap">
-            <view class="zan-cell__bd zan-cell__flex">优惠券<view class="address-default-label zan-label zan-label--primary zan-label--small zan-label--plain" wx:if="{{coupons.length > 0}}">{{selectedCoupon ? '已选择' : coupons.length + '张可用'}}</view></view>
-            <text class="zan-cell__ft"  >{{coupons.length>0 ?  ( selectedCoupon ? '-￥' + selectedCoupon.price : '未使用') : '无可用'}}</text>
+        <view class="zan-cell zan-cell--access" catchtap="onCouponTap">
+            <view class="zan-cell__bd zan-cell__flex">优惠券
+                <view class="address-default-label zan-label zan-label--primary zan-label--small zan-label--plain" wx:if="{{coupons.length > 0}}">{{selectedCoupon ? '已选择' : coupons.length + '张可用'}}</view>
+            </view>
+            <text class="zan-cell__ft">{{coupons.length>0 ? ( selectedCoupon ? '-￥' + selectedCoupon.price : '未使用') : '无可用'}}</text>
         </view>
         <view class="zan-cell zan-form__item">
             <text class="zan-form__title">买家留言</text>
             <input class="zan-form__input zan-cell__bd" type="text" placeholder="选填：对本次交易的说明" bindinput="onMessageInput" />
         </view>
-        <view class="zan-cell tarde-summary-container">
-            <text class="tarde-summary-text">共{{trade.orderGoodsInfos.length}}件商品</text>
-            <text class="tarde-summary-text">小计：</text>
-            <text class="tarde-summary-price">￥{{trade.finalPrice}}</text>
+    </view>
+
+    <view class="zan-panel summary-container">
+        <view class="summary-line-container">
+            <text class="summary-title">商品金额</text>
+            <text class="summary-text">￥{{trade.dealPrice}}</text>
+        </view>
+        <view class="summary-line-container">
+            <text class="summary-title">运费</text>
+            <text class="summary-text">+￥{{trade.postFee}}</text>
+        </view>
+        <view class="summary-line-container" wx:if="{{selectedCoupon}}">
+            <text class="summary-title">优惠券</text>
+            <text class="summary-text">-￥{{trade.couponPrice}}</text>
         </view>
     </view>
 
     <!--购买栏-->
     <view class="tarde-action-bar">
         <view>
-            <text class="tarde-total-text">合计：</text>
+            <text class="tarde-total-text">实付款：</text>
             <text class="tarde-total-price">￥{{trade.finalPrice}}</text>
         </view>
         <view class="trade-confirm-button" catchtap="onConfirmTap">
-            <text>提交订单</text>
+            <text>立即下单</text>
         </view>
     </view>
 </view>

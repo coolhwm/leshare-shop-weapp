@@ -1,15 +1,16 @@
 {
-  "pages": [ 
+  "pages": [
+    "pages/order/detail/detail",
     "pages/shop/index/index",
+    "pages/order/trade/trade",
+    "pages/order/trace/trace",
     "pages/coupon/index/index",
     "pages/coupon/use/use",
     "pages/goods/index/index",
     "pages/goods/favorite/favorite",
     "pages/goods/history/history",
     "pages/order/index/index",
-    "pages/order/trace/trace",
-    "pages/order/trade/trade",
-    "pages/order/detail/detail",
+    
     "pages/refund/detail/detail",
     "pages/refund/apply/apply",
     "pages/address/index/index",

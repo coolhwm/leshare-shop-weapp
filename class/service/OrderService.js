@@ -187,10 +187,13 @@ export default class OrderService extends BaseService {
         const imageUrl = this._processSingleOrderImageUrl(goods, sku);
         const skuText = this._processOrderSku(sku.skuText);
         const price = sku ? sku.price : goods.sellPrice;
+        const dealPrice =  this._fixedPrice(price * num);
+        const finalPrice = dealPrice;
+    
         //构造交易对象
         const trade = {
-            dealPrice: goods.originalPrice,
-            finalPrice: (price * num).toFixed(2),
+            dealPrice: dealPrice,
+            finalPrice: dealPrice,
             paymentType: "1",
             orderGoodsInfos: [
                 {
@@ -330,8 +333,10 @@ export default class OrderService extends BaseService {
         order.statusText = this.statusDict[status];
         //动作控制 待付款/待评论/待收货
         order.isAction = status == 1 || status == 3 || status == 4;
-        order.postFee = order.postFee.toFixed(2);
+        
         order.shopName = this.shopName;
+         //处理订单价格
+        this._processOrderPrice(detail);
         //处理商品信息
         const goods = order.orderGoodsInfos;
         this._processOrderGoods(goods);
@@ -353,10 +358,27 @@ export default class OrderService extends BaseService {
         this._processOrderTrace(detail);
         //处理订单配送方式
         this._processOrderDetailDelivery(detail);
-
+        //处理订单价格
+        this._processOrderPrice(detail);
         //处理商品信息
-        const goods = detail.orderGoodsInfos;
-        this._processOrderGoods(goods);
+        this._processOrderGoods(detail.orderGoodsInfos);
+    }
+
+    /**
+     * 处理订单状态
+     */
+    _processOrderPrice(order){
+        order.postFee = this._fixedPrice(order.postFee);
+        order.dealPrice = this._fixedPrice(order.dealPrice);
+        order.finalPrice = this._fixedPrice(order.finalPrice);
+        order.couponPrice = this._fixedPrice(order.couponPrice);
+    }
+
+    _fixedPrice(price){
+        if(price == null || isNaN(Number(price))){
+            return null;
+        }
+        return price.toFixed(2);
     }
 
     /**
@@ -375,8 +397,8 @@ export default class OrderService extends BaseService {
      */
     _processOrderDetailDelivery(order) {
         const type = this.deliveryText[order.deliveryType];
-        const price = order.postFee == 0 ? '免邮' : '￥' + order.postFee;
-        order.deliveryText = `${type} ${price}`;
+        //const price = order.postFee == 0 ? '免邮' : '￥' + order.postFee;
+        order.deliveryText = type;
     }
 
 

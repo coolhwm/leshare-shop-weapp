@@ -116,26 +116,17 @@ Page({
    */
   updateTradePostFee: function (delilvery) {
     const trade = this.data.trade;
+
+    //运费属性
     trade.deliveryType = delilvery.type;
+    trade.postFee = delilvery.fee.toFixed(2);
 
-    //扣除原价格
-    if (trade.postFee && trade.postFee != 0) {
-      trade.finalPrice -= trade.postFee;
-    }
-
-    //增加运费
-    trade.postFee = delilvery.fee;
-    trade.finalPrice = (parseFloat(trade.finalPrice) + delilvery.fee).toFixed(2);
-
-    //目前没有优惠功能
-    trade.dealPrice = trade.finalPrice;
-    return trade;
+    return this.refreshTradePrice(trade);
   },
 
   /**
    * 选择运费
    */
-
   onPostFeeTap: function () {
     const actions = this.data.delilveries.map(item => `${item.desc} ￥${item.fee}`);
     Tips.action(actions).then(res => {
@@ -146,6 +137,16 @@ Page({
         trade: trade
       });
     });
+  },
+
+  //******************* 价格计算 ******************/
+  refreshTradePrice: function(trade){
+    trade.finalPrice = 0;
+    trade.finalPrice += trade.dealPrice ? parseFloat(trade.dealPrice) : 0;
+    trade.finalPrice += trade.postFee ? parseFloat(trade.postFee) : 0;
+    trade.finalPrice -= trade.couponPrice ? parseFloat(trade.couponPrice) : 0;
+    trade.finalPrice = trade.finalPrice.toFixed(2);
+    return trade;
   },
 
   //******************* 优惠券操作 ******************/
@@ -169,11 +170,10 @@ Page({
 
     const trade = this.data.trade;
     trade.couponUsedId = coupon.id;
-
-    trade.finalPrice = (trade.finalPrice - coupon.price).toFixed(2);
+    trade.couponPrice =  coupon.price.toFixed(2);
 
     this.setData({
-      trade: trade,
+      trade: this.refreshTradePrice(trade),
       selectedCoupon: coupon
     });
   },

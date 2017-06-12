@@ -25,11 +25,6 @@ export default class Pagination {
      * 加载下一页数据
      */
     next(args) {
-        if(this.reachBottom){
-            //已经是最后一页，无需请求
-            return;
-        }
-
         const param = {
             from: this.start,
             limit: this.count

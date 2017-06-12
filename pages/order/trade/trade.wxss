@@ -19,7 +19,7 @@ page{
 }
 
 /*订单详情面板*/
-.zan-panel{
+.zan-panel__top{
     border-top: none;
     margin-top: 0;
 }
@@ -53,6 +53,25 @@ page{
 
 .text-major{
     line-height: 60rpx;
+}
+
+
+/*汇总栏*/
+.summary-container{
+    padding: 10px 15px;
+}
+.summary-container text{
+    font-size: 30rpx;
+    color: #303030;
+}
+.summary-container .summary-text{
+    color: #FF6600;
+}
+.summary-line-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding:5rpx 0;
 }
 
 /*购买栏*/

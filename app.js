@@ -15,7 +15,7 @@ App({
     if(third_session != ''){
       this.globalData.auth.third_session = third_session;
     }
-    //服务器会话
+    //服务器会话09
     const login_code = wx.getStorageSync('login_code');
     if(login_code != ''){
       this.globalData.auth.login_code = login_code;
