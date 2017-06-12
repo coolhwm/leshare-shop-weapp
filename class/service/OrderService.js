@@ -190,7 +190,7 @@ export default class OrderService extends BaseService {
         //构造交易对象
         const trade = {
             dealPrice: goods.originalPrice,
-            finalPrice: (goods.sellPrice * num).toFixed(2),
+            finalPrice: (price * num).toFixed(2),
             paymentType: "1",
             orderGoodsInfos: [
                 {
@@ -405,8 +405,8 @@ export default class OrderService extends BaseService {
             //订单没有退款信息，不做处理
             return;
         }
-
-        const refund = refunds[0];
+        //展现第一个退款记录
+        const refund = refunds[refunds.length-1];
         //曾经退款过，就一定需要展现退款记录
         order.isAction = true;
         //控制展现退款详情字段

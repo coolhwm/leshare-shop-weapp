@@ -82,7 +82,7 @@ Page({
     Tips.loading('订单创建中');
 
     //订单创建成功后直接拉起支付页面
-    orderService.createOrder(trade, address, ).then(data => {
+    orderService.createOrder(trade, address).then(data => {
       return data.orderId;
     }).then(this.wxPay).catch(() => {
       Tips.toast('订单创建失败');
@@ -163,8 +163,17 @@ Page({
    * 优惠券修改回调函数
    */
   updateCoupon: function (coupon) {
-    console.info(coupon);
+    if (this.data.coupons.length < 1) {
+      return;
+    }
+
+    const trade = this.data.trade;
+    trade.couponUsedId = coupon.id;
+
+    trade.finalPrice = (trade.finalPrice - coupon.price).toFixed(2);
+
     this.setData({
+      trade: trade,
       selectedCoupon: coupon
     });
   },
@@ -182,6 +191,7 @@ Page({
    * 地址修改回调函数
    */
   updateAddress: function (info) {
+
     this.setData({
       address: info
     });
