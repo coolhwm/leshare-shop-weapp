@@ -45,13 +45,11 @@ Page(Object.assign({}, Quantity, {
       });
       return favoriteService.is(goodsId);
     }).then(data => {
-      if (data.isFavorite == 1) {
-        this.setData({ 
-          isFav: 1,
-          init: true
-        });
-        Tips.loaded();
-      }
+      this.setData({
+        isFav: data.isFavorite,
+        init: true
+      });
+      Tips.loaded();
     });
 
     //获取购物车商品数量
@@ -135,7 +133,7 @@ Page(Object.assign({}, Quantity, {
     const sku = {
       skuText: this.sku.skuText,
       price: this.sku.detail.price,
-      imageUrl:  this.sku.detail.imageUrl,
+      imageUrl: this.sku.detail.imageUrl,
     };
     const trade = orderService.createSingleTrade(goods, num, sku);
     const param = JSON.stringify(trade);

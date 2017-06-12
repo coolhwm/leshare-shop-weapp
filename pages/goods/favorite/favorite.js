@@ -1,14 +1,17 @@
 import FavoriteService from "../../../class/service/FavoriteService";
 import Router from "../../../class/utils/Router";
+import Tips from "../../../class/utils/Tips";
 
 const favoriteService = new FavoriteService();
 Page({
   page: {},
   data: {
-    favorites: []
+    favorites: [],
+    init: false
   },
 
   onLoad: function (options) {
+    Tips.loading();
     //初始化分页参数
     this.page = favoriteService.page();
     this.loadNextPage();
@@ -24,7 +27,11 @@ Page({
    */
   loadNextPage: function () {
     this.page.next().then(data => {
-      this.setData({ favorites: data.list });
+      this.setData({ 
+        favorites: data.list,
+        init: true
+      });
+      Tips.loaded();
     });
   },
 

@@ -420,6 +420,9 @@ export default class OrderService extends BaseService {
      * 处理订单商品信息
      */
     _processOrderGoods(goods) {
+        if(goods == null || goods.length < 1){
+            return;
+        }
         goods.forEach(item => {
             //处理SKU描述
             const sku = item.goodsSku;

@@ -9,10 +9,12 @@ Page({
   page: {},
   data: {
     mode: '',
-    addresses: []
+    addresses: [],
+    init: false,
   },
 
   onLoad: function (options) {
+    Tips.loading();
     const mode = options.mode;
     if (mode) {
       this.setData({ mode: mode });
@@ -37,7 +39,12 @@ Page({
   */
   loadNextPage: function () {
     this.page.next().then(data => {
-      this.setData({ addresses: data.list });
+      
+      this.setData({ 
+        addresses: data.list,
+        init: true
+      });
+      Tips.loaded();
     });
   },
 
