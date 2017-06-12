@@ -15,7 +15,9 @@ Page({
     orders: [],
     status: 0,
     tabbar: {},
-    init: false
+    init: false,
+    loading: false,
+    nomore: false
   },
 
   /**
@@ -45,8 +47,10 @@ Page({
   loadNextPage: function () {
     this.page.next({ status: this.data.status }).then(data => {
       Tips.loaded();
-      this.setData({ 
+      this.setData({
         orders: data.list,
+        nomore: data.list.length == this.data.orders.length,
+        loading: false,
         init: true
       });
     });
@@ -56,7 +60,11 @@ Page({
    * 上划加载
    */
   onReachBottom: function (event) {
+    if (this.data.nomore) {
+      return;
+    }
     this.loadNextPage();
+    this.setData({ loading: true });
   },
 
   /**

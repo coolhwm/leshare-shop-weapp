@@ -120,7 +120,7 @@ export default class GoodsService extends BaseService {
      * 处理价格展现标签 / 需要先调用区间处理
      */
     _processGoodsPriceLabel(detail) {
-        let priceLable = detail.sell_price;
+        let priceLable = detail.sellPrice;
 
         if (detail.maxPrice && detail.minPrice) {
             priceLable = `${detail.minPrice} ~ ${detail.maxPrice}`;

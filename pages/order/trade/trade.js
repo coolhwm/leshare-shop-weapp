@@ -16,7 +16,9 @@ Page({
     address: {},
     message: "",
     delilveries: [],
-    seletedDelilvery: {},
+    seletedDelilvery: null,
+    coupons: [],
+    selectedCoupon: null,
     init: false
   },
 
@@ -43,13 +45,17 @@ Page({
       return couponService.available(trade.orderGoodsInfos);
     }).then(data => {
       //处理优惠券
-      this.setData({ init: true });
+      this.setData({
+        init: true,
+        coupons: data
+      });
       Tips.loaded();
     });
 
     //注册事件监听器
     const that = this;
     notification.addNotification("ON_ADDRESS_CHOICE", that.updateAddress, that);
+    notification.addNotification("ON_COUPON_CHOICE", that.updateCoupon, that);
   },
 
   onShow(options) {
@@ -76,7 +82,7 @@ Page({
     Tips.loading('订单创建中');
 
     //订单创建成功后直接拉起支付页面
-    orderService.createOrder(trade, address, ).then(data => {
+    orderService.createOrder(trade, address).then(data => {
       return data.orderId;
     }).then(this.wxPay).catch(() => {
       Tips.toast('订单创建失败');
@@ -103,31 +109,24 @@ Page({
     });
   },
 
+  //******************* 运费操作 ******************/
+
   /**
    * 更新订单的运费信息
    */
   updateTradePostFee: function (delilvery) {
     const trade = this.data.trade;
+
+    //运费属性
     trade.deliveryType = delilvery.type;
+    trade.postFee = delilvery.fee.toFixed(2);
 
-    //扣除原价格
-    if (trade.postFee && trade.postFee != 0) {
-      trade.finalPrice -= trade.postFee;
-    }
-
-    //增加运费
-    trade.postFee = delilvery.fee;
-    trade.finalPrice = (parseFloat(trade.finalPrice) + delilvery.fee).toFixed(2);
-
-    //目前没有优惠功能
-    trade.dealPrice = trade.finalPrice;
-    return trade;
+    return this.refreshTradePrice(trade);
   },
 
   /**
    * 选择运费
    */
-
   onPostFeeTap: function () {
     const actions = this.data.delilveries.map(item => `${item.desc} ￥${item.fee}`);
     Tips.action(actions).then(res => {
@@ -137,6 +136,45 @@ Page({
         seletedDelilvery: seletedDelilvery,
         trade: trade
       });
+    });
+  },
+
+  //******************* 价格计算 ******************/
+  refreshTradePrice: function(trade){
+    trade.finalPrice = 0;
+    trade.finalPrice += trade.dealPrice ? parseFloat(trade.dealPrice) : 0;
+    trade.finalPrice += trade.postFee ? parseFloat(trade.postFee) : 0;
+    trade.finalPrice -= trade.couponPrice ? parseFloat(trade.couponPrice) : 0;
+    trade.finalPrice = trade.finalPrice.toFixed(2);
+    return trade;
+  },
+
+  //******************* 优惠券操作 ******************/
+
+  /**
+   * 点击优惠券 
+   */
+  onCouponTap: function () {
+    const coupons = this.data.coupons;
+    const param = JSON.stringify(coupons);
+    Router.couponsUse(param);
+  },
+
+  /**
+   * 优惠券修改回调函数
+   */
+  updateCoupon: function (coupon) {
+    if (this.data.coupons.length < 1) {
+      return;
+    }
+
+    const trade = this.data.trade;
+    trade.couponUsedId = coupon.id;
+    trade.couponPrice =  coupon.price.toFixed(2);
+
+    this.setData({
+      trade: this.refreshTradePrice(trade),
+      selectedCoupon: coupon
     });
   },
 
@@ -153,8 +191,10 @@ Page({
    * 地址修改回调函数
    */
   updateAddress: function (info) {
+
     this.setData({
       address: info
     });
   }
+
 });

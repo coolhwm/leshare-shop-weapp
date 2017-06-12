@@ -1,0 +1,9 @@
+<!--优惠券列表页面-->
+<import src="/templates/tab/index.wxml" />
+<import src="/templates/coupon/item/coupon-item-template.wxml" />
+
+<view class="container">
+    <block wx:for="{{coupons}}" wx:key="id">
+        <template is="couponItemTemplate" data="{{...item}}"></template>
+    </block>
+</view>

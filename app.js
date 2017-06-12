@@ -15,7 +15,7 @@ App({
     if(third_session != ''){
       this.globalData.auth.third_session = third_session;
     }
-    //服务器会话
+    //服务器会话09
     const login_code = wx.getStorageSync('login_code');
     if(login_code != ''){
       this.globalData.auth.login_code = login_code;
@@ -41,6 +41,8 @@ App({
       code: 'iGsAJQYzB00GX832ZnaZwxjdRz7YEQXa',
       name: '连江海蜇专卖',
     },
+    //预加载
+    preload:{},
     //API地址
     publicUrl: "http://192.168.31.124:9999/v1",
     //publicUrl: "http://leshare.shop:9999/v1",

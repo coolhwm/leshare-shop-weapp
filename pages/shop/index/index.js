@@ -20,7 +20,9 @@ Page(Object.assign({}, Tab, {
     notice: [],
     tab: {},
     coupons: [],
-    init: false
+    init: false,
+    loading: false,
+    nomore: false
   },
 
   /**
@@ -104,6 +106,8 @@ Page(Object.assign({}, Tab, {
       Tips.loaded();
       this.setData({ 
         goods: data.list,
+        nomore: data.list.length == this.data.goods.length,
+        loading: false,
         init: true
       });
     });
@@ -128,7 +132,11 @@ Page(Object.assign({}, Tab, {
    * 上划加载
    */
   onReachBottom: function (event) {
+    if(this.data.nomore){
+      return;
+    }
     this.loadNextPage();
+    this.setData({loading: true});
   },
 
   /**

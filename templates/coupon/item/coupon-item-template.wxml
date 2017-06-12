@@ -1,7 +1,7 @@
 <!-- 优惠券项目-->
 <!--依赖：无-->
 <template name="couponItemTemplate">
-    <view class="coupon-item-container">
+    <view class="coupon-item-container {{status == 'NEVER_USED' ? '' : 'coupon-item-disable'}}" data-coupon-id="{{id}}" catchtap="onCouponTap">
         <!--左侧区域-->
         <view class="coupon-main-container">
             <view class="coupon-value-container">
@@ -30,6 +30,9 @@
                 </view>
             </view>
         </view>
-        <image class="coupon-new-icon" src="/images/icons/new.png" />
+        <!-- 修饰图片 -->
+        <image class="coupon-new-icon" wx:if="{{status == 'NEVER_USED'}}" src="/images/icons/new.png" />
+        <image class="coupon-used-icon" wx:if="{{status == 'USED'}}" src="/images/icons/used.png" />
+        <image class="coupon-used-icon" wx:if="{{status == 'EXPIRED'}}" src="/images/icons/expired.png" />
     </view>
 </template>

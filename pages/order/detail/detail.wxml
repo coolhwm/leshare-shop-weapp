@@ -30,7 +30,8 @@
         <view class="status-address-gap" />
     </block>
     <!--收货地址-->
-    <template is="addressItemTemplate" data="{{name:order.receiveName, phone:order.receivePhone, fullAddress: order.address}}"/>
+    <template is="addressItemTemplate" data="{{name:order.receiveName, phone:order.receivePhone, fullAddress: order.address}}"
+    />
 
     <image class="address-hr" src="/images/icons/address-hr.png" />
 
@@ -38,7 +39,7 @@
     <template is="orderItemTemplate" data="{{...order}}" />
 
     <!--订单信息-->
-    <view class="zan-panel">
+    <view class="zan-panel zan-panel__top">
         <view class="zan-cell">
             <text class="zan-cell__bd">订单号</text>
             <text class="zan-cell__ft">{{order.uuid}}</text>
@@ -48,17 +49,23 @@
             <text class="zan-cell__ft">{{order.deliveryText}}</text>
         </view>
         <view class="zan-cell">
-            <text class="zan-cell__bd">优惠券</text>
-            <text class="zan-cell__ft">无</text>
-        </view>
-        <view class="zan-cell">
             <text class="zan-cell__bd">买家留言</text>
-            <text class="zan-cell__ft">无</text>
+            <text class="zan-cell__ft">{{order.message ? order.message : '无'}}</text>
         </view>
-        <view class="zan-cell tarde-summary-container">
-            <text class="tarde-summary-text">共{{order.orderGoodsInfos.length}}件商品</text>
-            <text class="tarde-summary-text">小计：</text>
-            <text class="tarde-summary-price">￥{{order.finalPrice}}</text>
+    </view>
+
+    <view class="zan-panel summary-container">
+        <view class="summary-line-container">
+            <text class="summary-title">商品金额</text>
+            <text class="summary-text">￥{{order.dealPrice}}</text>
+        </view>
+        <view class="summary-line-container">
+            <text class="summary-title">运费</text>
+            <text class="summary-text">+￥{{order.postFee}}</text>
+        </view>
+        <view class="summary-line-container" wx:if="{{order.couponPrice}}">
+            <text class="summary-title">优惠券</text>
+            <text class="summary-text">-￥{{order.couponPrice}}</text>
         </view>
     </view>
 
@@ -69,7 +76,7 @@
         <!--待支付（展现操作栏）-->
         <block wx:if="{{order.status == 1}}">
             <view>
-                <text class="tarde-total-text">合计：</text>
+                <text class="tarde-total-text">实付款：</text>
                 <text class="tarde-total-price">￥{{order.finalPrice}}</text>
             </view>
             <view class="trade-confirm-button" catchtap="onWxPay">

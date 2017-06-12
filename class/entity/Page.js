@@ -17,6 +17,8 @@ export default class Pagination {
         this.loading = false;
         //参数
         this.params = [];
+        //是否底部
+        this.reachBottom = false;
     }
 
     /**
@@ -30,16 +32,13 @@ export default class Pagination {
         //附加参数
         this.loading = true;
         Object.assign(param, args);
-        return Http.get(this.url, param).then(res => {
-            let data = res;
-            //微信脱壳            
-            if (res.data) {
-                data = res.data;
+        return Http.get(this.url, param).then(data => {
+            //底部判断
+            if(data == null || data.length < 1){
+                this.reachBottom = true;
+                return this._export();
             }
-            //报文脱壳
-            if (data.data) {
-                data = data.data;
-            }
+
             //处理数据
             this._processData(data);
 

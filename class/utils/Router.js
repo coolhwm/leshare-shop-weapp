@@ -96,6 +96,13 @@ export default class Router {
         this.goto(`/pages/address/edit/edit?addr=${address}`);
     }
 
+    /**
+     * 选择优惠券
+     */
+    static couponsUse(coupons){
+        this.goto(`/pages/coupon/use/use?coupons=${coupons}`);
+    }
+
 
    
 

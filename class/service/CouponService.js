@@ -42,7 +42,9 @@ export default class CouponService extends BaseService {
     available(goodsList) {
         const url = `${this.baseUrl}/coupons/order_available`;
         const param = { orderGoodsInfos: goodsList };
-        return this.post(url, param);
+        return this.post(url, param).then(data => {
+            return data.map(coupon => this._processCouponItem(coupon));
+        });
     }
 
 
@@ -54,6 +56,8 @@ export default class CouponService extends BaseService {
         const coupon = data.coupon;
 
         coupon.status = root.status;
+        coupon.id = root.id;
+        coupon.couponId = root.couponId;
         coupon.usedTime = coupon.usedTime;
         coupon.acceptTime = root.acceptTime;
         coupon.beginTime = this._convertTimestapeToDay(coupon.beginTime);

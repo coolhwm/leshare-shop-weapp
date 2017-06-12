@@ -17,7 +17,7 @@
 
     <!--订单列表页面-->
     <view class="order-list-wrap">
-        <template is="orderListTemplate" data="{{orders}}" />
+        <template is="orderListTemplate" data="{{orders, loading, nomore}}" />
     </view>
 
      <!--底部边线-->
