@@ -424,8 +424,8 @@ text{
 }
 .zan-label--small {
   font-size: 11px;
-  height: 16px;
-  line-height: 16px;
+  height: 20px;
+  line-height: 18px;
   padding: 0px 3px;
 }
 .zan-label--plain.zan-label--primary {
@@ -484,6 +484,12 @@ text{
   text-align: right;
   color: #303030;
   font-size: 30rpx;
+}
+
+.zan-cell__flex{
+    display: flex;
+    align-items: center;
+    font-family: MicroSoft Yahei;
 }
 
 .zan-cell--last-child::after,

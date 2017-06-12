@@ -42,7 +42,9 @@ export default class CouponService extends BaseService {
     available(goodsList) {
         const url = `${this.baseUrl}/coupons/order_available`;
         const param = { orderGoodsInfos: goodsList };
-        return this.post(url, param);
+        return this.post(url, param).then(data => {
+            return data.map(coupon => this._processCouponItem(coupon));
+        });
     }
 
 

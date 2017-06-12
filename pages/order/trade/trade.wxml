@@ -17,11 +17,11 @@
     <view class="zan-panel">
         <view class="zan-cell zan-cell--access" catchtap="onPostFeeTap">
             <text class="zan-cell__bd">配送方式</text>
-            <text class="zan-cell__ft" wx:if="{{seletedDelilvery.desc}}" >{{seletedDelilvery.desc}} {{seletedDelilvery.fee != 0 ? ' ￥' + seletedDelilvery.fee : '免邮' }} </text>
+            <text class="zan-cell__ft" wx:if="{{seletedDelilvery.desc}}" >{{seletedDelilvery.desc}} {{seletedDelilvery.fee != 0 ? ' +￥' + seletedDelilvery.fee : '免邮' }} </text>
         </view>
-         <view class="zan-cell zan-cell--access" catchtap="onPostFeeTap">
-            <text class="zan-cell__bd">优惠券</text>
-            <text class="zan-cell__ft"  > 请选择 </text>
+         <view class="zan-cell zan-cell--access" catchtap="onCouponTap">
+            <view class="zan-cell__bd zan-cell__flex">优惠券<view class="address-default-label zan-label zan-label--primary zan-label--small zan-label--plain" wx:if="{{coupons.length > 0}}">{{selectedCoupon ? '已选择' : coupons.length + '张可用'}}</view></view>
+            <text class="zan-cell__ft"  >{{coupons.length>0 ?  ( selectedCoupon ? '-￥' + selectedCoupon.price : '未使用') : '无可用'}}</text>
         </view>
         <view class="zan-cell zan-form__item">
             <text class="zan-form__title">买家留言</text>

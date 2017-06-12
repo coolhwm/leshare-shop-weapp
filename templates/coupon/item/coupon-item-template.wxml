@@ -1,7 +1,7 @@
 <!-- 优惠券项目-->
 <!--依赖：无-->
 <template name="couponItemTemplate">
-    <view class="coupon-item-container">
+    <view class="coupon-item-container"  data-coupon-id="{{id}}"  catchtap="onCouponTap">
         <!--左侧区域-->
         <view class="coupon-main-container">
             <view class="coupon-value-container">

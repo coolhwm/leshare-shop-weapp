@@ -16,7 +16,9 @@ Page({
     address: {},
     message: "",
     delilveries: [],
-    seletedDelilvery: {},
+    seletedDelilvery: null,
+    coupons: [],
+    selectedCoupon: null,
     init: false
   },
 
@@ -43,13 +45,17 @@ Page({
       return couponService.available(trade.orderGoodsInfos);
     }).then(data => {
       //处理优惠券
-      this.setData({ init: true });
+      this.setData({
+        init: true,
+        coupons: data
+      });
       Tips.loaded();
     });
 
     //注册事件监听器
     const that = this;
     notification.addNotification("ON_ADDRESS_CHOICE", that.updateAddress, that);
+    notification.addNotification("ON_COUPON_CHOICE", that.updateCoupon, that);
   },
 
   onShow(options) {
@@ -103,6 +109,8 @@ Page({
     });
   },
 
+  //******************* 运费操作 ******************/
+
   /**
    * 更新订单的运费信息
    */
@@ -140,6 +148,27 @@ Page({
     });
   },
 
+  //******************* 优惠券操作 ******************/
+
+  /**
+   * 点击优惠券 
+   */
+  onCouponTap: function () {
+    const coupons = this.data.coupons;
+    const param = JSON.stringify(coupons);
+    Router.couponsUse(param);
+  },
+
+  /**
+   * 优惠券修改回调函数
+   */
+  updateCoupon: function (coupon) {
+    console.info(coupon);
+    this.setData({
+      selectedCoupon: coupon
+    });
+  },
+
   //******************* 地址操作 ******************/
 
   /**
@@ -157,4 +186,5 @@ Page({
       address: info
     });
   }
+
 });
