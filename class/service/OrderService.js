@@ -107,7 +107,7 @@ export default class OrderService extends BaseService {
      *  取消退款
      */
     cancelRefund(orderId, refundUuid) {
-        const url = `${this.baseUrl}/orders/${orderId}/status/cancelRefundMoney`;
+        const url = `${this.baseUrl}/orders/${orderId}/status/cancel_refund_money`;
         const param = {
             refundUuid: refundUuid
         };
@@ -119,7 +119,7 @@ export default class OrderService extends BaseService {
      */
     closeOrder(orderId) {
         const url = `${this.baseUrl}/orders/${orderId}/status/close`;
-        return this.patch(url, {});
+        return this.put(url);
     }
 
     /**
@@ -127,7 +127,7 @@ export default class OrderService extends BaseService {
      */
     confirmOrder(orderId) {
         const url = `${this.baseUrl}/orders/${orderId}/status/comments`;
-        return this.patch(url, {});
+        return this.put(url);
     }
 
 
@@ -420,6 +420,9 @@ export default class OrderService extends BaseService {
      * 处理订单商品信息
      */
     _processOrderGoods(goods) {
+        if(goods == null || goods.length < 1){
+            return;
+        }
         goods.forEach(item => {
             //处理SKU描述
             const sku = item.goodsSku;

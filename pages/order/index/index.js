@@ -36,10 +36,7 @@ Page({
    * 页面展现
    */
   onShow: function () {
-    // if (cache.reload) {
-    //   this.page.reset();
-    //   this.loadNextPage();
-    // }
+
   },
 
   /**
@@ -97,7 +94,7 @@ Page({
         { "value": "1", "name": "待付款" },
         { "value": "2", "name": "待发货" },
         { "value": "3", "name": "待收货" },
-        { "value": "4", "name": "待评价" },
+        { "value": "5", "name": "退款中" },
       ],
       selected: this.data.status
     };

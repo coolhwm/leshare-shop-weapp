@@ -55,7 +55,7 @@ export default class CouponService extends BaseService {
 
         coupon.status = root.status;
         coupon.usedTime = coupon.usedTime;
-
+        coupon.acceptTime = root.acceptTime;
         coupon.beginTime = this._convertTimestapeToDay(coupon.beginTime);
         coupon.dueTime = this._convertTimestapeToDay(coupon.dueTime);
         return coupon;

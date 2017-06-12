@@ -6,41 +6,63 @@ export default class ExpressService extends BaseService {
 
     constructor() {
         super();
-       
+
     }
     /*********************** 对外方法 ***********************/
+
+
+
+    /**
+     * 构造当前物流状态
+     */
+
+    createCurrentTrace(express) {
+        if (express == null) {
+            return;
+        }
+        const steps = express.expressBases;
+        if (steps == null || steps.length < 1) {
+            return { text: '尚未查询到物流信息' };
+        }
+        const currentStep = steps[0];
+        return {
+            text: currentStep.status,
+            timestape: currentStep.time,
+        };
+    }
 
     /**
      * 查询订单当前的物流状态
      */
     queryCurrentTrace(orderId) {
-        return this.queryTrace(orderId).then(express => {
-            //没有物流信息
-            if (express.steps == null || express.steps.length < 1) {
-                return {
-                    text: '尚未查询到物流信息'
-                }
-            }
-            else {
-                return express.steps[0];
-            }
+        return this._queryExpressInfo(orderId).then(express => {
+            return this.createCurrentTrace(express);
         });
     }
 
 
+
     /**
-     * 查询物理信息列表
+     * 构造订单跟踪李彪
+     */
+    createTrace(express) {
+        if (express == null) {
+            return;
+        }
+        const info = this._createExpressInfo(express);
+        const steps = this._createTraceSteps(express);
+        return {
+            steps: steps,
+            info: info
+        };
+    }
+
+
+    /**
+     * 查询订单跟踪列表
      */
     queryTrace(orderId) {
-        return this._queryExpressInfo(orderId).then(data => {
-            const info = this._createExpressInfo(data);
-            const steps = this._createTraceSteps(data);
-
-            return {
-                steps: steps,
-                info: info
-            };
-        });
+        return this._queryExpressInfo(orderId).then(data => this.createTrace(data));
     }
 
 
@@ -76,7 +98,7 @@ export default class ExpressService extends BaseService {
      * 提取步骤信息
      */
     _createTraceSteps(data) {
-        if(!data.expressBases){
+        if (!data.expressBases) {
             return null;
         }
 

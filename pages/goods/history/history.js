@@ -1,15 +1,18 @@
 import LogService from "../../../class/service/LogService";
 import Router from "../../../class/utils/Router";
+import Tips from "../../../class/utils/Tips";
 const logService = new LogService();
 
 
 Page({
   page: {},
   data: {
-    histories: []
+    histories: [],
+    init: false
   },
 
   onLoad: function (options) {
+    Tips.loading();
     //初始化分页参数
     this.page = logService.page();
     this.loadNextPage();
@@ -25,7 +28,11 @@ Page({
    */
   loadNextPage: function () {
     this.page.next().then(data => {
-      this.setData({ histories: data.list });
+      this.setData({ 
+        histories: data.list,
+        init: true
+      });
+      Tips.loaded();
     });
   },
 

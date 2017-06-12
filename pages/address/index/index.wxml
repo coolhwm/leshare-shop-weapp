@@ -2,7 +2,7 @@
 <!--依赖模板：地址列表模板-->
 <import src="/templates/address/mgr/address-item-template.wxml" />
 
-<view class="container">
+<view class="container" wx:if="{{init}}">
     <view class="gap"></view>
     <view class="address-list-container">
         <block wx:for="{{addresses}}" wx:key="id">

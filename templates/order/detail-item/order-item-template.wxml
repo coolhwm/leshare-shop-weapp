@@ -11,6 +11,7 @@
                 <text class="shop-info-name">{{shopName}}</text>
                 <image class="shop-info-icon" src="/images/icons/more-gray.png" />
             </view>
+            <text>{{orderTime}}</text>
         </view>
 
         <!--商品列表-->
