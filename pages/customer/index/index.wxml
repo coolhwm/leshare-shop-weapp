@@ -30,7 +30,7 @@
             </view>
             <view class="zan-cell__ft"></view>
         </navigator>
-        <navigator class="zan-cell zan-cell--access"  url="/pages/coupon/index/index">
+        <navigator class="zan-cell zan-cell--access" url="/pages/coupon/index/index">
             <view class="zan-cell__bd">
                 <image src="/images/icons/cuppon.png" />
                 <text>优惠券</text>
@@ -50,9 +50,11 @@
         <view class="zan-cell zan-cell--access">
             <view class="zan-cell__bd">
                 <image src="/images/icons/cooperate.png" />
-                <text>加盟合作</text>
+                <text>联系客服</text>
             </view>
-            <view class="zan-cell__ft"></view>
+            <view class="zan-cell__ft">
+                <contact-button type="default-light" size="27" session-from="weapp"></contact-button>
+            </view>
         </view>
         <view class="zan-cell zan-cell--access">
             <view class="zan-cell__bd">
@@ -63,7 +65,7 @@
         </view>
     </view>
 
-     <!--底部边线-->
+    <!--底部边线-->
     <view class="footer-line"></view>
 
 </view>
