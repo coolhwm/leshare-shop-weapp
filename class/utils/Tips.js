@@ -12,7 +12,6 @@ export default class Tips {
      * 弹出提示框
      */
     static toast(title, onHide, icon = 'success') {
-        // this.loaded();
         wx.showToast({
             title: title,
             icon: icon,
@@ -104,7 +103,9 @@ export default class Tips {
             itemList: items,
             success: function (res) {
                 const index = res.tapIndex;
-                functions[index]();
+                if (index >= 0 && index < functions.length) {
+                    functions[index]();
+                }
             }
         })
     }

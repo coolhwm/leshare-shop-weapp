@@ -37,6 +37,13 @@ export default class CouponService extends BaseService {
     }
 
     /**
+     * 删除卡券
+     */
+    remove(acceptId){
+        
+    }
+
+    /**
      * 获取可用的卡券信息
      */
     available(goodsList) {
