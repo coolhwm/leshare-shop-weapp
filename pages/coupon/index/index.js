@@ -42,10 +42,11 @@ Page(Object.assign({}, Tab, {
    */
   loadNextPage: function () {
     Tips.loading();
-    this.page.next().then(data => {
-      const selectedId = this.data.tab.selectedId;
-      const coupons = data.list.filter(item => item.status === selectedId);
-      this.setData({ coupons: coupons });
+    const param = {
+      status: this.data.tab.selectedId
+    };
+    this.page.next(param).then(data => {
+      this.setData({ coupons: data.list });
       Tips.loaded();
     });
   },

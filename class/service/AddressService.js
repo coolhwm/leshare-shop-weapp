@@ -38,15 +38,23 @@ export default class AddressService extends BaseService {
      */
     setDefault(id) {
         const url = `${this.baseUrl}/addresses/${id}/default`;
-        return this.patch(url);
+        return this.put(url);
     }
 
     /**
      * 获取默认
      */
-    getDefault(){
+    getDefault() {
         const url = `${this.baseUrl}/addresses/default`;
-        return this.get(url);
+        return this.get(url).then(data => data != '' ? data : this.getFirstAddress());
+    }
+
+    /**
+     * 获取第一个地址
+     */
+    getFirstAddress() {
+        const url = `${this.baseUrl}/addresses`;
+        return this.get(url).then(data => data.length > 0 ? data[0] : Promise.reject('NO_ADDRESS'));
     }
 
     /**
@@ -82,7 +90,7 @@ export default class AddressService extends BaseService {
     /**
      * 处理地址数据
      */
-    _processAddress(data){
+    _processAddress(data) {
         return data.data;
     }
 }

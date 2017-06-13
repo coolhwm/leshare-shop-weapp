@@ -28,6 +28,32 @@ export default class Tips {
     }
 
     /**
+     * 警告框
+     */
+    static alert(title) {
+        wx.showToast({
+            title: title,
+            image: '/images/icons/alert.png',
+            mask: true,
+            duration: 500
+        });
+    }
+
+    /**
+     * 错误框
+     */
+
+    static error(title) {
+        wx.showToast({
+            title: title,
+            image: '/images/icons/error.png',
+            mask: true,
+            duration: 500
+        });
+    }
+
+
+    /**
      * 弹出加载提示
      */
     static loading(title = '加载中') {
@@ -71,6 +97,16 @@ export default class Tips {
                 }
             })
         });
+    }
+
+    static actionWithFunc(items, ...functions) {
+        wx.showActionSheet({
+            itemList: items,
+            success: function (res) {
+                const index = res.tapIndex;
+                functions[index]();
+            }
+        })
     }
 
 

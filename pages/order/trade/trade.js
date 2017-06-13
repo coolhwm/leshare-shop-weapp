@@ -13,7 +13,7 @@ const couponService = new CouponService();
 Page({
   data: {
     trade: {},
-    address: {},
+    address: null,
     message: "",
     delilveries: [],
     seletedDelilvery: null,
@@ -30,26 +30,18 @@ Page({
     addressService.getDefault().then(address => {
       //处理地址
       this.setData({ address: address });
-      return orderService.queryPostPrice(address, trade.orderGoodsInfos);
-    }).then(data => {
-      //处理运费
-      if (data.dilivery) {
-        const seletedDelilvery = data.delilveryList.find(item => item.default);
-        const trade = this.updateTradePostFee(seletedDelilvery);
-        this.setData({
-          delilveries: data.delilveryList,
-          seletedDelilvery: seletedDelilvery,
-          trade: trade
-        });
-      }
-      return couponService.available(trade.orderGoodsInfos);
-    }).then(data => {
+      return address;
+    }).then(data => this.initPostType(data)).finally(() => {
+      this.setData({ init: true, });
+      Tips.loaded();
+    });
+
+    //优惠券
+    couponService.available(trade.orderGoodsInfos).then(data => {
       //处理优惠券
       this.setData({
-        init: true,
         coupons: data
       });
-      Tips.loaded();
     });
 
     //注册事件监听器
@@ -74,6 +66,10 @@ Page({
    * 提交订单
    */
   onConfirmTap: function (event) {
+    if (!this.data.address) {
+      Tips.alert('请选择收货地址');
+      return;
+    }
 
     //准备交易对象
     const trade = this.data.trade;
@@ -111,6 +107,21 @@ Page({
 
   //******************* 运费操作 ******************/
 
+
+  initPostType: function (address) {
+    return orderService.queryPostPrice(address, this.data.trade.orderGoodsInfos).then(data => {
+      if (data.dilivery) {
+        const seletedDelilvery = data.delilveryList.find(item => item.default);
+        const trade = this.updateTradePostFee(seletedDelilvery);
+        this.setData({
+          delilveries: data.delilveryList,
+          seletedDelilvery: seletedDelilvery,
+          trade: trade
+        });
+      }
+    });
+  },
+
   /**
    * 更新订单的运费信息
    */
@@ -124,10 +135,15 @@ Page({
     return this.refreshTradePrice(trade);
   },
 
+
   /**
    * 选择运费
    */
   onPostFeeTap: function () {
+    if (!this.data.address) {
+      //尚未选择地址
+      return;
+    }
     const actions = this.data.delilveries.map(item => `${item.desc} ￥${item.fee}`);
     Tips.action(actions).then(res => {
       const seletedDelilvery = this.data.delilveries[res.index];
@@ -140,7 +156,7 @@ Page({
   },
 
   //******************* 价格计算 ******************/
-  refreshTradePrice: function(trade){
+  refreshTradePrice: function (trade) {
     trade.finalPrice = 0;
     trade.finalPrice += trade.dealPrice ? parseFloat(trade.dealPrice) : 0;
     trade.finalPrice += trade.postFee ? parseFloat(trade.postFee) : 0;
@@ -155,6 +171,9 @@ Page({
    * 点击优惠券 
    */
   onCouponTap: function () {
+    if (this.data.coupons.length < 1) {
+      return;
+    }
     const coupons = this.data.coupons;
     const param = JSON.stringify(coupons);
     Router.couponsUse(param);
@@ -164,13 +183,9 @@ Page({
    * 优惠券修改回调函数
    */
   updateCoupon: function (coupon) {
-    if (this.data.coupons.length < 1) {
-      return;
-    }
-
     const trade = this.data.trade;
     trade.couponUsedId = coupon.id;
-    trade.couponPrice =  coupon.price.toFixed(2);
+    trade.couponPrice = coupon.price.toFixed(2);
 
     this.setData({
       trade: this.refreshTradePrice(trade),
@@ -190,11 +205,10 @@ Page({
   /**
    * 地址修改回调函数
    */
-  updateAddress: function (info) {
-
+  updateAddress: function (address) {
+    this.initPostType(address).then(() => { });
     this.setData({
-      address: info
+      address: address
     });
   }
-
 });

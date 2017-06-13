@@ -186,7 +186,7 @@ export default class OrderService extends BaseService {
     createSingleTrade(goods, num = 1, sku) {
         const imageUrl = this._processSingleOrderImageUrl(goods, sku);
         const skuText = this._processOrderSku(sku.skuText);
-        const price = sku ? sku.price : goods.sellPrice;
+        const price = sku && sku.price ? sku.price : goods.sellPrice;
         const dealPrice =  this._fixedPrice(price * num);
         const finalPrice = dealPrice;
     
@@ -304,7 +304,7 @@ export default class OrderService extends BaseService {
      * 梳理订单图片（单独下单）
      */
     _processSingleOrderImageUrl(goods, seletedSku) {
-        if (seletedSku) {
+        if (seletedSku && seletedSku.imageUrl) {
             return seletedSku.imageUrl;
         }
         else {
