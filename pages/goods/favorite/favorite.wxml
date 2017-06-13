@@ -8,7 +8,7 @@
     </block>
 </view>
 <!--占位提示-->
-<view class="order-empty-tips" wx:if="{{favorites.length == 0}}">
+<view class="order-empty-tips" wx:if="{{init && favorites.length == 0}}">
     <image src="/images/icons/order-empty.png" />
     <text>您还没有收藏商品</text>
 </view>

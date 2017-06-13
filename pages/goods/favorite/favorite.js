@@ -67,6 +67,9 @@ Page({
     const goodsId = event.currentTarget.dataset.goodsId;
     Tips.actionWithFunc(['查看商品', '取消收藏'],
       () => Router.goodsIndex(goodsId), 
-      () => favoriteService.remove(goodsId).then(() => this.reload()));
+      () => {
+        Tips.loading();
+        favoriteService.remove(goodsId).then(() => this.reload())
+    });
   }
 });

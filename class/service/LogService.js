@@ -16,6 +16,15 @@ export default class LogService extends BaseService {
         const url = `${this.baseUrl}/visit_goods_log`;
         return new Pagination(url, this._processFavGoods.bind(this));
     }
+
+    /**
+     * 移除访问记录
+     */
+    remove(goodsId) {
+        const url = `${this.baseUrl}/visit_goods_log?goodsId=${goodsId}`;
+        return this.delete(url);
+    }
+
     /**
     * 数据处理
     */
@@ -28,9 +37,9 @@ export default class LogService extends BaseService {
         };
     }
 
-     /**
-     * 处理预览图
-     */
+    /**
+    * 处理预览图
+    */
     _processGoodsPreview(images) {
         //图片处理
         if (images == null || images.length < 1) {

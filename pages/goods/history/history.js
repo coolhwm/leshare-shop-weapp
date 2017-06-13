@@ -28,7 +28,7 @@ Page({
    */
   loadNextPage: function () {
     this.page.next().then(data => {
-      this.setData({ 
+      this.setData({
         histories: data.list,
         init: true
       });
@@ -55,8 +55,21 @@ Page({
   /**
    * 点击商品
    */
-  onGoodsTap: function(event){
-      const goodsId = event.currentTarget.dataset.goodsId;
-      Router.goodsIndex(goodsId);
+  onGoodsTap: function (event) {
+    const goodsId = event.currentTarget.dataset.goodsId;
+    Router.goodsIndex(goodsId);
+  },
+
+  /**
+  * 操作
+  */
+  onMoreTap: function (event) {
+    const goodsId = event.currentTarget.dataset.goodsId;
+    Tips.actionWithFunc(['查看商品', '删除记录'],
+      () => Router.goodsIndex(goodsId),
+      () => {
+        Tips.loading();
+        logService.remove(goodsId).then(() => this.reload())
+      });
   }
 });
