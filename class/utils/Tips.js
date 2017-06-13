@@ -31,7 +31,7 @@ export default class Tips {
      * 警告框
      */
     static alert(title) {
-         wx.showToast({
+        wx.showToast({
             title: title,
             image: '/images/icons/alert.png',
             mask: true,
@@ -43,8 +43,8 @@ export default class Tips {
      * 错误框
      */
 
-     static error(title) {
-         wx.showToast({
+    static error(title) {
+        wx.showToast({
             title: title,
             image: '/images/icons/error.png',
             mask: true,
@@ -97,6 +97,16 @@ export default class Tips {
                 }
             })
         });
+    }
+
+    static actionWithFunc(items, ...functions) {
+        wx.showActionSheet({
+            itemList: items,
+            success: function (res) {
+                const index = res.tapIndex;
+                functions[index]();
+            }
+        })
     }
 
 

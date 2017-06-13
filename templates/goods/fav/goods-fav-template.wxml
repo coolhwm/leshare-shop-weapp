@@ -13,7 +13,7 @@
         </view>
 
         <!--操作按钮-->
-        <image class="goods-more-img" src="/images/icons/more-gray.png" />
+        <image class="goods-more-img" src="/images/icons/more-dot.png"  data-goods-id="{{goodsId}}" catchtap="onMoreTap" />
     </view>
     <view class="goods-item-border"></view>
 </template>
