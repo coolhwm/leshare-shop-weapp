@@ -40,8 +40,8 @@ export default class CouponService extends BaseService {
      * 删除卡券
      */
     remove(acceptId){
-        const url = `${this.baseUrl}counpons/${acceptId}`;
-        return this.delete(acceptId);
+        const url = `${this.baseUrl}/counpons/${acceptId}`;
+        return this.delete(url);
     }
 
     /**

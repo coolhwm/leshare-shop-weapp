@@ -1,7 +1,7 @@
 <!-- 优惠券项目-->
 <!--依赖：无-->
 <template name="couponItemTemplate">
-    <view class="coupon-item-container {{status == 'NEVER_USED' ? '' : 'coupon-item-disable'}}" data-coupon-id="{{id}}" catchtap="onCouponTap">
+    <view class="coupon-item-container {{status == 'NEVER_USED' ? '' : 'coupon-item-disable'}}" data-coupon-id="{{id}}" catchtap="onCouponTap" catchlongtap="onCouponDelete">
         <!--左侧区域-->
         <view class="coupon-main-container">
             <view class="coupon-value-container">

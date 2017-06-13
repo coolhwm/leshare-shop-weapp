@@ -77,6 +77,15 @@ Page(Object.assign({}, Tab, {
       [`${componentId}.selectedId`]: selectedId
     });
     this.reload();
-  }
+  },
 
+  /**
+   * 长按删除卡券
+   */
+  onCouponDelete: function (event) {
+    const acceptId = event.currentTarget.dataset.couponId;
+    Tips.confirm('是否删除该卡券？')
+      .then(() => couponService.remove(acceptId))
+      .then(() => Tips.toast('删除成功', () => this.reload()));
+  }
 }))
