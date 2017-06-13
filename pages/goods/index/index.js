@@ -128,6 +128,10 @@ Page(Object.assign({}, Quantity, {
    * 确定购买
    */
   onConfirmBuyTap: function (event) {
+    if (!this.isValidSku()) {
+      return;
+    }
+
     const goods = this.data.goods;
     const num = this.sku.num;
     const sku = {
@@ -144,6 +148,10 @@ Page(Object.assign({}, Quantity, {
    * 确定加入购物车
    */
   onConfirmCartTap: function (event) {
+    if (!this.isValidSku()) {
+      return;
+    }
+
     this.setCartNumFromApp(this.sku.num);
     //请求服务端
     Tips.loading('数据加载中');
@@ -153,6 +161,22 @@ Page(Object.assign({}, Quantity, {
       notification.postNotificationName("ON_CART_UPDATE");
       this.onPanelClose();
     });
+  },
+
+  /**
+   * 校验库存和SKU选择情况
+   */
+  isValidSku: function () {
+    if (this.sku.exists && !this.sku.isReady) {
+      Tips.alert('请选择商品规格');
+      return false;
+    }
+    if (this.sku.stock < 1) {
+      Tips.alert('该商品无货');
+      return false;
+    }
+    
+    return true;
   },
 
   /**

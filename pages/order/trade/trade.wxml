@@ -16,11 +16,12 @@
     <!--订单信息-->
     <view class="zan-panel zan-panel__top">
 
-        <view class="zan-cell zan-cell--access" catchtap="onPostFeeTap">
+        <view class="zan-cell {{address ? 'zan-cell--access': ''}}" catchtap="onPostFeeTap">
             <text class="zan-cell__bd">配送方式</text>
-            <text class="zan-cell__ft" wx:if="{{seletedDelilvery.desc}}">{{seletedDelilvery.desc}} {{seletedDelilvery.fee != 0 ? ' +￥' + seletedDelilvery.fee : '免邮' }} </text>
+            <text class="zan-cell__ft" wx:if="{{address}}">{{seletedDelilvery.desc}} {{seletedDelilvery.fee != 0 ? ' +￥' + seletedDelilvery.fee : '免邮' }} </text>
+            <text class="zan-cell__ft" wx:else>请选择收货地址</text>
         </view>
-        <view class="zan-cell zan-cell--access" catchtap="onCouponTap">
+        <view class="zan-cell {{coupons.length>0 ? 'zan-cell--access': ''}}" catchtap="onCouponTap">
             <view class="zan-cell__bd zan-cell__flex">优惠券
                 <view class="address-default-label zan-label zan-label--primary zan-label--small zan-label--plain" wx:if="{{coupons.length > 0}}">{{selectedCoupon ? '已选择' : coupons.length + '张可用'}}</view>
             </view>
@@ -37,7 +38,7 @@
             <text class="summary-title">商品金额</text>
             <text class="summary-text">￥{{trade.dealPrice}}</text>
         </view>
-        <view class="summary-line-container">
+        <view class="summary-line-container" wx:if="{{seletedDelilvery}}">
             <text class="summary-title">运费</text>
             <text class="summary-text">+￥{{trade.postFee}}</text>
         </view>

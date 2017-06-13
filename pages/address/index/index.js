@@ -87,6 +87,11 @@ Page({
    */
   onDefaultTap: function (event) {
     const addrId = event.currentTarget.dataset.id;
+    const isAreadyDefault = this.data.addresses.find(addr => addr.id == addrId).isDefault;
+    if(isAreadyDefault == 1){
+      return;
+    }
+    
     Tips.loading();
     addressService.setDefault(addrId).then(res => {
       Tips.toast('设置成功', () => this.onPullDownRefresh());

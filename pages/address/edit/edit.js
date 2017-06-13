@@ -219,7 +219,7 @@ Page({
       name: data.name,
       tel: data.phone,
       address: data.detail,
-      default: data.is_default == 1,
+      default: data.isDefault == 1,
       addrId: data.id
     });
   }
