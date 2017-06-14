@@ -20,6 +20,15 @@ export default class CartService extends BaseService {
 
 
     /**
+     * 购物车总数
+     */
+    count(){
+        const url = `${this.baseUrl}/carts/count`;
+        return this.get(url).then(data => data.count);
+    }
+
+
+    /**
      * 将商品加入购物车中
      */
     add(goodsId, num = 1, sku) {

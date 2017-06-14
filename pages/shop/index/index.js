@@ -2,6 +2,7 @@ import ShopService from "../../../class/service/ShopService";
 import GoodsService from "../../../class/service/GoodsService";
 import CouponService from "../../../class/service/CouponService";
 import AuthService from "../../../class/service/AuthService";
+import CartService from "../../../class/service/CartService";
 import Router from "../../../class/utils/Router";
 import Tips from "../../../class/utils/Tips";
 
@@ -11,6 +12,7 @@ const shopService = new ShopService();
 const goodsService = new GoodsService();
 const couponService = new CouponService();
 const authService = new AuthService();
+const cartService = new CartService();
 
 Page(Object.assign({}, Tab, {
   page: {},
@@ -93,6 +95,9 @@ Page(Object.assign({}, Tab, {
 
     //请求优惠券信息
     couponService.shelf().then(data => this.setData({ coupons: data }));
+
+    //购物车数量初始化
+    cartService.count().then(count => app.globalData.cart.num = count);
   },
 
   /**
@@ -104,7 +109,7 @@ Page(Object.assign({}, Tab, {
     }
     this.page.next(param).then(data => {
       Tips.loaded();
-      this.setData({ 
+      this.setData({
         goods: data.list,
         nomore: data.list.length == this.data.goods.length,
         loading: false,
@@ -132,11 +137,11 @@ Page(Object.assign({}, Tab, {
    * 上划加载
    */
   onReachBottom: function (event) {
-    if(this.data.nomore){
+    if (this.data.nomore) {
       return;
     }
     this.loadNextPage();
-    this.setData({loading: true});
+    this.setData({ loading: true });
   },
 
   /**

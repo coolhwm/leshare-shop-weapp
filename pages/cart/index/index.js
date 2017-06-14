@@ -40,7 +40,7 @@ Page(Object.assign({}, Quantity, {
    * 页面隐藏，同步数据
    */
   onHide: function () {
-    cache.num = this.cart.num;
+    cartService.count().then(count => cache.num = count);
   },
 
   reload: function () {
