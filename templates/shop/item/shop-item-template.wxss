@@ -1,15 +1,20 @@
 .shop-item-container{
     display: flex;
     flex-direction: row;
-    height: 180rpx;
+    justify-content: space-between;
     align-items: center;
-    background-color: #fff;
+    background-color: #1296db;
+    padding-bottom: 30rpx;
+    padding-left: 40rpx;
+    padding-right: 20rpx;
 }
 
 .shop-item-image{
-    padding: 20rpx;
-    width: 120rpx;
-    height: 120rpx;
+    width: 150rpx;
+    height: 150rpx;
+    border-radius: 50%;
+    border: 2px solid #FFF;
+    box-shadow: 0 0 5px gray;
 }
 
 .shop-more-image{
@@ -19,19 +24,42 @@
 
 .shop-synopsis-container{
     display: flex;
+    flex: 1;
     flex-direction: column;
-    margin-left: 20rpx;
-    width: 500rpx;
+    margin-left: 40rpx;
 }
 
 .shop-item-title{
     font-size: 36rpx;
-    font-weight: 700;
     letter-spacing: 2px;
-    color: #46556c;
+    font-weight: bold;
+    color: #FFF;
 }
 
 .shop-item-describe{
-    margin-top: 5px;
+    margin-top: 20rpx;
+    color: #FFF;
 }
 
+.shop-item-notice{
+    margin-top: 20rpx;
+    color: #FFF;
+}
+
+/*背景*/
+.shop-background-image{
+    position: absolute;
+    width: 750rpx;
+    height: 230rpx;
+    z-index: -1;
+    -webkit-filter:blur(30px) brightness(.6);
+}
+
+.shop-background-container{
+    position: absolute;
+    height: 230rpx;
+    width: 100%;
+    overflow: hidden;
+    top:0;
+    left: 0;
+}

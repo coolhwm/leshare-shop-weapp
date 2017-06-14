@@ -19,7 +19,7 @@
     <view class="gap"></view>
 
     <!--店铺信息-->
-    <template is="shopItemTemplate" data="{{...shop}}" />
+    <!--<template is="shopItemTemplate" data="{{...shop}}" />-->
 
     <!--间隔-->
     <view class="gap"></view>

@@ -7,14 +7,14 @@
 
 <view class="shop-index-container" wx:if="{{init}}">
     <!--店铺基本信息-->
-    <template is="shopItemTemplate" data="{{...shop}}" />
+    <template is="shopItemTemplate" data="{{...shop, notice}}" />
 
     <!--店铺公告-->
-    <template is="noitceBarTemplate" data="{{...notice}}"/>
+    <!--<template is="noitceBarTemplate" data="{{...notice}}"/>-->
 
 
     <!--卡券架-->
-    <template is="couponShelfTemplate" data="{{coupons}}"/>
+    <!--<template is="couponShelfTemplate" data="{{coupons}}"/>-->
 
 
     <!--商品区域-->

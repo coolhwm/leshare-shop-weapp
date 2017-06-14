@@ -94,7 +94,7 @@ Page(Object.assign({}, Tab, {
     });
 
     //请求优惠券信息
-    couponService.shelf().then(data => this.setData({ coupons: data }));
+    // couponService.shelf().then(data => this.setData({ coupons: data }));
 
     //购物车数量初始化
     cartService.count().then(count => app.globalData.cart.num = count);
