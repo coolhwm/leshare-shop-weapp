@@ -116,3 +116,7 @@
     top: 2px;
     right: -8px;
 }
+
+.coupon-item-disable .coupon-detial-text{
+    color: #A7A7A7;
+}

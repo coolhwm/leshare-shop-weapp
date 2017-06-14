@@ -25,8 +25,8 @@
             <view>
                 <view class="coupon-desc-gap"></view>
                 <view class="coupon-detial-container">
-                    <text class="coupon-detial-text">领取时间：{{acceptTime}}</text>
-                    <!--<image class="coupon-detial-icon" src="/images/icons/down.png" />-->
+                    <text class="coupon-detial-text" wx:if="{{usedTime}}">使用时间：{{usedTime}}</text>
+                    <text class="coupon-detial-text" wx:else>领取时间：{{acceptTime}}</text>
                 </view>
             </view>
         </view>
