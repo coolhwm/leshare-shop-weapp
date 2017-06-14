@@ -5,7 +5,7 @@
 <import src="/templates/goods/buy-bar/goods-buy-bar-template.wxml" />
 <import src="/templates/goods/sku/goods-sku-template.wxml" />
 <import src="/templates/goods/buy-panel/goods-buy-panel-template.wxml" />
-<import src="/templates/shop/item/shop-item-template.wxml" />
+<import src="/templates/shop/item-white/shop-item-template.wxml" />
 
 
 <view class="goods-index-container" wx:if="{{init}}">
@@ -19,7 +19,7 @@
     <view class="gap"></view>
 
     <!--店铺信息-->
-    <!--<template is="shopItemTemplate" data="{{...shop}}" />-->
+    <template is="shopItemTemplate" data="{{...shop}}" />
 
     <!--间隔-->
     <view class="gap"></view>

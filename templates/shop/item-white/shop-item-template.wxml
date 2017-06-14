@@ -1,0 +1,17 @@
+<!--店铺项目模板-->
+<!--依赖：无-->
+<!--输入参数：...shop-->
+<!--事件：点击-->
+<template name="shopItemTemplate">
+    <view class="shop-item-container" data-shop-id="{{id}}" catchtap="onShopItemTap">
+        <!--店铺图片-->
+        <image class="shop-item-image" src="/images/shop/shop.png"/>
+        <view class="shop-synopsis-container">
+            <text class="shop-item-title">{{name}}</text>
+            <text class="shop-item-describe">{{describe}}</text>
+            <text class="shop-item-describe">地址：{{address}}</text>
+        </view>
+        <image class="icon-big" src="/images/icons/more.png"/>
+    </view>
+    <!--<view class="hr"/>-->
+</template>

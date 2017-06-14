@@ -35,6 +35,7 @@ Page(Object.assign({}, Tab, {
   reload: function () {
     this.page.reset();
     this.loadNextPage();
+    wx.stopPullDownRefresh();
   },
 
   /**

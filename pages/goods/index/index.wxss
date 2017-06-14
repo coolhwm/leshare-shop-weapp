@@ -1,6 +1,6 @@
 @import "/templates/goods/info/goods-info-template.wxss";
 @import "/templates/goods/detail/goods-detail-template.wxss";
-@import "/templates/shop/item/shop-item-template.wxss";
+@import "/templates/shop/item-white/shop-item-template.wxss";
 @import "/templates/goods/buy-bar/goods-buy-bar-template.wxss";
 @import "/templates/goods/buy-panel/goods-buy-panel-template.wxss";
 @import "/templates/goods/sku/goods-sku-template.wxss";

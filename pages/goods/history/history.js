@@ -21,6 +21,7 @@ Page({
   reload: function () {
     this.page.reset();
     this.loadNextPage();
+    wx.stopPullDownRefresh();
   },
 
   /**

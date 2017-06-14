@@ -1,0 +1,37 @@
+.shop-item-container{
+    display: flex;
+    flex-direction: row;
+    height: 180rpx;
+    align-items: center;
+    background-color: #fff;
+}
+
+.shop-item-image{
+    padding: 20rpx;
+    width: 120rpx;
+    height: 120rpx;
+}
+
+.shop-more-image{
+    width: 60rpx;
+    height: 60rpx;
+}
+
+.shop-synopsis-container{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20rpx;
+    width: 500rpx;
+}
+
+.shop-item-title{
+    font-size: 36rpx;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #46556c;
+}
+
+.shop-item-describe{
+    margin-top: 5px;
+}
+
