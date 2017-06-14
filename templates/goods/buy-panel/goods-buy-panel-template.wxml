@@ -41,7 +41,7 @@
     <view class="buy-panel-num-container">
         <view class="buy-panel-num-title">
             <text class="buy-panel-num-text">购买数量：</text>
-            <text class="buy-panel-stock-text">剩余{{sku.isReady ? sku.detail.stock : stock}}件</text>
+            <text class="buy-panel-stock-text" >{{sku.stockText}}</text>
         </view>
 
         <view class="buy-panel-num-selector">

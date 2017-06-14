@@ -39,9 +39,9 @@ export default class Sku {
     init() {
         this.labels = this.goods.labels;
         //没有规格的情况
-        if(!this.labels){
+        if (!this.labels) {
             this.exists = false;
-            this.stock = this.goods.stock;
+            //this.stock = this.goods.stock;
         }
         //初始化已被选择的对象 / 占位符
         for (let i in this.labels) {
@@ -88,11 +88,30 @@ export default class Sku {
             display: this.display,
             exists: this.exists,
             stock: this.stock,
+            stockText: this.buildStockText(),
             action: this.action,
             skuKeys: this.skuKeys,
             skuText: this.skuText,
             skuValues: this.skuValues
         };
+    }
+
+
+    /**
+     * 剩余库存文本
+     */
+    buildStockText() {
+        if (this.exists) {
+            if (this.isReady) {
+                return `剩余${this.stock}件`;
+            }
+            else {
+                return '(请选择规格)';
+            }
+        }
+        else {
+            return `剩余${this.stock}件`;
+        }
     }
 
     /**
@@ -108,7 +127,6 @@ export default class Sku {
             }
             else {
                 ready = false;
-                this.stock = 0;
                 break;
             }
         }
@@ -131,7 +149,6 @@ export default class Sku {
             const detail = details[i];
             if (detail.sku == this.skuText) {
                 this.detail = detail.goodsSkuDetailBase;
-                this.stock = this.detail.stock;
                 break;
             }
         }

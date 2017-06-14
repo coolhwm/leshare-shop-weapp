@@ -116,7 +116,8 @@
 /*购买数量/剩余 容器*/
 .buy-panel-num-title{
     display: flex;
-    justify-content: center;
+    height: 82rpx;
+    justify-content: flex-start;
     flex-direction: column;
 }
 /*购买数量文字*/

@@ -41,16 +41,22 @@ Page(Object.assign({}, Quantity, {
       this.sku = new Sku(data);
       this.setData({
         goods: data,
-        sku: this.sku.export()
-      });
-      return favoriteService.is(goodsId);
-    }).then(data => {
-      this.setData({
-        isFav: data.isFavorite,
+        sku: this.sku.export(),
         init: true
       });
       Tips.loaded();
+      return this.sku;
+    }).then(sku => {
+      //无SKU商品加载商品数量
+      if (!sku.exists) {
+        this.loadGoodsStock(goodsId);
+      }
     });
+
+    //收藏状态
+    favoriteService.is(goodsId).then(data => this.setData({ isFav: data.isFavorite }));
+
+
 
     //获取购物车商品数量
     this.setCartNumFromApp();
@@ -119,9 +125,27 @@ Page(Object.assign({}, Quantity, {
   onSkuTap: function (event) {
     const key = event.currentTarget.dataset.skuKey;
     const value = event.currentTarget.dataset.skuValue;
+    const sku = this.sku;
+    sku.select(key, value);
+    this.setData({ sku: sku.export() });
 
-    this.sku.select(key, value);
-    this.setData({ sku: this.sku.export() });
+    if (sku.isReady) {
+      const skuText = sku.skuText;
+      const goodsId = this.data.goods.id;
+      this.loadGoodsStock(goodsId, skuText);
+    }
+  },
+
+  /**
+   * 加载商品库存
+   */
+  loadGoodsStock: function (goodsId, skuText ) {
+    Tips.loading();
+    goodsService.stock(goodsId, skuText).then(stock => {
+      this.sku.stock = stock;
+      this.setData({ sku: this.sku.export() });
+      Tips.loaded();
+    });
   },
 
   /**
@@ -175,7 +199,7 @@ Page(Object.assign({}, Quantity, {
       Tips.alert('该商品无货');
       return false;
     }
-    
+
     return true;
   },
 

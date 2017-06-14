@@ -18,6 +18,14 @@ export default class GoodsService extends BaseService {
         return new Pagination(url, this._processGoodsData.bind(this));
     }
 
+    /**
+     * 获取商品库存
+     */
+    stock(goodsId, sku = ''){
+        const url = `${this.baseUrl}/goods/${goodsId}/stock?sku=${sku}`;
+        return this.get(url).then(data => data.stock);
+    }
+
 
     /**
      * 查询商品目录
