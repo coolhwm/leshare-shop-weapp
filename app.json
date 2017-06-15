@@ -24,10 +24,10 @@
     "navigationBarBackgroundColor": "#1296db"
   },
   "tabBar": {
-    "color": "#222224",
+    "color": "#666666",
     "selectedColor": "#1296db",
     "borderStyle": "white",
-    "backgroundColor": "#FFFFFF",
+    "backgroundColor": "#FAFAFA",
     "list": [
       {
         "iconPath": "images/tab/home.png",

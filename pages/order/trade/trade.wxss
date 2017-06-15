@@ -9,6 +9,7 @@ page{
 .container{
     display: flex;
     flex-direction: column;
+    padding-bottom: 150rpx;
 }
 
 /*收货地址间隔*/
