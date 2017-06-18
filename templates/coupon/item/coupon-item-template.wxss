@@ -84,8 +84,8 @@
 
 /*新卷角落*/
 .coupon-new-icon{
-    height: 55rpx;
-    width: 55rpx;
+    height: 75rpx;
+    width: 75rpx;
     position: absolute;
     top: 0;
     right: 0;

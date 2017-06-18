@@ -39,7 +39,7 @@ export default class CouponService extends BaseService {
     /**
      * 删除卡券
      */
-    remove(acceptId){
+    remove(acceptId) {
         const url = `${this.baseUrl}/counpons/${acceptId}`;
         return this.delete(url);
     }
@@ -71,7 +71,35 @@ export default class CouponService extends BaseService {
         coupon.usedTime = root.usedTime;
         coupon.beginTime = this._convertTimestapeToDay(coupon.beginTime);
         coupon.dueTime = this._convertTimestapeToDay(coupon.dueTime);
+        this._processCouponDisplayFlag(coupon);
         return coupon;
+    }
+
+
+    /**
+     * 处理卡券展示标签
+     */
+    _processCouponDisplayFlag(coupon) {
+        if (coupon.status != 'NEVER_USED') {
+            return;
+        }
+        const acceptTimeInterval = this._dayIntervalToNow(coupon.acceptTime);
+        if (acceptTimeInterval <= 1) {
+            coupon.isNew = true;
+        }
+        const dueTimeInterval = this._dayIntervalToNow(coupon.dueTime);
+        if (dueTimeInterval >= -1) {
+            coupon.isExpiring = true;
+        }
+    }
+
+    /**
+     * 计算时间间隔
+     */
+    _dayIntervalToNow(dateStr) {
+        const MS_OF_DAY = 86400000;
+        const date = Date.parse(dateStr);
+        return Math.round((Date.now() - date) / MS_OF_DAY);
     }
 
     /**

@@ -22,6 +22,7 @@
             </view>
 
             <!--分隔符-->
+            
             <view>
                 <view class="coupon-desc-gap"></view>
                 <view class="coupon-detial-container">
@@ -30,8 +31,11 @@
                 </view>
             </view>
         </view>
+
         <!-- 修饰图片 -->
-        <image class="coupon-new-icon" wx:if="{{status == 'NEVER_USED'}}" src="/images/icons/new.png" />
+        <image class="coupon-new-icon" wx:if="{{status == 'NEVER_USED' && isNew}}" src="/images/icons/new.png" />
+        <image class="coupon-new-icon" wx:elif="{{status == 'NEVER_USED' && isExpiring}}" src="/images/icons/expiring.png" />
+        
         <image class="coupon-used-icon" wx:if="{{status == 'USED'}}" src="/images/icons/used.png" />
         <image class="coupon-used-icon" wx:if="{{status == 'EXPIRED'}}" src="/images/icons/expired.png" />
     </view>
