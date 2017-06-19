@@ -45,18 +45,10 @@ Page(Object.assign({}, Quantity, {
         init: true
       });
       Tips.loaded();
-      return this.sku;
-    }).then(sku => {
-      //无SKU商品加载商品数量
-      if (!sku.exists) {
-        this.loadGoodsStock(goodsId);
-      }
     });
 
     //收藏状态
     favoriteService.is(goodsId).then(data => this.setData({ isFav: data.isFavorite }));
-
-
 
     //获取购物车商品数量
     this.setCartNumFromApp();

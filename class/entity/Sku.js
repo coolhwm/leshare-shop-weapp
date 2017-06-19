@@ -33,11 +33,16 @@ export default class Sku {
         this.action = "";
         //库存
         this.skuStocks = goods.goodsStocks;
+        //是否可以点击下一步
+        this.next = false;
         //初始化
         this.init();
     }
 
 
+    /**
+     * 初始化对象
+     */
     init() {
         this.labels = this.goods.labels;
         //没有规格的情况
@@ -51,6 +56,11 @@ export default class Sku {
             this.selected[label] = null;
             this.skuKeys += `${label} `;
         }
+        //初始化无规格商品的库存
+        if(!this.exists){
+            this.stock = this.skuStocks[0].stock;
+        }
+
     }
 
     /**
@@ -95,8 +105,25 @@ export default class Sku {
             action: this.action,
             skuKeys: this.skuKeys,
             skuText: this.skuText,
-            skuValues: this.skuValues
+            skuValues: this.skuValues,
+            next: this.buildNextFlag()
         };
+    }
+
+
+    /**
+     * 构造是否可以进入下一步的标识符
+     */
+    buildNextFlag(){
+        if (this.exists && this.isReady && this.stock > 0) {
+            return true;
+        }
+        else if(!this.exists && this.stock > 0){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
 

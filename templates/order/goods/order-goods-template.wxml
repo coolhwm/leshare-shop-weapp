@@ -15,7 +15,7 @@
         <!--商品购买信息-->
         <view class="order-goods-buy-container">
             <text class="order-goods-price">￥{{goodsPrice}}</text>
-            <text class="order-goods-orgin-price">￥{{goodsPrice}}</text>
+            <!--<text class="order-goods-orgin-price">￥{{goodsPrice}}</text>-->
             <text class="order-goods-count">x{{count}}</text>
         </view>
     </view>
