@@ -92,3 +92,8 @@ page{
 .goods-price{
     color:#ff6200;
 }
+
+/*没有购买物品的情况*/
+.bar-buy-empty{
+    background-color: #B0B0B0;
+}

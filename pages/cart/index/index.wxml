@@ -36,7 +36,7 @@
             <text class="cart-check-tips-text">不含运费，已优惠￥0.00</text>
         </view>
 
-        <view class="bar-buy-container" catchtap="onBuyTap">
+        <view class="bar-buy-container {{cart.num == 0 ? 'bar-buy-empty' : ''}}" catchtap="onBuyTap">
             <text class="text-btn">去结算</text>
             <text class="text-small">({{cart.num}})</text>
         </view>

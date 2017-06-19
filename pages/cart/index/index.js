@@ -110,7 +110,7 @@ Page(Object.assign({}, Quantity, {
    */
   onBuyTap: function (e) {
     if (this.cart.empty()) {
-      Tips.toast("请选择商品");
+      Tips.alert("请选择商品");
     }
     else {
       const trade = orderService.createCartTrade(this.cart.getCheckedCarts());

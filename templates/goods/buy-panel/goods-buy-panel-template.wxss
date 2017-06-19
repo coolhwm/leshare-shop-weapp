@@ -145,3 +145,8 @@
     font-size: 36rpx;
     color: #FFF;
 }
+
+/*购买栏为空*/
+.buy-panel-empty{
+    background-color: #B0B0B0;
+}

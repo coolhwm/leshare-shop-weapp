@@ -50,10 +50,10 @@
     </view>
 
 
-    <view class="buy-panel-next" catchtap="onConfirmBuyTap" wx:if="{{sku.action =='buy'}}">
+    <view class="buy-panel-next {{!sku.isReady && sku.exists ? 'buy-panel-empty' : ''}}" catchtap="onConfirmBuyTap" wx:if="{{sku.action =='buy'}}">
         <text>下一步</text>
     </view>
-    <view class="buy-panel-next" catchtap="onConfirmCartTap" wx:if="{{sku.action =='cart'}}">
+    <view class="buy-panel-next {{!sku.isReady && sku.exists ? 'buy-panel-empty' : ''}}" catchtap="onConfirmCartTap" wx:if="{{sku.action =='cart'}}">
         <text>确定</text>
     </view>
     </view>
