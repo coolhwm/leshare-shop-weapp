@@ -128,25 +128,8 @@ Page(Object.assign({}, Quantity, {
     const sku = this.sku;
     sku.select(key, value);
     this.setData({ sku: sku.export() });
-
-    if (sku.isReady) {
-      const skuText = sku.skuText;
-      const goodsId = this.data.goods.id;
-      this.loadGoodsStock(goodsId, skuText);
-    }
   },
 
-  /**
-   * 加载商品库存
-   */
-  loadGoodsStock: function (goodsId, skuText ) {
-    Tips.loading();
-    goodsService.stock(goodsId, skuText).then(stock => {
-      this.sku.stock = stock;
-      this.setData({ sku: this.sku.export() });
-      Tips.loaded();
-    });
-  },
 
   /**
    * 确定购买
@@ -155,17 +138,25 @@ Page(Object.assign({}, Quantity, {
     if (!this.isValidSku()) {
       return;
     }
-
     const goods = this.data.goods;
     const num = this.sku.num;
-    const sku = {
-      skuText: this.sku.skuText,
-      price: this.sku.detail.price,
-      imageUrl: this.sku.detail.imageUrl,
-    };
-    const trade = orderService.createSingleTrade(goods, num, sku);
-    const param = JSON.stringify(trade);
-    Router.createTrade(param);
+    Tips.loading();
+    goodsService.stock(this.data.goods.id, this.sku.skuText).then(stock => {
+      return stock < num ? Promise.reject('商品库存不足') : stock;
+    }).then(() => {
+      const sku = {
+        skuText: this.sku.skuText,
+        price: this.sku.detail.price,
+        imageUrl: this.sku.detail.imageUrl,
+      };
+      const trade = orderService.createSingleTrade(goods, num, sku);
+      const param = JSON.stringify(trade);
+      this.onPanelClose();
+      Router.createTrade(param);
+    }).catch(err => Tips.error(err, () => Router.goodsIndexRedirect(goods.id)));
+
+
+
   },
 
   /**

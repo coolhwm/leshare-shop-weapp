@@ -31,6 +31,8 @@ export default class Sku {
         this.skuValues = ""
         //SKU 面板的动作
         this.action = "";
+        //库存
+        this.skuStocks = goods.goodsStocks;
         //初始化
         this.init();
     }
@@ -61,6 +63,7 @@ export default class Sku {
         this.isReady = this.joinSkuText();
         if (this.isReady) {
             this.fetchSelectedSkuDetail();
+            this.setSkuStock(this.skuText);
             this.num = 1;
         }
         else {
@@ -137,6 +140,19 @@ export default class Sku {
             this.skuValues = skuText.replace(/:/g, ' ');
         }
         return ready;
+    }
+
+    /**
+     * 获取SKU库存信息
+     */
+    setSkuStock(skuText) {
+        const stocks = this.skuStocks;
+        for (let i in stocks) {
+            const stockInfo = stocks[i];
+            if (stockInfo.sku == skuText) {
+                this.stock = stockInfo.stock;
+            }
+        }
     }
 
     /**

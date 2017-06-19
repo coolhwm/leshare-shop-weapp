@@ -42,13 +42,19 @@ export default class Tips {
      * 错误框
      */
 
-    static error(title) {
+    static error(title, onHide) {
         wx.showToast({
             title: title,
             image: '/images/icons/error.png',
             mask: true,
             duration: 500
         });
+        //隐藏结束回调
+        if (onHide) {
+            setTimeout(() => {
+                onHide();
+            }, 500);
+        }
     }
 
 
