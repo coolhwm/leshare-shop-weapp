@@ -6,7 +6,7 @@
     <view class="goods-buy-panel-cover" catchtap="onPanelClose" wx:if="{{sku.display}}"></view>
 
     <!--购买面板-->
-    <view class="goods-buy-panel-container" wx:if="{{sku.display}}">
+    <view class="goods-buy-panel-container {{ sku.display ? 'goods-buy-panel-show' : '' }}" >
         <!--信息面板-->
         <view class="buy-panel-info-container">
             <!--商品图-->

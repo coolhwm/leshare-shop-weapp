@@ -34,7 +34,7 @@ Page(Object.assign({}, Quantity, {
     this.cart = new Cart();
     //加载第一页
     this.loadNextPage();
-    this.setData({shopName: app.globalData.shop.name});
+    this.setData({ shopName: app.globalData.shop.name });
   },
 
   /**
@@ -67,10 +67,10 @@ Page(Object.assign({}, Quantity, {
   render: function () {
     const cart = this.cart.export();
     Tips.loaded();
-    this.setData({ 
+    this.setData({
       cart: cart,
       init: true
-  });
+    });
   },
 
 
@@ -112,12 +112,11 @@ Page(Object.assign({}, Quantity, {
   onBuyTap: function (e) {
     if (this.cart.empty()) {
       Tips.alert("请选择商品");
+      return;
     }
-    else {
-      const trade = orderService.createCartTrade(this.cart.getCheckedCarts());
-      const param = JSON.stringify(trade);
-      Router.createTrade(param);
-    }
+    const trade = orderService.createCartTrade(this.cart.getCheckedCarts());
+    const param = JSON.stringify(trade);
+    Router.createTrade(param);
   },
 
 
@@ -139,7 +138,7 @@ Page(Object.assign({}, Quantity, {
   /**
    * 进入批量操作模式
    */
-  onBatchTap: function(){
+  onBatchTap: function () {
     Tips.alert('尚未实现');
   },
 

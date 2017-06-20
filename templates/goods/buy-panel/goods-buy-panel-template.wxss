@@ -5,6 +5,11 @@
     bottom: 0px;
     width: 100%;
     z-index: 1000;
+    transform: translateY(150%);
+    transition: all 0.4s ease;
+}
+.goods-buy-panel-show{
+  transform: translateY(0);
 }
 
 /*遮罩层*/
