@@ -3,7 +3,7 @@ import OrderService from "../../../class/service/OrderService";
 import Router from "../../../class/utils/Router";
 import Cart from "../../../class/entity/Cart";
 import Tips from "../../../class/utils/Tips";
-
+const app = getApp();
 const notification = require("../../../class/utils/WxNotificationCenter.js");
 const Quantity = require('../../../templates/quantity/index');
 const cache = getApp().globalData.cart;
@@ -34,6 +34,7 @@ Page(Object.assign({}, Quantity, {
     this.cart = new Cart();
     //加载第一页
     this.loadNextPage();
+    this.setData({shopName: app.globalData.shop.name});
   },
 
   /**
@@ -133,6 +134,13 @@ Page(Object.assign({}, Quantity, {
     }).then(() => {
       console.log('请求删除成功')
     });
+  },
+
+  /**
+   * 进入批量操作模式
+   */
+  onBatchTap: function(){
+    Tips.alert('尚未实现');
   },
 
   /**

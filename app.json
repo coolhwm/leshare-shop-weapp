@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/cart/index/index",
     "pages/shop/index/index",
     "pages/coupon/index/index",
     "pages/goods/favorite/favorite",
@@ -15,8 +16,8 @@
     "pages/address/index/index",
     "pages/address/edit/edit",
     "pages/customer/index/index",
-    "pages/shop/detail/detail",
-    "pages/cart/index/index"
+    "pages/shop/detail/detail"
+    
   ],
   "window": {
     "navigationBarBackgroundColor": "#1296db"

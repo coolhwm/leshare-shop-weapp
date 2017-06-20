@@ -6,6 +6,10 @@ page{
     background-color: #F5F5F5;
 }
 
+.container{
+    padding-bottom: 120rpx;
+}
+
 /*占位*/
 .cart-empty-tips{
     margin-top: 300rpx;
@@ -97,3 +101,44 @@ page{
 .bar-buy-empty{
     background-color: #B0B0B0;
 }
+
+/*顶栏*/
+.cart-header-container{
+    padding-right: 25rpx;
+    padding-left: 20rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 85rpx;
+    background-color: #FFF;
+    margin-bottom: 5rpx;
+}
+
+.cart-shop-info-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+/*顶栏图片*/
+.shop-info-icon{
+    height: 40rpx;
+    width: 40rpx;
+    vertical-align: middle;
+}
+
+/*顶栏店铺名称*/
+.shop-info-name{
+    margin-left: 10rpx;
+    margin-right: 20rpx;
+    font-size: 28rpx;
+    color:#262626;
+}
+
+
+/*批量编辑*/
+.cart-batch-edit{
+    color: #A3A3A3;
+}
+
