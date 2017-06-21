@@ -16,7 +16,7 @@
     </view>
 
     <!--订单列表页面-->
-    <view class="order-list-wrap">
+    <view class="order-list-wrap" wx:else>
         <template is="orderListTemplate" data="{{orders, loading, nomore}}" />
     </view>
 

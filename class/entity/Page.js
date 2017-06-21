@@ -34,7 +34,7 @@ export default class Pagination {
         Object.assign(param, args);
         return Http.get(this.url, param).then(data => {
             //底部判断
-            if(data == null || data.length < 1){
+            if (data == null || data.length < 1) {
                 this.reachBottom = true;
                 return this._export();
             }
@@ -47,6 +47,9 @@ export default class Pagination {
             this.start += this.count;
             //加载完毕
             this.loading = false;
+            if (data.length < this.count) {
+                this.reachBottom = true;
+            }
             //导出列表数据
             return this._export();
         });

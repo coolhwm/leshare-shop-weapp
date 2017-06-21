@@ -173,6 +173,10 @@ Page(Object.assign({}, Tab, {
     });
   },
 
+  onMove: function(event){
+    console.info(event);
+  },
+
 
   /**
    * 处理点击事件
