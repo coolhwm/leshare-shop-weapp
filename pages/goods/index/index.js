@@ -117,6 +117,10 @@ Page(Object.assign({}, Quantity, {
   onSkuTap: function (event) {
     const key = event.currentTarget.dataset.skuKey;
     const value = event.currentTarget.dataset.skuValue;
+    //屏蔽禁止点击
+    if(this.sku.disabledSkuValues[value]){
+      return;
+    }
     const sku = this.sku;
     sku.select(key, value);
     this.setData({ sku: sku.export() });

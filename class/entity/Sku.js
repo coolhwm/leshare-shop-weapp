@@ -35,6 +35,8 @@ export default class Sku {
         this.skuStocks = goods.goodsStocks;
         //是否可以点击下一步
         this.next = false;
+        //无法选择的SKU值
+        this.disabledSkuValues = {};
         //初始化
         this.init();
     }
@@ -48,7 +50,6 @@ export default class Sku {
         //没有规格的情况
         if (!this.labels) {
             this.exists = false;
-            //this.stock = this.goods.stock;
         }
         //初始化已被选择的对象 / 占位符
         for (let i in this.labels) {
@@ -57,10 +58,12 @@ export default class Sku {
             this.skuKeys += `${label} `;
         }
         //初始化无规格商品的库存
-        if(!this.exists){
+        if (!this.exists) {
             this.stock = this.skuStocks[0].stock;
         }
 
+        //预判断哪些SKU不能选择
+        this.disabledSkuValues = this.grepDisabledskuValues();
     }
 
     /**
@@ -79,6 +82,81 @@ export default class Sku {
         else {
             this.detail = {};
         }
+
+        //预判断哪些SKU不能选择
+        this.disabledSkuValues = this.grepDisabledskuValues();
+    }
+
+
+    /**
+     * 获取不能选择的SKU值
+     */
+    grepDisabledskuValues() {
+        const selected = this.selected;
+        const disabledSkuValues = {};
+        for (let skuKey in selected) {
+            const conditionKeys = this.getSkuKeysCondition(skuKey);
+            //获取所有可选的SKU
+            const remainSkuValues = this.getRemainSkuValues(skuKey);
+            //1）本系列剩下可以选的SKU；2）其他系列目前的限制条件；3）判断目前剩下可以选的SKU，是否可选；
+            const skuStocks = this.grepRemainSkuStocks(conditionKeys);
+            for (let i in remainSkuValues) {
+                const sku = remainSkuValues[i];
+                const sellingSku = skuStocks
+                    .filter(item => item.sku.indexOf(sku) != -1)
+                    .find(item => item.stock != 0);
+                if (sellingSku == null) {
+                    disabledSkuValues[sku] = true;
+                }
+            }
+        }
+        return disabledSkuValues;
+    }
+
+    /**
+     * 获取另外的SKU KEY
+     */
+    getSkuKeysCondition(currentSkuKey) {
+        const condition = {};
+        const selected = this.selected;
+        for (let key in selected) {
+            if (key != currentSkuKey) {
+                condition[key] = selected[key];
+            }
+        }
+        return condition;
+    }
+
+
+    /**
+     * 筛选剩余可以选择SKU库存大小
+     */
+    grepRemainSkuStocks(condition) {
+        const selected = condition;
+        let remainSkuStocks = this.skuStocks;
+        for (let key in selected) {
+            const value = selected[key];
+            if (value != null) {
+                remainSkuStocks = remainSkuStocks.filter(stock => stock.sku.indexOf(value) != -1);
+            }
+        }
+        return remainSkuStocks;
+    }
+
+    /**
+     * 筛选剩余可以选择SKU值
+     */
+    getRemainSkuValues(currentSkuKey) {
+        let remainSkuValue = [];
+        const skuValues = this.labels.find(item => item.key == currentSkuKey).value;
+        const seletedSkuValue = this.selected[currentSkuKey];
+        for (let i in skuValues) {
+            const value = skuValues[i];
+            if (value != seletedSkuValue) {
+                remainSkuValue.push(value);
+            }
+        }
+        return remainSkuValue;
     }
 
     /**
@@ -106,7 +184,8 @@ export default class Sku {
             skuKeys: this.skuKeys,
             skuText: this.skuText,
             skuValues: this.skuValues,
-            next: this.buildNextFlag()
+            next: this.buildNextFlag(),
+            disabledSkuValues: this.disabledSkuValues
         };
     }
 
@@ -114,14 +193,14 @@ export default class Sku {
     /**
      * 构造是否可以进入下一步的标识符
      */
-    buildNextFlag(){
+    buildNextFlag() {
         if (this.exists && this.isReady && this.stock > 0) {
             return true;
         }
-        else if(!this.exists && this.stock > 0){
+        else if (!this.exists && this.stock > 0) {
             return true;
         }
-        else{
+        else {
             return false;
         }
     }

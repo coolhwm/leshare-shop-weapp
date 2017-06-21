@@ -31,7 +31,7 @@
                 </view>
 
                 <view class="buy-panel-sku-list">
-                    <view class="zan-label  {{sku.selected[label.key] == skuValue ? 'zan-label--primary' : ''}}" wx:for-item="skuValue" wx:for="{{label.value}}" wx:key="*this"
+                    <view class="zan-label {{sku.disabledSkuValues[skuValue] ? 'zan-label--disabled' : '' }} {{sku.selected[label.key] == skuValue ? 'zan-label--primary' : ''}}" wx:for-item="skuValue" wx:for="{{label.value}}" wx:key="*this"
                         data-sku-key="{{label.key}}" data-sku-value="{{skuValue}}" catchtap="onSkuTap">{{skuValue}}</view>
             </view>
         </view>
