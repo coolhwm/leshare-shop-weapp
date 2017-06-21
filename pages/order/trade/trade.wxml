@@ -16,6 +16,11 @@
     <!--订单信息-->
     <view class="zan-panel zan-panel__top">
 
+        <view class="zan-cell {{address ? 'zan-cell--access': ''}}" catchtap="onPayTypeTap">
+            <text class="zan-cell__bd">支付方式</text>
+            <text class="zan-cell__ft">{{trade.paymentText}}</text>
+        </view>
+
         <view class="zan-cell {{address ? 'zan-cell--access': ''}}" catchtap="onPostFeeTap">
             <text class="zan-cell__bd">配送方式</text>
             <text class="zan-cell__ft" wx:if="{{address}}">{{seletedDelilvery.desc}} {{seletedDelilvery.fee != 0 ? ' +￥' + seletedDelilvery.fee : '免邮' }} </text>

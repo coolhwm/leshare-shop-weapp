@@ -45,6 +45,10 @@
             <text class="zan-cell__ft">{{order.uuid}}</text>
         </view>
         <view class="zan-cell">
+            <text class="zan-cell__bd">支付方式</text>
+            <text class="zan-cell__ft">{{order.paymentText}}</text>
+        </view>
+        <view class="zan-cell">
             <text class="zan-cell__bd">配送方式</text>
             <text class="zan-cell__ft">{{order.deliveryText}}</text>
         </view>
@@ -93,7 +97,11 @@
             <view wx:if="{{order.isExpress}}" class="zan-btn zan-btn--small" data-order-id="{{orderId}}" catchtap="onOrderTrace">物流查询</view>
 
             <!--待发货-->
-            <view wx:if="{{order.status == 2}}" class="zan-btn zan-btn--small " data-order-id="{{orderId}}" catchtap="onOrderRefund">申请退款</view>
+            <block wx:if="{{order.status == 2}}">
+                <view  wx:if="{{order.paymentType == 1}}" class="zan-btn zan-btn--small " data-order-id="{{orderId}}" catchtap="onOrderRefund">申请退款</view>
+                <view  wx:if="{{order.paymentType == 0}}" class="zan-btn zan-btn--small " data-order-id="{{orderId}}" catchtap="onOrderClose">取消订单</view>
+            </block>
+
 
             <!--待收货-->
             <view wx:if="{{order.status == 3}}" class="zan-btn zan-btn--small zan-btn--primary" data-order-id="{{orderId}}" catchtap="onOrderConfirm">确认收货</view>

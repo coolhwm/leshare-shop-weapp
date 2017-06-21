@@ -38,6 +38,11 @@
                 <view class="zan-btn zan-btn--small" data-order-id="{{orderId}}" catchtap="onOrderClose">取消订单</view>
                 <view class="zan-btn zan-btn--small zan-btn--primary"  data-order-id="{{orderId}}" catchtap="onWxPay">确认付款</view>
             </block>
+            <!--发货-->
+            <block wx:if="{{status == 2 && paymentType == 0}}">
+                <!--<view class="zan-btn zan-btn--small"  data-order-id="{{orderId}}" catchtap="onOrderTrace">物流查询</view>-->
+                <view class="zan-btn zan-btn--small zan-btn--primary"  data-order-id="{{orderId}}" catchtap="onOrderClose">取消订单</view>
+            </block>
             
             <!-- 收货 -->
             <block wx:if="{{status == 3}}">

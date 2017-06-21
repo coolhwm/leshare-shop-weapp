@@ -173,6 +173,7 @@ export default class OrderService extends BaseService {
             dealPrice: price.toFixed(2),
             finalPrice: price.toFixed(2),
             paymentType: "1",
+            paymentText: "在线支付",
             orderGoodsInfos: orderGoodsInfos,
             shopName: this.shopName
         };
@@ -187,14 +188,15 @@ export default class OrderService extends BaseService {
         const imageUrl = this._processSingleOrderImageUrl(goods, sku);
         const skuText = this._processOrderSku(sku.skuText);
         const price = sku && sku.price ? sku.price : goods.sellPrice;
-        const dealPrice =  this._fixedPrice(price * num);
+        const dealPrice = this._fixedPrice(price * num);
         const finalPrice = dealPrice;
-    
+
         //构造交易对象
         const trade = {
             dealPrice: dealPrice,
             finalPrice: dealPrice,
             paymentType: "1",
+            paymentText: "在线支付",
             orderGoodsInfos: [
                 {
                     goodsId: goods.id,
@@ -331,11 +333,14 @@ export default class OrderService extends BaseService {
     _processOrderListItem(order) {
         const status = order.status;
         order.statusText = this.statusDict[status];
-        //动作控制 待付款/待评论/待收货
+        //动作控制 待付款/待评论/待收货/待发货（线下）
         order.isAction = status == 1 || status == 3 || status == 4;
-        
+        if(order.paymentType == 0 && order.status == 2){
+            order.isAction = true;
+        }
+
         order.shopName = this.shopName;
-         //处理订单价格
+        //处理订单价格
         this._processOrderPrice(order);
         //处理商品信息
         const goods = order.orderGoodsInfos;
@@ -348,8 +353,9 @@ export default class OrderService extends BaseService {
     _processOrderDetail(detail) {
 
         //支付方式
-        detail.paymentText = this.paymentDict[detail.payment_type];
         detail.shopName = this.shopName;
+        //处理订单支付方式
+        this._processOrderPaymentText(detail);
         //处理订单状态
         this._processOrderStatusDesc(detail);
         //处理退款信息
@@ -362,20 +368,28 @@ export default class OrderService extends BaseService {
         this._processOrderPrice(detail);
         //处理商品信息
         this._processOrderGoods(detail.orderGoodsInfos);
+
+    }
+
+    /**
+     * 处理订单支付方式
+     */
+    _processOrderPaymentText(detail) {
+        detail.paymentText = this.paymentDict[detail.paymentType];
     }
 
     /**
      * 处理订单状态
      */
-    _processOrderPrice(order){
+    _processOrderPrice(order) {
         order.postFee = this._fixedPrice(order.postFee);
         order.dealPrice = this._fixedPrice(order.dealPrice);
         order.finalPrice = this._fixedPrice(order.finalPrice);
         order.couponPrice = this._fixedPrice(order.couponPrice);
     }
 
-    _fixedPrice(price){
-        if(price == null || isNaN(Number(price))){
+    _fixedPrice(price) {
+        if (price == null || isNaN(Number(price))) {
             return null;
         }
         return price.toFixed(2);
@@ -428,7 +442,7 @@ export default class OrderService extends BaseService {
             return;
         }
         //展现第一个退款记录
-        const refund = refunds[refunds.length-1];
+        const refund = refunds[refunds.length - 1];
         //曾经退款过，就一定需要展现退款记录
         order.isAction = true;
         //控制展现退款详情字段
@@ -442,7 +456,7 @@ export default class OrderService extends BaseService {
      * 处理订单商品信息
      */
     _processOrderGoods(goods) {
-        if(goods == null || goods.length < 1){
+        if (goods == null || goods.length < 1) {
             return;
         }
         goods.forEach(item => {

@@ -80,7 +80,16 @@ Page({
     //订单创建成功后直接拉起支付页面
     orderService.createOrder(trade, address).then(data => {
       return data.orderId;
-    }).then(this.wxPay).catch(() => {
+    }).then(orderId => {
+      if(trade.paymentType == 1){
+        //在线支付
+        return this.wxPay(orderId);
+      }
+      else{
+        //线下支付
+        Tips.toast('订单创建成功', () => Router.orderIndexRefresh());
+      }
+    }).catch(() => {
       Tips.toast('订单创建失败');
     });
   },
@@ -103,6 +112,21 @@ Page({
         Router.orderDetailRedirect(orderId);
       });
     });
+  },
+
+  onPayTypeTap: function (event) {
+    const trade = this.data.trade;
+    Tips.actionWithFunc(['在线支付', '线下支付'],
+      () => {
+        trade.paymentText = '在线支付';
+        trade.paymentType = 1;
+        this.setData({ trade: trade });
+      },
+      () => {
+        trade.paymentText = '线下支付';
+        trade.paymentType = 0;
+        this.setData({ trade: trade });
+      });
   },
 
   //******************* 运费操作 ******************/
