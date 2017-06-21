@@ -118,7 +118,7 @@ Page(Object.assign({}, Quantity, {
     const key = event.currentTarget.dataset.skuKey;
     const value = event.currentTarget.dataset.skuValue;
     //屏蔽禁止点击
-    if(this.sku.disabledSkuValues[value]){
+    if (this.sku.disabledSkuValues[value]) {
       return;
     }
     const sku = this.sku;
@@ -137,7 +137,7 @@ Page(Object.assign({}, Quantity, {
     const goods = this.data.goods;
     const num = this.sku.num;
     Tips.loading();
-    goodsService.stock(this.data.goods.id, this.sku.skuText).then(stock => {
+    goodsService.stock(goods.id, this.sku.skuText).then(stock => {
       return stock < num ? Promise.reject('商品库存不足') : stock;
     }).then(() => {
       const sku = {
@@ -162,16 +162,32 @@ Page(Object.assign({}, Quantity, {
     if (!this.isValidSku()) {
       return;
     }
-
-    this.setCartNumFromApp(this.sku.num);
     //请求服务端
+    const goods = this.data.goods;
+    const sku = this.sku;
     Tips.loading('数据加载中');
-    cartService.add(this.data.goods.id, this.sku.num, this.sku.skuText).then(res => {
+    goodsService.stock(goods.id, sku.skuText).then(stock => {
+      return stock < sku.num ? Promise.reject('商品库存不足') : stock;
+    }).then(() => {
+      return cartService.add(goods.id, sku.num, sku.skuText);
+    }).then(() => {
       Tips.toast('加入购物成功');
-      this.sku.num = 1;
+      sku.num = 1;
+      this.setCartNumFromApp(sku.num);
       notification.postNotificationName("ON_CART_UPDATE");
       this.onPanelClose();
-    });
+    }).catch(err => Tips.error(err, () => Router.goodsIndexRedirect(goods.id)));
+
+
+
+
+    // cartService.add(this.data.goods.id, this.sku.num, this.sku.skuText).then(res => {
+    //   Tips.toast('加入购物成功');
+    //   this.sku.num = 1;
+    //   this.setCartNumFromApp(this.sku.num);
+    //   notification.postNotificationName("ON_CART_UPDATE");
+    //   this.onPanelClose();
+    // });
   },
 
   /**
