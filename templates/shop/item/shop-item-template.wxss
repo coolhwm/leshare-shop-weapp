@@ -4,6 +4,7 @@
     justify-content: space-between;
     align-items: center;
     background-color: #1296db;
+    padding-top: 30rpx;
     padding-bottom: 30rpx;
     padding-left: 40rpx;
     padding-right: 20rpx;

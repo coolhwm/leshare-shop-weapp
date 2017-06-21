@@ -1,6 +1,4 @@
 {
     "navigationBarTitleText": "收藏商品",
-    "enablePullDownRefresh": true,
-    "backgroundColor": "#1296db",
-    "backgroundTextStyle": "light"
+    "enablePullDownRefresh": true
 }
