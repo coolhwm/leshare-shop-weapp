@@ -173,8 +173,10 @@ Page(Object.assign({}, Tab, {
     });
   },
 
-  onMove: function(event){
-    console.info(event);
+  onScroll: function (event) {
+    const top = event.detail.scrollTop;
+    const fixed = top > 100;
+    this.setData({ fixed: fixed });
   },
 
 

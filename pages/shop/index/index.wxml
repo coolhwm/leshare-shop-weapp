@@ -2,24 +2,14 @@
 <!--依赖：店铺项目、店铺公告、商品项目（间接）、商品网格、卡券架-->
 <import src="/templates/shop/item/shop-item-template.wxml" />
 <import src="/templates/goods/grid/goods-grid-template.wxml" />
-<import src="/templates/notice/bar/notice-bar-template.wxml" />
-<import src="/templates/coupon/shelf/coupon-shelf-template.wxml" />
 
-<view class="shop-index-container" wx:if="{{init}}">
+<scroll-view class="shop-index-container" scroll-y="true" wx:if="{{init}}" bindscroll="onScroll" bindscrolltolower="onReachBottom">
     <!--店铺基本信息-->
     <template is="shopItemTemplate" data="{{...shop, notice}}" />
 
-    <!--店铺公告-->
-    <!--<template is="noitceBarTemplate" data="{{...notice}}"/>-->
-
-
-    <!--卡券架-->
-    <!--<template is="couponShelfTemplate" data="{{coupons}}"/>-->
-
-
     <!--商品区域-->
-    <template is="goodsGridTemplate" data="{{goods, tab, loading, nomore}}"/>
+    <template is="goodsGridTemplate" data="{{goods, tab, loading, nomore, fixed}}"/>
 
     <!--底部边线-->
     <view class="footer-line"></view>
-</view>
+</scroll-view>

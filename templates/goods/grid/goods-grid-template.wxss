@@ -10,4 +10,11 @@
     padding-top: 2rpx;
 }
 
+.goods-grid-tab-fixed{
+    position: fixed;
+    top: 0;
+}
 
+.goods-empty-tips{
+    margin-top: 100rpx;
+}

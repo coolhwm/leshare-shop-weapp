@@ -5,10 +5,11 @@
 
 page{
     height: 100%;
-    
+    background-color: #F5F5F5;
 }
 .shop-index-container{
-overflow-x: hidden;
+    height: 100%;
+    overflow-x: hidden;
 }
 
 .footer-line{
