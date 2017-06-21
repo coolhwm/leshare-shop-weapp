@@ -10,6 +10,8 @@
     <view class="goods-grid-tab {{fixed ? 'goods-grid-tab-fixed' : ''}}">
         <template is="zan-tab" data="{{tab: tab, componentId: 'tab'}}"></template>
     </view>
+    <view class="goods-grid-tab-placeholder" wx:if="{{fixed}}">
+    </view>
 
     <!--商品列表-->
     <view class="goods-grid-container" wx:if="{{goods.length > 0}}">

@@ -175,7 +175,7 @@ Page(Object.assign({}, Tab, {
 
   onScroll: function (event) {
     const top = event.detail.scrollTop;
-    const fixed = top > 100;
+    const fixed = top > 120;
     this.setData({ fixed: fixed });
   },
 

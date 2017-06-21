@@ -18,3 +18,7 @@
 .goods-empty-tips{
     margin-top: 100rpx;
 }
+
+.goods-grid-tab-placeholder{
+    height: 41px;
+}
