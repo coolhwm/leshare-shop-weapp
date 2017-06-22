@@ -1,4 +1,11 @@
 /*外框容器*/
+
+.cart-item-wrap{
+    width: 100%;
+    transition: left 0.2s ease-in-out;
+    position: relative;
+}
+
 .cart-item-container{
     padding: 20rpx;
     background-color: #FFF;
@@ -7,6 +14,24 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 2px;
+
+}
+
+.cart-item-delete{
+    position: absolute;
+    top:0;
+    right: -60px;
+    background-color: #FF4343;
+    height: 100%;
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cart-item-delete text{
+    font-size: 32rpx;
+    color: white;
 }
 
 /*选择框容器*/

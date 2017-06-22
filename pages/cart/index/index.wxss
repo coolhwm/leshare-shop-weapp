@@ -3,11 +3,15 @@
 
 page{
     height: 100%;
+    width: 750rpx;
     background-color: #F5F5F5;
+    overflow-x: hidden;
 }
 
 .container{
     padding-bottom: 120rpx;
+    width: 750rpx;
+    overflow-x: hidden;
 }
 
 /*占位*/

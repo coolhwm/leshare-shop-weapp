@@ -17,7 +17,8 @@ Page(Object.assign({}, Quantity, {
   data: {
     cart: {},
     init: false,
-    batch: false
+    batch: false,
+    delBtnWidth: 60
   },
 
 
@@ -82,6 +83,8 @@ Page(Object.assign({}, Quantity, {
     this.loadNextPage();
   },
 
+  /***********************操作***********************/
+
   /**
    * 点击多选事件
    */
@@ -137,43 +140,6 @@ Page(Object.assign({}, Quantity, {
   },
 
   /**
-   * 进入批量操作模式
-   */
-  onBatchTap: function () {
-    const batch = !this.data.batch;
-    if(batch){
-      this.cart.unselectAll();
-    }
-    else{
-      this.cart.selectAll();
-    }
-    this.render();
-    this.setData({ batch: batch });
-  },
-
-  /**
-   * 批量加入收藏
-   */
-  onBatchFav: function(){
-    Tips.alert('尚未实现');
-  },
-
-  /**
-   * 批量删除
-   */
-  onBatchDelete: function(){
-    const carts = this.cart.getCheckedCarts();
-    if(carts.length < 1){
-      Tips.alert('请选择商品');
-      return;
-    }
-
-    Tips.confirm('是否确认删除所选商品').then(()=> {
-
-    });
-  },
-
-  /**
    * 处理数量选择器请求
    */
   handleZanQuantityChange(e) {
@@ -186,6 +152,136 @@ Page(Object.assign({}, Quantity, {
     //请求服务端
     cartService.update(cartId, num).then(res => {
       //修改商品数量
+    });
+  },
+
+
+  /***********************批量操作***********************/
+  /**
+   * 进入批量操作模式
+   */
+  onBatchTap: function () {
+    const batch = !this.data.batch;
+    if (batch) {
+      this.cart.unselectAll();
+    }
+    else {
+      this.cart.selectAll();
+    }
+    this.render();
+    this.setData({ batch: batch });
+  },
+
+  /**
+   * 批量加入收藏
+   */
+  onBatchFav: function () {
+    Tips.alert('尚未实现');
+  },
+
+  /**
+   * 批量删除
+   */
+  onBatchDelete: function () {
+    const carts = this.cart.getCheckedCarts();
+    if (carts.length < 1) {
+      Tips.alert('请选择商品');
+      return;
+    }
+
+    Tips.confirm('是否确认删除所选商品').then(() => {
+
+    });
+  },
+
+
+
+
+  /***********************滑动删除事件***********************/
+
+  touchS: function (e) {
+    if (e.touches.length == 1) {
+      this.setData({
+        //设置触摸起始点水平方向位置
+        startX: e.touches[0].clientX
+      });
+    }
+  },
+  touchM: function (e) {
+    if (e.touches.length == 1) {
+      //手指移动时水平方向位置
+      var moveX = e.touches[0].clientX;
+      //手指起始点位置与移动期间的差值
+      var disX = this.data.startX - moveX - 30;
+      var delBtnWidth = this.data.delBtnWidth;
+      var txtStyle = "";
+      if (disX == 0 || disX < 0) {//如果移动距离小于等于0，文本层位置不变
+        txtStyle = "left:0px";
+      } else if (disX > 0) {//移动距离大于0，文本层left值等于手指移动距离
+        txtStyle = "left:-" + disX + "px";
+        if (disX >= delBtnWidth) {
+          //控制手指移动距离最大值为删除按钮的宽度
+          txtStyle = "left:-" + delBtnWidth + "px";
+        }
+      }
+      //获取手指触摸的是哪一项
+      var index = e.currentTarget.dataset.index;
+      var cart = this.data.cart;
+      var list = cart.carts;
+      if (index >= 0) {
+        list[index].txtStyle = txtStyle;
+        //更新列表的状态
+        this.setData({
+          cart: cart
+        });
+      }
+    }
+  },
+
+  touchE: function (e) {
+    if (e.changedTouches.length == 1) {
+      //手指移动结束后水平位置
+      var endX = e.changedTouches[0].clientX;
+      //触摸开始与结束，手指移动的距离
+      var disX = this.data.startX - endX - 30;
+      var delBtnWidth = this.data.delBtnWidth;
+      //如果距离小于删除按钮的1/2，不显示删除按钮
+      var txtStyle = disX > delBtnWidth / 2 ? "left:-" + delBtnWidth + "px" : "left:0px";
+      //获取手指触摸的是哪一项
+      var index = e.currentTarget.dataset.index;
+      var cart = this.data.cart;
+      var list = cart.carts;
+      console.log('end', e);
+      console.log('index', index);
+      console.log('txtStyle', txtStyle);
+      if (index >= 0) {
+        list[index].txtStyle = txtStyle;
+        console.log('list', list);
+        //更新列表的状态
+        this.setData({
+          cart: cart
+        });
+      }
+    }
+  },
+  //获取元素自适应后的实际宽度
+  getEleWidth: function (w) {
+    var real = 0;
+    try {
+      var res = wx.getSystemInfoSync().windowWidth;
+      var scale = (750 / 2) / (w / 2);//以宽度750px设计稿做宽度的自适应
+      // console.log(scale);
+      real = Math.floor(res / scale);
+      return real;
+    } catch (e) {
+      return false;
+      // Do something when catch error
+    }
+  },
+  initEleWidth: function () {
+    var delBtnWidth = this.getEleWidth(this.data.delBtnWidth);
+    this.setData({
+      delBtnWidth: delBtnWidth
     });
   }
 }));
