@@ -16,7 +16,8 @@ Page(Object.assign({}, Quantity, {
   page: {},
   data: {
     cart: {},
-    init: false
+    init: false,
+    batch: false
   },
 
 
@@ -139,7 +140,37 @@ Page(Object.assign({}, Quantity, {
    * 进入批量操作模式
    */
   onBatchTap: function () {
+    const batch = !this.data.batch;
+    if(batch){
+      this.cart.unselectAll();
+    }
+    else{
+      this.cart.selectAll();
+    }
+    this.render();
+    this.setData({ batch: batch });
+  },
+
+  /**
+   * 批量加入收藏
+   */
+  onBatchFav: function(){
     Tips.alert('尚未实现');
+  },
+
+  /**
+   * 批量删除
+   */
+  onBatchDelete: function(){
+    const carts = this.cart.getCheckedCarts();
+    if(carts.length < 1){
+      Tips.alert('请选择商品');
+      return;
+    }
+
+    Tips.confirm('是否确认删除所选商品').then(()=> {
+
+    });
   },
 
   /**

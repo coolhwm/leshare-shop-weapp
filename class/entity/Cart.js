@@ -28,7 +28,7 @@ export default class Cart {
     /**
      * 是否为空
      */
-    empty(){
+    empty() {
         return this.num == 0;
     }
 
@@ -44,7 +44,7 @@ export default class Cart {
      * 获取已选择商品
      */
     getCheckedCarts() {
-        return this.carts.filter( cart => cart.check);
+        return this.carts.filter(cart => cart.check);
     }
 
     /**
@@ -64,8 +64,33 @@ export default class Cart {
      */
     toggleAllCheck() {
         this.all = !this.all;
+        this.updateAllSeleteStatus(this.all);
+    }
+
+
+    /**
+     * 选择全部
+     */
+    selectAll() {
+        this.all = true;
+        this.updateAllSeleteStatus(this.all);
+    }
+
+    /**
+     * 取消选择全部
+     */
+    unselectAll() {
+        this.all = false;
+        this.updateAllSeleteStatus(this.all);
+    }
+
+
+    /**
+     * 更新全部选择状态
+     */
+    updateAllSeleteStatus(check) {
         this.carts.forEach(cart => {
-            cart.check = this.all;
+            cart.check = check;
         });
         this._setTotalNumAndPrice();
     }

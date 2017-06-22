@@ -23,7 +23,7 @@
                     <text class="goods-price-big">{{goodsPrice}}</text>
                 </view>
                 
-                <template is="zan-quantity" data="{{ quantity: goodsNum, min: 1, max: 999, componentId: cartId, size: 'small' }}" />
+                <template is="zan-quantity" data="{{ quantity: goodsNum, min: 1, max: stock, componentId: cartId, size: 'small' }}" />
             </view>
         </view>
     </view>

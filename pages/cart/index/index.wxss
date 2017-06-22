@@ -113,8 +113,8 @@ page{
     justify-content: space-between;
     align-items: center;
     height: 85rpx;
-    background-color: #FFF;
-    margin-bottom: 5rpx;
+    background-color: #FBFBFB;
+    margin-top: 20rpx;
 }
 
 .cart-shop-info-container{
@@ -141,6 +141,11 @@ page{
 
 /*批量编辑*/
 .cart-batch-edit{
+    font-size: 28rpx;
     color: #A3A3A3;
 }
 
+/*批量编辑栏样式*/
+.cart-batch-btn-container{
+    padding-right: 10rpx;
+}

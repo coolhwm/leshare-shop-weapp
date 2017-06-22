@@ -291,8 +291,8 @@ text{
 }
 
 .zan-btn--danger {
-  color: #fff;
-  background-color: #f44;
+  color: #e33;
+  background-color: #fff;
   border-color: #e33;
 }
 

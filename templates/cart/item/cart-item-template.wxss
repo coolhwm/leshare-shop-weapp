@@ -6,7 +6,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    margin-top: 2px;
+    margin-bottom: 2px;
 }
 
 /*选择框容器*/
