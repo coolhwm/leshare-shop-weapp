@@ -1,5 +1,6 @@
 import CartService from "../../../class/service/CartService";
 import OrderService from "../../../class/service/OrderService";
+import FavoriteService from "../../../class/service/FavoriteService";
 import Router from "../../../class/utils/Router";
 import Cart from "../../../class/entity/Cart";
 import Tips from "../../../class/utils/Tips";
@@ -9,6 +10,7 @@ const Quantity = require('../../../templates/quantity/index');
 const cache = getApp().globalData.cart;
 const cartService = new CartService();
 const orderService = new OrderService();
+const favoriteService = new FavoriteService();
 
 Page(Object.assign({}, Quantity, {
 
@@ -189,7 +191,22 @@ Page(Object.assign({}, Quantity, {
    * 批量加入收藏
    */
   onBatchFav: function () {
-    Tips.alert('尚未实现');
+    const carts = this.cart.getCheckedCarts();
+    if (carts.length < 1) {
+      Tips.alert('请选择商品');
+      return;
+    }
+    Tips.confirm('是否将所选商品移入收藏').then(() => {
+      const goodsIdList = carts.map(item => {
+        return {goodsId: item.goodsId}
+      });
+      return favoriteService.addBatch(goodsIdList);
+    }).then(() => {
+      return cartService.removeBatch(carts);
+    }).then(() => {
+      Tips.toast('收藏成功');
+      this.reload();
+    });
   },
 
   /**
@@ -209,9 +226,6 @@ Page(Object.assign({}, Quantity, {
       this.reload();
     });
   },
-
-
-
 
   /***********************滑动删除事件***********************/
 

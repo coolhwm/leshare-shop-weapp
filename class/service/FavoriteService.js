@@ -38,6 +38,14 @@ export default class FavoriteService extends BaseService {
     }
 
     /**
+     * 增加收藏
+     */
+    addBatch(goodsIdList) {
+        const url = `${this.baseUrl}/favorite_goods/batch`;
+        return this.post(url, goodsIdList);
+    }
+
+    /**
      * 移除收藏
      */
     remove(goodsId) {
@@ -50,6 +58,9 @@ export default class FavoriteService extends BaseService {
     * 数据处理
     */
     _processFavGoods(data) {
+        if(data.goods == null){
+            return;
+        }
         return {
             goodsId: data.goodsId,
             goodsName: data.goods.name,
