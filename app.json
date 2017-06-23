@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/shop/index/index",
+    "pages/shop/detail/detail",
     "pages/cart/index/index",
     "pages/goods/index/index",
     "pages/coupon/index/index",
@@ -15,8 +16,8 @@
     "pages/refund/apply/apply",
     "pages/address/index/index",
     "pages/address/edit/edit",
-    "pages/customer/index/index",
-    "pages/shop/detail/detail"
+    "pages/customer/index/index"
+    
   ],
   "window": {
     "navigationBarBackgroundColor": "#1296db"

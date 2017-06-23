@@ -2,27 +2,22 @@
 <!--依赖模板：无-->
 <!--输入参数：...shop -->
 <template name="shopInfoTemplate">
-    <view class="shop-info-container">
-        <view class="list-item">
-            <text class="list-item-title">联系方式</text>
-            <text class="list-item-value">{{phone}}</text>
-            <image class="list-item-icon" src="/images/icons/phone.png"/>    
+    <view class="zan-panel ">
+        <view class="zan-cell zan-cell--access" catchtap="onPhoneCall">
+            <view class="zan-cell__bd">联系方式</view>
+            <view class="zan-cell__ft">{{phone}}</view>
         </view>
-        <view class="hr-light"></view>
-        <view class="list-item">
-            <text class="list-item-title">详细地址</text>
-            <text class="list-item-value">{{address}}</text>
-            <image class="list-item-icon" src="/images/icons/address.png"/>    
+        <view class="zan-cell zan-cell--access" catchtap="onOpenLocation">
+            <view class="zan-cell__bd">详细地址</view>
+            <view class="zan-cell__ft">{{address}}</view>
         </view>
-        <view class="hr-light"></view>
-        <view class="list-item">
-            <text class="list-item-title">品类</text>
-            <text class="list-item-value">小卖部</text>   
+        <view class="zan-cell">
+            <view class="zan-cell__bd">店铺分类</view>
+            <view class="zan-cell__ft">{{categoryName}}</view>
         </view>
-        <view class="hr-light"></view>
-        <view class="list-item">
-            <text class="list-item-title">店铺说明</text>
-            <text class="list-item-value">{{describe}}</text>   
+        <view class="zan-cell">
+            <view class="zan-cell__bd">店铺说明</view>
+            <view class="zan-cell__ft">{{describe}}</view>
         </view>
     </view>
 </template>

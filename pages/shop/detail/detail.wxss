@@ -26,7 +26,7 @@ page{
 }
 .shop-name-font{
     margin-left: 20rpx;
-    font-size: 35rpx;
+    font-size: 38rpx;
     color: #333;
     letter-spacing: 2px;
     flex-grow: 1;

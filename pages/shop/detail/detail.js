@@ -1,5 +1,5 @@
-import { Http } from "../../../class/utils/Http.js";
 import ShopService from "../../../class/service/ShopService";
+import Tips from "../../../class/utils/Tips";
 
 const app = getApp();
 const shopService = new ShopService();
@@ -14,8 +14,22 @@ Page({
       this.setData({ shop: data });
     });
   },
-  
-  onMoreTap: function (event) {
 
+  onPhoneCall: function (event) {
+    const phone = this.data.shop.phone;
+    wx.makePhoneCall({
+      phoneNumber: phone
+    });
+  },
+
+  onOpenLocation: function (event) {
+    const longitude = 119.340685;
+    const latitude = 26.105099;
+    wx.openLocation({
+      latitude: latitude,
+      longitude: longitude,
+      name: this.data.shop.name,
+      address: this.data.shop.describe
+    });
   }
 })

@@ -1,7 +1,0 @@
-
-.shop-info-container{
-    background: #FFF;
-    display: flex;
-    flex-direction: column;
-}
-
