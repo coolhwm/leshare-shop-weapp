@@ -11,7 +11,7 @@
                 <text class="shop-info-name">{{shopName}}</text>
                 <image class="shop-info-icon" src="/images/icons/more-gray.png" />
             </view>
-            <text class="order-status-complete">{{statusText}}</text>
+            <text class="order-status-{{status == 7 ? 'cancel' : 'complete'}}">{{statusText}}</text>
         </view>
 
         <!--商品列表-->
@@ -36,23 +36,23 @@
             <!--待付款-->
             <block wx:if="{{status == 1}}">
                 <view class="zan-btn zan-btn--small" data-order-id="{{orderId}}" catchtap="onOrderClose">取消订单</view>
-                <view class="zan-btn zan-btn--small zan-btn--primary"  data-order-id="{{orderId}}" catchtap="onWxPay">确认付款</view>
+                <view class="zan-btn zan-btn--small zan-btn--primary" data-order-id="{{orderId}}" catchtap="onWxPay">确认付款</view>
             </block>
             <!--发货-->
             <block wx:if="{{status == 2 && paymentType == 0}}">
                 <!--<view class="zan-btn zan-btn--small"  data-order-id="{{orderId}}" catchtap="onOrderTrace">物流查询</view>-->
-                <view class="zan-btn zan-btn--small zan-btn--primary"  data-order-id="{{orderId}}" catchtap="onOrderClose">取消订单</view>
+                <view class="zan-btn zan-btn--small zan-btn--primary" data-order-id="{{orderId}}" catchtap="onOrderClose">取消订单</view>
             </block>
-            
+
             <!-- 收货 -->
             <block wx:if="{{status == 3}}">
                 <!--<view class="zan-btn zan-btn--small"  data-order-id="{{orderId}}" catchtap="onOrderTrace">物流查询</view>-->
-                <view class="zan-btn zan-btn--small zan-btn--primary"  data-order-id="{{orderId}}" catchtap="onOrderConfirm">确认收货</view>
+                <view class="zan-btn zan-btn--small zan-btn--primary" data-order-id="{{orderId}}" catchtap="onOrderConfirm">确认收货</view>
             </block>
 
             <!--待评论-->
             <block wx:if="{{status == 4}}">
-                <view class="zan-btn zan-btn--small zan-btn--primary"  data-order-id="{{orderId}}" catchtap="onOrderComment">评价订单</view>
+                <view class="zan-btn zan-btn--small zan-btn--primary" data-order-id="{{orderId}}" catchtap="onOrderComment">评价订单</view>
             </block>
 
         </view>

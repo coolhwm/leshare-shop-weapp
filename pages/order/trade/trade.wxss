@@ -78,6 +78,7 @@ page{
 /*购买栏*/
 .tarde-action-bar{
     position: fixed;
+    z-index: 10000;
     bottom: 0px;
     display: flex;
     flex-direction: row;

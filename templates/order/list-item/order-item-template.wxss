@@ -15,6 +15,12 @@
     color: #1296db;
 }
 
+.order-status-cancel{
+    font-size: 26rpx;
+    color: #A3A3A3;
+}
+
+
 /*顶栏*/
 .order-header-container{
     padding-left: 25rpx;
