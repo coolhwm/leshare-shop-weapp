@@ -32,6 +32,7 @@ Page(Object.assign({}, Quantity, {
     //注册事件,数量改变的时候重新加载
     const that = this;
     notification.addNotification("ON_CART_UPDATE", that.reload, that);
+    notification.addNotification("ON_CART_ORDER", that.removeOrderGoods, that);
     //初始化购物车对象
     this.cart = new Cart();
     //加载第一页
@@ -83,6 +84,14 @@ Page(Object.assign({}, Quantity, {
     this.loadNextPage();
   },
 
+  /**
+   * 删除订单的商品
+   */
+  removeOrderGoods: function(goods){
+    console.info(goods);
+    this.reload();
+  },
+
   /***********************操作***********************/
 
   /**
@@ -118,7 +127,13 @@ Page(Object.assign({}, Quantity, {
       Tips.alert("请选择商品");
       return;
     }
-    const trade = orderService.createCartTrade(this.cart.getCheckedCarts());
+    const message = this.cart.checkGoodsStock();
+    if(message){
+      Tips.alert(message);
+      return;
+    }
+    const carts = this.cart.getCheckedCarts();
+    const trade = orderService.createCartTrade(carts);
     const param = JSON.stringify(trade);
     Router.createTrade(param);
   },
@@ -154,7 +169,6 @@ Page(Object.assign({}, Quantity, {
       //修改商品数量
     });
   },
-
 
   /***********************批量操作***********************/
   /**

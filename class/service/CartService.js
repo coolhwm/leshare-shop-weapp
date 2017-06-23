@@ -69,6 +69,9 @@ export default class CartService extends BaseService {
         if(cart.goodsSku){
             cart.skuText = cart.goodsSku.replace(/:/g, ',');
         }
+        if(cart.goodsNum >　cart.stock){
+            cart.goodsNum = cart.stock;
+        }
         console.info(cart);
     }
 

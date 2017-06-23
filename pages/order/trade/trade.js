@@ -79,13 +79,15 @@ Page({
 
     //订单创建成功后直接拉起支付页面
     orderService.createOrder(trade, address).then(data => {
+      //清理购物车
+      notification.postNotificationName("ON_CART_ORDER", trade.orderGoodsInfos);
       return data.orderId;
     }).then(orderId => {
-      if(trade.paymentType == 1){
+      if (trade.paymentType == 1) {
         //在线支付
         return this.wxPay(orderId);
       }
-      else{
+      else {
         //线下支付
         Tips.toast('订单创建成功', () => Router.orderIndexRefresh());
       }
@@ -93,6 +95,8 @@ Page({
       Tips.toast('订单创建失败');
     });
   },
+
+
 
   /**
  * 微信支付
@@ -108,7 +112,6 @@ Page({
     }).catch(() => {
       //支付取消，跳转到订详情页面
       Tips.toast('支付已取消', () => {
-        notification.postNotificationName("ON_ORDER_UPDATE");
         Router.orderDetailRedirect(orderId);
       });
     });

@@ -60,6 +60,22 @@ export default class Cart {
     }
 
     /**
+     * 检查库存
+     */
+    checkGoodsStock(){
+        const goods = this.carts.find(item => item.goodsNum > item.stock || item.stock == 0);
+        if(goods == null){
+            return;
+        }
+        else if(goods.stock == 0){
+            return `${goods.goodsName} 无货`;
+        }
+        else{
+            return `${goods.goodsName} 库存不足`;
+        }
+    }
+
+    /**
      * 切换全部商品的选择
      */
     toggleAllCheck() {
