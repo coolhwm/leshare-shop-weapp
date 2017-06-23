@@ -17,7 +17,6 @@ Page(Object.assign({}, Quantity, {
   data: {
     cart: {},
     init: false,
-    batch: false,
     delBtnWidth: 60
   },
 
@@ -87,7 +86,7 @@ Page(Object.assign({}, Quantity, {
   /**
    * 删除订单的商品
    */
-  removeOrderGoods: function(goods){
+  removeOrderGoods: function (goods) {
     console.info(goods);
     this.reload();
   },
@@ -128,7 +127,7 @@ Page(Object.assign({}, Quantity, {
       return;
     }
     const message = this.cart.checkGoodsStock();
-    if(message){
+    if (message) {
       Tips.alert(message);
       return;
     }
@@ -175,15 +174,8 @@ Page(Object.assign({}, Quantity, {
    * 进入批量操作模式
    */
   onBatchTap: function () {
-    const batch = !this.data.batch;
-    if (batch) {
-      this.cart.unselectAll();
-    }
-    else {
-      this.cart.selectAll();
-    }
+    this.cart.toggleBatch();
     this.render();
-    this.setData({ batch: batch });
   },
 
   /**
@@ -204,7 +196,10 @@ Page(Object.assign({}, Quantity, {
     }
 
     Tips.confirm('是否确认删除所选商品').then(() => {
-
+      return cartService.removeBatch(carts);
+    }).then(() => {
+      Tips.toast('删除成功');
+      this.reload();
     });
   },
 

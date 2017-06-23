@@ -50,6 +50,17 @@ export default class CartService extends BaseService {
     }
 
     /**
+     * 批量删除购物车商品
+     */
+    removeBatch(carts){
+        const url = `${this.baseUrl}/carts/batch`;
+        const param = carts.map(cart => {
+            return {cartId: cart.cartId}
+        });
+        return this.delete(url, param);
+    }
+
+    /**
      * 更新购物车中的商品数量
      */
     update(cartId, num) {

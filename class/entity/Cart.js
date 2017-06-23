@@ -10,6 +10,7 @@ export default class Cart {
         this.num = 0;
         this.all = false;
         this.reload = false;
+        this.batch = false;
     }
 
     /**
@@ -21,7 +22,8 @@ export default class Cart {
             price: this.price,
             num: this.num,
             all: this.all,
-            reload: this.reload
+            reload: this.reload,
+            batch: this.batch
         };
     }
 
@@ -37,6 +39,9 @@ export default class Cart {
      */
     setCarts(carts) {
         this.carts = carts;
+        if(this.batch){
+            this.unselectAll();
+        }
         this._setTotalNumAndPrice();
     }
 
@@ -60,17 +65,30 @@ export default class Cart {
     }
 
     /**
+     * 切换批量操作
+     */
+    toggleBatch() {
+        this.batch = !this.batch;
+        if (this.batch) {
+            this.unselectAll();
+        }
+        else {
+            this.selectAll();
+        }
+    }
+
+    /**
      * 检查库存
      */
-    checkGoodsStock(){
+    checkGoodsStock() {
         const goods = this.carts.find(item => item.goodsNum > item.stock || item.stock == 0);
-        if(goods == null){
+        if (goods == null) {
             return;
         }
-        else if(goods.stock == 0){
+        else if (goods.stock == 0) {
             return `${goods.goodsName} 无货`;
         }
-        else{
+        else {
             return `${goods.goodsName} 库存不足`;
         }
     }

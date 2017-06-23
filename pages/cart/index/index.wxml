@@ -14,7 +14,7 @@
             <image class="shop-info-icon" src="/images/icons/shop-gray.png" />
             <text class="shop-info-name">{{shopName}}</text>
         </view>
-        <text class="cart-batch-edit" catchtap="onBatchTap"> {{batch ? '完成' : '编辑'}}</text>
+        <text class="cart-batch-edit" catchtap="onBatchTap"> {{cart.batch ? '完成' : '编辑'}}</text>
     </view>
 
     <!--占位提示-->
@@ -39,7 +39,7 @@
             <text>全选</text>
         </view>
 
-        <block wx:if="{{batch}}">
+        <block wx:if="{{cart.batch}}">
             <view class="cart-batch-btn-container">
                 <button class="zan-btn zan-btn--small" catchtap="onBatchFav">加入收藏</button>
                 <button class="zan-btn zan-btn--small zan-btn--danger" catchtap="onBatchDelete">删除商品</button>
