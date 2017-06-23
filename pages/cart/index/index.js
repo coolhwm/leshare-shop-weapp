@@ -86,8 +86,15 @@ Page(Object.assign({}, Quantity, {
   /**
    * 删除订单的商品
    */
-  removeOrderGoods: function (goods) {
-    console.info(goods);
+  removeOrderGoods: function (goodsList) {
+    const carts = [];
+    goodsList.forEach(goods => {
+      const cart = this.cart.find(goods.goodsId, goods.goodsSku);
+      carts.push(cart);
+    });
+    if (carts.length > 0) {
+      cartService.removeBatch(carts);
+    }
     this.reload();
   },
 

@@ -45,6 +45,14 @@ export default class Cart {
         this._setTotalNumAndPrice();
     }
 
+
+    /**
+     * 根据商品信息查找
+     */
+    find(goodsId, sku){
+        return this.carts.find(item => item.goodsId == goodsId && item.goodsSku == sku);
+    }
+
     /**
      * 获取已选择商品
      */
