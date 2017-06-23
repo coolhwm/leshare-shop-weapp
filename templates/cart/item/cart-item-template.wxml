@@ -28,7 +28,7 @@
                 </view>
             </view>
         </view>
-        <view class="cart-item-delete">
+        <view class="cart-item-delete"  data-cart-id="{{cartId}}" data-goods-name="{{goodsName}}"  catchtap="onCartLongTap">
             <text>删除</text>
         </view>
     </view>

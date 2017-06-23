@@ -251,12 +251,8 @@ Page(Object.assign({}, Quantity, {
       var index = e.currentTarget.dataset.index;
       var cart = this.data.cart;
       var list = cart.carts;
-      console.log('end', e);
-      console.log('index', index);
-      console.log('txtStyle', txtStyle);
       if (index >= 0) {
         list[index].txtStyle = txtStyle;
-        console.log('list', list);
         //更新列表的状态
         this.setData({
           cart: cart
