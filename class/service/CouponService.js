@@ -25,10 +25,10 @@ export default class CouponService extends BaseService {
      */
     shelf() {
         return this.list().then(data => {
-            console.info(data);
-            return this.own('NEVER_USED');
-        }).then(data => {
-            console.info(data);
+            const pickList = data.map(this._processPickItem.bind(this));
+            return {
+                pickList: data
+            };
         });
     }
 
@@ -71,6 +71,13 @@ export default class CouponService extends BaseService {
         return this.post(url, param).then(data => {
             return data.map(coupon => this._processCouponItem(coupon));
         });
+    }
+
+
+    _processPickItem(coupon) {
+        coupon.beginTime = this._convertTimestapeToDay(coupon.beginTime);
+        coupon.dueTime = this._convertTimestapeToDay(coupon.dueTime);
+        return coupon;
     }
 
 

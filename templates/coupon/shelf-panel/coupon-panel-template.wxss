@@ -1,11 +1,13 @@
-.coupon-item-container{
+@import "/templates/coupon/pick-item/coupon-item-template.wxss";
+
+.coupon-preview-container{
     display: inline-flex;
     flex-direction: row;
     overflow: hidden;
     align-items: center;
 }
 
-.coupon-item{
+.coupon-preview{
     height: 35rpx;
     /*background-color: #1296db;*/
     border: 1px solid #1296db;
@@ -32,16 +34,69 @@
 
 .coupon-panel-container{
     position: fixed;
-    background: #FFF;
+    display: flex;
+    flex-direction: column;
+    background: #F8F8F8;
     bottom: 0px;
     width: 100%;
     z-index: 1000;
     transform: translateY(150%);
     transition: all 0.4s ease;
     z-index: 1000;
+    padding-bottom: 20rpx;
 }
 
+/*标题*/
+.coupon-panel-title{
+    font-size: 30rpx;
+    color: #A7A7A7;
+}
+
+/*标题容器*/
+.coupon-panel-title-container{
+    text-align: center;
+    padding: 30rpx 0 10rpx 0;
+}
+
+/*列表标题*/
+.coupon-pick-title{
+    font-size: 30rpx;
+    color: #000311;
+    margin-left: 20rpx;
+    margin-top: 20rpx;
+}
 
 .coupon-panel-show{
   transform: translateY(0);
+}
+
+/*领券列表容器*/
+.coupon-list-container{
+    max-height:750rpx;
+}
+
+/*卡券列表*/
+.coupon-pick-list{
+    display: flex;
+    flex-direction: column;
+}
+
+/*领取卡券*/
+.coupon-time-pick-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/*关闭*/
+.coupon-panel-close-container{
+    
+    width: 100rpx;
+    float: right;
+}
+
+.coupon-panel-close-icon{
+    height: 45rpx;
+    width: 45rpx;
 }

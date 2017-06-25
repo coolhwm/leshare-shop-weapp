@@ -1,0 +1,29 @@
+<!-- 优惠券项目-->
+<!--依赖：无-->
+<template name="couponItemTemplate">
+    <view class="coupon-item-container" data-coupon-id="{{id}}" catchtap="onCouponTap" catchlongtap="onCouponDelete">
+        <!--左侧区域-->
+        <view class="coupon-main-container">
+            <view class="coupon-value-container">
+                <text class="coupon-value-unit">￥</text>
+                <text class="coupon-value-text">{{price}}</text>
+            </view>
+            <text class="coupon-limit-text">满{{limitPrice}}元可用</text>
+        </view>
+
+        <!--右侧区域-->
+        <view class="coupon-info-container">
+            <view class="coupon-title-container">
+                <view class="zan-label zan-label--primary zan-label--small">现金</view>
+                <text class="coupon-title-text">{{name}}</text>
+            </view>
+            <view class="coupon-time-pick-container">
+                <text class="coupon-time-text">{{beginTime}}-{{dueTime}}</text>
+                <view class="coupon-item-pick">点击领取</view>
+            </view>
+        </view>
+
+        <!-- 修饰图片 -->
+        <image class="coupon-picked-icon"  src="/images/icons/picked.png" />
+    </view>
+</template>

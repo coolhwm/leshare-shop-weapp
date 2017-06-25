@@ -27,7 +27,7 @@ Page(Object.assign({}, Quantity, {
     sku: {},
     isFav: false,
     cartNum: 0,
-    shelf:{},
+    shelf: {},
     init: false
   },
   onLoad: function (options) {
@@ -54,7 +54,7 @@ Page(Object.assign({}, Quantity, {
     favoriteService.is(goodsId).then(data => this.setData({ isFav: data.isFavorite }));
 
     //卡券
-    couponService.shelf().then();
+    couponService.shelf().then(data => this.setData({ shelf: data }));
 
     //获取购物车商品数量
     this.setCartNumFromApp();
@@ -221,5 +221,17 @@ Page(Object.assign({}, Quantity, {
   handleZanQuantityChange(e) {
     this.sku.setNum(e.quantity);
     this.setData({ sku: this.sku.export() });
-  }
+  },
+  /**********************卡券面板事件***********************/
+  onCouponPanelShow: function () {
+    const shelf = this.data.shelf;
+    shelf.display = true;
+    this.setData({ shelf: shelf });
+  },
+
+  onCouponPanelClose: function () {
+    const shelf = this.data.shelf;
+    shelf.display = false;
+    this.setData({ shelf: shelf });
+  },
 }));

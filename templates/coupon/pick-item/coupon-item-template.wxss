@@ -3,10 +3,10 @@
     position: relative;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     margin:20rpx 20rpx 0 20rpx;
     background-color: #FFF;
-    height: 220rpx;
+    height: 200rpx;
     border: 1px solid #E7E7E7;
     border-radius: 5px;
     overflow: hidden;
@@ -44,9 +44,9 @@
 /*右侧容器*/
 .coupon-info-container{
     flex: 1;
-    padding: 10rpx 20rpx 0 20rpx;
+    padding: 32rpx 20rpx 32rpx 20rpx;
+    height: 135rpx;
     display: flex;
-    height: 200rpx;
     flex-direction: column;
     justify-content: space-between;
     
@@ -56,6 +56,7 @@
 /*标题*/
 .coupon-title-text{
     color: #000311;
+    z-index: 100;
     font-size: 26rpx;
 }
 /*时间限制*/
@@ -84,41 +85,23 @@
     height: 26rpx;
 }
 
-/*新卷角落*/
-.coupon-new-icon{
-    height: 75rpx;
-    width: 75rpx;
+
+
+/*领取*/
+.coupon-item-pick{
+    border: 1px solid #1296db;
+    border-radius: 10px;
+    color: #1296db;
+    font-size: 26rpx;
+    display: inline-block;
+    padding: 10rpx;
+}
+
+.coupon-picked-icon{
     position: absolute;
-    top: 0;
     right: 0;
-}
-
-/*已使用/已过期情况调整*/
-.coupon-item-disable{
-    overflow: hidden;
-}
-.coupon-item-disable .coupon-main-container{
-    background: #C2C2C2;
-}
-.coupon-item-disable .coupon-main-container text{
-    color: #FFF;
-}
-.coupon-item-disable .zan-label--primary{
-    background: #C2C2C2;
-    color: #FFF;
-    border-color: #C2C2C2;
-}
-.coupon-item-disable .coupon-title-text{
-    color: #A7A7A7;
-}
-.coupon-used-icon{
-    height: 64px;
-    width: 64px;
-    position: absolute;
-    top: 2px;
-    right: -8px;
-}
-
-.coupon-item-disable .coupon-detial-text{
-    color: #A7A7A7;
+    top: -10px;
+    height: 128rpx;
+    width: 128rpx;
+    z-index: 10;
 }
