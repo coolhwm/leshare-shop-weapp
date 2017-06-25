@@ -2,6 +2,7 @@ import ShopService from "../../../class/service/ShopService";
 import GoodsService from "../../../class/service/GoodsService";
 import OrderService from "../../../class/service/OrderService";
 import FavoriteService from "../../../class/service/FavoriteService";
+import CouponService from "../../../class/service/CouponService";
 import CartService from "../../../class/service/CartService";
 import Router from "../../../class/utils/Router";
 import Tips from "../../../class/utils/Tips";
@@ -16,6 +17,7 @@ const goodsService = new GoodsService();
 const orderService = new OrderService();
 const cartService = new CartService();
 const favoriteService = new FavoriteService();
+const couponService = new CouponService();
 
 Page(Object.assign({}, Quantity, {
   sku: {},
@@ -25,12 +27,13 @@ Page(Object.assign({}, Quantity, {
     sku: {},
     isFav: false,
     cartNum: 0,
+    shelf:{},
     init: false
   },
   onLoad: function (options) {
     Tips.loading();
-    const goodsId = options.goodsId;
-    //const goodsId = 2;
+    //const goodsId = options.goodsId;
+    const goodsId = 2;
     //请求店铺基本信息
     shopService.getInfo().then(data => {
       this.setData({ shop: data });
@@ -49,6 +52,9 @@ Page(Object.assign({}, Quantity, {
 
     //收藏状态
     favoriteService.is(goodsId).then(data => this.setData({ isFav: data.isFavorite }));
+
+    //卡券
+    couponService.shelf().then();
 
     //获取购物车商品数量
     this.setCartNumFromApp();
@@ -177,17 +183,6 @@ Page(Object.assign({}, Quantity, {
       notification.postNotificationName("ON_CART_UPDATE");
       this.onPanelClose();
     }).catch(err => Tips.error(err, () => Router.goodsIndexRedirect(goods.id)));
-
-
-
-
-    // cartService.add(this.data.goods.id, this.sku.num, this.sku.skuText).then(res => {
-    //   Tips.toast('加入购物成功');
-    //   this.sku.num = 1;
-    //   this.setCartNumFromApp(this.sku.num);
-    //   notification.postNotificationName("ON_CART_UPDATE");
-    //   this.onPanelClose();
-    // });
   },
 
   /**

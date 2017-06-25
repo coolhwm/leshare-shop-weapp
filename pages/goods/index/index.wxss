@@ -4,6 +4,7 @@
 @import "/templates/goods/buy-bar/goods-buy-bar-template.wxss";
 @import "/templates/goods/buy-panel/goods-buy-panel-template.wxss";
 @import "/templates/goods/sku/goods-sku-template.wxss";
+@import "/templates/coupon/shelf-panel/coupon-panel-template.wxss";
 
 .goods-index-container{
     background-color: #F2F2F2;
@@ -12,4 +13,8 @@
 .goods-index-footer{
     height: 100rpx;
     width: 100%;
+}
+
+.goods-operate-container{
+    margin-top: 0;
 }

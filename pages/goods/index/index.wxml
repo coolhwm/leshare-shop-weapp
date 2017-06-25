@@ -6,14 +6,21 @@
 <import src="/templates/goods/sku/goods-sku-template.wxml" />
 <import src="/templates/goods/buy-panel/goods-buy-panel-template.wxml" />
 <import src="/templates/shop/item-white/shop-item-template.wxml" />
+<import src="/templates/coupon/shelf-panel/coupon-panel-template.wxml" />
 
 
 <view class="goods-index-container" wx:if="{{init}}">
     <!--基本信息-->
     <template is="goodsInfoTemplate" data="{{...goods, sku}}" />
 
-    <!-- SKU 选择器 -->
-    <template is="goodsSkuTemplate" data="{{sku}}" />
+    <!-- 操作栏目 -->
+    <view class="zan-panel goods-operate-container"  >
+        <!-- SKU 选择器 -->
+        <template is="goodsSkuTemplate" data="{{sku}}" />
+
+        <!-- 卡券 选择器 -->
+        <template is="couponPanelTemplate"  />
+    </view>
 
     <!--间隔-->
     <view class="gap"></view>

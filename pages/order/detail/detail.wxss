@@ -3,12 +3,12 @@
 
 page{
     height: 100%;
-    margin-bottom: 200rpx;
     background-color: #F5F5F5;
 }
 
 .container{
     display: flex;
+    padding-bottom: 120rpx;
     flex-direction: column;
 }
 

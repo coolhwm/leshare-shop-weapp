@@ -3,10 +3,8 @@
 <!--依赖：无-->
 <template name="goodsSkuTemplate">
      <!-- 规格选择器 -->
-    <view class="zan-panel goods-sku-selector" wx:if="{{sku.exists}}" catchtap="onBuyTap">
-        <view class="zan-cell zan-cell--access">
+        <view class="zan-cell zan-cell--access" catchtap="onBuyTap">
             <view class="zan-cell__bd"><text>选择：{{sku.isReady ? sku.skuValues : sku.skuKeys}}</text></view>
             <view class="zan-cell__ft"></view>
         </view>
-    </view>
 </template>

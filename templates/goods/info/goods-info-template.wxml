@@ -20,10 +20,12 @@
 
         <view class="hr-light"></view>
 
-        <!--信息栏-->
+        <!--标题栏-->
         <view class="goods-title-container">
             <text class="goods-info-title">{{name}}</text>
         </view>
+
+        <!--价格栏-->
         <view class="goods-price-container">
             <view>
                 <text class="goods-info-price" wx:if="{{sku.exists}}">￥ {{sku.isReady ? sku.detail.price: priceLable}}</text>

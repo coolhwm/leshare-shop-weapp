@@ -1,0 +1,47 @@
+.coupon-item-container{
+    display: inline-flex;
+    flex-direction: row;
+    overflow: hidden;
+    align-items: center;
+}
+
+.coupon-item{
+    height: 35rpx;
+    /*background-color: #1296db;*/
+    border: 1px solid #1296db;
+    color: #1296db;
+    font-size: 26rpx;
+    line-height: 35rpx;
+    padding:5rpx 10rpx;
+    margin-right: 10rpx;
+    border-radius: 5px;
+}
+
+
+/*面板遮罩*/
+.coupon-panel-cover{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    background-color: black;
+    -webkit-filter:opacity(.6);
+    z-index: 100;
+}
+
+
+.coupon-panel-container{
+    position: fixed;
+    background: #FFF;
+    bottom: 0px;
+    width: 100%;
+    z-index: 1000;
+    transform: translateY(150%);
+    transition: all 0.4s ease;
+    z-index: 1000;
+}
+
+
+.coupon-panel-show{
+  transform: translateY(0);
+}

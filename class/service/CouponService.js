@@ -24,7 +24,25 @@ export default class CouponService extends BaseService {
      * 卡券货架
      */
     shelf() {
+        return this.list().then(data => {
+            console.info(data);
+            return this.own('NEVER_USED');
+        }).then(data => {
+            console.info(data);
+        });
+    }
+
+    list() {
         const url = `${this.baseUrl}/coupons/show`;
+        return this.get(url);
+    }
+
+
+    /**
+     * 查找目前已领取的优惠券
+     */
+    own(status) {
+        const url = `${this.baseUrl}/coupons/list?status=${status}`;
         return this.get(url);
     }
 

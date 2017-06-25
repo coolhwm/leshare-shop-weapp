@@ -5,7 +5,7 @@
 
 
 <view class="container" wx:if="{{init}}">
-    <view class="cart-header-container">
+    <view class="cart-header-container" wx:if="{{cart.carts.length > 0}}">
 
         <view class="cart-shop-info-container">
             <view class="cart-check-container" catchtap="onCheckAllTap">

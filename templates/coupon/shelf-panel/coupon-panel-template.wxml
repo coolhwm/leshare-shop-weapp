@@ -1,0 +1,23 @@
+<template name="couponPanelTemplate">
+    <!--选择区域-->
+    <view class="zan-cell zan-cell--access">
+        <view class="zan-cell__bd">
+            <view class="coupon-item-container">
+                <text>领券：</text>
+                <view class="coupon-item">满50减100</view>
+                <view class="coupon-item">满50减100</view>
+                <view class="coupon-item">满50减100</view>
+            </view>
+        </view>
+        <view class="zan-cell__ft"></view>
+    </view>
+
+
+    <!--面板区域-->
+    <view class="coupon-panel-cover" wx:if="{{true}}"></view>
+
+    <!--购买面板-->
+    <view class="coupon-panel-container coupon-panel-show" >
+        
+    </view>
+</template>
