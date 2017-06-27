@@ -164,6 +164,27 @@ page{
     color: #FFF;
 }
 
+/*实付款*/
+.summary-final-container{
+    float: right;
+    width: 100%;
+    margin-top: 20rpx;
+    padding-top: 20rpx;
+    border-top: 1px solid #DCDCDC;
+    text-align: right;
+}
+.summary-final-container .final-title{
+    color:#000311;
+    font-size: 30rpx;
+}
+
+.summary-final-container .final-text{
+    color:#ff6200;
+    font-size: 30rpx;
+}
+
+
+
 /*按钮样式调整*/
 .tarde-button-panel{
     padding-right: 20rpx;

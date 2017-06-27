@@ -42,6 +42,9 @@ export default class Cart {
         if(this.batch){
             this.unselectAll();
         }
+        if(this.empty()){
+            this.batch = false;
+        }
         this._setTotalNumAndPrice();
     }
 

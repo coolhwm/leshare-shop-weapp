@@ -71,6 +71,11 @@
             <text class="summary-title">优惠券</text>
             <text class="summary-text">-￥{{order.couponPrice}}</text>
         </view>
+        <view class="summary-final-container" wx:if="{{order.status != 1}}">
+            <text class="final-title">实付款：</text>
+            <text class="final-text">￥{{order.finalPrice}}</text>
+        </view>
+
     </view>
 
 

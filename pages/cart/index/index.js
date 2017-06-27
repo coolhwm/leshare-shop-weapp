@@ -198,7 +198,7 @@ Page(Object.assign({}, Quantity, {
     }
     Tips.confirm('是否将所选商品移入收藏').then(() => {
       const goodsIdList = carts.map(item => {
-        return {goodsId: item.goodsId}
+        return { goodsId: item.goodsId }
       });
       return favoriteService.addBatch(goodsIdList);
     }).then(() => {
