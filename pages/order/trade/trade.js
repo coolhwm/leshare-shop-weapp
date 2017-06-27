@@ -233,9 +233,17 @@ Page({
    * 地址修改回调函数
    */
   updateAddress: function (address) {
-    this.initPostType(address).then(() => { });
-    this.setData({
-      address: address
+    const oldAddressId = this.data.address.id;
+    if (address.id == oldAddressId) {
+      return;
+    }
+    Tips.loading('加载中');
+    this.initPostType(address).then(() => {
+      Tips.loaded();
+      this.setData({
+        address: address
+      });
     });
+
   }
 });
