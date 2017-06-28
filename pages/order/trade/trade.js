@@ -83,12 +83,12 @@ Page({
       notification.postNotificationName("ON_CART_ORDER", trade.orderGoodsInfos);
       return data.orderId;
     }).then(orderId => {
-      if (trade.paymentType == 1) {
+      if (trade.paymentType == 1 && trade.finalPrice > 0) {
         //在线支付
         return this.wxPay(orderId);
       }
       else {
-        //线下支付
+        //线下支付 & 金额不足0元
         Tips.toast('订单创建成功', () => Router.orderIndexRefresh());
       }
     }).catch(() => {
@@ -233,10 +233,13 @@ Page({
    * 地址修改回调函数
    */
   updateAddress: function (address) {
-    const oldAddressId = this.data.address.id;
-    if (address.id == oldAddressId) {
-      return;
+    if (this.data.address != null) {
+      const oldAddressId = this.data.address.id;
+      if (address.id == oldAddressId) {
+        return;
+      }
     }
+
     Tips.loading('加载中');
     this.initPostType(address).then(() => {
       Tips.loaded();

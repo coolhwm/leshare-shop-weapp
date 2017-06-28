@@ -191,7 +191,15 @@ Page(Object.assign({}, Tab, {
       [`${componentId}.selectedId`]: selectedId
     });
     this.reload();
-  }
+  },
 
+  /**
+   * 分享
+   */
+  onShareAppMessage: function(){
+    const title = app.globalData.shop.name;
+    const url = '/pages/shop/index/index';
+    return Tips.share(title, url, title);
+  }
 
 }));

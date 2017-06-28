@@ -234,4 +234,17 @@ Page(Object.assign({}, Quantity, {
     shelf.display = false;
     this.setData({ shelf: shelf });
   },
+
+  /**********************分享事件***********************/
+
+  /**
+   * 分享
+   */
+  onShareAppMessage: function () {
+    const title = app.globalData.shop.name;
+    const desc = this.data.goods.name;
+    const url = `/pages/goods/index/index?goodsId=${this.data.goods.id}`;
+    return Tips.share(title, url, desc);
+  }
+
 }));

@@ -139,6 +139,17 @@ export default class Tips {
             })
         });
     }
+
+    static share(title, url, desc) {
+        return {
+            title: title,
+            path: url,
+            desc: desc,
+            success: function (res) {
+                Tips.toast('分享成功');
+            }
+        }
+    }
 }
 
 /**
