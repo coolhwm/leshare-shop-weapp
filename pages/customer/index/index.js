@@ -1,3 +1,4 @@
+import Tips from "../../../class/utils/Tips";
 const app = getApp();
 
 Page({
@@ -18,6 +19,10 @@ Page({
         console.info(res);
       }
     });
+  },
+
+  tips: function(event){
+    Tips.alert('尚未开放');
   }
 
 });

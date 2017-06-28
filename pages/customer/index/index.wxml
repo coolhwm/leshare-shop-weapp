@@ -37,7 +37,7 @@
             </view>
             <view class="zan-cell__ft"></view>
         </navigator>
-        <view class="zan-cell zan-cell--access">
+        <view class="zan-cell zan-cell--access"  catchtap="tips">
             <view class="zan-cell__bd">
                 <image src="/images/icons/vip.png" />
                 <text>会员卡</text>
@@ -47,16 +47,15 @@
     </view>
 
     <view class="zan-panel">
-        <view class="zan-cell zan-cell--access">
+        <view class="zan-cell zan-cell--access" catchtap="tips">
             <view class="zan-cell__bd">
                 <image src="/images/icons/cooperate.png" />
                 <text>联系客服</text>
             </view>
             <view class="zan-cell__ft">
-                <contact-button type="default-light" size="27" session-from="weapp"></contact-button>
             </view>
         </view>
-        <view class="zan-cell zan-cell--access">
+        <view class="zan-cell zan-cell--access" catchtap="tips">
             <view class="zan-cell__bd">
                 <image src="/images/icons/gift.png" />
                 <text>推荐有奖</text>
