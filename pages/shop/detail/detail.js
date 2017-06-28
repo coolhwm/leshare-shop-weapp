@@ -11,6 +11,9 @@ Page({
   onLoad: function (options) {
     //请求店铺基本信息
     shopService.getInfo().then(data => {
+      if (data.longitude && data.latitude) {
+        data.map = true;
+      }
       this.setData({ shop: data });
     });
   },
@@ -22,9 +25,12 @@ Page({
     });
   },
 
+  /**
+   * 打开地图
+   */
   onOpenLocation: function (event) {
-    const longitude = 119.340685;
-    const latitude = 26.105099;
+    const longitude = this.data.shop.longitude;
+    const latitude = this.data.shop.latitude;
     wx.openLocation({
       latitude: latitude,
       longitude: longitude,

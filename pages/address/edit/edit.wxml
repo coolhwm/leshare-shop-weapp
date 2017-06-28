@@ -1,4 +1,4 @@
-<form bindsubmit="savePersonInfo">
+<form bindsubmit="savePersonInfo" wx:if="{{init}}">
     <view class="form-list">
         <view class="form-item">
             <view class="form-item-hd">姓名：</view>
@@ -31,7 +31,7 @@
             </view>
         </view>
     </view>
-    <view class="form-list">
+    <view class="form-list" wx:if="{{!addrId}}">
         <view class="form-item">
             <view class="form-item-hd">设为默认：</view>
             <view class="form-item-bd">

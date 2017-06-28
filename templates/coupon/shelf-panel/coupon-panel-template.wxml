@@ -2,13 +2,11 @@
 
 <template name="couponPanelTemplate">
     <!--选择区域-->
-    <view class="zan-cell zan-cell--access" catchtap="onCouponPanelShow">
+    <view class="zan-cell zan-cell--access" wx:if="{{size > 0}}" catchtap="onCouponPanelShow">
         <view class="zan-cell__bd">
             <view class="coupon-preview-container">
                 <text>领券：</text>
-                <view class="coupon-preview">满50减100</view>
-                <view class="coupon-preview">满50减100</view>
-                <view class="coupon-preview">满50减100</view>
+                <view class="coupon-preview" wx:for="{{preview}}">{{item}}</view>
             </view>
         </view>
         <view class="zan-cell__ft"></view>
@@ -27,15 +25,15 @@
             </view>
         </view>
         <scroll-view class="coupon-list-container" scroll-y="true">
-            <view class="coupon-pick-list">
+            <view class="coupon-pick-list" wx:if="{{pickList.length > 0}}">
                 <text class="coupon-pick-title">可领优惠券</text>
                 <block wx:for="{{pickList}}" wx:key="id">
                     <template is="couponItemTemplate" data="{{...item}}"></template>
                 </block>
             </view>
-            <view class="coupon-pick-list">
+            <view class="coupon-pick-list" wx:if="{{ownList.length > 0}}">
                 <text class="coupon-pick-title">已领优惠券</text>
-                <block wx:for="{{pickList}}" wx:key="id">
+                <block wx:for="{{ownList}}" wx:key="id">
                     <template is="couponItemTemplate" data="{{...item}}"></template>
                 </block>
             </view>

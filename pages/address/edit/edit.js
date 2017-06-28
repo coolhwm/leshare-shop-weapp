@@ -19,7 +19,8 @@ Page({
     districtSelIndex: '',
     showMessage: false,
     messageContent: '',
-    showDistpicker: false
+    showDistpicker: false,
+    init: false
   },
   onLoad: function (options) {
     // 载入时要显示再隐藏一下才能显示数据，如果有解决方法可以在issue提一下，不胜感激:-)
@@ -32,6 +33,7 @@ Page({
       const addr = JSON.parse(param);
       this.setFormData(addr);
     }
+    this.setData({init: true});
   },
   setAreaData: function (p, c, d) {
     var p = p || 0 // provinceSelIndex

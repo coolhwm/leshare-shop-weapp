@@ -24,11 +24,32 @@ export default class CouponService extends BaseService {
      * 卡券货架
      */
     shelf() {
+        let coupons = [];
         return this.list().then(data => {
-            const pickList = data.map(this._processPickItem.bind(this));
+            coupons = data.map(this._processPickItem.bind(this));
+            return this.own('NEVER_USED');
+        }).then(own => {
+            const pickList = [];
+            const ownList = [];
+            //卡券分类
+            coupons.forEach(coupon => {
+                const isOwn = own.some(item => item.couponId == coupon.id);
+                if (isOwn) {
+                    coupon.own = true;
+                    ownList.push(coupon);
+                }
+                else {
+                    pickList.push(coupon);
+                }
+            });
+
+            const preview = coupons.map(item => `满${item.limitPrice}减${item.price}`);
             return {
-                pickList: data
-            };
+                pickList: pickList,
+                ownList: ownList,
+                preview: preview,
+                size: coupons.length
+            }
         });
     }
 

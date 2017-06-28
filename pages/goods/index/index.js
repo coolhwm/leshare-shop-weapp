@@ -235,6 +235,21 @@ Page(Object.assign({}, Quantity, {
     this.setData({ shelf: shelf });
   },
 
+  /**
+   * 领取卡券
+   */
+  onCouponPick: function (event) {
+    const couponId = event.currentTarget.dataset.couponId;
+    Tips.loading();
+    couponService.pick(couponId).then(data => {
+      const shelf = this.data.shelf;
+      const currentCoupon = shelf.pickList.find(item => item.id == couponId);
+      currentCoupon.own = true;
+      this.setData({ shelf: shelf });
+      Tips.toast('领取成功！');
+    });
+  },
+
   /**********************分享事件***********************/
 
   /**

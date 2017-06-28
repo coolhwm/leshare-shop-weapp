@@ -19,11 +19,11 @@
             </view>
             <view class="coupon-time-pick-container">
                 <text class="coupon-time-text">{{beginTime}}-{{dueTime}}</text>
-                <view class="coupon-item-pick">点击领取</view>
+                <view class="coupon-item-pick" wx:if="{{!own}}" data-coupon-id="{{id}}" catchtap="onCouponPick">点击领取</view>
             </view>
         </view>
 
         <!-- 修饰图片 -->
-        <image class="coupon-picked-icon"  src="/images/icons/picked.png" />
+        <image class="coupon-picked-icon" wx:if="{{own}}"  src="/images/icons/picked.png" />
     </view>
 </template>
