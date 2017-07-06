@@ -43,7 +43,11 @@ export default class CouponService extends BaseService {
                 }
             });
 
-            const preview = coupons.map(item => `满${item.limitPrice}减${item.price}`);
+            let preview = coupons.map(item => `满${item.limitPrice}减${item.price}`);
+            if(preview.length > 3) {
+                preview = preview.slice(0, 3);
+                preview.push('...');
+            }
             return {
                 pickList: pickList,
                 ownList: ownList,

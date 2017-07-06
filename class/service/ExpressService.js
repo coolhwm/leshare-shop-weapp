@@ -88,7 +88,7 @@ export default class ExpressService extends BaseService {
      */
 
     _queryExpressInfo(orderId) {
-        const url = `${this.publicUrl}/express`;
+        const url = `${this.baseUrl}/express`;
         const param = { order_id: orderId };
         return this.get(url, param);
     }

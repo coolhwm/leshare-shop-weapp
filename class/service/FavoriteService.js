@@ -14,7 +14,7 @@ export default class FavoriteService extends BaseService {
     * 返回分页对象
     */
     page() {
-        const url = `${this.baseUrl}/shops/favorite_goods`;
+        const url = `${this.baseUrl}/favorite_goods`;
         return new Pagination(url, this._processFavGoods.bind(this));
     }
 

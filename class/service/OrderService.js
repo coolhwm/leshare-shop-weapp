@@ -69,7 +69,7 @@ export default class OrderService extends BaseService {
      * 生成预支付订单
      */
     prepayOrder(orderId) {
-        const url = `${this.baseUrl}/orders/${orderId}/wxpay`;
+        const url = `${this.baseUrl}/wxpay/orders/${orderId}`;
         return this.get(url, {});
     }
 
@@ -119,7 +119,10 @@ export default class OrderService extends BaseService {
      */
     closeOrder(orderId) {
         const url = `${this.baseUrl}/orders/${orderId}/status/close`;
-        return this.put(url);
+         const param = {
+            note: '买家关闭'
+        };
+        return this.put(url, param);
     }
 
     /**

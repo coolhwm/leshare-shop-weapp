@@ -110,8 +110,8 @@ export default class AuthService {
         const url = `${this.baseUrl}/auth/check_session`;
         const param = { login_code: loginCode };
         console.info('开始检查login_code', loginCode);
-        return Http.get(url, param).then(code => {
-            if (code === 'ok') {
+        return Http.get(url, param).then(data => {
+            if (data.result === 'SUCCESS') {
                 //校验成功
                 console.info('用户服务端登录状态login_code校验成功');
                 return loginCode;
