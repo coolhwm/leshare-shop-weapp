@@ -11,6 +11,18 @@ export default class ShopService extends BaseService {
     }
 
     /**
+     * 访问店铺
+     */
+    visit() {
+        const url = `${this.baseUrl}/visit_shops`;
+        wx.getSystemInfo({
+            success: (res) => {
+                this.post(url, res).then(_ => { });
+            }
+        });
+    }
+
+    /**
      * 获取店铺详情
      */
     getInfo() {
@@ -26,7 +38,7 @@ export default class ShopService extends BaseService {
             });
         }
 
-    } 
+    }
 
     /**
      * 获取店铺公告（第一个）

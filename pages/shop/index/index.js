@@ -48,6 +48,7 @@ Page(Object.assign({}, Tab, {
         .then(rawUser => authService.checkUserInfo(rawUser))
         .then(rawUser => authService.decodeUserInfo(rawUser))
         .then(user => authService.saveUserInfo(user)));
+      shopService.visit();
   },
 
   /**
