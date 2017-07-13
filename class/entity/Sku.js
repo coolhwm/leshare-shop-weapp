@@ -48,7 +48,7 @@ export default class Sku {
     init() {
         this.labels = this.goods.labels;
         //没有规格的情况
-        if (!this.labels) {
+        if (!this.labels|| this.labels.length < 1) {
             this.exists = false;
         }
         //初始化已被选择的对象 / 占位符

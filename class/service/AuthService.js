@@ -64,7 +64,8 @@ export default class AuthService {
         const param = {
             rawData: rawUser.rawData,
             signature: rawUser.signature,
-            thirdSession: third_session
+            thirdSession: third_session,
+            shop_code: app.globalData.shop.code
         };
         return Http.get(url, param).then(data => {
             return data.checkPass ? rawUser : Promise.reject('用户信息完整性校验失败');
@@ -80,7 +81,8 @@ export default class AuthService {
         const param = {
             encryptedData: rawUser.encryptedData,
             iv: rawUser.iv,
-            thirdSession: third_session
+            thirdSession: third_session,
+            shop_code: app.globalData.shop.code
         };
         return Http.get(url, param).then(data => data.user);
     }
