@@ -16,6 +16,7 @@ const cartService = new CartService();
 
 Page(Object.assign({}, Tab, {
   page: {},
+  retry: 0,
   data: {
     shop: {},
     goods: [],
@@ -56,6 +57,11 @@ Page(Object.assign({}, Tab, {
    */
   session: function () {
     console.info('权限校验失败，与服务器建立新会话');
+    if (this.retry > 10) {
+      Tips.error('服务器连接失败');
+      Promise.reject('服务器连接失败');
+    }
+    this.retry ++;
     return authService.getWxJsCode()
       .then(jsCode => {
         return authService.getLoginCode(jsCode);

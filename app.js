@@ -15,7 +15,7 @@ App({
     if(third_session != ''){
       this.globalData.auth.third_session = third_session;
     }
-    //服务器会话09
+    //服务器会话
     const login_code = wx.getStorageSync('login_code');
     if(login_code != ''){
       this.globalData.auth.login_code = login_code;
@@ -38,11 +38,12 @@ App({
     auth: {},
     //店铺缓存
     shop: {
-      code: 'iGsAJQYzB00GX832ZnaZwxjdRz7YEQXa',
-      name: '连江海蜇专卖',
+      code: '9B4iaaB8NyjePNyhmqg262Y4oxtL0M8h',
+      name: '连江什么鬼炸鸡店',
     },
     //API地址
-    //publicUrl: "http://192.168.31.124:9999/v1",
-    publicUrl: "http://leshare.shop:9999/api/v1",
+    publicUrl: "http://192.168.31.124:9999/api/v1",
+    //publicUrl: "http://leshare.shop:9999/api/v1",
+    //publicUrl: "https://api.ioman.cc/api/v1",
   }
 });

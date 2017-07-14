@@ -21,7 +21,7 @@ export default class GoodsService extends BaseService {
     /**
      * 获取商品库存
      */
-    stock(goodsId, sku = ''){
+    stock(goodsId, sku = '') {
         const url = `${this.baseUrl}/goods/${goodsId}/stock?sku=${sku}`;
         return this.get(url).then(data => data.stock);
     }
@@ -52,13 +52,14 @@ export default class GoodsService extends BaseService {
             title: '全部'
         });
 
-        list.push(...data.map(item => {
-            return {
-                id: item.id,
-                title: item.name
-            }
-        }));
-
+        if (data != null) {
+            list.push(...data.map(item => {
+                return {
+                    id: item.id,
+                    title: item.name
+                }
+            }));
+        }
         const tab = {
             list: list,
             selectedId: '0',
@@ -92,13 +93,13 @@ export default class GoodsService extends BaseService {
     /**
      * 处理运费信息
      */
-    _processGoodsPostFeeText(detail){
+    _processGoodsPostFeeText(detail) {
         const fee = detail.postFee;
         let feeText = '';
-        if(!fee || fee == 0){
+        if (!fee || fee == 0) {
             feeText = '配送：免运费';
         }
-        else{
+        else {
             feeText = `同城配送：￥${fee} (支持自提)`;
         }
         detail.feeText = feeText;
