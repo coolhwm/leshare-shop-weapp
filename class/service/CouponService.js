@@ -26,6 +26,9 @@ export default class CouponService extends BaseService {
     shelf() {
         let coupons = [];
         return this.list().then(data => {
+            if (data == null) {
+                return Promise.reject('无卡券');
+            }
             coupons = data.map(this._processPickItem.bind(this));
             return this.own('NEVER_USED');
         }).then(own => {

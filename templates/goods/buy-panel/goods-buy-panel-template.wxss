@@ -90,9 +90,13 @@
 
 /*SKU列表*/
 .buy-panel-sku-list{
-    padding: 15rpx 0;
+    padding-top: 15rpx;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+}
+.buy-panel-sku-list view {
+    margin-bottom: 15rpx;
 }
 
 /*SKU标题容器*/

@@ -33,6 +33,7 @@ export default class ShopService extends BaseService {
         else {
             const url = `${this.baseUrl}/shops`;
             return this.get(url, {}).then(shop => {
+                shop = this._processShopInfo(shop);
                 this.app.globalData.shop.info = shop;
                 return shop;
             });
@@ -50,10 +51,20 @@ export default class ShopService extends BaseService {
                 return data[0];
             }
             else {
-                return '暂无公告';
+                return {content: '暂无公告'};
             }
 
         });
+    }
+
+    /**
+     * 处理商店信息
+     */
+    _processShopInfo(shop) {
+        if (shop.avatar == null) {
+            shop.avatar = '/images/shop/shop-logo.png';
+        }
+        return shop;
     }
 
 }

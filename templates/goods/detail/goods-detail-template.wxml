@@ -2,7 +2,7 @@
 <!--输入：...details-->
 <!--依赖：无-->
 <template name="goodsDetailTemplate">
-    <view class="goods-detail-container">
+    <view class="goods-detail-container" wx:if="{{details.length > 0}}">
         <!--详情标题-->
         <view class="goods-detail-title">
             <text>── 商品详情 ──</text>
@@ -16,7 +16,7 @@
                 <!--文本-->
                 <text wx:if="{{item.type == 1}}">{{item.content}}</text>
                 <!--图片-->
-                <image src="{{item.content}}" mode="widthFix" wx:if="{{item.type == 2}}" />
+                <image src="{{item.content}}" mode="widthFix" wx:if="{{item.type == 2}}" catchtap="previewDetails" data-url="{{item.content}}"/>
             </block>
         </view>
     </view>

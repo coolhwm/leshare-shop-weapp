@@ -59,7 +59,7 @@ Page(Object.assign({}, Tab, {
     console.info('权限校验失败，与服务器建立新会话');
     if (this.retry > 10) {
       Tips.error('服务器连接失败');
-      Promise.reject('服务器连接失败');
+      return Promise.reject('服务器连接失败');
     }
     this.retry ++;
     return authService.getWxJsCode()

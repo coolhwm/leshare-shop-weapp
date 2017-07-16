@@ -15,6 +15,7 @@
     width: 150rpx;
     height: 150rpx;
     border-radius: 50%;
+    background-color: #FFF;
     border: 2px solid #FFF;
     box-shadow: 0 0 5px gray;
 }

@@ -8,7 +8,7 @@
         <image class="shop-item-image" src="/images/shop/shop.png"/>
         <view class="shop-synopsis-container">
             <text class="shop-item-title">{{name}}</text>
-            <text class="shop-item-describe">{{describe}}</text>
+            <!--<text class="shop-item-describe">{{describe}}</text>-->
             <text class="shop-item-describe">地址：{{address}}</text>
         </view>
         <image class="icon-big" src="/images/icons/more.png"/>

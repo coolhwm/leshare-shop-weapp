@@ -4,15 +4,15 @@
 <template name="goodsItemTemplate">
     <view class="goods-item-container" catchtap="onGoodsItemTap" data-goods-id="{{id}}">
         <!--商品图片-->
-        <image class="goods-item-image" src="{{imageUrl}}" onerror="this.src='/images/goods/broken.png'" />
+        <image class="goods-item-image" src="{{imageUrl}}" mode="aspectFill" onerror="this.src='/images/goods/broken.png'" />
         <!--商品描述-->
         <view class="goods-item-describe">
             <!--标题-->
             <text class="goods-item-title">{{name}}</text>
             <!--价格区域-->
             <view class="goods-item-price">
-                <text class="goods-item-price-cost">￥{{sellPrice}}</text>
-                <text class="goods-item-price-original">￥{{originalPrice}}</text>
+                <text class="goods-item-price-cost">￥{{priceLable}}</text>
+                <!--<text class="goods-item-price-original">￥{{originalPrice}}</text>-->
             </view>
         </view>
     </view>

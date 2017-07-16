@@ -4,7 +4,7 @@
 <view class="container">
 
     <!--轮播图-->
-    <swiper class="shop-swiper" indicator-dots="true" autoplay="true" interval="5000">
+    <swiper class="shop-swiper" indicator-dots="true" autoplay="true" interval="5000" wx:if="{{shop.images.length > 0}}" catchtap="preview">
         <swiper-item wx:for="{{shop.images}}" wx:key="id">
             <image src="{{item.url}}"></image>
         </swiper-item>
@@ -14,7 +14,7 @@
 
     <!--店铺名称-->
     <view class="shop-name-container">
-        <image class="icon-big" src="/images/shop/shop.png"/>
+        <image class="icon-big" src="{{shop.avatar}}"/>
         <text class="shop-name-font">{{shop.name}}</text>
     </view>
     

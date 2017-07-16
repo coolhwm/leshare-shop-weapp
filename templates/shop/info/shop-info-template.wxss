@@ -1,0 +1,3 @@
+.address-label{
+    min-width: 150rpx;
+}

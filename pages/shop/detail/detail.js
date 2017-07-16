@@ -1,5 +1,6 @@
 import ShopService from "../../../class/service/ShopService";
 import Tips from "../../../class/utils/Tips";
+import Router from "../../../class/utils/Router";
 
 const app = getApp();
 const shopService = new ShopService();
@@ -26,6 +27,16 @@ Page({
   },
 
   /**
+   * 查看图片
+   */
+  preview: function(event) {
+    const urls = this.data.shop.images.map(item => item.url);
+    wx.previewImage({
+      urls: urls
+    });
+  },
+
+  /**
    * 打开地图
    */
   onOpenLocation: function (event) {
@@ -35,7 +46,10 @@ Page({
       latitude: latitude,
       longitude: longitude,
       name: this.data.shop.name,
-      address: this.data.shop.describe
+      address: this.data.shop.describe,
+      fail: (e) => {
+        Tips.alert('定位失败');
+      }
     });
   }
 })

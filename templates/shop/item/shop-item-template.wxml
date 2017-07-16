@@ -5,7 +5,7 @@
 <template name="shopItemTemplate">
     <view class="shop-item-container" data-shop-id="{{id}}" catchtap="onShopItemTap">
         <!--店铺图片-->
-        <image class="shop-item-image" src="http://op09okwcw.bkt.clouddn.com/timg.jpg" />
+        <image class="shop-item-image" src="{{avatar}}" />
         <view class="shop-synopsis-container">
             <text class="shop-item-title">{{name}}</text>
             <text class="shop-item-describe">地址：{{address}}</text>

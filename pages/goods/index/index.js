@@ -68,6 +68,28 @@ Page(Object.assign({}, Quantity, {
     Router.shopDetail();
   },
 
+  /**
+   * 查看图片
+   */
+  preview: function(event) {
+    const urls = this.data.goods.images.map(item => item.url);
+    wx.previewImage({
+      urls: urls
+    });
+  },
+
+  /**
+   * 查看详情的所有图片
+   */
+  previewDetails: function(event) {
+    const current  = event.currentTarget.dataset.url;
+    const urls = this.data.goods.goodsDetails.filter(item => item.type == 2).map(item => item.content);
+    wx.previewImage({
+      current: current,
+      urls: urls
+    });
+  },
+
   /***********************购买栏事件***********************/
 
   /**

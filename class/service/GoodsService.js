@@ -121,18 +121,18 @@ export default class GoodsService extends BaseService {
             maxPrice = Math.max(detail.price, maxPrice);
             minPrice = Math.min(detail.price, maxPrice);
         }
-        detail.maxPrice = maxPrice;
-        detail.minPrice = minPrice;
+        detail.maxPrice = maxPrice.toFixed(2);
+        detail.minPrice = minPrice.toFixed(2);
     }
 
     /**
      * 处理价格展现标签 / 需要先调用区间处理
      */
     _processGoodsPriceLabel(detail) {
-        let priceLable = detail.sellPrice;
+        let priceLable = detail.sellPrice.toFixed(2);
 
         if (detail.maxPrice && detail.minPrice) {
-            priceLable = `${detail.minPrice} ~ ${detail.maxPrice}`;
+            priceLable = `${detail.minPrice}~${detail.maxPrice}`;
         }
 
         detail.priceLable = priceLable;
@@ -186,6 +186,8 @@ export default class GoodsService extends BaseService {
 
         //处理图片
         this._processGoodsPreview(item);
+        this._processGoodsPriceRange(item);
+        this._processGoodsPriceLabel(item);
     }
 
     /**

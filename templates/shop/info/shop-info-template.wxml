@@ -8,7 +8,7 @@
             <view class="zan-cell__ft">{{phone}}</view>
         </view>
         <view class="zan-cell {{map ? 'zan-cell--access' : ''}} " catchtap="onOpenLocation">
-            <view class="zan-cell__bd">详细地址</view>
+            <view class="zan-cell__bd address-label">详细地址</view>
             <view class="zan-cell__ft">{{address}}</view>
         </view>
         <view class="zan-cell">
