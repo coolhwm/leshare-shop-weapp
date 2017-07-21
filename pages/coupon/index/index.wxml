@@ -2,7 +2,7 @@
 <import src="/templates/tab/index.wxml" />
 <import src="/templates/coupon/item/coupon-item-template.wxml" />
 
-<view class="container">
+<view class="container" wx:if="{{init}}">
     <!--类型选择-->
     <template is="zan-tab" data="{{tab: tab, componentId: 'tab'}}"></template>
 
@@ -12,4 +12,10 @@
             <template is="couponItemTemplate" data="{{...item}}"></template>
         </block>
     </view>
+</view>
+
+<!--占位提示-->
+<view class="order-empty-tips" wx:if="{{init && coupons.length == 0}}">
+    <image src="/images/icons/order-empty.png" />
+    <text>您还没有相关优惠券</text>
 </view>

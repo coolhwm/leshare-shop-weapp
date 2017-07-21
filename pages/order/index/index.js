@@ -155,8 +155,12 @@ Page({
       return orderService.wxpayOrder(payment);
     }).then(res => {
       Tips.toast('支付成功', () => this.reload());
-    }).catch(() => {
-      Tips.toast('支付已取消');
+    }).catch((error) => {
+      if(error.data && error.data.code == 80100) {
+        Tips.error('支付失败请联系客服');
+      } else {
+        Tips.toast('支付已取消');
+      }
     });
   },
 
@@ -170,6 +174,10 @@ Page({
       return orderService.closeOrder(orderId);
     }).then(data => {
       Tips.toast('订单关闭成功', () => this.reload());
+    }).catch(e => {
+      if (e.data != null) {
+        Tips.error('关闭失败请联系客服', () => this.reload());
+      } 
     });
   },
 

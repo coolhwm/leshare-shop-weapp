@@ -265,7 +265,7 @@ export default class OrderService extends BaseService {
         const finishTime = refund.finishTime;
         if (finishTime) {
             //卖家同意
-            if (refund.is_agree == 1) {
+            if (refund.isAgree == 1) {
                 steps.push(this._createRefundSetp('退款成功', finishTime));
             }
             //卖家不同意
@@ -277,7 +277,16 @@ export default class OrderService extends BaseService {
         //买家关闭
         const closeTime = refund.closeTime;
         if (closeTime) {
-            steps.push(this._createRefundSetp('买家取消退款，交易恢复', closeTime));
+            //卖家同意
+            if (refund.isAgree == 2) {
+                steps.push(this._createRefundSetp('退款关闭，请联系卖家处理', finishTime));
+            }
+            else if (refund.isAgree == 1) {
+                //不需要
+            }
+            else {
+                steps.push(this._createRefundSetp('买家取消退款，交易恢复', closeTime));
+            }
         }
 
 
@@ -459,6 +468,9 @@ export default class OrderService extends BaseService {
      * 处理订单商品信息
      */
     _processOrderGoods(goods) {
+        goods.forEach(item => {
+            item.imageUrl += '/small';
+        });
         if (goods == null || goods.length < 1) {
             return;
         }
@@ -468,6 +480,8 @@ export default class OrderService extends BaseService {
             const skuText = this._processOrderSku(sku);
             item.skuText = skuText;
         });
+
+        
     }
 
     /**

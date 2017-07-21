@@ -14,6 +14,9 @@
     position: fixed;
     top: 0;
 }
+.goods-grid-tab{
+    z-index: 1000;
+}
 
 .goods-empty-tips{
     margin-top: 100rpx;

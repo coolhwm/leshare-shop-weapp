@@ -1,4 +1,5 @@
 .goods-item-container{
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -35,4 +36,12 @@
     margin-left: 15rpx;
     text-decoration: line-through;
     color:#999;
+}
+
+.recommend-image{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: 0;
+    right: 0;
 }

@@ -233,12 +233,12 @@ Page({
    * 地址修改回调函数
    */
   updateAddress: function (address) {
-    if (this.data.address != null) {
-      const oldAddressId = this.data.address.id;
-      if (address.id == oldAddressId) {
-        return;
-      }
-    }
+    // if (this.data.address != null) {
+    //   const oldAddressId = this.data.address.id;
+    //   if (address.id == oldAddressId) {
+    //     return;
+    //   }
+    // }
 
     Tips.loading('加载中');
     this.initPostType(address).then(() => {
@@ -247,6 +247,5 @@ Page({
         address: address
       });
     });
-
   }
 });

@@ -114,12 +114,12 @@ export default class GoodsService extends BaseService {
         }
         const skuDetails = detail.goodsSkuInfo.goodsSkuDetails;
         let maxPrice = 0;
-        let minPrice = 0;
+        let minPrice = Number.MAX_VALUE;
 
         for (let i in skuDetails) {
             const detail = skuDetails[i].goodsSkuDetailBase;
             maxPrice = Math.max(detail.price, maxPrice);
-            minPrice = Math.min(detail.price, maxPrice);
+            minPrice = Math.min(detail.price, minPrice);
         }
         detail.maxPrice = maxPrice.toFixed(2);
         detail.minPrice = minPrice.toFixed(2);
@@ -203,7 +203,7 @@ export default class GoodsService extends BaseService {
             item.imageUrl = "/images/goods/broken.png";
         }
         else {
-            item.imageUrl = images[0].url;
+            item.imageUrl = images[0].url + '/medium';
         }
     }
 

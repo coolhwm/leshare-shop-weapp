@@ -21,7 +21,8 @@ Page(Object.assign({}, Tab, {
       selectedId: 'NEVER_USED',
       scroll: false
     },
-    coupons: []
+    coupons: [],
+    init: false
   },
 
   onLoad: function (options) {
@@ -47,7 +48,10 @@ Page(Object.assign({}, Tab, {
       status: this.data.tab.selectedId
     };
     this.page.next(param).then(data => {
-      this.setData({ coupons: data.list });
+      this.setData({ 
+        coupons: data.list,
+        init: true
+      });
       Tips.loaded();
     });
   },

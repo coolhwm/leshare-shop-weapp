@@ -57,7 +57,7 @@ Page(Object.assign({}, Tab, {
    */
   session: function () {
     console.info('权限校验失败，与服务器建立新会话');
-    if (this.retry > 10) {
+    if (this.retry > 5) {
       Tips.error('服务器连接失败');
       return Promise.reject('服务器连接失败');
     }

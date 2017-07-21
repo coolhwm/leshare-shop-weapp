@@ -119,10 +119,12 @@ export default class AuthService {
                 return loginCode;
             }
             else {
-                //校验失败
                 this.cleanLoginInfo();
-                return Promise.reject('login_code已过期');
+                return Promise.reject('校验错误');
             }
+        }, data => {
+            this.cleanLoginInfo();
+            return Promise.reject('login_code已过期');
         });
     }
 
@@ -133,7 +135,6 @@ export default class AuthService {
         app.globalData.auth[key] = value;
         wx.setStorageSync(key, value);
     }
-
     
 
     /**
@@ -163,6 +164,4 @@ export default class AuthService {
         wx.removeStorageSync('login_code');
         wx.removeStorageSync('third_session');
     }
-
-
 } 

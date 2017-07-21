@@ -5,6 +5,7 @@
     <view class="goods-item-container" catchtap="onGoodsItemTap" data-goods-id="{{id}}">
         <!--商品图片-->
         <image class="goods-item-image" src="{{imageUrl}}" mode="aspectFill" onerror="this.src='/images/goods/broken.png'" />
+        <image class="recommend-image" wx:if="{{isRecommend == 1}}" src="/images/icons/recommend.png" />
         <!--商品描述-->
         <view class="goods-item-describe">
             <!--标题-->
