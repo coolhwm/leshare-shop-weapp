@@ -32,7 +32,7 @@ export default class LogService extends BaseService {
         return {
             goodsId: data.goodsId,
             goodsName: data.goods.name,
-            goodsPrice: data.goods.sellPrice,
+            goodsPrice: data.goods.sellPrice.toFixed(2),
             imageUrl: this._processGoodsPreview(data.goods.images)
         };
     }
