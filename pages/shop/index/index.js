@@ -9,6 +9,7 @@ import Sku from "../../../class/entity/Sku";
 
 const Tab = require('../../../templates/tab/index');
 const notification = require("../../../class/utils/WxNotificationCenter.js");
+const Quantity = require('../../../templates/quantity/index');
 const app = getApp();
 const cache = getApp().globalData.cart;
 const shopService = new ShopService();
@@ -17,7 +18,7 @@ const couponService = new CouponService();
 const authService = new AuthService();
 const cartService = new CartService();
 
-Page(Object.assign({}, Tab, {
+Page(Object.assign({}, Quantity, Tab, {
   page: {},
   retry: 0,
   data: {
@@ -291,6 +292,14 @@ Page(Object.assign({}, Tab, {
   },
 
   /**
+  * 处理数量选择器请求
+  */
+  handleZanQuantityChange(e) {
+    this.cartSku.setNum(e.quantity);
+    this.setData({ cartSku: this.cartSku.export() });
+  },
+
+  /**
    * 校验库存和SKU选择情况
    */
   isValidSku: function () {
@@ -305,5 +314,4 @@ Page(Object.assign({}, Tab, {
 
     return true;
   },
-
 }));

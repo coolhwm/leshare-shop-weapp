@@ -43,8 +43,8 @@ Page({
     const longitude = this.data.shop.longitude;
     const latitude = this.data.shop.latitude;
     wx.openLocation({
-      latitude: latitude,
-      longitude: longitude,
+      latitude: Number(latitude),
+      longitude: Number(longitude),
       name: this.data.shop.name,
       address: this.data.shop.describe,
       fail: (e) => {
