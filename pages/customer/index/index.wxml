@@ -46,7 +46,7 @@
         </view>
     </view>
 
-    <view class="zan-panel">
+    <!--<view class="zan-panel">
         <view class="zan-cell zan-cell--access" catchtap="tips">
             <view class="zan-cell__bd">
                 <image src="/images/icons/cooperate.png" />
@@ -62,7 +62,7 @@
             </view>
             <view class="zan-cell__ft"></view>
         </view>
-    </view>
+    </view>-->
 
     <view class="weui-footer">
         <view class="weui-footer__links">

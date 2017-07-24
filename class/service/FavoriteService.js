@@ -81,7 +81,7 @@ export default class FavoriteService extends BaseService {
             return "/images/goods/broken.png";
         }
         else {
-            return images[0].url;
+            return images[0].url + '/small';
         }
     }
 }

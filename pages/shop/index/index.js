@@ -55,7 +55,6 @@ Page(Object.assign({}, Quantity, Tab, {
         .then(rawUser => authService.checkUserInfo(rawUser))
         .then(rawUser => authService.decodeUserInfo(rawUser))
         .then(user => authService.saveUserInfo(user)));
-      shopService.visit();
   },
 
   /**
@@ -111,6 +110,8 @@ Page(Object.assign({}, Quantity, Tab, {
 
     //购物车数量初始化
     cartService.count().then(count => app.globalData.cart.num = count);
+
+    shopService.visit();
   },
 
   /**

@@ -20,7 +20,7 @@
                 <text class="goods-item-price-cost">￥{{priceLable}}</text>
                 <!--<text class="goods-item-price-original">￥{{originalPrice}}</text>-->
             </view>
-            <image class="cart-image" catchtap='onAddCartTap' data-goods-id="{{id}}"  src="/images/icons/cart-btn-gray.png" />
+            <image class="cart-image" catchtap='onAddCartTap' data-goods-id="{{id}}"  src="/images/icons/cart-btn.png" />
         </view>
     </view>
 </template>
