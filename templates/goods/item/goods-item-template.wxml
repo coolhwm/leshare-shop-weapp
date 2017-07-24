@@ -6,6 +6,11 @@
         <!--商品图片-->
         <image class="goods-item-image" src="{{imageUrl}}" mode="aspectFill" onerror="this.src='/images/goods/broken.png'" />
         <image class="recommend-image" wx:if="{{isRecommend == 1}}" src="/images/icons/recommend.png" />
+        <!-- 销量窗口(浮动) -->
+        <view class="goods-sales-container">
+            <text>销量 110</text>
+        </view>
+        
         <!--商品描述-->
         <view class="goods-item-describe">
             <!--标题-->
@@ -15,6 +20,7 @@
                 <text class="goods-item-price-cost">￥{{priceLable}}</text>
                 <!--<text class="goods-item-price-original">￥{{originalPrice}}</text>-->
             </view>
+            <image class="cart-image" catchtap='cart'  src="/images/icons/cart-btn-gray.png" />
         </view>
     </view>
 </template>

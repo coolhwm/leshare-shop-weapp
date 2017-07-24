@@ -45,3 +45,27 @@
     top: 0;
     right: 0;
 }
+
+.goods-sales-container{
+    position: absolute;
+    padding: 2px 5px;
+    height: auto;
+    width: auto;
+    min-width: 50px;
+    right: 0;
+    bottom: 110rpx;
+    text-align: center;
+    background-color: #1296db;
+    -webkit-filter: opacity(.9);
+}
+.goods-sales-container text{
+    color: #FFF;
+}
+
+.cart-image{
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    bottom: 5px;
+    right: 5px;
+}

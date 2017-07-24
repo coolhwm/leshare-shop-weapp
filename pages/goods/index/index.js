@@ -99,8 +99,6 @@ Page(Object.assign({}, Quantity, {
     this.sku.display = true;
     this.sku.action = "cart";
     this.setData({ sku: this.sku.export() });
-
-
   },
 
   /**

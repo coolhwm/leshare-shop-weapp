@@ -47,7 +47,7 @@ export default class CouponService extends BaseService {
             });
 
             let preview = coupons.map(item => `满${item.limitPrice}减${item.price}`);
-            if(preview.length > 3) {
+            if (preview.length > 3) {
                 preview = preview.slice(0, 3);
                 preview.push('...');
             }
@@ -159,8 +159,10 @@ export default class CouponService extends BaseService {
      * 处理时间格式
      */
     _convertTimestapeToDay(timestape) {
-        return timestape.substring(0, timestape.indexOf(' ')).replace(/\-/g, '.');
+        let temp = timestape;
+        if (timestape.indexOf(' ') != -1) {
+            temp = timestape.substring(0, timestape.indexOf(' '))
+        }
+        return temp.replace(/-/g, '.');
     }
-
-
 }

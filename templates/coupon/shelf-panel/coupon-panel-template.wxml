@@ -6,7 +6,7 @@
         <view class="zan-cell__bd">
             <view class="coupon-preview-container">
                 <text>领券：</text>
-                <view class="coupon-preview" wx:for="{{preview}}">{{item}}</view>
+                <view class="coupon-preview" wx:key="*this" wx:for="{{preview}}">{{item}}</view>
             </view>
         </view>
         <view class="zan-cell__ft"></view>
