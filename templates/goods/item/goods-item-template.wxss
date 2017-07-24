@@ -48,13 +48,14 @@
 
 .goods-sales-container{
     position: absolute;
-    padding: 2px 5px;
-    height: auto;
-    width: auto;
+    padding: 3px 8px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
     min-width: 50px;
     right: 0;
     bottom: 110rpx;
-    text-align: center;
     background-color: #1296db;
     -webkit-filter: opacity(.9);
 }

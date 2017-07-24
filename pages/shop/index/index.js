@@ -5,9 +5,12 @@ import AuthService from "../../../class/service/AuthService";
 import CartService from "../../../class/service/CartService";
 import Router from "../../../class/utils/Router";
 import Tips from "../../../class/utils/Tips";
+import Sku from "../../../class/entity/Sku";
 
 const Tab = require('../../../templates/tab/index');
+const notification = require("../../../class/utils/WxNotificationCenter.js");
 const app = getApp();
+const cache = getApp().globalData.cart;
 const shopService = new ShopService();
 const goodsService = new GoodsService();
 const couponService = new CouponService();
@@ -25,7 +28,9 @@ Page(Object.assign({}, Tab, {
     coupons: [],
     init: false,
     loading: false,
-    nomore: false
+    nomore: false,
+    cartGoods: {},
+    cartSku: {}
   },
 
   /**
@@ -207,6 +212,98 @@ Page(Object.assign({}, Tab, {
     const title = app.globalData.shop.name;
     const url = '/pages/shop/index/index';
     return Tips.share(title, url, title);
-  }
+  },
+
+   /***********************购物车及面板事件***********************/
+
+   
+  /**
+   * 关闭面板
+   */
+  onPanelClose: function () {
+    this.cartSku.display = false;
+    this.setData({ cartSku: this.cartSku.export() });
+  },
+
+    /**
+   * 点击加入购物车
+   */
+  onAddCartTap: function (event) {
+    Tips.loading();
+    const goodsId = event.currentTarget.dataset.goodsId;
+    //获取商品信息
+    goodsService.getInfo(goodsId).then(data => {
+      this.cartSku = new Sku(data);
+      this.cartSku.display = true;
+      this.cartSku.action = "cart";
+      this.setData({
+        cartGoods: data,
+        cartSku: this.cartSku.export(),
+      });
+      Tips.loaded();
+    });
+  },
+
+  /**
+   * 点击规格
+   */
+  onSkuTap: function (event) {
+    const key = event.currentTarget.dataset.skuKey;
+    const value = event.currentTarget.dataset.skuValue;
+    //屏蔽禁止点击
+    if (this.cartSku.disabledSkuValues[value]) {
+      return;
+    }
+    const cartSku = this.cartSku;
+    cartSku.select(key, value);
+    this.setData({ cartSku: cartSku.export() });
+  },
+
+  /**
+   * 确定加入购物车
+   */
+  onConfirmCartTap: function (event) {
+    if (!this.isValidSku()) {
+      return;
+    }
+    //请求服务端
+    const goods = this.data.cartGoods;
+    const sku = this.cartSku;
+    Tips.loading('数据加载中');
+    goodsService.stock(goods.id, sku.skuText).then(stock => {
+      return stock < sku.num ? Promise.reject('商品库存不足') : stock;
+    }).then(() => {
+      return cartService.add(goods.id, sku.num, sku.skuText);
+    }).then(() => {
+      Tips.toast('加入购物成功');
+      sku.num = 1;
+      this.setCartNumFromApp(sku.num);
+      notification.postNotificationName("ON_CART_UPDATE");
+      this.onPanelClose();
+    }).catch(err =>console.info(err));
+  },
+
+  setCartNumFromApp: function (num) {
+    if (num) {
+      cache.num += num;
+    }
+    this.setData({ cartNum: cache.num });
+  },
+
+  /**
+   * 校验库存和SKU选择情况
+   */
+  isValidSku: function () {
+    if (this.cartSku.exists && !this.cartSku.isReady) {
+      Tips.alert('请选择商品规格');
+      return false;
+    }
+    if (this.cartSku.stock < 1) {
+      Tips.alert('该商品无货');
+      return false;
+    }
+
+    return true;
+  },
 
 }));

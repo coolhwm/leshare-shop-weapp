@@ -2,6 +2,7 @@
 @import "/templates/goods/grid/goods-grid-template.wxss";
 @import "/templates/notice/bar/notice-bar-template.wxss";
 @import "/templates/coupon/shelf/coupon-shelf-template.wxss";
+@import "/templates/goods/buy-panel/goods-buy-panel-template.wxss";
 
 page{
     height: 100%;

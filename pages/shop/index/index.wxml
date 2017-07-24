@@ -2,6 +2,7 @@
 <!--依赖：店铺项目、店铺公告、商品项目（间接）、商品网格、卡券架-->
 <import src="/templates/shop/item/shop-item-template.wxml" />
 <import src="/templates/goods/grid/goods-grid-template.wxml" />
+<import src="/templates/goods/buy-panel/goods-buy-panel-template.wxml" />
 
 <scroll-view class="shop-index-container" scroll-y="true" wx:if="{{init}}" bindscroll="onScroll" bindscrolltolower="onReachBottom">
     <!--店铺基本信息-->
@@ -12,4 +13,7 @@
 
     <!--底部边线-->
     <view class="footer-line"></view>
+
+    <!--购买面板-->
+    <template is="goodsBuyPanelTemplate" data="{{...cartGoods, sku: cartSku}}" />
 </scroll-view>
