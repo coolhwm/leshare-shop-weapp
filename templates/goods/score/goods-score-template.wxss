@@ -1,0 +1,6 @@
+.goods-sku-selector{
+    margin-top: 0rpx;
+}
+.goods-sku-selector text{
+    font-size: 28rpx;
+}

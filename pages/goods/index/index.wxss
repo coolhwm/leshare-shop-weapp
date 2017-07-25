@@ -4,6 +4,7 @@
 @import "/templates/goods/buy-bar/goods-buy-bar-template.wxss";
 @import "/templates/goods/buy-panel/goods-buy-panel-template.wxss";
 @import "/templates/goods/sku/goods-sku-template.wxss";
+@import "/templates/goods/score/goods-score-template.wxss";
 @import "/templates/coupon/shelf-panel/coupon-panel-template.wxss";
 
 .goods-index-container{

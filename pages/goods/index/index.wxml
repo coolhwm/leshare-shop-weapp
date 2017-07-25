@@ -4,6 +4,7 @@
 <import src="/templates/goods/detail/goods-detail-template.wxml" />
 <import src="/templates/goods/buy-bar/goods-buy-bar-template.wxml" />
 <import src="/templates/goods/sku/goods-sku-template.wxml" />
+<import src="/templates/goods/score/goods-score-template.wxml" />
 <import src="/templates/goods/buy-panel/goods-buy-panel-template.wxml" />
 <import src="/templates/shop/item-white/shop-item-template.wxml" />
 <import src="/templates/coupon/shelf-panel/coupon-panel-template.wxml" />
@@ -20,6 +21,9 @@
 
         <!-- 卡券 选择器 -->
         <template is="couponPanelTemplate" data="{{...shelf}}" />
+
+         <!-- 评价栏目 -->
+        <template is="goodsScoreTemplate"/>
     </view>
 
     <!--间隔-->

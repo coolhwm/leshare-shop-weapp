@@ -1,0 +1,45 @@
+<view class="container">
+    <view class="score-box">
+        <view class="header-box">
+            <view class="info-box">
+                <image class="avatar" src="https://wx.qlogo.cn/mmopen/vi_32/PiajxSqBRaEJgfUzkJq7aLPZKHcicAiceEobzp1ozCZef2kWYibLIriaKdKv366IPWktSLxVQiaLicPfvXPo4ffHzUhsQ/0"></image>
+                <view class="name-box">
+                    <text class="username">匿名用户</text>
+                    <text class="date">2017-07-22</text>
+                </view>
+            </view>
+            <view class="star-box">
+                <image src="/images/icons/star-fill.png" ></image>
+                <image src="/images/icons/star-fill.png" ></image>
+                <image src="/images/icons/star-fill.png" ></image>
+                <image src="/images/icons/star-fill.png" ></image>
+                <image src="/images/icons/star-fill.png" ></image>
+            </view>
+        </view>
+        <view class="content-box">
+            好评！
+        </view>
+    </view>
+
+    <view class="score-box">
+        <view class="header-box">
+            <view class="info-box">
+                <image class="avatar" src="https://wx.qlogo.cn/mmopen/vi_32/PiajxSqBRaEJgfUzkJq7aLPZKHcicAiceEobzp1ozCZef2kWYibLIriaKdKv366IPWktSLxVQiaLicPfvXPo4ffHzUhsQ/0"></image>
+                <view class="name-box">
+                    <text class="username">匿名用户</text>
+                    <text class="date">2017-07-22</text>
+                </view>
+            </view>
+            <view class="star-box">
+                <image src="/images/icons/star-fill.png" ></image>
+                <image src="/images/icons/star-fill.png" ></image>
+                <image src="/images/icons/star-fill.png" ></image>
+                <image src="/images/icons/star-fill.png" ></image>
+                <image src="/images/icons/star-fill.png" ></image>
+            </view>
+        </view>
+        <view class="content-box">
+            好评！
+        </view>
+    </view>
+</view>

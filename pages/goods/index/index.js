@@ -280,6 +280,8 @@ Page(Object.assign({}, Quantity, {
     const desc = this.data.goods.name;
     const url = `/pages/goods/index/index?goodsId=${this.data.goods.id}`;
     return Tips.share(title, url, desc);
+  },
+  onScoreTap: function() {
+    Router.goto('/pages/goods/score/list');
   }
-
 }));
