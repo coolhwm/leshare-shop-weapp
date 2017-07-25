@@ -132,7 +132,8 @@ export default class GoodsService extends BaseService {
         let priceLable = detail.sellPrice.toFixed(2);
 
         if (detail.maxPrice && detail.minPrice) {
-            priceLable = `${detail.minPrice}~${detail.maxPrice}`;
+            // priceLable = `${detail.minPrice}~${detail.maxPrice}`;
+            priceLable = detail.minPrice;
         }
 
         detail.priceLable = priceLable;
