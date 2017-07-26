@@ -23,7 +23,7 @@
         <template is="couponPanelTemplate" data="{{...shelf}}" />
 
          <!-- 评价栏目 -->
-        <template is="goodsScoreTemplate"/>
+        <template is="goodsScoreTemplate" data="{{commentNum}}"/>
     </view>
 
     <!--间隔-->

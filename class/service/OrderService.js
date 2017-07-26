@@ -133,6 +133,48 @@ export default class OrderService extends BaseService {
         return this.put(url);
     }
 
+    /**
+     * 评价订单
+     */
+    comment(orderId, comments) {
+        const url = `${this.baseUrl}/comments`;
+        return this.post(url, comments);
+    }
+
+    /**
+     * 评价列表
+     */
+    commentList(goodsId) {
+        const url = `${this.baseUrl}/comments`;
+        return new Pagination(url, this._processGoodsComment.bind(this));
+    }
+
+    /**
+     * 评价统计
+     */
+    commentCount(goodsId) {
+        const url = `${this.baseUrl}/comments/count?goods_id=${goodsId}`;
+        return this.get(url);
+    }
+
+    /**
+     * 处理评价列表数据
+     */
+    _processGoodsComment(data) {
+        const comment = {};
+        comment.createTime = data.createTime.substring(0, 10);
+        comment.starArr = [0, 0, 0, 0, 0];
+        for (let i = 0; i < data.star; i++) {
+            comment.starArr[i] = 1;
+        }
+        comment.star = data.star;
+        comment.avatar = data.customer.avatarUrl;
+        comment.nickName = data.customer.nickName;
+        comment.comment = data.comment;
+        return comment;
+
+    }
+
 
 
     /**

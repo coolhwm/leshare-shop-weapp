@@ -1,66 +1,87 @@
-// pages/goods/score/list.js
-Page({
+import Tips from "../../../class/utils/Tips";
+import Router from "../../../class/utils/Router";
+import OrderService from "../../../class/service/OrderService";
 
-  /**
-   * 页面的初始数据
-   */
+const app = getApp();
+const Tab = require('../../../templates/tab/index');
+const orderService = new OrderService();
+
+Page(Object.assign({}, Tab, {
+  page: {},
   data: {
-  
+    comments: [],
+    init: false
+  },
+  onLoad: function ({goodsId}) {
+    this.data.goodsId = goodsId;
+    Tips.loading();
+    //初始化分页参数
+    this.page = orderService.commentList();
+    orderService.commentCount(this.data.goodsId).then(res => {
+      this.setData(
+        {
+          "tab": {
+            "list": [
+              { "id": "GOOD", "title": `满意（${res.GOOD}）` },
+              { "id": "NORMAL", "title": `一般（${res.NORMAL}）` },
+              { "id": "BAD", "title": `不满意（${res.BAD}）` }
+            ],
+            "selectedId": "GOOD",
+            "scroll": false
+          },
+        }
+      );
+    }).then(() => {
+      this.loadNextPage();
+    });
+  },
+
+  reload: function () {
+    this.page.reset();
+    this.loadNextPage();
+    wx.stopPullDownRefresh();
   },
 
   /**
-   * 生命周期函数--监听页面加载
+   * 加载下一页
    */
-  onLoad: function (options) {
-  
+  loadNextPage: function () {
+    const param = {
+      status: this.data.tab.selectedId,
+      goods_id: this.data.goodsId
+    };
+    this.page.next(param).then(data => {
+      this.setData({
+        comments: data.list,
+        init: true
+      });
+      Tips.loaded();
+    });
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
+  * 下拉刷新
+  */
   onPullDownRefresh: function () {
-  
+    this.reload();
   },
 
   /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
+  * 上划加载
+  */
+  onReachBottom: function (event) {
+    this.loadNextPage();
   },
-
   /**
-   * 用户点击右上角分享
+   * 处理点击事件
    */
-  onShareAppMessage: function () {
-  
-  }
-})
+  handleZanTabChange(e) {
+    var componentId = e.componentId;
+    var selectedId = e.selectedId;
+
+    this.setData({
+      [`${componentId}.selectedId`]: selectedId
+    });
+    this.reload();
+  },
+}));

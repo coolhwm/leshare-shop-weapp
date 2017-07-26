@@ -28,7 +28,8 @@ Page(Object.assign({}, Quantity, {
     isFav: false,
     cartNum: 0,
     shelf: {},
-    init: false
+    init: false,
+    commentNum: 0,
   },
   onLoad: function (options) {
     Tips.loading();
@@ -55,6 +56,9 @@ Page(Object.assign({}, Quantity, {
 
     //卡券
     couponService.shelf().then(data => this.setData({ shelf: data }));
+
+    // 评论数量
+    orderService.commentCount(goodsId).then(data => this.setData({commentNum: data.ALL}));
 
     //获取购物车商品数量
     this.setCartNumFromApp();
@@ -282,6 +286,7 @@ Page(Object.assign({}, Quantity, {
     return Tips.share(title, url, desc);
   },
   onScoreTap: function() {
-    Router.goto('/pages/goods/score/list');
+    const goodsId = this.data.goods.id;
+    Router.goto(`/pages/goods/score/list?goodsId=${goodsId}`);
   }
 }));

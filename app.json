@@ -1,8 +1,8 @@
 {
   "pages": [
     "pages/shop/index/index",
-    "pages/order/index/index",
     "pages/goods/score/list",
+    "pages/order/index/index",
     "pages/goods/score/score",
     "pages/goods/favorite/favorite",
     "pages/goods/index/index",

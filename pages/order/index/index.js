@@ -202,11 +202,12 @@ Page({
     const scores = order.orderGoodsInfos.map(item => {
       return {
         goodsId: item.goodsId,
+        orderId: orderId,
         sku: item.goodsSku,
         preview: item.imageUrl,
-        socre: 5,
-        star: [1, 1, 1, 1, 1],
-        note: ''
+        star: 5,
+        starArr: [1, 1, 1, 1, 1],
+        comment: ''
       };
     });
     

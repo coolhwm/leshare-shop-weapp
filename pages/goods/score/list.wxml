@@ -1,45 +1,36 @@
-<view class="container">
-    <view class="score-box">
+<import src="/templates/tab/index.wxml" />
+
+<view class="container" wx:if="{{init}}">
+
+    <!--分类器-->
+    <view class="goods-grid-tab">
+        <template is="zan-tab" data="{{tab: tab, componentId: 'tab'}}"></template>
+    </view>
+
+    <view class="goods-grid-tab-placeholder" wx:if="{{fixed}}">
+    </view>
+
+    <view class="score-box" wx:for="{{comments}}" wx:for-item="comment" wx:key="id">
         <view class="header-box">
             <view class="info-box">
-                <image class="avatar" src="https://wx.qlogo.cn/mmopen/vi_32/PiajxSqBRaEJgfUzkJq7aLPZKHcicAiceEobzp1ozCZef2kWYibLIriaKdKv366IPWktSLxVQiaLicPfvXPo4ffHzUhsQ/0"></image>
+                <image class="avatar" src="{{comment.avatar}}"></image>
                 <view class="name-box">
-                    <text class="username">匿名用户</text>
-                    <text class="date">2017-07-22</text>
+                    <text class="username">{{comment.nickName}}</text>
+                    <text class="date">{{item.createTime}}</text>
                 </view>
             </view>
             <view class="star-box">
-                <image src="/images/icons/star-fill.png" ></image>
-                <image src="/images/icons/star-fill.png" ></image>
-                <image src="/images/icons/star-fill.png" ></image>
-                <image src="/images/icons/star-fill.png" ></image>
-                <image src="/images/icons/star-fill.png" ></image>
+                <image src="/images/icons/star{{item == 1 ? '-fill' : ''}}.png" wx:for="{{comment.starArr}}" wx:key="*this"></image>
             </view>
         </view>
         <view class="content-box">
-            好评！
+            {{comment.comment ? comment.comment : '好评！'}}
         </view>
     </view>
 
-    <view class="score-box">
-        <view class="header-box">
-            <view class="info-box">
-                <image class="avatar" src="https://wx.qlogo.cn/mmopen/vi_32/PiajxSqBRaEJgfUzkJq7aLPZKHcicAiceEobzp1ozCZef2kWYibLIriaKdKv366IPWktSLxVQiaLicPfvXPo4ffHzUhsQ/0"></image>
-                <view class="name-box">
-                    <text class="username">匿名用户</text>
-                    <text class="date">2017-07-22</text>
-                </view>
-            </view>
-            <view class="star-box">
-                <image src="/images/icons/star-fill.png" ></image>
-                <image src="/images/icons/star-fill.png" ></image>
-                <image src="/images/icons/star-fill.png" ></image>
-                <image src="/images/icons/star-fill.png" ></image>
-                <image src="/images/icons/star-fill.png" ></image>
-            </view>
-        </view>
-        <view class="content-box">
-            好评！
-        </view>
+    <!--占位提示-->
+    <view class="order-empty-tips" wx:if="{{init && comments.length == 0}}">
+        <image src="/images/icons/order-empty.png" />
+        <text>该商品暂时还没有评价</text>
     </view>
 </view>
