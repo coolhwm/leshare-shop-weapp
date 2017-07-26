@@ -24,7 +24,7 @@ Page(Object.assign({}, Quantity, Tab, {
   data: {
     shop: {},
     goods: [],
-    notice: [],
+    notices: [],
     tab: {},
     coupons: [],
     init: false,
@@ -91,8 +91,8 @@ Page(Object.assign({}, Quantity, Tab, {
     })
 
     //请求公告信息
-    shopService.getFirstNotice().then(data => {
-      this.setData({ notice: data });
+    shopService.notices().then(data => {
+      this.setData({ notices: data });
     });
 
     //请求分类信息

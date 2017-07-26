@@ -6,7 +6,7 @@
 
 <scroll-view class="shop-index-container" scroll-y="true" wx:if="{{init}}" bindscroll="onScroll" bindscrolltolower="onReachBottom">
     <!--店铺基本信息-->
-    <template is="shopItemTemplate" data="{{...shop, notice}}" />
+    <template is="shopItemTemplate" data="{{...shop, notices}}" />
 
     <!--商品区域-->
     <template is="goodsGridTemplate" data="{{goods, tab, loading, nomore, fixed}}"/>

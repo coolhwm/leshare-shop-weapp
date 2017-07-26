@@ -48,6 +48,10 @@
     margin-top: 20rpx;
     color: #FFF;
 }
+.shop-item-notice text{
+    color: #FFF;
+    font-size: 24rpx;
+}
 
 /*背景*/
 .shop-background-image{
@@ -65,4 +69,25 @@
     overflow: hidden;
     top:0;
     left: 0;
+}
+
+.shop-item-notice{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.notice-swiper{
+    width: 180px;
+    height: 20px;
+}
+.notiec-title{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 20px;
+}
+
+.notice-swiper swiper-item{
+    width: 100%;
+    height: 20px;
 }

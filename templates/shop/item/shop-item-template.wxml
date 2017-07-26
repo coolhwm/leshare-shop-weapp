@@ -9,7 +9,16 @@
         <view class="shop-synopsis-container">
             <text class="shop-item-title">{{name}}</text>
             <text class="shop-item-describe">地址：{{address}}</text>
-            <text class="shop-item-notice">公告：{{notice.content}}</text>
+            <view class="shop-item-notice">
+                <view class="notiec-title">
+                    <text >公告：</text>
+                </view>
+                <swiper class="notice-swiper" vertical autoplay circular interval="3000"> 
+                    <swiper-item wx:for="{{notices}}">
+                        <text>{{item.content}}</text>
+                    </swiper-item>
+                </swiper>
+            </view>
         </view>
         <image class="icon-big" src="/images/icons/more-white.png" />
 

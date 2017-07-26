@@ -44,16 +44,14 @@ export default class ShopService extends BaseService {
     /**
      * 获取店铺公告（第一个）
      */
-    getFirstNotice() {
-        const url = `${this.baseUrl}/notices/shows`;
+    notices() {
+        const url = `${this.baseUrl}/notices`;
         return this.get(url, {}).then(data => {
-            if (data && data.length > 0) {
-                return data[0];
-            }
-            else {
-                return {content: '暂无公告'};
-            }
-
+           if(data == null || data.length < 1) {
+               return [{content: '暂无公告'}]
+           } else {
+               return data;
+           }
         });
     }
 
