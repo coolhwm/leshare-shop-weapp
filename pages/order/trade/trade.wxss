@@ -98,6 +98,9 @@ page{
     background-color: #1296db;
     color: #FFF;
 }
+.trade-confirm-disable{
+    background-color: #B0B0B0;
+}
 .trade-confirm-button text{
     color: #FFF;
     font-size: 34rpx;

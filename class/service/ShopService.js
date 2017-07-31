@@ -22,6 +22,8 @@ export default class ShopService extends BaseService {
         });
     }
 
+
+
     /**
      * 获取店铺详情
      */
@@ -39,6 +41,14 @@ export default class ShopService extends BaseService {
             });
         }
 
+    }
+
+    /**
+     * 店铺限价
+     */
+    limitPrice() {
+        const url = `${this.baseUrl}/delivery/limit_price`;
+        return this.get(url);
     }
 
     /**

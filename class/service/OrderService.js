@@ -181,7 +181,7 @@ export default class OrderService extends BaseService {
      * 计算支持的物流方式价格（根据商品信息及地址信息）
      */
     queryPostPrice(address, goodsList) {
-        const url = `${this.baseUrl}/orders/delivery`;
+        const url = `${this.baseUrl}/delivery`;
         const param = {
             address: address,
             goodsList: goodsList

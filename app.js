@@ -40,6 +40,7 @@ App({
     shop: {
       code: 'eemTgbKrhqiYKMFowcBCQ1Zr7G13bWUT',
       name: '连江什么鬼炸鸡店',
+      limitPrice: 0
     },
     //API地址
     //publicUrl: "http://192.168.31.124:9999/api/v1",

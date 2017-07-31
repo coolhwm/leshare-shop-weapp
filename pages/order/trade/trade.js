@@ -70,6 +70,10 @@ Page({
       Tips.alert('请选择收货地址');
       return;
     }
+    if (!this.data.seletedDelilvery) {
+      Tips.alert('不满足配送条件');
+      return;
+    }
 
     //准备交易对象
     const trade = this.data.trade;
@@ -137,13 +141,19 @@ Page({
 
   initPostType: function (address) {
     return orderService.queryPostPrice(address, this.data.trade.orderGoodsInfos).then(data => {
-      if (data.dilivery) {
-        const seletedDelilvery = data.delilveryList.find(item => item.default);
+      if (data.dilivery && data.delilveryList.length > 0) {
+        // const seletedDelilvery = data.delilveryList.find(item => item.default);
+        const seletedDelilvery = data.delilveryList[0];
         const trade = this.updateTradePostFee(seletedDelilvery);
         this.setData({
           delilveries: data.delilveryList,
           seletedDelilvery: seletedDelilvery,
           trade: trade
+        });
+      } else {
+        this.setData({
+          seletedDelilvery: false,
+          limitPrice: app.globalData.shop.limitPrice
         });
       }
     });
@@ -171,7 +181,10 @@ Page({
       //尚未选择地址
       return;
     }
-    const actions = this.data.delilveries.map(item => `${item.desc} ￥${item.fee}`);
+    if (!this.data.seletedDelilvery) {
+      return;
+    }
+    const actions = this.data.delilveries.map(item => `${item.name} ￥${item.fee}`);
     Tips.action(actions).then(res => {
       const seletedDelilvery = this.data.delilveries[res.index];
       const trade = this.updateTradePostFee(seletedDelilvery);

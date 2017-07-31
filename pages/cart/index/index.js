@@ -135,6 +135,10 @@ Page(Object.assign({}, Quantity, {
       Tips.alert("请选择商品");
       return;
     }
+    if (this.cart.limit()) {
+      Tips.alert("未达到起送金额");
+      return;
+    }
     const message = this.cart.checkGoodsStock();
     if (message) {
       Tips.alert(message);

@@ -14,7 +14,7 @@
                     <text >公告：</text>
                 </view>
                 <swiper class="notice-swiper" vertical autoplay circular interval="3000"> 
-                    <swiper-item wx:for="{{notices}}">
+                    <swiper-item wx:for="{{notices}}" wx:key="index">
                         <text>{{item.content}}</text>
                     </swiper-item>
                 </swiper>

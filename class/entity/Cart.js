@@ -1,3 +1,4 @@
+const app = getApp();
 
 /**
  * 购物车视图类
@@ -11,6 +12,7 @@ export default class Cart {
         this.all = false;
         this.reload = false;
         this.batch = false;
+        this.limitPrice = app.globalData.shop.limitPrice;
     }
 
     /**
@@ -23,7 +25,9 @@ export default class Cart {
             num: this.num,
             all: this.all,
             reload: this.reload,
-            batch: this.batch
+            batch: this.batch,
+            limitPrice: this.limitPrice,
+            buy: Number(this.price) >= Number(this.limitPrice) && this.num > 0
         };
     }
 
@@ -32,6 +36,10 @@ export default class Cart {
      */
     empty() {
         return this.num == 0;
+    }
+
+    limit() {
+        return Number(this.price) < Number(this.limitPrice);
     }
 
     /**

@@ -104,12 +104,28 @@ Page(Object.assign({}, Quantity, Tab, {
       //请求加载商品
       this.loadNextPage();
     });
-
-    //请求优惠券信息
-    // couponService.shelf().then(data => this.setData({ coupons: data }));
-
+    
     //购物车数量初始化
     cartService.count().then(count => app.globalData.cart.num = count);
+
+    // 请求最低价格
+    shopService.limitPrice().then(data => {
+      const arr = [];
+      if (data.SELF) {
+        arr.push(data.SELF);
+      }
+      if (data.CITY) {
+        arr.push(data.CITY);
+      }
+      if (data.EXPRESS) {
+        arr.push(data.EXPRESS);
+      }
+      let limitPrice = Math.min(...arr);
+      if (!limitPrice || Number.isNaN(limitPrice)) {
+        limitPrice = 0;
+      }
+      app.globalData.shop.limitPrice = limitPrice;
+    });
 
     shopService.visit();
   },

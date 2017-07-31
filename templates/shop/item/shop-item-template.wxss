@@ -77,7 +77,7 @@
     align-items: center;
 }
 .notice-swiper{
-    width: 180px;
+    width: 170px;
     height: 20px;
 }
 .notiec-title{
