@@ -12,6 +12,13 @@ export default class AuthService {
         this.baseUrl = this.publicUrl + '/customer';
     }
 
+    check() {
+        const user = wx.getStorageSync("user");
+        const loginCode = wx.getStorageSync("login_code");
+        if (user == "" || loginCode == "") {
+            wx.reLaunch({url: '/pages/customer/login/login'});
+        }
+    }
 
     /**
      * 获取JS_CODE

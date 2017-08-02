@@ -97,10 +97,9 @@ Page(Object.assign({}, Quantity, Tab, {
 
     //请求分类信息
     goodsService.categories().then(data => {
-      console.info('请求分类成功');
       this.setData({ tab: data });
       //生成分页对象
-      this.page = goodsService.page();
+      this.page = goodsService.page(true);
       //请求加载商品
       this.loadNextPage();
     });
@@ -111,19 +110,20 @@ Page(Object.assign({}, Quantity, Tab, {
     // 请求最低价格
     shopService.limitPrice().then(data => {
       const arr = [];
-      if (data.SELF) {
+      if (data.SELF != null) {
         arr.push(data.SELF);
       }
-      if (data.CITY) {
+      if (data.CITY != null) {
         arr.push(data.CITY);
       }
-      if (data.EXPRESS) {
+      if (data.EXPRESS != null) {
         arr.push(data.EXPRESS);
       }
       let limitPrice = Math.min(...arr);
       if (!limitPrice || Number.isNaN(limitPrice)) {
         limitPrice = 0;
       }
+      console.info(`limit price: ${limitPrice}`);
       app.globalData.shop.limitPrice = limitPrice;
     });
 
@@ -220,6 +220,8 @@ Page(Object.assign({}, Quantity, Tab, {
     this.setData({
       [`${componentId}.selectedId`]: selectedId
     });
+
+    this.page = goodsService.page(selectedId == -1);
     this.reload();
   },
 

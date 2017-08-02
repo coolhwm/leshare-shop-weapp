@@ -1,10 +1,12 @@
 import OrderService from "../../../class/service/OrderService";
 import AddressService from "../../../class/service/AddressService";
 import CouponService from "../../../class/service/CouponService";
+import AuthService from "../../../class/service/AuthService";
 import Tips from "../../../class/utils/Tips";
 import Router from "../../../class/utils/Router";
 
 const app = getApp();
+const authService = new AuthService();
 const notification = require("../../../class/utils/WxNotificationCenter.js");
 const orderService = new OrderService();
 const addressService = new AddressService();
@@ -24,6 +26,7 @@ Page({
 
   onLoad: function (options) {
     Tips.loading('订单加载中');
+    authService.check();
     const trade = JSON.parse(options.trade);
     this.setData({ trade: trade });
 

@@ -284,6 +284,11 @@ text{
   border-color: #1296db;
 }
 
+.zan-btn--fill {
+  background-color: #1296db;
+  color:#FFF;
+}
+
 .zan-btn--warn {
   color: #fff;
   background-color: #f85;
@@ -331,6 +336,10 @@ text{
 }
 .zan-btn--plain.zan-btn--primary {
   color: #1296db;
+}
+.zan-btn--plain.zan-btn--fill {
+  background-color: #1296db;
+  color:#FFF;
 }
 .zan-btn--plain.zan-btn--warn {
   color: #FF6600;

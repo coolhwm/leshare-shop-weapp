@@ -13,8 +13,11 @@ export default class GoodsService extends BaseService {
     /**
      * 返回分页对象
      */
-    page() {
-        const url = `${this.baseUrl}/goods`;
+    page(isRecommend = false) {
+        let url = `${this.baseUrl}/goods`;
+        if (isRecommend) {
+            url += '/recommend';
+        }
         return new Pagination(url, this._processGoodsData.bind(this));
     }
 
@@ -48,8 +51,8 @@ export default class GoodsService extends BaseService {
     _createGoodsCategories(data) {
         const list = [];
         list.push({
-            id: '0',
-            title: '全部'
+            id: '-1',
+            title: '推荐'
         });
 
         if (data != null) {
@@ -62,7 +65,7 @@ export default class GoodsService extends BaseService {
         }
         const tab = {
             list: list,
-            selectedId: '0',
+            selectedId: '-1',
             scroll: false
         }
 

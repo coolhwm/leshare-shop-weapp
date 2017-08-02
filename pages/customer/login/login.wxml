@@ -1,0 +1,21 @@
+<!-- 头图区域 -->
+<view class="user-info-container">
+    <image class="user-avatar" src="{{shop.avatar}}" />
+    <text class="user-nickname">{{shop.name}}</text>
+    <text class="user-desc">购买商品、查看订单需要进行用户信息授权</text>
+</view>
+
+
+<view class="zan-panel">
+    <view class="zan-btns">
+        <button open-type="getUserInfo" class="zan-btn zan-btn--fill" bindgetuserinfo="confirm">确认授权</button>
+        <button class="zan-btn" catchtap="back">随便逛逛</button>
+    </view>
+</view>
+
+<view class="weui-footer">
+    <view class="weui-footer__links">
+        <navigator url="" class="weui-footer__link">乐享启创提供技术支持</navigator>
+    </view>
+    <view class="weui-footer__text">Copyright © 2017 leshare.shop</view>
+</view>

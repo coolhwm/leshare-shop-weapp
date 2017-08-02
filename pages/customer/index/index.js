@@ -1,4 +1,7 @@
 import Tips from "../../../class/utils/Tips";
+import AuthService from "../../../class/service/AuthService";
+
+const authService = new AuthService();
 const app = getApp();
 
 Page({
@@ -7,6 +10,7 @@ Page({
   },
 
   onLoad: function (options) {
+    authService.check();
     this.setData({ userInfo: app.globalData.user });
   },
   /**

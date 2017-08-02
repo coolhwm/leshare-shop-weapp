@@ -4,6 +4,8 @@ import FavoriteService from "../../../class/service/FavoriteService";
 import Router from "../../../class/utils/Router";
 import Cart from "../../../class/entity/Cart";
 import Tips from "../../../class/utils/Tips";
+import AuthService from "../../../class/service/AuthService";
+
 const app = getApp();
 const notification = require("../../../class/utils/WxNotificationCenter.js");
 const Quantity = require('../../../templates/quantity/index');
@@ -11,6 +13,7 @@ const cache = getApp().globalData.cart;
 const cartService = new CartService();
 const orderService = new OrderService();
 const favoriteService = new FavoriteService();
+const authService = new AuthService();
 
 Page(Object.assign({}, Quantity, {
 
@@ -28,6 +31,7 @@ Page(Object.assign({}, Quantity, {
    */
   onLoad: function (options) {
     Tips.loading();
+    authService.check();
     //初始化分页参数
     this.page = cartService.page();
     //注册事件,数量改变的时候重新加载

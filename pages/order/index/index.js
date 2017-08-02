@@ -1,9 +1,11 @@
 import OrderService from "../../../class/service/OrderService";
 import ExpressService from "../../../class/service/ExpressService";
+import AuthService from "../../../class/service/AuthService";
 import Router from "../../../class/utils/Router";
 import Tips from "../../../class/utils/Tips";
 
 const notification = require("../../../class/utils/WxNotificationCenter.js");
+const authService = new AuthService();
 const app = getApp();
 const cache = app.globalData.order;
 const orderService = new OrderService();
@@ -25,6 +27,7 @@ Page({
    */
   onLoad: function (options) {
     Tips.loading();
+    authService.check();
     this.page = orderService.page();
     this.iniOrderTabBar()
     this.loadNextPage();

@@ -54,6 +54,10 @@ Page({
   */
   onOrderRefund: function (event) {
     const order = this.data.order;
+    if (Number(order.finalPrice) == 0) {
+      Tips.alert('￥0 订单无需退款');
+      return;
+    }
     const refund = orderService.createOrderRefund(order);
     const refundStr = JSON.stringify(refund);
     Tips.confirm('您确认要申请退款吗？').then(() => {
