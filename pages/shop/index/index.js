@@ -31,7 +31,8 @@ Page(Object.assign({}, Quantity, Tab, {
     loading: false,
     nomore: false,
     cartGoods: {},
-    cartSku: {}
+    cartSku: {},
+    status: {}
   },
 
   /**
@@ -42,6 +43,11 @@ Page(Object.assign({}, Quantity, Tab, {
     authService.checkLoginCode()
       .then(this.init, this.session)
       .then(this.login);
+  },
+
+  onShow: function () {
+    // 检查店铺状态
+    this.loadStatus();
   },
 
 
@@ -66,7 +72,7 @@ Page(Object.assign({}, Quantity, Tab, {
       Tips.error('服务器连接失败');
       return Promise.reject('服务器连接失败');
     }
-    this.retry ++;
+    this.retry++;
     return authService.getWxJsCode()
       .then(jsCode => {
         return authService.getLoginCode(jsCode);
@@ -85,6 +91,10 @@ Page(Object.assign({}, Quantity, Tab, {
    */
   init: function () {
     console.info('权限校验成功，会话正常');
+
+    // 检查店铺状态
+    this.loadStatus();
+
     //请求店铺基本信息
     shopService.getInfo().then(data => {
       this.setData({ shop: data });
@@ -103,7 +113,7 @@ Page(Object.assign({}, Quantity, Tab, {
       //请求加载商品
       this.loadNextPage();
     });
-    
+
     //购物车数量初始化
     cartService.count().then(count => app.globalData.cart.num = count);
 
@@ -128,6 +138,24 @@ Page(Object.assign({}, Quantity, Tab, {
     });
 
     shopService.visit();
+  },
+
+  loadStatus: function () {
+    shopService.status().then(data => {
+      app.globalData.shop.open = data.open;
+      app.globalData.shop.closeTips = data.closeTips;
+      this.setData(
+        { status: data }
+      );
+      this.checkStatus();
+    });
+  },
+
+  checkStatus: function () {
+    if (!app.globalData.shop.open) {
+      Tips.modal(app.globalData.shop.closeTips);
+    }
+    return app.globalData.shop.open;
   },
 
   /**
@@ -228,15 +256,15 @@ Page(Object.assign({}, Quantity, Tab, {
   /**
    * 分享
    */
-  onShareAppMessage: function(){
+  onShareAppMessage: function () {
     const title = app.globalData.shop.name;
     const url = '/pages/shop/index/index';
     return Tips.share(title, url, title);
   },
 
-   /***********************购物车及面板事件***********************/
+  /***********************购物车及面板事件***********************/
 
-   
+
   /**
    * 关闭面板
    */
@@ -245,10 +273,13 @@ Page(Object.assign({}, Quantity, Tab, {
     this.setData({ cartSku: this.cartSku.export() });
   },
 
-    /**
-   * 点击加入购物车
-   */
+  /**
+ * 点击加入购物车
+ */
   onAddCartTap: function (event) {
+    if (!this.checkStatus()) {
+      return;
+    }
     Tips.loading();
     const goodsId = event.currentTarget.dataset.goodsId;
     //获取商品信息
@@ -300,7 +331,7 @@ Page(Object.assign({}, Quantity, Tab, {
       this.setCartNumFromApp(sku.num);
       notification.postNotificationName("ON_CART_UPDATE");
       this.onPanelClose();
-    }).catch(err =>console.info(err));
+    }).catch(err => console.info(err));
   },
 
   setCartNumFromApp: function (num) {

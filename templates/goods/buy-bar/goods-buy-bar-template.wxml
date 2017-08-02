@@ -18,13 +18,20 @@
             </view>
             <text>购物车</text>
         </view>
+        <block wx:if="{{status}}">
+            <view class="bar-cart-container" catchtap="onAddCartTap">
+                <text>加入购物车</text>
+            </view>
 
-        <view class="bar-cart-container" catchtap="onAddCartTap">
-            <text>加入购物车</text>
-        </view>
+            <view class="bar-buy-container" catchtap="onBuyTap">
+                <text>立即购买</text>
+            </view>
+        </block>
+        <block wx:else>
+            <view class="bar-close-container" catchtap="onCloseTap">
+                <text>未营业</text>
+            </view>
+        </block>
 
-        <view class="bar-buy-container" catchtap="onBuyTap">
-            <text>立即购买</text>
-        </view>
     </view>
 </template>

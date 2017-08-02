@@ -30,6 +30,7 @@ Page(Object.assign({}, Quantity, {
     shelf: {},
     init: false,
     commentNum: 0,
+    status: {}
   },
   onLoad: function (options) {
     Tips.loading();
@@ -37,7 +38,10 @@ Page(Object.assign({}, Quantity, {
     //const goodsId = 2;
     //请求店铺基本信息
     shopService.getInfo().then(data => {
-      this.setData({ shop: data });
+      this.setData({
+        shop: data,
+        status: app.globalData.shop.open
+      });
     })
 
     //获取商品信息
@@ -58,7 +62,7 @@ Page(Object.assign({}, Quantity, {
     couponService.shelf().then(data => this.setData({ shelf: data }));
 
     // 评论数量
-    orderService.commentCount(goodsId).then(data => this.setData({commentNum: data.ALL}));
+    orderService.commentCount(goodsId).then(data => this.setData({ commentNum: data.ALL }));
 
     //获取购物车商品数量
     this.setCartNumFromApp();
@@ -75,7 +79,7 @@ Page(Object.assign({}, Quantity, {
   /**
    * 查看图片
    */
-  preview: function(event) {
+  preview: function (event) {
     const urls = this.data.goods.images.map(item => item.url);
     wx.previewImage({
       urls: urls
@@ -85,8 +89,8 @@ Page(Object.assign({}, Quantity, {
   /**
    * 查看详情的所有图片
    */
-  previewDetails: function(event) {
-    const current  = event.currentTarget.dataset.url;
+  previewDetails: function (event) {
+    const current = event.currentTarget.dataset.url;
     const urls = this.data.goods.goodsDetails.filter(item => item.type == 2).map(item => item.content);
     wx.previewImage({
       current: current,
@@ -110,6 +114,10 @@ Page(Object.assign({}, Quantity, {
    */
   onToCartTap: function (event) {
     Router.cartIndex();
+  },
+
+  onCloseTap: function () {
+    Tips.modal(app.globalData.shop.closeTips);
   },
 
   /**
@@ -285,7 +293,7 @@ Page(Object.assign({}, Quantity, {
     const url = `/pages/goods/index/index?goodsId=${this.data.goods.id}`;
     return Tips.share(title, url, desc);
   },
-  onScoreTap: function() {
+  onScoreTap: function () {
     const goodsId = this.data.goods.id;
     Router.goto(`/pages/goods/score/list?goodsId=${goodsId}`);
   }

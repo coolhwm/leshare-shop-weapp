@@ -6,7 +6,7 @@
 
 <scroll-view class="shop-index-container" scroll-y="true" wx:if="{{init}}" bindscroll="onScroll" bindscrolltolower="onReachBottom">
     <!--店铺基本信息-->
-    <template is="shopItemTemplate" data="{{...shop, notices}}" />
+    <template is="shopItemTemplate" data="{{...shop, notices, status}}" />
 
     <!--商品区域-->
     <template is="goodsGridTemplate" data="{{goods, tab, loading, nomore, fixed}}"/>
@@ -15,5 +15,5 @@
     <view class="footer-line"></view>
 
     <!--购买面板-->
-    <template is="goodsBuyPanelTemplate" data="{{...cartGoods, sku: cartSku}}" />
+    <template is="goodsBuyPanelTemplate" data="{{...cartGoods, sku: cartSku, status: status.open}}" />
 </scroll-view>

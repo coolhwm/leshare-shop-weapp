@@ -49,12 +49,19 @@
         </view>
     </view>
 
+    <block wx:if="{{status}}">
+        <view class="buy-panel-next {{sku.next ? '' : 'buy-panel-empty'}}" catchtap="onConfirmBuyTap" wx:if="{{sku.action =='buy'}}">
+            <text>下一步</text>
+        </view>
+        <view class="buy-panel-next {{sku.next ? '' : 'buy-panel-empty'}}" catchtap="onConfirmCartTap" wx:if="{{sku.action =='cart'}}">
+            <text>确定</text>
+        </view>
+    </block>
+    <block wx:else>
+        <view class="buy-panel-next buy-panel-empty" catchtap="onCloseTap" >
+            <text>未营业</text>
+        </view>
+    </block>
 
-    <view class="buy-panel-next {{sku.next ? '' : 'buy-panel-empty'}}" catchtap="onConfirmBuyTap" wx:if="{{sku.action =='buy'}}">
-        <text>下一步</text>
-    </view>
-    <view class="buy-panel-next {{sku.next ? '' : 'buy-panel-empty'}}" catchtap="onConfirmCartTap" wx:if="{{sku.action =='cart'}}">
-        <text>确定</text>
-    </view>
     </view>
 </template>

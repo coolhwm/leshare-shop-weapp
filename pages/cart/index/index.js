@@ -143,6 +143,10 @@ Page(Object.assign({}, Quantity, {
       Tips.alert("未达到起送金额");
       return;
     }
+    if (!this.cart.open) {
+      Tips.modal(app.globalData.shop.closeTips);
+      return;
+    }
     const message = this.cart.checkGoodsStock();
     if (message) {
       Tips.alert(message);

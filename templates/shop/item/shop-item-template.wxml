@@ -21,6 +21,6 @@
             </view>
         </view>
         <image class="icon-big" src="/images/icons/more-white.png" />
-
     </view>
+    <view class="close-tips" wx:if="{{!status.open}}"><text>提示： {{status.closeTips}}</text></view>
 </template>

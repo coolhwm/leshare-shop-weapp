@@ -28,7 +28,13 @@
     height: 100%;
     width: 35%;
 }
-.bar-buy-container text,.bar-cart-container  text{
+.bar-close-container{
+    background-color: #B0B0B0;
+    text-align: center;
+    height: 100%;
+    width: 70%;
+}
+.bar-buy-container text,.bar-cart-container text,.bar-close-container text{
     font-size: 32rpx;
     line-height: 100rpx;
     color: #FFF;

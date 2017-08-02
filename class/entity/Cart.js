@@ -13,6 +13,7 @@ export default class Cart {
         this.reload = false;
         this.batch = false;
         this.limitPrice = app.globalData.shop.limitPrice;
+        this.open = app.globalData.shop.open;
     }
 
     /**
@@ -27,7 +28,8 @@ export default class Cart {
             reload: this.reload,
             batch: this.batch,
             limitPrice: this.limitPrice,
-            buy: Number(this.price) >= Number(this.limitPrice) && this.num > 0
+            open: this.open,
+            buy: Number(this.price) >= Number(this.limitPrice) && this.num > 0 && this.open
         };
     }
 

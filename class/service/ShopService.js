@@ -43,6 +43,18 @@ export default class ShopService extends BaseService {
 
     }
 
+    status() {
+        const url = `${this.baseUrl}/shops/status`;
+        return this.get(url).then(data => {
+            if (data.status == 'CLOSE') {
+                data.closeTips = '店铺已休息，请稍后再来';
+            } else if (data.status == 'NORMAL' && !data.status.open) {
+                data.closeTips = `店铺已休息，营业时间：${data.beginTime} - ${data.endTime}`;
+            }
+            return data;
+        });
+    }
+
     /**
      * 店铺限价
      */
@@ -57,11 +69,11 @@ export default class ShopService extends BaseService {
     notices() {
         const url = `${this.baseUrl}/notices`;
         return this.get(url, {}).then(data => {
-           if(data == null || data.length < 1) {
-               return [{content: '暂无公告'}]
-           } else {
-               return data;
-           }
+            if (data == null || data.length < 1) {
+                return [{ content: '暂无公告' }]
+            } else {
+                return data;
+            }
         });
     }
 
