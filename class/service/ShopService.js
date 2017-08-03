@@ -1,5 +1,5 @@
 import BaseService from "./BaseService";
-
+const app = getApp();
 
 /**
  * 店铺服务类
@@ -60,7 +60,24 @@ export default class ShopService extends BaseService {
      */
     limitPrice() {
         const url = `${this.baseUrl}/delivery/limit_price`;
-        return this.get(url);
+        return this.get(url).then(data => {
+            const arr = [];
+            if (data.SELF != null) {
+                arr.push(data.SELF);
+            }
+            if (data.CITY != null) {
+                arr.push(data.CITY);
+            }
+            if (data.EXPRESS != null) {
+                arr.push(data.EXPRESS);
+            }
+            let limitPrice = Math.min(...arr);
+            if (!limitPrice || Number.isNaN(limitPrice)) {
+                limitPrice = 0;
+            }
+            app.globalData.shop.limitPrice = limitPrice;
+            return limitPrice;
+        });
     }
 
     /**

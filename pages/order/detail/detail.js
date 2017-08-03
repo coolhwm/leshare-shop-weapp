@@ -141,7 +141,22 @@ Page({
    * 评论订单
    */
   onOrderComment: function (event) {
-    Tips.toast("尚未实现");
-  }
+    const order = this.data.order;
+    const orderId = order.orderId;
 
+    const scores = order.orderGoodsInfos.map(item => {
+      return {
+        goodsId: item.goodsId,
+        orderId: orderId,
+        sku: item.goodsSku,
+        preview: item.imageUrl,
+        star: 5,
+        starArr: [1, 1, 1, 1, 1],
+        comment: ''
+      };
+    });
+    const data = JSON.stringify(scores);
+    Router.goto(`/pages/goods/score/score?orderId=${orderId}&data=${data}`);
+    
+  }
 });

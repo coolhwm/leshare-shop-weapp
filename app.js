@@ -40,11 +40,14 @@ App({
     shop: {
       code: 'eemTgbKrhqiYKMFowcBCQ1Zr7G13bWUT',
       name: '连江什么鬼炸鸡店',
+      // code: 'xemTgbKrhqiYKMFowcBCQ1Zr7G13bWUT',
+      // name: '示例店铺',
       limitPrice: 0
     },
     //API地址
     //publicUrl: "http://192.168.31.124:9999/api/v1",
-    publicUrl: "http://121.42.178.251:9999/v1",
-    //publicUrl: "https://api.leshare.shop/v1",
+    //publicUrl: "http://121.42.178.251:9999/v1",
+    publicUrl: "https://api.leshare.shop/v1",
+    //publicUrl: "http://api.leshare.shop:9001/v1",
   }
 });

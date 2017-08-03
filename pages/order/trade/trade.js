@@ -2,6 +2,7 @@ import OrderService from "../../../class/service/OrderService";
 import AddressService from "../../../class/service/AddressService";
 import CouponService from "../../../class/service/CouponService";
 import AuthService from "../../../class/service/AuthService";
+import ShopService from "../../../class/service/ShopService";
 import Tips from "../../../class/utils/Tips";
 import Router from "../../../class/utils/Router";
 
@@ -10,6 +11,7 @@ const authService = new AuthService();
 const notification = require("../../../class/utils/WxNotificationCenter.js");
 const orderService = new OrderService();
 const addressService = new AddressService();
+const shopService = new ShopService();
 const couponService = new CouponService();
 
 Page({
@@ -154,9 +156,11 @@ Page({
           trade: trade
         });
       } else {
-        this.setData({
-          seletedDelilvery: false,
-          limitPrice: app.globalData.shop.limitPrice
+        shopService.limitPrice().then(price => {
+          this.setData({
+            seletedDelilvery: false,
+            limitPrice: price
+          });
         });
       }
     });

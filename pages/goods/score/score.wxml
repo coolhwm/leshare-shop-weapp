@@ -1,4 +1,4 @@
-<view class="conatiner">
+<view class="conatiner" wx:if="{{init}}">
     <view class="score-item-box" wx:for="{{scores}}" wx:key="index" wx:for-item="goods" wx:for-index="index">
         <view class="socre-header">
             <image class="goods-img" src='{{goods.preview}}'></image>
@@ -13,15 +13,9 @@
             <textarea bindinput="input" data-index="{{index}}"  auto-height placeholder="请填写商品评价，说说它的优点和美中不足的地方吧" />
         </view>
     </view>
-
-    <!--操作底栏-->
-    <view class="refund-action-bar">
-        <navigator class="refund-action" open-type="navigateBack">
-            <text>取消</text>
-        </navigator>
-
-        <view class="refund-action-primary" catchtap="onSubmitTap">
-            <text>确认</text>
+    <view class="zan-panel">
+        <view class="zan-btns">
+            <button class="zan-btn zan-btn--fill" catchtap="onSubmitTap">提交评价</button>
         </view>
     </view>
 </view>

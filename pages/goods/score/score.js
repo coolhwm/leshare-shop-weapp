@@ -7,6 +7,7 @@ const app = getApp();
 const orderService = new OrderService();
 Page({
   data: {
+    init: false,
     orderId: '',
     scores: []
   },
@@ -14,7 +15,8 @@ Page({
     const scores = JSON.parse(data);
     this.setData({
       orderId: orderId,
-      scores: scores
+      scores: scores,
+      init: true
     });
   },
   onStarTap({currentTarget}) {

@@ -22,9 +22,9 @@ Page(Object.assign({}, Tab, {
         {
           "tab": {
             "list": [
-              { "id": "GOOD", "title": `满意（${res.GOOD}）` },
-              { "id": "NORMAL", "title": `一般（${res.NORMAL}）` },
-              { "id": "BAD", "title": `不满意（${res.BAD}）` }
+              { "id": "GOOD", "title": `满意(${res.GOOD})` },
+              { "id": "NORMAL", "title": `一般(${res.NORMAL})` },
+              { "id": "BAD", "title": `不满意(${res.BAD})` }
             ],
             "selectedId": "GOOD",
             "scroll": false

@@ -56,7 +56,7 @@
 
             <view class="bar-buy-container {{cart.buy ? '' : 'bar-buy-empty'}}" catchtap="onBuyTap">
                 <text class="text-btn" wx:if="{{cart.buy}}">去结算</text>
-                <text class="text-btn" wx:elif="{{!cart.opne}}">未营业</text>
+                <text class="text-btn" wx:elif="{{!cart.open}}">未营业</text>
                 <text class="text-btn" wx:else>￥{{cart.limitPrice}} 起送</text>
                 <text class="text-small" wx:if="{{cart.buy}}">({{cart.num}})</text>
             </view>

@@ -118,24 +118,7 @@ Page(Object.assign({}, Quantity, Tab, {
     cartService.count().then(count => app.globalData.cart.num = count);
 
     // 请求最低价格
-    shopService.limitPrice().then(data => {
-      const arr = [];
-      if (data.SELF != null) {
-        arr.push(data.SELF);
-      }
-      if (data.CITY != null) {
-        arr.push(data.CITY);
-      }
-      if (data.EXPRESS != null) {
-        arr.push(data.EXPRESS);
-      }
-      let limitPrice = Math.min(...arr);
-      if (!limitPrice || Number.isNaN(limitPrice)) {
-        limitPrice = 0;
-      }
-      console.info(`limit price: ${limitPrice}`);
-      app.globalData.shop.limitPrice = limitPrice;
-    });
+    shopService.limitPrice().then(price => console.info(`limit price: ${price}`));
 
     shopService.visit();
   },
