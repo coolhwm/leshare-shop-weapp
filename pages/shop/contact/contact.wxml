@@ -1,0 +1,19 @@
+<view class="container">
+    <view class="header  column-center">
+        <text class="title">小程序，商家营销利器</text>
+        <text class="describe">帮助商家提前布局微信生态，抢占第一波红利</text>
+        <view class="contact column-center" catchtap="call">电话咨询</view>
+        <image class="preview" mode="aspectFit" src="http://img.leshare.shop/leshare/xc.png"></image>
+    </view>
+    <view class="content">
+        <image class="solution" mode="widthFix" src="http://img.leshare.shop/leshare/solution.png"></image>
+    </view>
+
+    <view class="weui-footer">
+        <view class="weui-footer__links">
+            <navigator url="" class="weui-footer__link">乐享启创提供技术支持</navigator>
+        </view>
+        <view class="weui-footer__text">Copyright © 2017 leshare.shop</view>
+    </view>
+
+</view>
