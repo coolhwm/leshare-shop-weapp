@@ -38,10 +38,10 @@ App({
     auth: {},
     //店铺缓存
     shop: {
-      code: 'eemTgbKrhqiYKMFowcBCQ1Zr7G13bWUT',
-      name: '连江什么鬼炸鸡店',
-      // code: 'xemTgbKrhqiYKMFowcBCQ1Zr7G13bWUT',
-      // name: '示例店铺',
+      //code: 'eemTgbKrhqiYKMFowcBCQ1Zr7G13bWUT',
+      //name: '连江什么鬼炸鸡店',
+      code: 'xemTgbKrhqiYKMFowcBCQ1Zr7G13bWUT',
+      name: '示例店铺',
       limitPrice: 0
     },
     //API地址
